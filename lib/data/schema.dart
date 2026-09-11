@@ -1,0 +1,118 @@
+/// Exact column names in the supplied MySQL-derived SQLite asset.
+/// Typos and casing are intentional and match the existing database.
+class CaminoSchema {
+  static const stages = 'stages';
+  static const locations = 'locations';
+  static const paragraphs = 'paragraphs';
+  static const albergues = 'albergues';
+  static const privateAccommodation = 'privateAccommDetail';
+  static const paths = 'paths';
+  static const trackPoints = 'track_points';
+  static const requiredColumns = <String, List<String>>{
+    stages: [
+      'ID',
+      'stageName',
+      'stageDistanceInMetres',
+      'stageTimeInMinutes',
+      'stageStartLocationID',
+      'stageFinishLocationID',
+      'priorStage',
+      'nextStage',
+      'altPriorStage',
+      'altNextStage',
+      'stageMapURL',
+      'stageElevationChartURL',
+    ],
+    locations: [
+      'ID',
+      'locationName',
+      'latitude',
+      'longitude',
+      'priorLoc',
+      'nextLoc',
+      'altPriorLoc',
+      'altNextLoc',
+      'locationPic1URL',
+      'locationPic2URL',
+      'locationPic3URL',
+      'locationPic4URL',
+    ],
+    paragraphs: [
+      'ID',
+      'locationID',
+      'paragraphType',
+      'paragraphText',
+      'paragraphWebsiteURL',
+    ],
+    albergues: [
+      'ID',
+      'locationID',
+      'albergueName',
+      'albergueStreetAdress',
+      'albergueBookingDotComURL',
+      'albergueWebsiteURL',
+      'albergueAdditionalComments',
+      'alberguepic1URL',
+      'alberguepic2URL',
+      'alberguepic3URL',
+      'alberguepic4URL',
+      'gps_lat',
+      'gps_lng',
+      'numberOfBeds',
+      'numberOfDorms',
+      'openingPeriod',
+      'check_in_opens',
+      'check_in_closes',
+      'onedPersonRateMin',
+      'onedPersonRateMax',
+      'twoPersonRateMin',
+      'twodPersonRateMax',
+      'rateNotes',
+    ],
+    privateAccommodation: [
+      'ID',
+      'locationID',
+      'privateAccommName',
+      'privateAccommStreetAdress',
+      'privateAccommBookingDotComURL',
+      'privateAccommWebsiteURL',
+      'privateAccommAdditionalComments',
+      'gps_lat',
+      'gps_lng',
+      'onedPersonRateMin',
+      'onedPersonRateMax',
+      'twoPersonRateMin',
+      'twodPersonRateMax',
+      'rateNotes',
+    ],
+    paths: [
+      'pathID',
+      'stageID',
+      'originLoc',
+      'destinationLoc',
+      'distance_metres',
+      'time_seconds',
+    ],
+    trackPoints: [
+      'track_point_id',
+      'pathID',
+      'latitude',
+      'longitude',
+      'elevation',
+      'previous_track_point_id',
+      'distance_3d_meters',
+      'slope_angle_degrees',
+      'weighted_distance',
+      'waypoint',
+    ],
+  };
+  static const primaryIds = {
+    stages: 'ID',
+    locations: 'ID',
+    paragraphs: 'ID',
+    albergues: 'ID',
+    privateAccommodation: 'ID',
+    paths: 'pathID',
+    trackPoints: 'track_point_id',
+  };
+}
