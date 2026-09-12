@@ -1,0 +1,15 @@
+# Camino guide paragraph import
+
+Source: Camino Frances AC.docx, supplied by the owner. Source SHA256: 2fdfbfe97797d172fa1a2dbee02f405ff3d32b06aee97df2d9132e7f8664d79a.
+
+Added 326 rows (IDs 63 through 388): 111 PLAIN, 99 DIRECTIONS and 116 HISTORY. Preserved all 61 existing rows and their IDs, including edited passages which differ from the guide. Final table: 387 rows. No other table or schema changed. New entries cover 151 existing location IDs.
+
+The DOCX was inspected as structured OOXML and rendered to a 164-page PDF for representative checks of the symbol legend, location headings and mixed-content passages. Wingdings 3 F05F is the route/practical arrow. Wingdings F046 is the history pointing hand. History continuations without repeated icons retain HISTORY; non-routing descriptive/service material uses PLAIN; directions, route options and warnings use DIRECTIONS. Existing classifications are preserved. Paragraphs containing both icons are split at each icon. Text after an arrow embedded in a hotel listing is extracted without the hotel listing.
+
+The CSV and JSON contain every new row, its zero-based DOCX body paragraph index and assigned existing location. Mapping.json records reviewed heading aliases, route-branch resets, additional unmarked continuations and passages covered by existing edited entries. Source wording, including prices, opening hours and spelling, is retained; whitespace is normalized and auxiliary telephone/meal/person symbols are converted to text. Only the first usable website and telephone fit the existing dedicated columns; additional contact text stays in the paragraph. Bare www links receive https:// in the website column. Those links and the guide's time-sensitive statements were not independently checked for current accuracy.
+
+Front matter, photo captions, stage-map images and standalone accommodation listings were excluded. Two arrow-marked accommodation-specific passages (source indices 329 and 876) were excluded as accommodation material. No new locations were invented. Empalme notes are labeled and attached to nearby Santa Irene; Castrillo de los Polvazares detour notes remain with Murias de Rechivaldo; Ibaneta uses Ermita de San Salvador; other detours use their existing exit/location records. Santiago arrival directions use Santiago Puerta del Camino. All icon-marked body passages are accounted for as imported, covered by existing rows or explicitly excluded.
+
+The original 61 rows remain in place; new rows follow source order using newly allocated IDs. The table has no separate display-order column. The full pre-import database backup remains in the task's work folder. The importer supports a dry run by omitting --apply, deduplicates exact location/text matches, and refuses to overwrite its prior backup. It requires Python with lxml. The source Word file is not copied into the app or GitHub folder.
+
+Validation: SQLite integrity check passed; no duplicate IDs or orphan location references; original paragraph rows and every other database table compared unchanged.

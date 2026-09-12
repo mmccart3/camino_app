@@ -1,27 +1,39 @@
+import '../data/models.dart' show MapHotspot, Location;
+import 'hotspot_image.dart';
 import 'package:flutter/material.dart';
-import '../services/safe_links.dart';
 import 'widgets.dart';
 
 /// Maps and charts retain their original proportions, unlike photo thumbnails.
 class PublishedImage extends StatelessWidget {
-  final String? url;
+  final String? assetPath;
   final String title;
   final ImageProvider? imageProvider;
+  final List<MapHotspot> hotspots;
+  final ValueChanged<Location>? onLocationTap;
   const PublishedImage({
     super.key,
-    required this.url,
+    required this.assetPath,
     required this.title,
     this.imageProvider,
+    this.hotspots = const [],
+    this.onLocationTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (imageProvider == null && (url == null || !SafeLinks.isSafe(url!))) {
+    if (imageProvider == null && assetPath == null) {
       return const _Unavailable();
     }
-    final provider = imageProvider ?? NetworkImage(url!);
-    void open() =>
-        navigate(context, _FullScreenImage(provider: provider, title: title));
+    final provider = imageProvider ?? AssetImage(assetPath!);
+    void open() => navigate(
+      context,
+      _FullScreenImage(
+        provider: provider,
+        title: title,
+        hotspots: hotspots,
+        onLocationTap: onLocationTap,
+      ),
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -30,22 +42,16 @@ class PublishedImage extends StatelessWidget {
           label: 'Open $title full screen',
           child: InkWell(
             onTap: open,
-            child: Image(
-              image: provider,
-              width: double.infinity,
-              fit: BoxFit.contain,
-              semanticLabel: title,
-              frameBuilder: (context, child, frame, synchronous) =>
-                  frame == null && !synchronous
-                  ? const SizedBox(
-                      height: 120,
-                      child: Center(child: CircularProgressIndicator()),
-                    )
-                  : child,
-              errorBuilder: (_, _, _) => const _Unavailable(),
+            child: HotspotImage(
+              provider: provider,
+              title: title,
+              hotspots: hotspots,
+              onLocationTap: onLocationTap,
             ),
           ),
         ),
+        if (hotspots.isNotEmpty)
+          const Text('Tap a place on the map to open its details.'),
         TextButton.icon(
           onPressed: open,
           icon: const Icon(Icons.fullscreen),
@@ -61,16 +67,21 @@ class _Unavailable extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const SizedBox(
     height: 120,
-    child: Center(
-      child: Text('Image unavailable. Connect to the internet to load it.'),
-    ),
+    child: Center(child: Text('Image unavailable in this app version.')),
   );
 }
 
 class _FullScreenImage extends StatefulWidget {
   final ImageProvider provider;
   final String title;
-  const _FullScreenImage({required this.provider, required this.title});
+  final List<MapHotspot> hotspots;
+  final ValueChanged<Location>? onLocationTap;
+  const _FullScreenImage({
+    required this.provider,
+    required this.title,
+    required this.hotspots,
+    this.onLocationTap,
+  });
   @override
   State<_FullScreenImage> createState() => _FullScreenImageState();
 }
@@ -117,11 +128,12 @@ class _FullScreenImageState extends State<_FullScreenImage> {
                   minScale: 1,
                   maxScale: 8,
                   child: SizedBox.expand(
-                    child: Image(
-                      image: widget.provider,
-                      fit: BoxFit.contain,
-                      semanticLabel: widget.title,
-                      errorBuilder: (_, _, _) => const _Unavailable(),
+                    child: HotspotImage(
+                      provider: widget.provider,
+                      title: widget.title,
+                      hotspots: widget.hotspots,
+                      onLocationTap: widget.onLocationTap,
+                      expand: true,
                     ),
                   ),
                 ),

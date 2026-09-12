@@ -25,9 +25,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         Slider(
           value: pace,
-          min: 1,
-          max: 8,
-          divisions: 70,
+          min: SettingsService.minimumPaceKmh,
+          max: SettingsService.maximumPaceKmh,
+          divisions: 75,
           label: '${pace.toStringAsFixed(1)} km/h',
           onChanged: saving
               ? null
@@ -67,7 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         const SizedBox(height: 20),
         const Text(
-          'Time estimates use route distance and your pace. They exclude breaks, hills and the walk back to the route.',
+          'Time estimates use weighted distances and your saved average walking pace. Distances use the stored 3D metres. Estimates start at the nearest track point and exclude breaks and the walk back to it.',
         ),
         const SizedBox(height: 20),
         const Text(

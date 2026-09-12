@@ -84,7 +84,11 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   String distance(double meters) => '${(meters / 1000).toStringAsFixed(2)} km';
-  String time(Duration duration) => '${(duration.inSeconds / 60).ceil()} min';
+  String guidanceDistance(double? metres) =>
+      metres == null ? 'Distance unavailable' : distance(metres);
+  String time(Duration? duration) => duration == null
+      ? 'Time unavailable'
+      : '${(duration.inMicroseconds / Duration.microsecondsPerMinute).ceil()} min';
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(widget.stage.name)),
@@ -289,27 +293,30 @@ class _MapScreenState extends State<MapScreen> {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Text(
-                            '${distance(result.distanceToNextMeters)} · ${time(result.timeToNext)} to next waypoint',
+                            '${guidanceDistance(result.distanceToNextMeters)} · ${time(result.timeToNext)} to next waypoint',
                           ),
                           Text(
-                            '${distance(result.remainingMeters)} · ${time(result.timeRemaining)} to stage end',
+                            '${guidanceDistance(result.remainingMeters)} · ${time(result.timeRemaining)} to stage end',
+                          ),
+                          Text(
+                            'Walking pace: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
                           ),
                           const Divider(),
                           Text(
-                            '${result.offRouteMeters.round()} m from route · GPS accuracy ±${accuracy?.round()} m',
+                            '${result.offRouteMeters.round()} m from nearest track point · GPS accuracy ±${accuracy?.round()} m',
                           ),
                           if (result.offRouteMeters > 50)
                             const Text(
-                              'You are away from the route. Distances start at the nearest route position.',
+                              'You are more than 50 m from the nearest stored track point. Estimates exclude the walk to it.',
                             ),
                           Text(
-                            'Nearest: ${result.nearestPosition.latitude.toStringAsFixed(5)}, ${result.nearestPosition.longitude.toStringAsFixed(5)}',
+                            'Track point ${result.nearestTrackPoint.id}: ${result.nearestPosition.latitude.toStringAsFixed(5)}, ${result.nearestPosition.longitude.toStringAsFixed(5)}',
                           ),
                           Text(
                             'Position recorded: ${fixedAt?.toLocal().toString().split('.').first}. Tap Update to refresh.',
                           ),
                           const Text(
-                            'Estimated walking times exclude breaks, terrain and the walk back to the route.',
+                            'Times use weighted route distances and your saved pace; they exclude breaks and the walk back to the track point.',
                           ),
                         ],
                       ),

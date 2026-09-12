@@ -1,3 +1,4 @@
+import '../data/stage_image_assets.dart';
 import 'published_image.dart';
 import 'albergue_facilities.dart';
 import 'package:flutter/material.dart';
@@ -133,7 +134,13 @@ class StageDetailScreen extends StatefulWidget {
 }
 
 class _StageDetailScreenState extends State<StageDetailScreen> {
-  late final Future<StageRoute> future = widget.repository.route(widget.stage);
+  late final Future<StageRoute> future = load();
+  late final List<MapHotspot> hotspots;
+  Future<StageRoute> load() async {
+    hotspots = await widget.repository.mapHotspots(widget.stage.id);
+    return widget.repository.route(widget.stage);
+  }
+
   Future<void> openStage(int id) async {
     try {
       final stage = await widget.repository.stage(id);
@@ -227,19 +234,27 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
                 'Alternative next stage · ${widget.stage.alternativeNextStageId}',
               ),
             ),
-          if (widget.stage.mapUrl != null) ...[
+          ...[
             const SizedBox(height: 20),
             const Text('Published stage map'),
             PublishedImage(
-              url: widget.stage.mapUrl,
+              assetPath: StageImageAssets.map(widget.stage.id),
               title: 'Published stage map',
+              hotspots: hotspots,
+              onLocationTap: (location) => navigate(
+                context,
+                LocationDetailScreen(
+                  repository: widget.repository,
+                  location: location,
+                ),
+              ),
             ),
           ],
-          if (widget.stage.elevationChartUrl != null) ...[
+          ...[
             const SizedBox(height: 20),
             const Text('Published elevation chart'),
             PublishedImage(
-              url: widget.stage.elevationChartUrl,
+              assetPath: StageImageAssets.elevation(widget.stage.id),
               title: 'Published elevation chart',
             ),
           ],

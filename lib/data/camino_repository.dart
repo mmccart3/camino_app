@@ -2,6 +2,7 @@ import 'local_database.dart';
 import 'models.dart';
 import 'schema.dart';
 import 'route_assembler.dart';
+import 'stage_order.dart';
 
 class CaminoRepository {
   final LocalDatabase local;
@@ -18,13 +19,23 @@ class CaminoRepository {
     orderBy: order,
   );
 
-  /// IDs are labels, not a fabricated stage sequence. Existing next/alt links
-  /// remain on Stage and are displayed on the detail screen.
   Future<List<Stage>> stages() async =>
-      (await _rows(CaminoSchema.stages)).map(Stage.fromRow).toList();
+      orderStages((await _rows(CaminoSchema.stages)).map(Stage.fromRow));
   Future<Stage?> stage(int id) async {
     final rows = await _rows(CaminoSchema.stages, where: 'ID = ?', args: [id]);
     return rows.isEmpty ? null : Stage.fromRow(rows.single);
+  }
+
+  Future<List<MapHotspot>> mapHotspots(int stageId) async {
+    final db = await local.database;
+    final rows = await db.rawQuery(
+      '''SELECT l.*, m.ID AS hotspotId,
+      m.TLX1920, m.TLY1920, m.BRX1920, m.BRY1920
+      FROM mapLocationCoords m JOIN locations l ON l.ID = m.locationId
+      WHERE m.stageId = ? ORDER BY m.ID''',
+      [stageId],
+    );
+    return rows.map(MapHotspot.fromRow).where((h) => h.isValid).toList();
   }
 
   Future<List<Location>> locations(int stageId) async {

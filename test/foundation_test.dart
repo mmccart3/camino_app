@@ -39,6 +39,23 @@ void main() {
   });
 
   test(
+    'map hotspots use stage links, 1920 coordinates and location rows',
+    () async {
+      final items = await repository.mapHotspots(2);
+      expect(items.first.id, 1);
+      expect(items.first.location.id, 9);
+      expect(items.first.left, 1453);
+      expect(items.first.top, 5);
+      expect(items.first.right, 1741);
+      expect(items.first.bottom, 109);
+      expect(
+        (await repository.mapHotspots(30)).any((h) => h.id == 181),
+        isFalse,
+      );
+      expect(await repository.mapHotspots(-1), isEmpty);
+    },
+  );
+  test(
     'copies real asset once, shares opening and reuses across launches',
     () async {
       final handles = await Future.wait([local.database, local.database]);
@@ -61,7 +78,49 @@ void main() {
   test(
     'reads seven real concepts, nullable columns and exact affiliate text',
     () async {
-      expect((await repository.stages()).length, 41);
+      expect((await repository.stages()).map((stage) => stage.id), [
+        1,
+        43,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        37,
+        39,
+        44,
+        40,
+        41,
+        42,
+      ]);
       final stage = (await repository.stage(1))!;
       expect(stage.startLocationId, 1);
       expect(stage.finishLocationId, 9);
@@ -132,6 +191,20 @@ void main() {
       )!;
       expect(guidance.nextWaypoint?.id, 240);
       expect(guidance.remainingMeters, greaterThan(15000));
+      final db = await local.database;
+      final totals = (await db.rawQuery(
+        '''SELECT SUM(distance_3d_meters) AS metres,
+        SUM(weighted_distance) AS weighted FROM track_points
+        WHERE track_point_id > 148 AND track_point_id <= 240''',
+      )).single;
+      expect(
+        guidance.distanceToNextMeters,
+        closeTo((totals['metres'] as num).toDouble(), 0.001),
+      );
+      expect(
+        guidance.timeToNext!.inMicroseconds,
+        closeTo((totals['weighted'] as num).toDouble() / 4.5 * 1000000, 1),
+      );
     },
   );
   test(
@@ -278,7 +351,15 @@ void main() {
     memory.values['walking_pace_kmh'] = double.nan;
     final fallback = SettingsService(preferences: memory);
     await fallback.load();
-    expect(fallback.paceKmh, 4.5);
+    expect(fallback.paceKmh, 4.6);
+    for (final value in [1.0, 8.5]) {
+      await settings.setPace(value);
+      await reloaded.load();
+      expect(reloaded.paceKmh, value);
+    }
+    for (final value in [0.9, 8.6, double.infinity]) {
+      await expectLater(settings.setPace(value), throwsArgumentError);
+    }
   });
   test(
     'Windows selects its SQLite factory without manual injection',
@@ -320,6 +401,8 @@ void main() {
       double lon, {
       bool waypoint = false,
       int pathId = 1,
+      double? metres = 100,
+      double? weighted = 360,
     }) => TrackPoint.fromRow({
       'track_point_id': id,
       'pathID': pathId,
@@ -327,6 +410,8 @@ void main() {
       'latitude': lat,
       'longitude': lon,
       'waypoint': waypoint ? 1 : 0,
+      'distance_3d_meters': metres,
+      'weighted_distance': weighted,
     });
     final service = RouteGuidanceService();
     test('predecessor order wins over IDs and insertion order', () {
@@ -349,32 +434,56 @@ void main() {
         );
       }
     });
-    test('projection and along-route distance respect corners and pace', () {
+    test(
+      'nearest stored point uses incoming 3D and weighted segments ahead',
+      () {
+        final points = [
+          point(1, 0, 0, 0, metres: 9999, weighted: 9999),
+          point(2, 1, 0, 0.01, metres: 100, weighted: 460),
+          point(3, 2, 0.01, 0.01, waypoint: true, metres: 200, weighted: 920),
+          point(4, 3, 0.02, 0.01, metres: 300, weighted: 1380),
+        ];
+        final result = service.calculate(points, const LatLng(0, 0.009), 4.6)!;
+        expect(result.nearestTrackPoint.id, 2);
+        expect(result.nearestPosition.longitude, 0.01);
+        expect(result.offRouteMeters, closeTo(111.3, 1));
+        expect(result.nextWaypoint?.id, 3);
+        expect(result.distanceToNextMeters, 200);
+        expect(result.remainingMeters, 500);
+        expect(result.timeToNext, const Duration(seconds: 200));
+        expect(result.timeRemaining, const Duration(seconds: 500));
+        final faster = service.calculate(points, points[1].position, 8)!;
+        expect(
+          faster.timeRemaining!.inMicroseconds,
+          closeTo(2300 / 8 * 1000000, 1),
+        );
+        final atWaypoint = service.calculate(points, points[2].position, 4.6)!;
+        expect(atWaypoint.nextWaypoint?.id, 4);
+        expect(atWaypoint.distanceToNextMeters, 300);
+        final end = service.calculate(points, points.last.position, 4.6)!;
+        expect(end.remainingMeters, 0);
+        expect(end.timeRemaining, Duration.zero);
+        expect(end.nextWaypoint, isNull);
+      },
+    );
+    test('missing metrics are unavailable independently and only ahead', () {
       final points = [
-        point(1, 0, 0, 0),
+        point(1, 0, 0, 0, metres: null, weighted: null),
         point(2, 1, 0, 0.01, waypoint: true),
-        point(3, 2, 0.01, 0.01, waypoint: true),
+        point(3, 2, 0, 0.02, metres: null, weighted: -1),
       ];
-      final result = service.calculate(points, const LatLng(0, 0.005), 4)!;
-      expect(result.nearestPosition.longitude, closeTo(0.005, 0.000001));
-      expect(result.offRouteMeters, closeTo(0, 0.1));
-      expect(result.nextWaypoint?.id, 2);
-      expect(result.distanceToNextMeters, closeTo(556.6, 1));
-      expect(result.remainingMeters, closeTo(1662.34, 1));
-      expect(result.timeRemaining.inSeconds, closeTo(1496, 2));
-      expect(
-        service
-            .calculate(points, const LatLng(0, 0.005), 8)!
-            .timeRemaining
-            .inSeconds,
-        closeTo(result.timeRemaining.inSeconds / 2, 1),
-      );
-      final off = service.calculate(points, const LatLng(-0.001, 0.005), 4)!;
-      expect(off.offRouteMeters, closeTo(110.6, 1));
-      expect(off.distanceToNextMeters, closeTo(556.6, 1));
-      final end = service.calculate(points, points.last.position, 4)!;
-      expect(end.remainingMeters, closeTo(0, 0.1));
-      expect(end.nextWaypoint, isNull);
+      final result = service.calculate(points, points.first.position, 4.6)!;
+      expect(result.distanceToNextMeters, 100);
+      expect(result.timeToNext, isNotNull);
+      expect(result.remainingMeters, isNull);
+      expect(result.timeRemaining, isNull);
+      final partial = service.calculate(
+        [points.first, point(2, 1, 0, 0.01, weighted: double.nan)],
+        points.first.position,
+        4.6,
+      )!;
+      expect(partial.remainingMeters, 100);
+      expect(partial.timeRemaining, isNull);
     });
     test(
       'empty, duplicate coordinates, singleton and invalid pace are handled',
@@ -385,7 +494,7 @@ void main() {
         expect(
           service
               .calculate([a, a, point(2, 1, 0, 0.01)], a.position, 4)!
-              .remainingMeters
+              .remainingMeters!
               .isFinite,
           isTrue,
         );

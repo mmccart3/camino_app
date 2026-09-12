@@ -1,14 +1,16 @@
-import 'dart:math' as math;
 import 'package:latlong2/latlong.dart';
 import '../data/models.dart';
+import 'settings_service.dart';
 
 class RouteGuidance {
-  final LatLng nearestPosition;
+  final TrackPoint nearestTrackPoint;
+  LatLng get nearestPosition => nearestTrackPoint.position;
   final TrackPoint? nextWaypoint;
-  final double offRouteMeters, distanceToNextMeters, remainingMeters;
-  final Duration timeToNext, timeRemaining;
+  final double offRouteMeters;
+  final double? distanceToNextMeters, remainingMeters;
+  final Duration? timeToNext, timeRemaining;
   RouteGuidance({
-    required this.nearestPosition,
+    required this.nearestTrackPoint,
     required this.nextWaypoint,
     required this.offRouteMeters,
     required this.distanceToNextMeters,
@@ -18,8 +20,10 @@ class RouteGuidance {
   });
 }
 
-/// Stateless geometric guidance for one validated, assembled stage route.
-/// ETAs exclude rest, terrain and the distance needed to rejoin the route.
+/// Estimates along an ordered route, starting at the nearest stored point.
+/// Each row stores the incoming segment from previous_track_point_id.
+/// The database's weighted_distance / paceKmh yields seconds (owner convention),
+/// so no additional metres/kilometres conversion is applied to that value.
 class RouteGuidanceService {
   final Distance _distance = const Distance(roundResult: false);
   RouteGuidance? calculate(
@@ -27,12 +31,12 @@ class RouteGuidanceService {
     LatLng position,
     double paceKmh,
   ) {
-    if (!paceKmh.isFinite || paceKmh <= 0) {
+    if (!paceKmh.isFinite ||
+        paceKmh < SettingsService.minimumPaceKmh ||
+        paceKmh > SettingsService.maximumPaceKmh) {
       throw ArgumentError.value(paceKmh, 'paceKmh');
     }
-    if (points.isEmpty) {
-      return null;
-    }
+    if (points.isEmpty) return null;
     for (final p in [position, ...points.map((p) => p.position)]) {
       if (!p.latitude.isFinite ||
           !p.longitude.isFinite ||
@@ -41,60 +45,63 @@ class RouteGuidanceService {
         throw ArgumentError('Invalid route coordinate');
       }
     }
-    final cumulative = <double>[0];
+    var nearestIndex = 0;
+    var offset = _distance(position, points.first.position);
     for (var i = 1; i < points.length; i++) {
-      cumulative.add(
-        cumulative.last + _distance(points[i - 1].position, points[i].position),
-      );
-    }
-    var nearest = points.first.position;
-    var offset = _distance(position, nearest);
-    var progress = 0.0;
-    for (var i = 0; i < points.length - 1; i++) {
-      final a = points[i].position, b = points[i + 1].position;
-      final scale = math.cos(position.latitude * math.pi / 180);
-      final dx = (b.longitude - a.longitude) * scale;
-      final dy = b.latitude - a.latitude;
-      final lengthSquared = dx * dx + dy * dy;
-      final t = lengthSquared == 0
-          ? 0.0
-          : (((position.longitude - a.longitude) * scale * dx +
-                        (position.latitude - a.latitude) * dy) /
-                    lengthSquared)
-                .clamp(0.0, 1.0);
-      final projected = LatLng(
-        a.latitude + dy * t,
-        a.longitude + (b.longitude - a.longitude) * t,
-      );
-      final distance = _distance(position, projected);
+      final distance = _distance(position, points[i].position);
       if (distance < offset) {
+        nearestIndex = i;
         offset = distance;
-        nearest = projected;
-        progress = cumulative[i] + (cumulative[i + 1] - cumulative[i]) * t;
       }
     }
+    // Null means unavailable; missing/negative values must not become zero
+    // or be silently replaced by horizontal geometry.
+    double? sumTo(int end, double? Function(TrackPoint) metric) {
+      var sum = 0.0;
+      for (var i = nearestIndex + 1; i <= end; i++) {
+        final value = metric(points[i]);
+        if (value == null || !value.isFinite || value < 0) return null;
+        sum += value;
+      }
+      return sum.isFinite ? sum : null;
+    }
+
     int? nextIndex;
-    for (var i = 0; i < points.length; i++) {
-      if (cumulative[i] > progress + 0.5 &&
-          (points[i].isWaypoint ||
-              points[i].waypointName != null ||
-              i == points.length - 1)) {
+    for (var i = nearestIndex + 1; i < points.length; i++) {
+      if (points[i].isWaypoint ||
+          points[i].waypointName != null ||
+          i == points.length - 1) {
+        // A repeated path-boundary waypoint with zero intervening distance
+        // is already reached, rather than the next place ahead.
+        if (i != points.length - 1 &&
+            sumTo(i, (p) => p.distance3dMeters) == 0 &&
+            _distance(points[nearestIndex].position, points[i].position) <
+                0.01) {
+          continue;
+        }
         nextIndex = i;
         break;
       }
     }
-    final remaining = math.max(0.0, cumulative.last - progress);
-    final toNext = nextIndex == null ? 0.0 : cumulative[nextIndex] - progress;
-    Duration eta(double meters) =>
-        Duration(seconds: (meters / (paceKmh / 3.6)).round());
+    Duration? eta(double? weighted) => weighted == null
+        ? null
+        : Duration(
+            microseconds: (weighted / paceKmh * Duration.microsecondsPerSecond)
+                .round(),
+          );
     return RouteGuidance(
-      nearestPosition: nearest,
+      nearestTrackPoint: points[nearestIndex],
       nextWaypoint: nextIndex == null ? null : points[nextIndex],
       offRouteMeters: offset,
-      distanceToNextMeters: toNext,
-      remainingMeters: remaining,
-      timeToNext: eta(toNext),
-      timeRemaining: eta(remaining),
+      distanceToNextMeters: sumTo(
+        nextIndex ?? nearestIndex,
+        (p) => p.distance3dMeters,
+      ),
+      remainingMeters: sumTo(points.length - 1, (p) => p.distance3dMeters),
+      timeToNext: eta(
+        sumTo(nextIndex ?? nearestIndex, (p) => p.weightedDistance),
+      ),
+      timeRemaining: eta(sumTo(points.length - 1, (p) => p.weightedDistance)),
     );
   }
 }

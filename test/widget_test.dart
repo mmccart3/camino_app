@@ -230,6 +230,13 @@ void main() {
         home: HomeScreen(repository: repository, settings: settings),
       ),
     );
+    // Decode the bundled map outside the fake test clock before navigating.
+    await tester.runAsync(() async {
+      await precacheImage(
+        const AssetImage('assets/stage_maps/stage_1.jpg'),
+        tester.element(find.byType(HomeScreen)),
+      );
+    });
     expect(find.textContaining('fictional'), findsNothing);
     await tester.tap(find.text('Explore stages'));
     await finishDatabaseWork(tester);
@@ -275,11 +282,15 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(home: SettingsScreen(settings: settings)),
     );
-    tester.widget<Slider>(find.byType(Slider)).onChanged!(5.5);
+    final slider = tester.widget<Slider>(find.byType(Slider));
+    expect(slider.min, 1.0);
+    expect(slider.max, 8.5);
+    expect(slider.divisions, 75);
+    slider.onChanged!(8.5);
     await tester.pump();
     await tester.tap(find.text('Save pace'));
     await tester.pumpAndSettle();
-    expect(settings.paceKmh, 5.5);
+    expect(settings.paceKmh, 8.5);
     expect(find.text('Walking pace saved on this device.'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
   });

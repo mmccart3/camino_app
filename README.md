@@ -32,7 +32,7 @@ Dart classes map directly to your existing columns; each model also retains an i
 
 Original spellings such as `onedPersonRateMin`, `twodPersonRateMax` and `StreetAdress` are intentional in the mappings. `mapLocationCoords` is preserved but not queried: its pixel coordinates belong to the published raster maps, not geographic route geometry.
 
-Stage list badges are database IDs, not consecutive walking-day numbers. Stages are listed by ID; next-stage and alternative-next-stage buttons follow the actual stored links. Paragraphs appear on their owning location detail, not as invented stage paragraphs. Nulls remain null in the models.
+Stage list badges are database IDs, not consecutive walking-day numbers. Stages follow the stored nextStage links, with altNextStage immediately after the corresponding primary next stage. Parallel branches are traversed together and shared destinations appear once. Starting stages (including Valcarlos) appear first; IDs only break ties between starts or disconnected records. Missing links and cycles cannot hide stages or cause an infinite loop. Detail buttons follow the same stored links. Paragraphs appear on their owning location detail, not as invented stage paragraphs. Nulls remain null in the models.
 
 ## Asset import and first launch
 
@@ -63,9 +63,13 @@ A fully validated stage renders one polyline and enables guidance. Incomplete st
 
 Waypoint flags come from the database. Flagged segment endpoints use the corresponding location name; other flagged points have an ID-based label. The stage finish is the final fallback waypoint.
 
-Guidance projects the GPS position onto the nearest line segment, finds the next waypoint ahead, and sums along-route horizontal distances to that waypoint and the stage finish. Walking ETAs use the saved pace, default 4.5 km/h and configurable from 1–8 km/h. Source stage distance/time, 3D distance, elevation, slope and weighted distance remain available but are not substituted for the geometric calculations. Published stage distance can differ from measured track length.
+Guidance finds the nearest stored track point by GPS distance, then selects the next flagged/named waypoint ahead in route order (or the stage endpoint). Each row's `distance_3d_meters` and `weighted_distance` describe the incoming segment from `previous_track_point_id`. Sums therefore start at the row AFTER the nearest point and include the destination waypoint. The nearest point's incoming segment is already behind the user and is excluded.
 
-Nearest-segment projection is approximate and intended for short Camino segments. Self-intersections choose the earliest equally near segment; there is no heading/history map matching. ETAs exclude breaks, terrain and the walk back to the route. GPS accuracy, timestamp and off-route distance are shown separately. Updates are explicit button presses, not continuous navigation.
+Remaining distance is `SUM(distance_3d_meters)`. The database owner's confirmed time convention is `SUM(weighted_distance) / paceKmh` in seconds; divide by 60 for minutes. No additional factor of 1000 or 3.6 applies to weighted values. Times are summed before rounding and displayed rounded up to whole minutes. The same calculations extend to the stage end. Missing, negative or non-finite metrics produce an unavailable estimate rather than a guessed horizontal-distance substitute.
+
+Average walking pace is saved locally, defaults to 4.6 km/h, and is adjustable from 1.0 to 8.5 km/h in 0.1 increments. Existing valid saved preferences are retained. This is the user's chosen average, not an automatically learned speed. Change it in Settings and save it.
+
+Equal nearest-point distances choose the earliest point in route order; there is no heading/history map matching at crossings. A waypoint at the nearest point is treated as reached. Estimates exclude breaks and travel back to the selected track point. The UI shows that point's ID, GPS accuracy, timestamp and distance from it. Position updates remain explicit button presses, not continuous navigation.
 
 ## Offline and external content
 
@@ -79,7 +83,7 @@ Location uses geolocator for one user-triggered foreground fix with permission h
 
 ## Dataset observations
 
-The inspected asset contains 41 stages, 253 locations, 61 paragraphs, 775 albergues, 670 private accommodation records, 286 paths, 2048 track points and 318 mapLocationCoords rows.
+The inspected asset contains 41 stages, 253 locations, 387 paragraphs, 460 albergues, 670 private accommodation records, 286 paths, 2048 track points and 318 mapLocationCoords rows.
 
 - Track geometry covers stage 1 (paths 1–8, 778 points) and stage 2 Roncesvalles to Zubiri (paths 9–14, 1270 points, added 11 September 2026). Other stages remain available as guide content and map markers.
 - Stage 24 has two outgoing paths from location 124: path 124 to location 130 and path 125 to location 132. The app flags this ambiguity.
@@ -174,7 +178,30 @@ At the owner's request, removed the aid affiliate parameter from all 305 albergu
 
 ## Published map and elevation images
 
-Stage maps and elevation charts now retain their natural aspect ratio at the available width, without the fixed-height photo crop. Tap the image or Open full screen to zoom and pan; desktop users also have zoom-in, zoom-out and reset controls. Back returns to stage details. Accommodation photos retain their existing layout. These images still use the database Cloudinary URLs and require connectivity unless already cached in memory.
+Stage maps and elevation charts now retain their natural aspect ratio at the available width, without the fixed-height photo crop. Tap the image or Open full screen to zoom and pan; desktop users also have zoom-in, zoom-out and reset controls. Back returns to stage details. Accommodation photos retain their existing layout. Published maps and charts use bundled assets and work from first launch without internet. Cloudinary URLs are retained in the database as source references.
 
 Published stage maps use the existing stages.stageMap1920URL field, including the full-screen viewer.
-# camino_app
+
+## Rebuilding the offline published-image bundle
+
+Install Python 3 and Pillow (`python -m pip install Pillow`), then run `python tool/bundle_stage_images.py` from this folder. The script reads stages.stageMap1920URL and stages.stageElevationChartURL from the bundled SQLite database, downloads only these Cloudinary images with at most three concurrent requests, verifies their format, and keeps their original bytes. It never accesses OSM tiles or changes the database.
+
+The script generates assets/stage_maps/, assets/elevation_charts/, assets/stage_images.json and lib/data/stage_image_assets.dart. Commit these files with the source. Unchanged URL/hash pairs reuse existing files; use --refresh to fetch again if an image changed at the same URL. The manifest records source URLs, SHA256 hashes, dimensions, byte counts and unavailable images. Review unavailable entries after each run before packaging. Then run dart format lib/data/stage_image_assets.dart, flutter test, and rebuild the application. New stages or changed URLs require regenerating the bundle and releasing the updated app.
+
+The first bundle has 75 images (about 23.8 MiB). Stage 1's elevation-chart URL and stage 43's map URL return HTTP 404. Stages 15, 23, 25, 29 and 43 have no elevation-chart URL. These show Image unavailable in this app version; correct the database source URL and rerun the script to include them. No substitute image is invented.
+
+Flutter reads these files directly from its asset bundle; there is no first-launch download or extra device-storage copy. Both inline and full-screen views use AssetImage and make no image network requests. The existing stage and accommodation database is unchanged. Accommodation photos and the interactive OSM basemap retain their separate network behavior; this feature does not create offline basemap tiles.
+
+## Guide paragraphs populated from Word
+
+The supplied Camino Frances AC.docx was imported into the existing paragraphs schema: 326 additional paragraphs, 387 total. Original rows and other tables are preserved. New rows use PLAIN, DIRECTIONS and HISTORY and existing location IDs. See docs/paragraph_import/IMPORT_REPORT.md and its CSV/JSON audit for classifications, source indices and detour mappings. Source prices and opening times are reproduced, not independently updated.
+
+### Published map location links
+
+Published stage maps load clickable rectangles from `mapLocationCoords`, filtered by `stageId` and joined to `locations.ID` through `locationId`. Coordinates come directly from `TLX1920`, `TLY1920`, `BRX1920`, and `BRY1920`, in original image pixels. Links open the existing location detail screen offline. Rectangles scale with the displayed image, account for full-screen letterboxing, and share the image zoom/pan transform. Hover shows the location name; links support keyboard activation. The full-screen button remains available separately.
+
+Invalid/missing coordinates and missing locations do not create links. Partially out-of-bounds rectangles are clipped to the image. Current data issue: row 181, stage 30, location 163 has `BRY1920 = 0` below `TLY1920 = 204`; correct that row to activate its link. Row 48 on stage 7 extends to x=1915 while its bundled image is 1875 pixels wide, so its visible portion is clickable. No database coordinates were changed.
+
+### Opening period wording cleanup
+
+569 albergue opening-period descriptions were translated or standardised. Dates and qualifications were retained; uncertain source data is flagged rather than guessed. See `docs/opening_period_cleanup/README.md` and its before/after and review CSV files. All other database columns remain unchanged.

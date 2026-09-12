@@ -199,3 +199,24 @@ class TrackPoint extends SourceRecord {
   TrackPoint named(String label) =>
       TrackPoint.fromRow(source, waypointName: label);
 }
+
+/// A clickable rectangle in the published map's original image pixels.
+class MapHotspot {
+  final int id;
+  final Location location;
+  final double left, top, right, bottom;
+  MapHotspot.fromRow(Row row)
+    : id = integer(row, 'hotspotId'),
+      location = Location.fromRow(row),
+      left = optionalDouble(row, 'TLX1920') ?? double.nan,
+      top = optionalDouble(row, 'TLY1920') ?? double.nan,
+      right = optionalDouble(row, 'BRX1920') ?? double.nan,
+      bottom = optionalDouble(row, 'BRY1920') ?? double.nan;
+
+  bool get isValid =>
+      [left, top, right, bottom].every((n) => n.isFinite) &&
+      left >= 0 &&
+      top >= 0 &&
+      right > left &&
+      bottom > top;
+}

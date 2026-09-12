@@ -25,3 +25,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/database/camino.sqlite
+    - assets/stage_maps/
+    - assets/elevation_charts/
+    - assets/stage_images.json

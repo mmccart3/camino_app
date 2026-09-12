@@ -1,0 +1,636 @@
+{
+  "images": {
+    "stage_maps/1": {
+      "asset": "assets/stage_maps/stage_1.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699957173/caminoAppImages/maps/1920maps/sjpp2roncesvallesX_widsnx.jpg",
+      "sha256": "ea9dd0d66eacf37e4c68b11e80978c6172e62e474108ccd3d71a9600097a654a",
+      "bytes": 1376106,
+      "width": 1920,
+      "height": 3364
+    },
+    "stage_maps/2": {
+      "asset": "assets/stage_maps/stage_2.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1701705427/caminoAppImages/maps/1920maps/roncesvalles2zubiri90_ebhjf7.jpg",
+      "sha256": "275cff2c1d09fcc28b22909570736a144c12847831c210f926ca50b52ebd5b39",
+      "bytes": 547690,
+      "width": 1920,
+      "height": 1157
+    },
+    "elevation_charts/2": {
+      "asset": "assets/elevation_charts/stage_2.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1660376672/caminoAppImages/roncesvalles2zubirielevation_uwpjk4.jpg",
+      "sha256": "158ba6b93728caafb166217d9a3385494ca85f44687992eb8d15ecd638a17393",
+      "bytes": 130194,
+      "width": 1570,
+      "height": 686
+    },
+    "stage_maps/3": {
+      "asset": "assets/stage_maps/stage_3.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1700058904/caminoAppImages/maps/1920maps/zubiri2pamplona2_nbrcaj.jpg",
+      "sha256": "2649a692d7a250c9d04d404db50a30cd5db6e9c822b2a84e57fc3a17e6f02cfc",
+      "bytes": 943295,
+      "width": 1920,
+      "height": 2123
+    },
+    "elevation_charts/3": {
+      "asset": "assets/elevation_charts/stage_3.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1660699451/caminoAppImages/zubiri2pamplona_teqs8t.jpg",
+      "sha256": "a38b8701d8852d84d7d710adaa6814356048676a336e9589aec31e4b888c1b86",
+      "bytes": 80404,
+      "width": 1125,
+      "height": 368
+    },
+    "stage_maps/4": {
+      "asset": "assets/stage_maps/stage_4.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1700121250/caminoAppImages/maps/1920maps/pamplona2puentelareina2_bykyvw.jpg",
+      "sha256": "8a235d8de520d44d8c9d2773a6f39d83a9cec28f527c857f81581c0c1b7a8374",
+      "bytes": 919937,
+      "width": 1920,
+      "height": 2014
+    },
+    "elevation_charts/4": {
+      "asset": "assets/elevation_charts/stage_4.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1664089540/caminoAppImages/pamplona2puentelareinaelevation_roinvv.jpg",
+      "sha256": "f209903ae5be2d8048bba1f13bd83550bc2542e1135fc75261c04d03cb7fe1e2",
+      "bytes": 97153,
+      "width": 1125,
+      "height": 418
+    },
+    "stage_maps/5": {
+      "asset": "assets/stage_maps/stage_5.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810104/caminoAppImages/maps/1920maps/puentelareina2estella_g70qbc.jpg",
+      "sha256": "bac362b8efd19cae5bede971b7830b00ff5565b7262da6e2dcc555e53ee53797",
+      "bytes": 290527,
+      "width": 1920,
+      "height": 442
+    },
+    "elevation_charts/5": {
+      "asset": "assets/elevation_charts/stage_5.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1671705504/caminoAppImages/puentelareina2estellaelevation_m04qen.jpg",
+      "sha256": "3abdbd1dae9309524947633b19e0540308cacdd20393a4c9b5a2349bdd9ba601",
+      "bytes": 76102,
+      "width": 1125,
+      "height": 373
+    },
+    "stage_maps/6": {
+      "asset": "assets/stage_maps/stage_6.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1700201092/caminoAppImages/maps/1920maps/estella2losarcos2_qhnoys.jpg",
+      "sha256": "4d1ebdef86a8b6b5721187109759013bf91cdb3fb1cba05d842a34b7a9e11550",
+      "bytes": 678081,
+      "width": 1920,
+      "height": 1628
+    },
+    "elevation_charts/6": {
+      "asset": "assets/elevation_charts/stage_6.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380642/caminoAppImages/estella2losarcoselevation_e1xazf.jpg",
+      "sha256": "9dcd7ea2db0f2ea8630f80ee4ef7b027eabb6febd62e4a1b2b00714c9817d6d5",
+      "bytes": 82563,
+      "width": 1125,
+      "height": 364
+    },
+    "stage_maps/7": {
+      "asset": "assets/stage_maps/stage_7.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810092/caminoAppImages/maps/1920maps/losarcos2logrono_g82ubx.jpg",
+      "sha256": "b9c67b0bc20018bc21c390051fd112e1830ab13ea8d423a1c9b65f628e40a768",
+      "bytes": 533696,
+      "width": 1875,
+      "height": 1125
+    },
+    "elevation_charts/7": {
+      "asset": "assets/elevation_charts/stage_7.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380390/caminoAppImages/losarcos2logronoelevation_ozd3fs.jpg",
+      "sha256": "d433b64934375e8690dd47aa54c27660fda3466654f55f98767614104aed0109",
+      "bytes": 69855,
+      "width": 1125,
+      "height": 315
+    },
+    "stage_maps/8": {
+      "asset": "assets/stage_maps/stage_8.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810091/caminoAppImages/maps/1920maps/logrono2najera_hcyczi.jpg",
+      "sha256": "671543b69ecdbb7e891bf774b67c084dac7539d62d01eacbff7ca0132e22771c",
+      "bytes": 402055,
+      "width": 1920,
+      "height": 683
+    },
+    "elevation_charts/8": {
+      "asset": "assets/elevation_charts/stage_8.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380065/caminoAppImages/logrono2najeraelevation_sbo459.jpg",
+      "sha256": "7dfacff69522df847f2b0958820cf8d67ab965e51702624cc2d90fa243c50c90",
+      "bytes": 76855,
+      "width": 1125,
+      "height": 415
+    },
+    "stage_maps/11": {
+      "asset": "assets/stage_maps/stage_11.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810112/caminoAppImages/maps/1920maps/santodomingo2belorado_wic6qm.jpg",
+      "sha256": "6b48a481bb2d131087bb64379c04e22cb802a5db05f592f04c6fee8c81f9e861",
+      "bytes": 296617,
+      "width": 1920,
+      "height": 488
+    },
+    "elevation_charts/11": {
+      "asset": "assets/elevation_charts/stage_11.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380047/caminoAppImages/najera2santodomingoelevation_lv4xf6.jpg",
+      "sha256": "4050f1ac6111432bf97889003439c73d76d2fa4db46a67adac7e5b7be15473a6",
+      "bytes": 71670,
+      "width": 1125,
+      "height": 364
+    },
+    "stage_maps/12": {
+      "asset": "assets/stage_maps/stage_12.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810112/caminoAppImages/maps/1920maps/santodomingo2belorado_wic6qm.jpg",
+      "sha256": "6b48a481bb2d131087bb64379c04e22cb802a5db05f592f04c6fee8c81f9e861",
+      "bytes": 296617,
+      "width": 1920,
+      "height": 488
+    },
+    "elevation_charts/12": {
+      "asset": "assets/elevation_charts/stage_12.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380052/caminoAppImages/santodomingo2beloradoelevation_wrccc6.jpg",
+      "sha256": "a8c6a175c496c55af095314ccd1c8d9f7b6b8ea19a411268d97c35e05dd3e499",
+      "bytes": 91257,
+      "width": 1125,
+      "height": 362
+    },
+    "stage_maps/13": {
+      "asset": "assets/stage_maps/stage_13.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810076/caminoAppImages/maps/1920maps/belorado2sanjuan_koeoer.jpg",
+      "sha256": "f065994c1f9d704dae640c5d42d8da899c15d7a68bdd4e6636eda25b953eb5f1",
+      "bytes": 327749,
+      "width": 1920,
+      "height": 636
+    },
+    "elevation_charts/13": {
+      "asset": "assets/elevation_charts/stage_13.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380058/caminoAppImages/belorado2sanjuanelevation_xlcnv8.jpg",
+      "sha256": "d34e8bda6f5ad886b874672b73daa3dd48781b3e6e249e94360706571765dbcc",
+      "bytes": 97234,
+      "width": 1125,
+      "height": 364
+    },
+    "stage_maps/14": {
+      "asset": "assets/stage_maps/stage_14.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810109/caminoAppImages/maps/1920maps/sanjuan2burgos_fwa9pi.jpg",
+      "sha256": "f08b683ba48ac004f61b4720ba21d193649de25180bd162c697cc407e0bd9b69",
+      "bytes": 487972,
+      "width": 1920,
+      "height": 698
+    },
+    "elevation_charts/14": {
+      "asset": "assets/elevation_charts/stage_14.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380050/caminoAppImages/sanjuan2burgoselevation_yyrnna.jpg",
+      "sha256": "bff5dc26d2cc66dcdc68047eb73fdb2fee4f18fff10977dea33619b5207369fb",
+      "bytes": 90139,
+      "width": 1125,
+      "height": 262
+    },
+    "stage_maps/15": {
+      "asset": "assets/stage_maps/stage_15.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810109/caminoAppImages/maps/1920maps/sanjuan2burgos_fwa9pi.jpg",
+      "sha256": "f08b683ba48ac004f61b4720ba21d193649de25180bd162c697cc407e0bd9b69",
+      "bytes": 487972,
+      "width": 1920,
+      "height": 698
+    },
+    "stage_maps/16": {
+      "asset": "assets/stage_maps/stage_16.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810078/caminoAppImages/maps/1920maps/burgos2hornillos_kzemam.jpg",
+      "sha256": "72e224bf29902115a3bfc0b3cd079191b99fb70cb3b62f8f19d2347d3bbe9618",
+      "bytes": 249883,
+      "width": 1920,
+      "height": 370
+    },
+    "elevation_charts/16": {
+      "asset": "assets/elevation_charts/stage_16.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380059/caminoAppImages/burgos2hornilloselevation_xqhykw.jpg",
+      "sha256": "0f183b66c9bc08de32ee5c63544d0c3b5a0184eed3f629872a92f3fad5511917",
+      "bytes": 72402,
+      "width": 1125,
+      "height": 220
+    },
+    "stage_maps/17": {
+      "asset": "assets/stage_maps/stage_17.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810087/caminoAppImages/maps/1920maps/hornillos2castrojeriz_y4ttez.jpg",
+      "sha256": "b8f9e899650ffe0bda54d249b859131d4c8acef44e35c2d9300253a413a1fade",
+      "bytes": 271836,
+      "width": 1920,
+      "height": 656
+    },
+    "elevation_charts/17": {
+      "asset": "assets/elevation_charts/stage_17.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380062/caminoAppImages/hornillos2castrojerizelevation_x4nysi.jpg",
+      "sha256": "67a34ffc914b67bb1d1844ab29839d429cdcff8f5234b33c9031ba044c69b923",
+      "bytes": 67346,
+      "width": 1125,
+      "height": 225
+    },
+    "stage_maps/18": {
+      "asset": "assets/stage_maps/stage_18.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810081/caminoAppImages/maps/1920maps/castrojeriz2fromista_lg1sxy.jpg",
+      "sha256": "ad5dae68b7450e41df82f8e10e37fd371e9c0342ee473875a5ad56f69e788fc1",
+      "bytes": 229812,
+      "width": 1920,
+      "height": 398
+    },
+    "elevation_charts/18": {
+      "asset": "assets/elevation_charts/stage_18.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380060/caminoAppImages/castrojeriz2fromistaelevation_ddqdn2.jpg",
+      "sha256": "df1a95087f8d933d1f799f153469b8e63a2418c71041e6973b815b7de1e40490",
+      "bytes": 75988,
+      "width": 1125,
+      "height": 223
+    },
+    "stage_maps/20": {
+      "asset": "assets/stage_maps/stage_20.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810086/caminoAppImages/maps/1920maps/fromista2carrion_za4nlm.jpg",
+      "sha256": "95297c12ff7e97d45ca658b3c4b62b09498231231cf2280bc6f2f69446087712",
+      "bytes": 428778,
+      "width": 1920,
+      "height": 1004
+    },
+    "elevation_charts/20": {
+      "asset": "assets/elevation_charts/stage_20.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380062/caminoAppImages/fromista2carrionelevation_zrrw2s.jpg",
+      "sha256": "6e2f52c0f08b122f4dc3645cca163151511eac31fdf84917ac9281944cf38e16",
+      "bytes": 87329,
+      "width": 1125,
+      "height": 220
+    },
+    "stage_maps/21": {
+      "asset": "assets/stage_maps/stage_21.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810080/caminoAppImages/maps/1920maps/carrion2terradillos_qo7wk1.jpg",
+      "sha256": "d9bc4a80fab56c348b7bbf1ad4c159d5b18f3e12104c74ad47cf1a3bb4017864",
+      "bytes": 252601,
+      "width": 1920,
+      "height": 458
+    },
+    "elevation_charts/21": {
+      "asset": "assets/elevation_charts/stage_21.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380059/caminoAppImages/carrion2terradilloselevation_rkyct6.jpg",
+      "sha256": "103e7abdc111f84140df98692421a9bac3b37ca6915895ef04480699e99c488c",
+      "bytes": 86937,
+      "width": 1125,
+      "height": 236
+    },
+    "stage_maps/22": {
+      "asset": "assets/stage_maps/stage_22.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810116/caminoAppImages/maps/1920maps/terradillos2bercianos_pks4bb.jpg",
+      "sha256": "3f0276d64b8b70d91d3f31844462d1cdf202fea504b7d67dcd15f329cbfd059c",
+      "bytes": 401916,
+      "width": 1920,
+      "height": 832
+    },
+    "elevation_charts/22": {
+      "asset": "assets/elevation_charts/stage_22.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380053/caminoAppImages/terradillos2bercianoselevation_o7flsw.jpg",
+      "sha256": "443ecfb6d010db102d9deb94c7522c99d1120ce0358555331c87a459f4f12121",
+      "bytes": 85696,
+      "width": 1125,
+      "height": 224
+    },
+    "stage_maps/23": {
+      "asset": "assets/stage_maps/stage_23.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810116/caminoAppImages/maps/1920maps/terradillos2bercianos_pks4bb.jpg",
+      "sha256": "3f0276d64b8b70d91d3f31844462d1cdf202fea504b7d67dcd15f329cbfd059c",
+      "bytes": 401916,
+      "width": 1920,
+      "height": 832
+    },
+    "stage_maps/24": {
+      "asset": "assets/stage_maps/stage_24.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810077/caminoAppImages/maps/1920maps/bercianos2mansillas_kpoxta.jpg",
+      "sha256": "dda422325e93281af3085d6a9d26885ef63ee4e2d92218d1fa6e62ada41c5b57",
+      "bytes": 462117,
+      "width": 1920,
+      "height": 1132
+    },
+    "elevation_charts/24": {
+      "asset": "assets/elevation_charts/stage_24.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380058/caminoAppImages/bercianos2mansillaselevation_uv5qex.jpg",
+      "sha256": "b1269adba63b52d48457c57e17c539ffaffadad61e0c16a86912ee6b2384e76f",
+      "bytes": 74747,
+      "width": 1125,
+      "height": 218
+    },
+    "stage_maps/25": {
+      "asset": "assets/stage_maps/stage_25.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810077/caminoAppImages/maps/1920maps/bercianos2mansillas_kpoxta.jpg",
+      "sha256": "dda422325e93281af3085d6a9d26885ef63ee4e2d92218d1fa6e62ada41c5b57",
+      "bytes": 462117,
+      "width": 1920,
+      "height": 1132
+    },
+    "stage_maps/26": {
+      "asset": "assets/stage_maps/stage_26.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1701071557/caminoAppImages/maps/1920maps/zpjuzpy5yw8zbqwxmzff.jpg",
+      "sha256": "1ad1f9e357bca4d18cdc279bdeb14c394e9600d6bb08fc534b740d498335f41c",
+      "bytes": 716460,
+      "width": 1920,
+      "height": 1620
+    },
+    "elevation_charts/26": {
+      "asset": "assets/elevation_charts/stage_26.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380064/caminoAppImages/leon2sanmartinelevation_lthaig.jpg",
+      "sha256": "fb07e815d361b3fcd75cdc5cee984cf10064c29cf89a608c59d7caebb41c68f2",
+      "bytes": 111269,
+      "width": 1125,
+      "height": 295
+    },
+    "stage_maps/27": {
+      "asset": "assets/stage_maps/stage_27.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1701156694/caminoAppImages/maps/1920maps/vbbe3dzjuyvbjcui64p6.jpg",
+      "sha256": "a51ab8f24548ff9dd45d723348bbbb84ba8e90cd80c3710f0a37429af32d15c5",
+      "bytes": 661102,
+      "width": 1920,
+      "height": 1259
+    },
+    "elevation_charts/27": {
+      "asset": "assets/elevation_charts/stage_27.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1701103672/caminoAppImages/leon2mazarife_ddmqmi.jpg",
+      "sha256": "2b37fc716d4a16cca22d8d14da6d367d51c2ba5d54e67d1ef68349a30b3c6e5c",
+      "bytes": 43627,
+      "width": 1125,
+      "height": 318
+    },
+    "stage_maps/28": {
+      "asset": "assets/stage_maps/stage_28.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1701156694/caminoAppImages/maps/1920maps/vbbe3dzjuyvbjcui64p6.jpg",
+      "sha256": "a51ab8f24548ff9dd45d723348bbbb84ba8e90cd80c3710f0a37429af32d15c5",
+      "bytes": 661102,
+      "width": 1920,
+      "height": 1259
+    },
+    "elevation_charts/28": {
+      "asset": "assets/elevation_charts/stage_28.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380064/caminoAppImages/leon2sanmartinelevation_lthaig.jpg",
+      "sha256": "fb07e815d361b3fcd75cdc5cee984cf10064c29cf89a608c59d7caebb41c68f2",
+      "bytes": 111269,
+      "width": 1125,
+      "height": 295
+    },
+    "stage_maps/29": {
+      "asset": "assets/stage_maps/stage_29.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810110/caminoAppImages/maps/1920maps/sanmartin2astorga_gxdztc.jpg",
+      "sha256": "8b6780a533f9677f05437d6e96ba2bc584917f95bc395a29b3311f5f6f6f02f6",
+      "bytes": 337274,
+      "width": 1920,
+      "height": 550
+    },
+    "stage_maps/30": {
+      "asset": "assets/stage_maps/stage_30.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810110/caminoAppImages/maps/1920maps/sanmartin2astorga_gxdztc.jpg",
+      "sha256": "8b6780a533f9677f05437d6e96ba2bc584917f95bc395a29b3311f5f6f6f02f6",
+      "bytes": 337274,
+      "width": 1920,
+      "height": 550
+    },
+    "elevation_charts/30": {
+      "asset": "assets/elevation_charts/stage_30.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380051/caminoAppImages/sanmartin2astorgaelevation_aorlnw.jpg",
+      "sha256": "54f53ad529d2bc566041a632d319ef764d33fe2f4652996546e36aed6cea846e",
+      "bytes": 84320,
+      "width": 1125,
+      "height": 224
+    },
+    "stage_maps/31": {
+      "asset": "assets/stage_maps/stage_31.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810075/caminoAppImages/maps/1920maps/astorga2rabanal_oefset.jpg",
+      "sha256": "914b1b9068699226ee61e37772b9c268010034565e2be187b60f42657b6aa5b7",
+      "bytes": 238154,
+      "width": 1920,
+      "height": 401
+    },
+    "elevation_charts/31": {
+      "asset": "assets/elevation_charts/stage_31.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380057/caminoAppImages/astorga2rabanalelevation_qvhywf.jpg",
+      "sha256": "7fb88395128c959d5e17f5194df1e8710fba37d0df8c2052dc44b42581cba642",
+      "bytes": 92875,
+      "width": 1125,
+      "height": 372
+    },
+    "stage_maps/32": {
+      "asset": "assets/stage_maps/stage_32.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810105/caminoAppImages/maps/1920maps/rabanal2elacebo_ljzlrm.jpg",
+      "sha256": "20c9ce023e3c991754da1be784001281e8b29a45f4518c09d7ed5c57100b8e24",
+      "bytes": 242002,
+      "width": 1920,
+      "height": 458
+    },
+    "elevation_charts/32": {
+      "asset": "assets/elevation_charts/stage_32.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380050/caminoAppImages/rabanal2elaceboelevation_quvizs.jpg",
+      "sha256": "c6b3d50a55b3587424311ae210875b0f69ed1cb5b2b83e40959ed0110323086c",
+      "bytes": 80474,
+      "width": 1125,
+      "height": 372
+    },
+    "stage_maps/33": {
+      "asset": "assets/stage_maps/stage_33.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810083/caminoAppImages/maps/1920maps/elacebo2ponferrada_l7d0la.jpg",
+      "sha256": "30844264cd4f55b9313e8fb42add88d29b62348750375bbd81e0b7782f34e6e9",
+      "bytes": 543283,
+      "width": 1920,
+      "height": 1074
+    },
+    "elevation_charts/33": {
+      "asset": "assets/elevation_charts/stage_33.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380062/caminoAppImages/elacebo2ponferradaelevation_bbnze3.jpg",
+      "sha256": "8f3c454489e00f419fced5cee0dbfd36933f38a04350fa56c6be98cbf898621d",
+      "bytes": 94783,
+      "width": 1125,
+      "height": 514
+    },
+    "stage_maps/34": {
+      "asset": "assets/stage_maps/stage_34.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810101/caminoAppImages/maps/1920maps/ponferrada2villafranca_qf5mlm.jpg",
+      "sha256": "797b33b01b16fc5e775380b4d4fda566452cbffdf286c3a31579205c464ecb05",
+      "bytes": 528048,
+      "width": 1920,
+      "height": 845
+    },
+    "elevation_charts/34": {
+      "asset": "assets/elevation_charts/stage_34.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380048/caminoAppImages/ponferrada2villafrancaelevation_mz4g1x.jpg",
+      "sha256": "2274845f4b2c5804706b2c77aacf017824e530f588792add833df03a54aa9874",
+      "bytes": 89204,
+      "width": 1125,
+      "height": 320
+    },
+    "stage_maps/35": {
+      "asset": "assets/stage_maps/stage_35.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810119/caminoAppImages/maps/1920maps/villafranca2lafaba_xnjgyk.jpg",
+      "sha256": "b1237aed4eeaf92dd5834777be4bf5cd8ef4f4640ee717d5af01356ca6b32a43",
+      "bytes": 623325,
+      "width": 1920,
+      "height": 1088
+    },
+    "elevation_charts/35": {
+      "asset": "assets/elevation_charts/stage_35.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380055/caminoAppImages/villafranca2lafabaelevation_f7rxak.jpg",
+      "sha256": "23e8d1679c93b0226c185f87e3742c668bd79f41680b9a646141e74c148f7beb",
+      "bytes": 99797,
+      "width": 1125,
+      "height": 372
+    },
+    "stage_maps/36": {
+      "asset": "assets/stage_maps/stage_36.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810088/caminoAppImages/maps/1920maps/lafaba2triacastela_udnngt.jpg",
+      "sha256": "a242b7ded97ce00af2bb25c0f9e24666e263dc6048acee37a1fdcbd1e98ecfc0",
+      "bytes": 496363,
+      "width": 1920,
+      "height": 859
+    },
+    "elevation_charts/36": {
+      "asset": "assets/elevation_charts/stage_36.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380063/caminoAppImages/lafaba2triacastelaelevation_hoppfu.jpg",
+      "sha256": "3d0187f3be387e5b23dd001e418b79b66dd706f9d2aebd9a545c7ffda5ad5122",
+      "bytes": 115761,
+      "width": 1125,
+      "height": 469
+    },
+    "stage_maps/37": {
+      "asset": "assets/stage_maps/stage_37.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1701449493/caminoAppImages/maps/1920maps/triacastela2sarria_bnerdw.jpg",
+      "sha256": "22e79c78980e1d8c36502fcf922aeeffda33578968320c57342a7643111bda43",
+      "bytes": 1745075,
+      "width": 1920,
+      "height": 1134
+    },
+    "elevation_charts/37": {
+      "asset": "assets/elevation_charts/stage_37.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380054/caminoAppImages/triacastela2sarriaelevationVSA_uk4upi.jpg",
+      "sha256": "fd74dc7b30d18c41682eee66410d2c3073bcd2964c0411a68389d6c7f9fcc58f",
+      "bytes": 87534,
+      "width": 1125,
+      "height": 360
+    },
+    "stage_maps/38": {
+      "asset": "assets/stage_maps/stage_38.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1701449493/caminoAppImages/maps/1920maps/triacastela2sarria_bnerdw.jpg",
+      "sha256": "22e79c78980e1d8c36502fcf922aeeffda33578968320c57342a7643111bda43",
+      "bytes": 1745075,
+      "width": 1920,
+      "height": 1134
+    },
+    "elevation_charts/38": {
+      "asset": "assets/elevation_charts/stage_38.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380054/caminoAppImages/triacastela2sarriaelevation_tjqncz.jpg",
+      "sha256": "3561767ae272f359b2a5a8f232805c467e2a10cca6dc4628a488877225082624",
+      "bytes": 98194,
+      "width": 1125,
+      "height": 447
+    },
+    "stage_maps/39": {
+      "asset": "assets/stage_maps/stage_39.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810113/caminoAppImages/maps/1920maps/sarria2portomarin_uv7tex.jpg",
+      "sha256": "26198fb1d4159b68e42fad8d3df06e8a7a1ebf36ffe0259f5792ebbe430d5149",
+      "bytes": 384291,
+      "width": 1920,
+      "height": 594
+    },
+    "elevation_charts/39": {
+      "asset": "assets/elevation_charts/stage_39.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380053/caminoAppImages/sarria2portomarinelevation_bqhw07.jpg",
+      "sha256": "4231f468eb2a32aab1ac8cd94834364fcf6cff6eab8ed798be746281d743bfaa",
+      "bytes": 91491,
+      "width": 1125,
+      "height": 448
+    },
+    "stage_maps/40": {
+      "asset": "assets/stage_maps/stage_40.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810097/caminoAppImages/maps/1920maps/palasderei2arzua_d6oios.jpg",
+      "sha256": "8e7baf1bb86bc97e6a2c0289f2561231dd4df5e3bb09f8f10ad4ec2b6707be4a",
+      "bytes": 489719,
+      "width": 1920,
+      "height": 864
+    },
+    "elevation_charts/40": {
+      "asset": "assets/elevation_charts/stage_40.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380047/caminoAppImages/palasderei2arzuaelevation_fjrvvh.jpg",
+      "sha256": "05e0ba31d10376b711e334d84c119080633a17cef5188ae9b6d47ecad7c5e79a",
+      "bytes": 106163,
+      "width": 1125,
+      "height": 493
+    },
+    "stage_maps/41": {
+      "asset": "assets/stage_maps/stage_41.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810074/caminoAppImages/maps/1920maps/arzua2pedrouzo_l37ert.jpg",
+      "sha256": "0288ab76fc3ae0089ee1d6752c36cfb31dc1f9ce9b6684f1f09df643087024b0",
+      "bytes": 438349,
+      "width": 1920,
+      "height": 815
+    },
+    "elevation_charts/41": {
+      "asset": "assets/elevation_charts/stage_41.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380056/caminoAppImages/arzua2pedrouzoelevation_xe8arn.jpg",
+      "sha256": "b6453fbd5c7a0c9719985a39bbd0dc8cd37dd4451c8a44dde1fad875f0733286",
+      "bytes": 78908,
+      "width": 1125,
+      "height": 412
+    },
+    "stage_maps/42": {
+      "asset": "assets/stage_maps/stage_42.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810100/caminoAppImages/maps/1920maps/pedrouzo2santiago_zvidhd.jpg",
+      "sha256": "68dd415e89fbd47fd2d22774b132e23a48acdf0927f13b188d8ceeaf5464a3df",
+      "bytes": 470221,
+      "width": 1920,
+      "height": 692
+    },
+    "elevation_charts/42": {
+      "asset": "assets/elevation_charts/stage_42.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1664089565/caminoAppImages/pedrouzo2santiagoelevation_bs6mdn.jpg",
+      "sha256": "b77f2ab7e8ad979e4e9380efe1cfd8bda1e2918730917cb25778733d68c80702",
+      "bytes": 91653,
+      "width": 1125,
+      "height": 413
+    },
+    "stage_maps/44": {
+      "asset": "assets/stage_maps/stage_44.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810102/caminoAppImages/maps/1920maps/portomarin2palasderei_kjnls9.jpg",
+      "sha256": "39c982726982cc885fe0849930d014b96c3c394d02a19a227047c651a574e469",
+      "bytes": 420244,
+      "width": 1920,
+      "height": 771
+    },
+    "elevation_charts/44": {
+      "asset": "assets/elevation_charts/stage_44.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699380049/caminoAppImages/portomarin2palasdereielevation_lyzwhu.jpg",
+      "sha256": "e1d2597ea9f2ac0bb75743865c4d7c990d7f1c7590e1952505756aa4fbdd672e",
+      "bytes": 96230,
+      "width": 1125,
+      "height": 464
+    }
+  },
+  "missing_source_urls": [
+    {
+      "stage": 15,
+      "kind": "elevation_charts"
+    },
+    {
+      "stage": 23,
+      "kind": "elevation_charts"
+    },
+    {
+      "stage": 25,
+      "kind": "elevation_charts"
+    },
+    {
+      "stage": 29,
+      "kind": "elevation_charts"
+    },
+    {
+      "stage": 43,
+      "kind": "elevation_charts"
+    }
+  ],
+  "unavailable": {
+    "elevation_charts/1": {
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1643200298/SJPP2RoncevallesVOelevation_dia1co.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    "stage_maps/43": {
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810115/caminoAppImages/maps/1920maps/sjpp2roncesvallesX_bmbh0c.jpg",
+      "error": "HTTP Error 404: Not Found"
+    }
+  }
+}
