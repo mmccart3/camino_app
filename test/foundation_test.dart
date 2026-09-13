@@ -228,7 +228,7 @@ void main() {
   test(
     'missing tracks and invalid stage graphs do not become invented routes',
     () async {
-      final noTracks = await repository.route((await repository.stage(3))!);
+      final noTracks = await repository.route((await repository.stage(4))!);
       expect(noTracks.canGuide, isFalse);
       expect(noTracks.points, isEmpty);
       expect(noTracks.locations, isNotEmpty);
@@ -247,10 +247,39 @@ void main() {
       for (final stage in await repository.stages()) {
         final route = await repository.route(stage);
         expect(route.locations, isNotEmpty, reason: 'Stage ${stage.id}');
-        if (stage.id != 1 && stage.id != 2) {
+        if (stage.id != 1 && stage.id != 2 && stage.id != 3) {
           expect(route.canGuide, isFalse);
         }
       }
+    },
+  );
+  test(
+    'stage 3 corrected assignments enable complete weighted guidance',
+    () async {
+      final route = await repository.route((await repository.stage(3))!);
+
+      expect(route.issues, isEmpty, reason: route.issues.join('; '));
+      expect(route.canGuide, isTrue);
+      expect(route.points.length, 722);
+      final guidance = RouteGuidanceService().calculate(
+        route.points,
+        route.points.first.position,
+        4.6,
+      )!;
+      expect(guidance.remainingMeters, closeTo(21015.834273, 0.001));
+      expect(guidance.timeRemaining!.inSeconds, closeTo(64048.535324 / 4.6, 1));
+      expect(guidance.nextWaypoint, isNotNull);
+      expect(route.segments.length, 11);
+      expect(route.paths.map((p) => p.id), List.generate(11, (i) => i + 15));
+      expect(
+        route.points.fold<double>(
+          0,
+          (sum, point) => sum + point.distance3dMeters!,
+        ),
+        closeTo(21015.834273, 0.001),
+      );
+      expect(route.points[1].source['distance_3d_meters'], isNull);
+      expect(route.points[1].distance3dMeters, closeTo(91.848781, 0.001));
     },
   );
   test('corrupt asset is never promoted and retry works', () async {

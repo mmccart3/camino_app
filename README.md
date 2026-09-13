@@ -83,9 +83,9 @@ Location uses geolocator for one user-triggered foreground fix with permission h
 
 ## Dataset observations
 
-The inspected asset contains 41 stages, 253 locations, 387 paragraphs, 460 albergues, 670 private accommodation records, 286 paths, 2048 track points and 318 mapLocationCoords rows.
+The inspected asset contains 41 stages, 253 locations, 387 paragraphs, 460 albergues, 670 private accommodation records, 286 paths, 2770 track points and 318 mapLocationCoords rows.
 
-- Track geometry covers stage 1 (paths 1–8, 778 points) and stage 2 Roncesvalles to Zubiri (paths 9–14, 1270 points, added 11 September 2026). Other stages remain available as guide content and map markers.
+- Track geometry covers stage 1 (paths 1–8, 778 points) and stage 2 Roncesvalles to Zubiri (paths 9–14, 1270 points, added 11 September 2026). Stage 3 Zubiri to Pamplona now includes all paths 15–25 and 722 points. Other stages remain available as guide content and map markers.
 - Stage 24 has two outgoing paths from location 124: path 124 to location 130 and path 125 to location 132. The app flags this ambiguity.
 - Stage 25 has path 130 from location 133 back to 133; its declared finish is location 134. The app flags the cycle. No data corrections were made.
 - The read-only audit found no orphaned paths, track points, accommodation records or paragraphs in the checked relationships, and no stored Unicode replacement characters. Text is passed through unchanged.
@@ -128,13 +128,19 @@ After populating numbers, rebuild and fully restart the app; the asset fingerpri
 
 References: [url_launcher](https://pub.dev/packages/url_launcher), [WhatsApp click to chat](https://faq.whatsapp.com/5913398998672934).
 
-## Default basemap and future offline packages (0.1.2)
+## Offline stages 1–3 basemap
 
-Opening a map now loads OpenStreetMap tiles for the visible viewport by default. Normal tile requests use flutter_map 8.3.2 NetworkTileProvider and its built-in disk cache, which honors HTTP freshness headers. The app identifies itself as CaminoGuideOfflineMVP. Cache contents can be evicted and are not a guaranteed offline map. Route data remains in SQLite and is unaffected by the basemap switch or network availability. Tests use in-memory test tiles, not actual network downloads.
+The app bundles `assets/offline_maps/stages1_3.mbtiles` (4.26 MiB), replacing the wider Navarra archive at the owner's request. The offline map opens by default. It covers approximately 1 km corridors along the main route from Saint-Jean-Pied-de-Port through Roncesvalles and Zubiri to Pamplona. It does not include the Valcarlos alternative or wider Navarra coverage. Outside these corridors the basemap can be blank; available route lines and markers remain visible.
 
-The public tile.openstreetmap.org service prohibits bulk downloading, prefetching and creation of tile archives for distribution. No pre-download service, hidden pan/zoom sweep or offline-download button has been added. See https://operations.osmfoundation.org/policies/tiles/.
+The archive combines the supplied stage1_france.mbtiles (Aquitaine source), stage1_spain.mbtiles, stage2.mbtiles and stage3.mbtiles (Navarra source). All 2,770 route points have tile coverage at every zoom from 0 through 14. Higher zooms enlarge existing vector detail. Tile availability does not guarantee the completeness or accuracy of all OSM features.
 
-Maps can be included in an app installation if their source explicitly permits offline redistribution. A future implementation can bundle a licensed raster tile archive (for example MBTiles) or a suitable vector map package with its required style, fonts and attribution. Copy/open the package locally and connect a local tile provider/renderer to flutter_map. This requires selecting coverage and zoom/detail levels and sourcing or generating a legally redistributable package; it has not been implemented in this revision. A corridor along the Camino would limit package size compared with entire countries. Such a package would be separate from camino.sqlite, retaining the existing guide-data schema.
+On first map opening the archive is verified by SHA256 and copied to application-support storage under `offline_maps/stages1-3-<fingerprint>.mbtiles`. Later launches reuse this copy. Old Navarra copies may remain in application-support storage but are not used. The new installation contains only the smaller archive. Allow space for both the bundled archive and its installed copy. The guide database is separate and unchanged.
+
+The local provider handles TMS coordinates and compressed vector tiles. The bundled style needs no remote sprites or glyphs; labels use platform fonts. Offline mode makes no tile downloads. The optional online basemap retains caching and HTTP 403/429 handling. Missing offline tiles never automatically trigger online requests.
+
+To update the map, merge compatible source archives with `python tool/merge_camino_tiles.py NEW_OUTPUT.mbtiles INPUT1.mbtiles INPUT2.mbtiles ...`, review the result and update its name/description metadata. The merger preserves geometry commands and removes exact geometry/property duplicates. Differently clipped or generalized overlaps may remain; matching layer versions and extents are required. Replace the bundled stages1_3.mbtiles, update the lowercase SHA256 fingerprint in lib/services/offline_map.dart, review the coverage text and tests, then format, analyze, test and rebuild. PowerShell `Get-FileHash assets/offline_maps/stages1_3.mbtiles -Algorithm SHA256` provides the hash.
+
+Attribution: OpenStreetMap contributors (ODbL) and OpenMapTiles. Source data: https://download.geofabrik.de/europe/france/aquitaine.html and https://download.geofabrik.de/europe/spain/navarra.html. Public OSM raster tiles must not be bulk downloaded or packaged: https://operations.osmfoundation.org/policies/tiles/.
 
 ## Google Maps walking link (0.1.3)
 
@@ -190,7 +196,7 @@ The script generates assets/stage_maps/, assets/elevation_charts/, assets/stage_
 
 The first bundle has 75 images (about 23.8 MiB). Stage 1's elevation-chart URL and stage 43's map URL return HTTP 404. Stages 15, 23, 25, 29 and 43 have no elevation-chart URL. These show Image unavailable in this app version; correct the database source URL and rerun the script to include them. No substitute image is invented.
 
-Flutter reads these files directly from its asset bundle; there is no first-launch download or extra device-storage copy. Both inline and full-screen views use AssetImage and make no image network requests. The existing stage and accommodation database is unchanged. Accommodation photos and the interactive OSM basemap retain their separate network behavior; this feature does not create offline basemap tiles.
+Flutter reads these files directly from its asset bundle; there is no first-launch download or extra device-storage copy. Both inline and full-screen views use AssetImage and make no image network requests. The existing stage and accommodation database is unchanged. Accommodation photos still require connectivity. The separately bundled stages 1–3 vector basemap is described above.
 
 ## Guide paragraphs populated from Word
 
@@ -205,3 +211,10 @@ Invalid/missing coordinates and missing locations do not create links. Partially
 ### Opening period wording cleanup
 
 569 albergue opening-period descriptions were translated or standardised. Dates and qualifications were retained; uncertain source data is flagged rather than guessed. See `docs/opening_period_cleanup/README.md` and its before/after and review CSV files. All other database columns remain unchanged.
+
+### Zubiri to Pamplona database update
+
+The supplied database now contains 2,770 track points and corrected coordinates for locations 23 and 25. Stage 3 adds 722 points. Its incoming 3D distances are stored in `3D-Distance`; the app uses that value only when `distance_3d_meters` is null. Existing canonical values take precedence. The added `slope` column is retained unchanged, as is the rest of the supplied database. Weighted time calculations continue to use `weighted_distance`.
+
+Stage 3 assignments are now complete across paths 15–25. All 722 points are included, with approximately 21.02 km of stored 3D distance. Full-stage route validation and weighted guidance are enabled following the corrected database import.
+

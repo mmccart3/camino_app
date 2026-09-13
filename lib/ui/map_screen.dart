@@ -1,3 +1,4 @@
+import 'offline_basemap.dart';
 import '../services/map_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -15,6 +16,7 @@ class MapScreen extends StatefulWidget {
   final SettingsService settings;
   final Stage stage;
   final bool initialTiles;
+  final bool initialOffline;
   final TileProvider? tileProvider;
   const MapScreen({
     super.key,
@@ -22,6 +24,7 @@ class MapScreen extends StatefulWidget {
     required this.settings,
     required this.stage,
     this.initialTiles = true,
+    this.initialOffline = true,
     this.tileProvider,
   });
   @override
@@ -31,7 +34,11 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late final future = widget.repository.route(widget.stage);
   final guidance = RouteGuidanceService();
-  late bool tiles = widget.initialTiles && MapTiles.blockedStatus == null;
+  late bool tiles =
+      widget.initialTiles &&
+      !widget.initialOffline &&
+      MapTiles.blockedStatus == null;
+  late bool offline = widget.initialTiles && widget.initialOffline;
   bool handlingTileBlock = false;
 
   void tileError(Object error) {
@@ -149,7 +156,8 @@ class _MapScreenState extends State<MapScreen> {
                         backgroundColor: const Color(0xFFE6EBDF),
                       ),
                       children: [
-                        // Attribution stays on the map while tiles are visible.
+                        // Local vector tiles share the existing camera and route overlays.
+                        if (offline) const OfflineBasemap(),
                         if (tiles)
                           TileLayer(
                             urlTemplate:
@@ -183,7 +191,7 @@ class _MapScreenState extends State<MapScreen> {
                                 ),
                           ],
                         ),
-                        if (tiles)
+                        if (tiles || offline)
                           Align(
                             alignment: Alignment.bottomRight,
                             child: ColoredBox(
@@ -256,6 +264,29 @@ class _MapScreenState extends State<MapScreen> {
                   Text(
                     'OpenStreetMap returned HTTP ${MapTiles.blockedStatus}. Online tiles are paused for this app session. Your route and markers remain available. If access remains blocked, contact the tile provider; repeated retries will not resolve a block.',
                   ),
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Offline stages 1–3 map'),
+                  subtitle: const Text(
+                    'Bundled on this device: stages 1–3, Saint-Jean-Pied-de-Port to Pamplona. Other stages have no bundled basemap.',
+                  ),
+                  value: offline,
+                  onChanged: (value) => setState(() {
+                    offline = value ?? false;
+                    if (offline) tiles = false;
+                  }),
+                ),
+                if (offline)
+                  TextButton(
+                    onPressed: () async {
+                      try {
+                        await SafeLinks.open('https://www.openmaptiles.org/');
+                      } catch (error) {
+                        if (context.mounted) showFailure(context, error);
+                      }
+                    },
+                    child: const Text('© OpenMapTiles'),
+                  ),
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
                   title: const Text('Online basemap'),
@@ -267,6 +298,7 @@ class _MapScreenState extends State<MapScreen> {
                       ? null
                       : (value) => setState(() {
                           tiles = value;
+                          if (tiles) offline = false;
                         }),
                 ),
                 FilledButton.icon(

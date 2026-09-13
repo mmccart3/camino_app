@@ -17,6 +17,8 @@ dependencies:
   crypto: ^3.0.7
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.2
+  flutter_map_vector_tiles: 2.8.1
+  flutter_map_vector_tiles_mbtiles: 1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -28,3 +30,4 @@ flutter:
     - assets/stage_maps/
     - assets/elevation_charts/
     - assets/stage_images.json
+    - assets/offline_maps/

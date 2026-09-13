@@ -193,7 +193,9 @@ class TrackPoint extends SourceRecord {
           )),
       isWaypoint = optionalInt(r, 'waypoint') == 1,
       elevation = optionalDouble(r, 'elevation'),
-      distance3dMeters = optionalDouble(r, 'distance_3d_meters'),
+      distance3dMeters =
+          optionalDouble(r, 'distance_3d_meters') ??
+          optionalDouble(r, '3D-Distance'),
       slopeAngleDegrees = optionalDouble(r, 'slope_angle_degrees'),
       weightedDistance = optionalDouble(r, 'weighted_distance');
   TrackPoint named(String label) =>

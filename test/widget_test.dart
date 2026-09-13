@@ -47,9 +47,16 @@ void main() {
   });
   Future<void> finishDatabaseWork(WidgetTester tester) async {
     await tester.pump();
-    await tester.runAsync(() async {
-      await Future<void>.delayed(const Duration(milliseconds: 200));
-    });
+    // SQLite FFI uses real asynchronous work; the fake clock cannot finish it.
+    // Wait for loading to finish rather than assuming a fixed machine speed.
+    for (var attempt = 0; attempt < 100; attempt++) {
+      await tester.runAsync(() async {
+        await Future<void>.delayed(const Duration(milliseconds: 100));
+      });
+      await tester.pump(const Duration(milliseconds: 100));
+      if (find.byType(CircularProgressIndicator).evaluate().isEmpty) break;
+    }
+    expect(find.byType(CircularProgressIndicator), findsNothing);
     await tester.pumpAndSettle();
   }
 
@@ -63,6 +70,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: MapScreen(
+          initialOffline: false,
           repository: repository,
           settings: settings,
           stage: stage,
@@ -95,6 +103,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: MapScreen(
+            initialOffline: false,
             repository: repository,
             settings: settings,
             stage: stage,
@@ -132,6 +141,8 @@ void main() {
     testWidgets('HTTP $status pauses maps for the session and retains route', (
       tester,
     ) async {
+      await tester.binding.setSurfaceSize(const Size(1000, 1600));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
       MapTiles.blockedStatus = null;
       addTearDown(() {
         MapTiles.blockedStatus = null;
@@ -143,6 +154,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: MapScreen(
+            initialOffline: false,
             repository: repository,
             settings: settings,
             stage: stage,
@@ -171,6 +183,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: MapScreen(
+            initialOffline: false,
             repository: repository,
             settings: settings,
             stage: stage,
@@ -188,11 +201,12 @@ void main() {
   ) async {
     late Stage stage;
     await tester.runAsync(() async {
-      stage = (await repository.stage(3))!;
+      stage = (await repository.stage(4))!;
     });
     await tester.pumpWidget(
       MaterialApp(
         home: MapScreen(
+          initialOffline: false,
           repository: repository,
           settings: settings,
           stage: stage,
