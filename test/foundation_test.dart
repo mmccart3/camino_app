@@ -226,9 +226,55 @@ void main() {
     },
   );
   test(
+    'stage 5 subdivides both gaps under 50 metres without changing totals',
+    () async {
+      final route = await repository.route((await repository.stage(5))!);
+      expect(route.points.length, 419);
+      expect(route.paths.map((p) => p.id), [33, 34, 35, 36, 37]);
+      expect(route.issues, [
+        'Track geometry does not reach both declared stage endpoints.',
+      ]);
+      expect(
+        route.points[route.points.indexWhere((p) => p.id == 5192) + 1].id,
+        5409,
+      );
+      expect(
+        route.points[route.points.indexWhere((p) => p.id == 5282) + 1].id,
+        5413,
+      );
+      expect(
+        route.points.fold<double>(0, (sum, p) => sum + p.distance3dMeters!),
+        closeTo(21617.677137568193, 0.000001),
+      );
+      expect(
+        route.points.fold<double>(0, (sum, p) => sum + p.weightedDistance!),
+        closeTo(65669.50279943996, 0.000001),
+      );
+      expect(route.points.last.id, 5406);
+      expect(route.points.last.pathId, 37);
+      expect(route.canGuide, isFalse);
+      expect(
+        route.issues,
+        contains(
+          'Track geometry does not reach both declared stage endpoints.',
+        ),
+      );
+    },
+  );
+  test('stage 4 imports all tracks and flags the endpoint mismatch', () async {
+    final route = await repository.route((await repository.stage(4))!);
+    expect(route.points.length, 870);
+    expect(route.paths.length, 7);
+    expect(route.segments.length, 7);
+    expect(route.issues, [
+      'Track geometry does not reach both declared stage endpoints.',
+    ]);
+    expect(route.canGuide, isFalse);
+  });
+  test(
     'missing tracks and invalid stage graphs do not become invented routes',
     () async {
-      final noTracks = await repository.route((await repository.stage(4))!);
+      final noTracks = await repository.route((await repository.stage(6))!);
       expect(noTracks.canGuide, isFalse);
       expect(noTracks.points, isEmpty);
       expect(noTracks.locations, isNotEmpty);
@@ -369,6 +415,22 @@ void main() {
       await loader.close();
     },
   );
+  test('off-route threshold persists and rejects invalid values', () async {
+    final memory = MemoryPreferences();
+    final settings = SettingsService(preferences: memory);
+    expect(settings.offRouteMetres, 50);
+    await settings.setOffRouteMetres(120);
+    final restored = SettingsService(preferences: memory);
+    await restored.load();
+    expect(restored.offRouteMetres, 120);
+    for (final value in [0.0, 501.0, double.nan]) {
+      await expectLater(settings.setOffRouteMetres(value), throwsArgumentError);
+    }
+    memory.values['off_route_metres'] = double.infinity;
+    final fallback = SettingsService(preferences: memory);
+    await fallback.load();
+    expect(fallback.offRouteMetres, 50);
+  });
   test('walking pace reloads and invalid values are rejected', () async {
     final memory = MemoryPreferences();
     final settings = SettingsService(preferences: memory);

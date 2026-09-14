@@ -3,6 +3,9 @@ import 'data/local_database.dart';
 import 'data/camino_repository.dart';
 import 'services/settings_service.dart';
 import 'ui/screens.dart';
+import 'ui/app_title.dart';
+import 'ui/splash_screen.dart';
+import 'ui/walking_alerts.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,13 +24,24 @@ class _CaminoAppState extends State<CaminoApp> {
   late final repository = CaminoRepository(local);
   late Future<void> initialization = initialize();
   Future<void> initialize() async {
-    await local.database;
-    await settings.load();
+    await Future.wait<void>([
+      () async {
+        await local.database;
+        await settings.load();
+      }(),
+      Future<void>.delayed(const Duration(seconds: 2)),
+    ]);
   }
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'Camino',
+    title: appTitle,
+    builder: (context, child) => Column(
+      children: [
+        Expanded(child: child ?? const SizedBox.shrink()),
+        const WalkingSessionBanner(),
+      ],
+    ),
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       useMaterial3: true,
@@ -60,9 +74,7 @@ class _CaminoAppState extends State<CaminoApp> {
           );
         }
         if (snapshot.connectionState != ConnectionState.done) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
+          return const SplashScreen();
         }
         return HomeScreen(repository: repository, settings: settings);
       },

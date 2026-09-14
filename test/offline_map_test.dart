@@ -26,7 +26,7 @@ void main() {
         final provider = await MbTilesVectorTileProvider.open(path);
         try {
           expect(provider.maximumZoom, 14);
-          expect(provider.metadata.values['name'], 'Camino stages 1-3');
+          expect(provider.metadata.values['name'], 'Camino stages 1-5');
           expect(provider.cacheBytesToDisk, isFalse);
           final tile = await provider.load(const vt.TileKey(14, 8117, 6031));
           expect(tile, isA<vt.TileResponseData>());
@@ -37,6 +37,22 @@ void main() {
           expect(
             await provider.load(const vt.TileKey(14, 0, 0)),
             isA<vt.TileResponseNotFound>(),
+          );
+          final stage4Tile = await provider.load(
+            const vt.TileKey(14, 8109, 6040),
+          );
+          expect(stage4Tile, isA<vt.TileResponseData>());
+          expect(
+            gzip.decode((stage4Tile as vt.TileResponseData).bytes).length,
+            greaterThan(1000),
+          );
+          final stage5Tile = await provider.load(
+            const vt.TileKey(14, 8099, 6040),
+          );
+          expect(stage5Tile, isA<vt.TileResponseData>());
+          expect(
+            gzip.decode((stage5Tile as vt.TileResponseData).bytes).length,
+            greaterThan(1000),
           );
           final frenchTile = await provider.load(
             const vt.TileKey(14, 8135, 6010),
@@ -74,7 +90,7 @@ void main() {
 
     await tester.runAsync(() async {
       style = await OfflineMap.load(
-        path: File('assets/offline_maps/stages1_3.mbtiles').absolute.path,
+        path: File('assets/offline_maps/stages1_5.mbtiles').absolute.path,
       );
     });
     final key = GlobalKey();

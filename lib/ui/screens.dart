@@ -11,6 +11,7 @@ import 'map_screen.dart';
 import 'settings_screen.dart';
 import 'widgets.dart';
 import 'contact_links.dart';
+import 'app_title.dart';
 
 class HomeScreen extends StatelessWidget {
   final CaminoRepository repository;
@@ -23,7 +24,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: const Text('Camino'),
+      title: const AppTitle(compact: true),
+      backgroundColor: caminoBlue,
+      foregroundColor: Colors.white,
       actions: [
         IconButton(
           tooltip: 'Settings',

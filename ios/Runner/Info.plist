@@ -6,8 +6,10 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>NSLocationWhenInUseUsageDescription</key><string>Show your position and distance along the Camino route when you request it.</string><key>CFBundleDisplayName</key>
-	<string>Camino App</string>
+	<key>UIBackgroundModes</key><array><string>location</string></array>
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key><string>Warn when you leave the Camino track during a walking session you start, including with the screen locked. Continuous GPS uses significant battery.</string>
+<key>NSLocationWhenInUseUsageDescription</key><string>Show your position and distance along the Camino route when you request it.</string><key>CFBundleDisplayName</key>
+	<string>Saint Jean to Santiago</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

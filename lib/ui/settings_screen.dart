@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/settings_service.dart';
 import 'widgets.dart';
+import 'splash_screen.dart';
+import 'walking_alerts.dart';
 
 class SettingsScreen extends StatefulWidget {
   final SettingsService settings;
@@ -18,6 +20,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     body: ListView(
       padding: const EdgeInsets.all(24),
       children: [
+        const AppVersionLabel(),
+        const SizedBox(height: 20),
         Text('Walking pace', style: Theme.of(context).textTheme.headlineSmall),
         Text(
           '${pace.toStringAsFixed(1)} km/h',
@@ -70,8 +74,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
           'Time estimates use weighted distances and your saved average walking pace. Distances use the stored 3D metres. Estimates start at the nearest track point and exclude breaks and the walk back to it.',
         ),
         const SizedBox(height: 20),
+        AlertDistanceSetting(settings: widget.settings),
+        const Text(batteryWarning),
+        const SizedBox(height: 20),
         const Text(
-          'Location is requested only when you tap Update my position on the map.',
+          'Location is requested when you update your position or explicitly start walking alerts. Stop walking alerts to end continuous GPS use.',
         ),
       ],
     ),

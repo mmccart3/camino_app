@@ -1,3 +1,4 @@
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:camino_app/services/map_tiles.dart';
 import 'dart:io';
 import 'dart:convert';
@@ -201,7 +202,7 @@ void main() {
   ) async {
     late Stage stage;
     await tester.runAsync(() async {
-      stage = (await repository.stage(4))!;
+      stage = (await repository.stage(6))!;
     });
     await tester.pumpWidget(
       MaterialApp(
@@ -293,10 +294,17 @@ void main() {
     },
   );
   testWidgets('settings saves walking pace locally', (tester) async {
+    PackageInfo.setMockInitialValues(
+      appName: 'Camino',
+      packageName: 'com.example.camino_app',
+      version: '0.2.0',
+      buildNumber: '5',
+      buildSignature: '',
+    );
     await tester.pumpWidget(
       MaterialApp(home: SettingsScreen(settings: settings)),
     );
-    final slider = tester.widget<Slider>(find.byType(Slider));
+    final slider = tester.widget<Slider>(find.byType(Slider).first);
     expect(slider.min, 1.0);
     expect(slider.max, 8.5);
     expect(slider.divisions, 75);

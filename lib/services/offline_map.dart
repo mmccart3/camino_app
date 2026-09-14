@@ -8,9 +8,9 @@ import 'package:path_provider/path_provider.dart';
 
 /// Versioned app asset; no HTTP requests or tile downloads are involved.
 class OfflineMap {
-  static const assetPath = 'assets/offline_maps/stages1_3.mbtiles';
+  static const assetPath = 'assets/offline_maps/stages1_5.mbtiles';
   static const fingerprint =
-      '37e5b4677ef66f1663c7b21386ebd12cb683d6563a2c3811b26db726b6652070';
+      '1e325973a60161d47ebc7d6c6747413deacc77dd1a1e87f35fe0bef96121b8ae';
   static Future<String>? _copy;
 
   static Future<String> installedPath() =>
@@ -25,7 +25,7 @@ class OfflineMap {
           p.join((await getApplicationSupportDirectory()).path, 'offline_maps'),
     );
     await folder.create(recursive: true);
-    final file = File(p.join(folder.path, 'stages1-3-$fingerprint.mbtiles'));
+    final file = File(p.join(folder.path, 'stages1-5-$fingerprint.mbtiles'));
     if (await file.exists()) return file.path;
     final data = await rootBundle.load(assetPath);
     final bytes = data.buffer.asUint8List(

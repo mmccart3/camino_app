@@ -1,4 +1,6 @@
 import 'offline_basemap.dart';
+import 'walking_alerts.dart';
+import '../services/navigation_session.dart';
 import '../services/map_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -57,6 +59,32 @@ class _MapScreenState extends State<MapScreen> {
       }
     });
     WidgetsBinding.instance.scheduleFrame();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    NavigationSession.instance.addListener(sessionChanged);
+    sessionChanged();
+  }
+
+  void sessionChanged() {
+    final session = NavigationSession.instance;
+    final fix = session.position;
+    if (!mounted) return;
+    setState(() {
+      if (session.active && session.stageId == widget.stage.id && fix != null) {
+        position = LatLng(fix.latitude, fix.longitude);
+        accuracy = fix.accuracy;
+        fixedAt = fix.timestamp;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    NavigationSession.instance.removeListener(sessionChanged);
+    super.dispose();
   }
 
   bool busy = false;
@@ -266,9 +294,9 @@ class _MapScreenState extends State<MapScreen> {
                   ),
                 CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: const Text('Offline stages 1–3 map'),
+                  title: const Text('Offline stages 1–5 map'),
                   subtitle: const Text(
-                    'Bundled on this device: stages 1–3, Saint-Jean-Pied-de-Port to Pamplona. Other stages have no bundled basemap.',
+                    'Bundled on this device: stages 1–5, Saint-Jean-Pied-de-Port to Estella. Other stages have no bundled basemap.',
                   ),
                   value: offline,
                   onChanged: (value) => setState(() {
@@ -302,12 +330,18 @@ class _MapScreenState extends State<MapScreen> {
                         }),
                 ),
                 FilledButton.icon(
-                  onPressed: busy || !route.canGuide ? null : locate,
+                  onPressed:
+                      busy ||
+                          !route.canGuide ||
+                          NavigationSession.instance.active
+                      ? null
+                      : locate,
                   icon: const Icon(Icons.my_location),
                   label: Text(
                     busy ? 'Getting position…' : 'Update my position',
                   ),
                 ),
+                WalkingAlertControls(route: route, settings: widget.settings),
                 const SizedBox(height: 12),
                 if (result == null && route.canGuide)
                   const Text(

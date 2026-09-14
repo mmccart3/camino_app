@@ -1,0 +1,56 @@
+[
+  {
+    "between": [
+      5192,
+      5407
+    ],
+    "added_ids": [
+      5409,
+      5410
+    ],
+    "intervals": 3,
+    "max_gap_metres": 46.07565914798555,
+    "method": "Linear latitude/longitude/elevation interpolation; incoming metrics divided proportionally. Estimated, not surveyed."
+  },
+  {
+    "between": [
+      5407,
+      5193
+    ],
+    "added_ids": [
+      5411,
+      5412
+    ],
+    "intervals": 3,
+    "max_gap_metres": 46.07540369327701,
+    "method": "Linear latitude/longitude/elevation interpolation; incoming metrics divided proportionally. Estimated, not surveyed."
+  },
+  {
+    "between": [
+      5282,
+      5408
+    ],
+    "added_ids": [
+      5413,
+      5414,
+      5415
+    ],
+    "intervals": 4,
+    "max_gap_metres": 42.78819254728028,
+    "method": "Linear latitude/longitude/elevation interpolation; incoming metrics divided proportionally. Estimated, not surveyed."
+  },
+  {
+    "between": [
+      5408,
+      5283
+    ],
+    "added_ids": [
+      5416,
+      5417,
+      5418
+    ],
+    "intervals": 4,
+    "max_gap_metres": 42.78825087015842,
+    "method": "Linear latitude/longitude/elevation interpolation; incoming metrics divided proportionally. Estimated, not surveyed."
+  }
+]

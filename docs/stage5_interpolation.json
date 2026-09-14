@@ -1,0 +1,37 @@
+{
+  "points": [
+    {
+      "new_id": 5407,
+      "between": [
+        5192,
+        5193
+      ],
+      "pathID": 35,
+      "method": "Linear midpoint latitude/longitude/elevation; incoming distance and weight split equally; slope retained; not a surveyed GPS fix",
+      "original_gap_metres": 276.45267759405857,
+      "new_gaps_metres": [
+        138.22672198743388,
+        138.2259556216169
+      ]
+    },
+    {
+      "new_id": 5408,
+      "between": [
+        5282,
+        5283
+      ],
+      "pathID": 36,
+      "method": "Linear midpoint latitude/longitude/elevation; incoming distance and weight split equally; slope retained; not a surveyed GPS fix",
+      "original_gap_metres": 342.3055986663015,
+      "new_gaps_metres": [
+        171.15268270047812,
+        171.15291599213114
+      ]
+    }
+  ],
+  "unchanged_stage_metric_totals": {
+    "3D-Distance": 21617.677137568193,
+    "distance_3d_meters": 0,
+    "weighted_distance": 65669.50279943996
+  }
+}

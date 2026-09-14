@@ -43,35 +43,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# Local secrets: commit only the empty template
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-*.p12
-*.pfx
-*.jks
-*.keystore
-**/key.properties
-**/local.properties
-**/service-account*.json
-
-# Generated platform files and local editor state
-.flutter-plugins
-**/ephemeral/
-**/.plugin_symlinks/
-**/.symlinks/
-**/.gradle/
-**/Pods/
-.vscode/*
-!.vscode/extensions.json
-!.vscode/launch.json
-
-# SQLite runtime journals (keep the bundled database itself)
-*.sqlite-wal
-*.sqlite-shm
-*.sqlite-journal
-*.db-wal
-*.db-shm

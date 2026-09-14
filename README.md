@@ -69,7 +69,7 @@ Remaining distance is `SUM(distance_3d_meters)`. The database owner's confirmed 
 
 Average walking pace is saved locally, defaults to 4.6 km/h, and is adjustable from 1.0 to 8.5 km/h in 0.1 increments. Existing valid saved preferences are retained. This is the user's chosen average, not an automatically learned speed. Change it in Settings and save it.
 
-Equal nearest-point distances choose the earliest point in route order; there is no heading/history map matching at crossings. A waypoint at the nearest point is treated as reached. Estimates exclude breaks and travel back to the selected track point. The UI shows that point's ID, GPS accuracy, timestamp and distance from it. Position updates remain explicit button presses, not continuous navigation.
+Equal nearest-point distances choose the earliest point in route order; there is no heading/history map matching at crossings. A waypoint at the nearest point is treated as reached. Estimates exclude breaks and travel back to the selected track point. The UI shows that point's ID, GPS accuracy, timestamp and distance from it. Position updates can be requested once, or streamed during an explicitly started walking-alert session.
 
 ## Offline and external content
 
@@ -79,7 +79,7 @@ Photos and published stage maps/elevation charts load from their stored Cloudina
 
 The website and booking URL launcher accepts only valid HTTPS links with no embedded credentials or control/space characters. It passes the original database string to url_launcher's string API, without reconstructing query parameters. Stored sentinels such as “not on Booking” and “no website available” are retained in models but do not produce clickable buttons. Legitimate non-HTTPS URLs are also not launched by this policy.
 
-Location uses geolocator for one user-triggered foreground fix with permission handling and a timeout. Android has fine/coarse location and internet permissions; iOS has a when-in-use usage description and the CocoaPods always-permission bypass flag. No background GPS, GPS foreground service, authentication, payments, backend sync or voice guidance is implemented.
+Location uses geolocator for a single user-triggered fix or an optional screen-locked walking-alert session. Android uses a location foreground service; iOS uses background location with Always authorization. Both require notification permission. Authentication, payments, backend sync and voice guidance remain excluded. See the walking-alert documentation below.
 
 ## Dataset observations
 
@@ -95,7 +95,7 @@ These observations are about the supplied snapshot, not hard-coded app limitatio
 ## Code and verification
 
 `lib/data`: existing-schema models, schema validation, local asset copy, repositories and route assembly.
-`lib/services`: geometry/ETA, pace preferences, foreground location and safe URLs.
+`lib/services`: geometry/ETA, pace preferences, foreground/background location, off-route detection, local notifications and safe URLs.
 `lib/ui`: Home, stage list/detail, location detail, albergue detail, private accommodation detail, map/navigation and settings.
 `test`: real SQLite integration, graph/geometry edge cases, offline UI and preferences.
 `tool/audit_database.py`: reusable read-only audit.
@@ -130,7 +130,7 @@ References: [url_launcher](https://pub.dev/packages/url_launcher), [WhatsApp cli
 
 ## Offline stages 1–3 basemap
 
-The app bundles `assets/offline_maps/stages1_3.mbtiles` (4.26 MiB), replacing the wider Navarra archive at the owner's request. The offline map opens by default. It covers approximately 1 km corridors along the main route from Saint-Jean-Pied-de-Port through Roncesvalles and Zubiri to Pamplona. It does not include the Valcarlos alternative or wider Navarra coverage. Outside these corridors the basemap can be blank; available route lines and markers remain visible.
+The app bundles `assets/offline_maps/stages1_5.mbtiles` (4.26 MiB), replacing the wider Navarra archive at the owner's request. The offline map opens by default. It covers approximately 1 km corridors along the main route from Saint-Jean-Pied-de-Port through Roncesvalles and Zubiri to Pamplona. It does not include the Valcarlos alternative or wider Navarra coverage. Outside these corridors the basemap can be blank; available route lines and markers remain visible.
 
 The archive combines the supplied stage1_france.mbtiles (Aquitaine source), stage1_spain.mbtiles, stage2.mbtiles and stage3.mbtiles (Navarra source). All 2,770 route points have tile coverage at every zoom from 0 through 14. Higher zooms enlarge existing vector detail. Tile availability does not guarantee the completeness or accuracy of all OSM features.
 
@@ -138,7 +138,7 @@ On first map opening the archive is verified by SHA256 and copied to application
 
 The local provider handles TMS coordinates and compressed vector tiles. The bundled style needs no remote sprites or glyphs; labels use platform fonts. Offline mode makes no tile downloads. The optional online basemap retains caching and HTTP 403/429 handling. Missing offline tiles never automatically trigger online requests.
 
-To update the map, merge compatible source archives with `python tool/merge_camino_tiles.py NEW_OUTPUT.mbtiles INPUT1.mbtiles INPUT2.mbtiles ...`, review the result and update its name/description metadata. The merger preserves geometry commands and removes exact geometry/property duplicates. Differently clipped or generalized overlaps may remain; matching layer versions and extents are required. Replace the bundled stages1_3.mbtiles, update the lowercase SHA256 fingerprint in lib/services/offline_map.dart, review the coverage text and tests, then format, analyze, test and rebuild. PowerShell `Get-FileHash assets/offline_maps/stages1_3.mbtiles -Algorithm SHA256` provides the hash.
+To update the map, merge compatible source archives with `python tool/merge_camino_tiles.py NEW_OUTPUT.mbtiles INPUT1.mbtiles INPUT2.mbtiles ...`, review the result and update its name/description metadata. The merger preserves geometry commands and removes exact geometry/property duplicates. Differently clipped or generalized overlaps may remain; matching layer versions and extents are required. Replace the bundled stages1_5.mbtiles, update the lowercase SHA256 fingerprint in lib/services/offline_map.dart, review the coverage text and tests, then format, analyze, test and rebuild. PowerShell `Get-FileHash assets/offline_maps/stages1_5.mbtiles -Algorithm SHA256` provides the hash.
 
 Attribution: OpenStreetMap contributors (ODbL) and OpenMapTiles. Source data: https://download.geofabrik.de/europe/france/aquitaine.html and https://download.geofabrik.de/europe/spain/navarra.html. Public OSM raster tiles must not be bulk downloaded or packaged: https://operations.osmfoundation.org/policies/tiles/.
 
@@ -218,3 +218,38 @@ The supplied database now contains 2,770 track points and corrected coordinates 
 
 Stage 3 assignments are now complete across paths 15–25. All 722 points are included, with approximately 21.02 km of stored 3D distance. Full-stage route validation and weighted guidance are enabled following the corrected database import.
 
+
+
+## Screen-locked walking alerts
+
+See [setup and physical-device checks](docs/walking_alerts.md). From a complete stage map, choose an alert distance (20–500 metres, default 50), save it, then tap **Start walking alerts**. A battery-use warning must be accepted on every start. The session continues when the screen locks or the map is closed; a global **Stop walking alerts** control remains in the app. The setting applies to the next session. There is no automatic start, reboot restart, or GPS history storage.
+
+The detector measures the shortest distance to route segments, subtracts reported GPS uncertainty, and requires three distinct accurate readings spanning at least ten seconds. It alerts once per excursion, rearms clearly inside the route, and applies a two-minute cooldown. Invalid/old fixes are ignored; prolonged missing GPS produces a notice. These are best-effort hiking reminders, not a guarantee of delivery when the operating system suspends or terminates the app.
+
+Validation for this change: detector, preference and session lifecycle tests; Flutter formatting and analysis. Native Android build verification was attempted but is blocked during local Gradle setup (`The settings are not yet available for build`). iOS cannot be compiled on Windows. Locked-screen delivery, notification settings and battery usage still require physical Android/iPhone testing before distribution.
+
+
+## Stage 4 offline map update
+
+At the stage 4 update, the bundle was `assets/offline_maps/stages1_4.mbtiles` (5.31 MiB, 213 tiles, zooms 0–14). Merged stage 4 vector features into stages 1–3 without dropping overlapping features. All 3,640 track points have tile coverage at zooms 12–14. The asset fingerprint selects a new installed copy automatically after rebuilding/reinstalling. Stage 4 retains its existing endpoint mismatch; map coverage does not change guidance or alert eligibility.
+
+
+## Version and splash screen (0.2.0, build 5)
+
+`pubspec.yaml` now contains `version: 0.2.0+5`. The Camino splash screen appears while the local guide initializes, for at least two seconds. It displays the installed package version and build number using package_info_plus; Settings displays the same information for later checking. Package metadata failure does not block database startup. This is the Flutter startup screen following the operating system's native launch screen.
+
+For a new release update the version in pubspec.yaml (for example `0.2.1+6`), run `flutter pub get`, then rebuild and reinstall. Increment the build number for each distributed build. Flutter `--build-name` and `--build-number` overrides are reflected automatically. Hot reload does not update installed package metadata. On iOS, clean/rebuild the Xcode build folder if metadata remains stale.
+
+
+## Branding (0.2.1, build 6)
+
+Saint Jean to Santiago is displayed in yellow Fiesta on blue on the splash screen and Home title bar. Fiesta.ttf is bundled for offline use; ordinary guide text retains the readable system font. The mobile display name and Windows window/product titles are updated; application IDs remain unchanged so this installs as an update.
+
+Fiesta is by Bartek Nowak / Nowak.tv, downloaded from https://www.dafont.com/fiesta.font. Original licence accompanies the unmodified font in assets/fonts/barmee-info.txt. The app owner confirmed permission for app embedding and commercial use in this conversation; retain that permission with your release records.
+
+
+## Stage 5 offline map update
+
+Stages 1–5 offline map: 252 tiles, zooms 0–14, 5.92 MiB. All 4059 track points have tile coverage at zooms 12–14, including 419 for stage 5. All original vector features preserved. SHA256: 1e325973a60161d47ebc7d6c6747413deacc77dd1a1e87f35fe0bef96121b8ae.
+
+The current asset is `assets/offline_maps/stages1_5.mbtiles`, covering Saint-Jean-Pied-de-Port to Estella. Rebuild and reinstall to include it; its new fingerprint automatically selects a fresh device copy. Guide database and route guidance eligibility are unchanged.
