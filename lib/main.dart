@@ -4,6 +4,7 @@ import 'data/camino_repository.dart';
 import 'services/settings_service.dart';
 import 'ui/screens.dart';
 import 'ui/app_title.dart';
+import 'ui/app_theme.dart';
 import 'ui/splash_screen.dart';
 import 'ui/walking_alerts.dart';
 
@@ -43,12 +44,7 @@ class _CaminoAppState extends State<CaminoApp> {
       ],
     ),
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF245D4A)),
-      scaffoldBackgroundColor: const Color(0xFFF7F6F0),
-      appBarTheme: const AppBarTheme(centerTitle: false),
-    ),
+    theme: buildCaminoTheme(),
     home: FutureBuilder<void>(
       future: initialization,
       builder: (context, snapshot) {

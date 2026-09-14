@@ -206,7 +206,7 @@ class _MapScreenState extends State<MapScreen> {
                                     .map((p) => p.position)
                                     .toList(),
                                 strokeWidth: 5,
-                                color: const Color(0xFF245D4A),
+                                color: const Color(0xFF1456A0),
                               )
                             else
                               for (final segment in route.segments)

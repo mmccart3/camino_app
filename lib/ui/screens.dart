@@ -12,6 +12,7 @@ import 'settings_screen.dart';
 import 'widgets.dart';
 import 'contact_links.dart';
 import 'app_title.dart';
+import 'stage_directions.dart';
 
 class HomeScreen extends StatelessWidget {
   final CaminoRepository repository;
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
     appBar: AppBar(
       title: const AppTitle(compact: true),
       backgroundColor: caminoBlue,
-      foregroundColor: Colors.white,
+      foregroundColor: caminoYellow,
       actions: [
         IconButton(
           tooltip: 'Settings',
@@ -195,6 +196,8 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
             icon: const Icon(Icons.map_outlined),
             label: const Text('Route & guidance'),
           ),
+          const SizedBox(height: 16),
+          StageDirections(route: route),
           const SizedBox(height: 16),
           if (route.canGuide)
             const Text('Full-stage track geometry is available.')
@@ -382,6 +385,22 @@ class AccommodationDetail extends StatelessWidget {
         if (place.address != null) Text(place.address!),
         if (place.description != null) Text(place.description!),
         ContactLinks(place: place),
+        if (place.bookingUrl != null &&
+            SafeLinks.isSafe(place.bookingUrl!)) ...[
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: ExternalLinkButton(
+              url: place.bookingUrl!,
+              label: 'Open booking website',
+            ),
+          ),
+          Text(
+            Uri.parse(place.bookingUrl!).queryParameters.containsKey('aid')
+                ? 'External affiliate link. Availability and booking require a connection.'
+                : 'Availability and booking require a connection.',
+          ),
+        ] else
+          const Text('No booking link is listed.'),
         if (place.singleRateMin != null)
           Text('Single rate from €${place.singleRateMin!.toStringAsFixed(2)}'),
         if (place.singleRateMax != null)
@@ -393,29 +412,12 @@ class AccommodationDetail extends StatelessWidget {
         if (place.rateNotes != null) Text(place.rateNotes!),
         if (place is Albergue) ...[
           AlbergueFacilities(albergue: place as Albergue),
-          if ((place as Albergue).numberOfBeds != null)
-            Text('Beds: ${(place as Albergue).numberOfBeds}'),
           if ((place as Albergue).openingPeriod != null)
             Text('Opening period: ${(place as Albergue).openingPeriod}'),
-          if ((place as Albergue).checkInOpens != null)
-            Text(
-              'Check-in: ${(place as Albergue).checkInOpens} – ${(place as Albergue).checkInCloses ?? 'not recorded'}',
-            ),
+          if ((place as Albergue).checkInTimes != null)
+            Text('Check-in: ${(place as Albergue).checkInTimes}'),
         ],
         const SizedBox(height: 12),
-        if (place.bookingUrl != null &&
-            SafeLinks.isSafe(place.bookingUrl!)) ...[
-          ExternalLinkButton(
-            url: place.bookingUrl!,
-            label: 'Open booking website',
-          ),
-          Text(
-            Uri.parse(place.bookingUrl!).queryParameters.containsKey('aid')
-                ? 'External affiliate link. Availability and booking require a connection.'
-                : 'Availability and booking require a connection.',
-          ),
-        ] else
-          const Text('No booking link is listed.'),
       ],
     ),
   );

@@ -1,0 +1,4142 @@
+[
+  {
+    "id": 4412,
+    "name": "Ospitalia Refuge Municipal",
+    "originalOpeningPeriod": "14:00 to 20:30 (22:30 on Saturdays and Sundays)",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "20:30",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 to 20:30 (22:30 on Saturdays and Sundays)"
+  },
+  {
+    "id": 4413,
+    "name": "Refuge Accueil Paroissial Kaserna",
+    "originalOpeningPeriod": "4 April to late October",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "4 April to late October",
+    "checkInTimes": "15:00 - 20:00"
+  },
+  {
+    "id": 4414,
+    "name": "Gîte d'étape Beilari",
+    "originalOpeningPeriod": "15 March to late October",
+    "originalCheckInOpens": "14:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to late October",
+    "checkInTimes": "14:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4415,
+    "name": "Gîte d'étape Ultreia Vertes Montagnes et Cie",
+    "originalOpeningPeriod": "15 March to 31 October",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "15 March to 31 October",
+    "checkInTimes": "15:00 - 20:00"
+  },
+  {
+    "id": 4416,
+    "name": "Gîte Le Chemin vers l'Etoile",
+    "originalOpeningPeriod": "All year (give 15 days' notice from November to March)",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (give 15 days' notice from November to March)",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4417,
+    "name": "Gîte Izaxulo",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "15:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4418,
+    "name": "Gîte Le Lièvre et La Tortue",
+    "originalOpeningPeriod": "15 March to 31 October",
+    "originalCheckInOpens": "16:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to 31 October",
+    "checkInTimes": "16:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4419,
+    "name": "Gîte Compostelle",
+    "originalOpeningPeriod": "15 March to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "22:30",
+    "openingPeriod": "15 March to 31 October",
+    "checkInTimes": "14:00 - 22:30"
+  },
+  {
+    "id": 4420,
+    "name": "Gîte La Coquille Napoléon",
+    "originalOpeningPeriod": "16:00 to 20:00",
+    "originalCheckInOpens": "16:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "16:00 to 20:00"
+  },
+  {
+    "id": 4421,
+    "name": "Gîte La Vita è Bella",
+    "originalOpeningPeriod": "1 April to 12 October",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 12 October",
+    "checkInTimes": "15:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4422,
+    "name": "Gîte d'étape Makila",
+    "originalOpeningPeriod": "1 March to late October",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "20:30",
+    "openingPeriod": "1 March to late October",
+    "checkInTimes": "15:00 - 20:30"
+  },
+  {
+    "id": 4423,
+    "name": "Gîte d'étape Zuharpeta",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "15:00 - 21:00"
+  },
+  {
+    "id": 4424,
+    "name": "Gîte de la Porte Saint-Jacques",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "14:00 - 21:00"
+  },
+  {
+    "id": 4425,
+    "name": "Gîte Bidean",
+    "originalOpeningPeriod": "15:00 to 22:30",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "22:30",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "15:00 to 22:30"
+  },
+  {
+    "id": 4426,
+    "name": "Gîte Esteban Etxea",
+    "originalOpeningPeriod": "All year, except December and January",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except December and January",
+    "checkInTimes": "15:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4427,
+    "name": "Gîte-Chambre d'hôtes Ferme Ithurburia",
+    "originalOpeningPeriod": "1 March to mid-November",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to mid-November",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4428,
+    "name": "Refuge Orisson",
+    "originalOpeningPeriod": "10 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "10 April to 31 October",
+    "checkInTimes": "12:00 - 21:00"
+  },
+  {
+    "id": 4429,
+    "name": "Auberge Borda",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "14:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4430,
+    "name": "Albergue de peregrinos de Roncesvalles",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4446,
+    "name": "Albergue municipal de Valcarlos",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4449,
+    "name": "Lorentx Aterpea - Albergue",
+    "originalOpeningPeriod": "All year, except 24, 25 and 31 December; 1, 5 and 6 January; and the local patron saint festival in late June.",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "All year, except 24, 25 and 31 December; 1, 5 and 6 January; and the local patron saint festival in late June.",
+    "checkInTimes": "14:00 - 20:00"
+  },
+  {
+    "id": 4451,
+    "name": "Albergue Irugoienea",
+    "originalOpeningPeriod": "Holy Week to October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "Holy Week to October",
+    "checkInTimes": "14:00 - 21:00"
+  },
+  {
+    "id": 4453,
+    "name": "Albergue de peregrinos de Zubiri",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "13:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4454,
+    "name": "Albergue-Pensión Zaldiko",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4455,
+    "name": "Albergue El Palo de Avellano",
+    "originalOpeningPeriod": "1 March to mid-November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to mid-November",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 4456,
+    "name": "Albergue Suseia",
+    "originalOpeningPeriod": "15 March to 15 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "15 March to 15 October",
+    "checkInTimes": "13:00 - 19:00"
+  },
+  {
+    "id": 4457,
+    "name": "Albergue Río Arga Ibaia",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4458,
+    "name": "Albergue Segunda Etapa",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "13:00 - 19:00"
+  },
+  {
+    "id": 4465,
+    "name": "Albergue de peregrinos de Larrasoaña",
+    "originalOpeningPeriod": "Holy Week to 9 October",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "17:30",
+    "openingPeriod": "Holy Week to 9 October",
+    "checkInTimes": "13:30 - 17:30"
+  },
+  {
+    "id": 4466,
+    "name": "Albergue San Nicolás",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4467,
+    "name": "Albergue La Parada de Zuriain",
+    "originalOpeningPeriod": "Holy Week to mid-October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Holy Week to mid-October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4468,
+    "name": "Albergue parroquial de Zabaldika",
+    "originalOpeningPeriod": "15 April to 15 October",
+    "originalCheckInOpens": "No ti",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 April to 15 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4469,
+    "name": "Albergue de Trinidad de Arre",
+    "originalOpeningPeriod": "All year (confirm availability in low season)",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "All year (confirm availability in low season)",
+    "checkInTimes": "15:00 - 20:00"
+  },
+  {
+    "id": 4470,
+    "name": "Albergue municipal de Villava",
+    "originalOpeningPeriod": "12:00 to 20:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 to 20:00"
+  },
+  {
+    "id": 4471,
+    "name": "Albergue Jesús y María",
+    "originalOpeningPeriod": "All year, except 22 December to 8 January",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except 22 December to 8 January",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4472,
+    "name": "Albergue diocesano Betania",
+    "originalOpeningPeriod": "1 May to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 May to 31 October",
+    "checkInTimes": "14:00 - 21:00"
+  },
+  {
+    "id": 4473,
+    "name": "Albergue Casa Paderborn",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4474,
+    "name": "Albergue Casa Ibarrola",
+    "originalOpeningPeriod": "All year (except 4 to 16 July)",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "All year (except 4 to 16 July)",
+    "checkInTimes": "11:30 - 22:00"
+  },
+  {
+    "id": 4475,
+    "name": "Albergue de Pamplona-Iruñako Aterpea",
+    "originalOpeningPeriod": "All year, except some days around Christmas and during January-February; confirm availability.",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "All year, except some days around Christmas and during January-February; confirm availability.",
+    "checkInTimes": "11:00 - 20:00"
+  },
+  {
+    "id": 4476,
+    "name": "Albergue Plaza Catedral",
+    "originalOpeningPeriod": "All year (January and February: Fridays and Saturdays only, except for groups)",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "2:30 ",
+    "openingPeriod": "All year (January and February: Fridays and Saturdays only, except for groups)",
+    "checkInTimes": "11:30 - 2:30"
+  },
+  {
+    "id": 4477,
+    "name": "Aloha Hostel",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "23:00",
+    "openingPeriod": "All year",
+    "checkInTimes": "13:00 - 23:00"
+  },
+  {
+    "id": 4531,
+    "name": "Albergue de peregrinos de la Orden de Malta",
+    "originalOpeningPeriod": "21 May to 15 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "21 May to 15 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4532,
+    "name": "Albergue San Andrés",
+    "originalOpeningPeriod": "1 May to 15 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 May to 15 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4533,
+    "name": "Albergue Camino del Perdón",
+    "originalOpeningPeriod": "1 March to 31 October; closed for five days in July during San Fermín (exact dates not recorded).",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 31 October; closed for five days in July during San Fermín (exact dates not recorded).",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4534,
+    "name": "Albergue Casa Baztán",
+    "originalOpeningPeriod": "All year (prior reservation required in low season)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:30",
+    "openingPeriod": "All year (prior reservation required in low season)",
+    "checkInTimes": "12:00 - 20:30"
+  },
+  {
+    "id": 4535,
+    "name": "Albergue El Jardín de Muruzábal",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4536,
+    "name": "Albergue Mendizabal",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4537,
+    "name": "Albergue Usda",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4538,
+    "name": "Albergue de los Padres Reparadores",
+    "originalOpeningPeriod": "12:00 (14:00 in low season)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "0 en ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 12:00 (14:00 in low season) (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4539,
+    "name": "Albergue Jakue",
+    "originalOpeningPeriod": "Holy Week to mid-October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Holy Week to mid-October",
+    "checkInTimes": "12:00 - 20:00"
+  },
+  {
+    "id": 4540,
+    "name": "Albergue Santiago Apóstol - Camping El Real",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4541,
+    "name": "Albergue Puente",
+    "originalOpeningPeriod": "15 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "18:00",
+    "openingPeriod": "15 March to 31 October",
+    "checkInTimes": "12:00 - 18:00"
+  },
+  {
+    "id": 4542,
+    "name": "Albergue Amalur",
+    "originalOpeningPeriod": "1 April to mid-October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to mid-October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4543,
+    "name": "Albergue Estrella Guía",
+    "originalOpeningPeriod": "All year, except 18 December to 2 January",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "All year, except 18 December to 2 January",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 4544,
+    "name": "Albergue Gares",
+    "originalOpeningPeriod": "15 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "15:00",
+    "openingPeriod": "15 April to 31 October",
+    "checkInTimes": "12:00 - 15:00"
+  },
+  {
+    "id": 4549,
+    "name": "Albergue Amalur",
+    "originalOpeningPeriod": "Holy Week to mid-October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Holy Week to mid-October",
+    "checkInTimes": "12:00 - 20:00"
+  },
+  {
+    "id": 4552,
+    "name": "Albergue de peregrinos de Estella",
+    "originalOpeningPeriod": "All year, except 12 December to 15 January",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except 12 December to 15 January",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4553,
+    "name": "Albergue parroquial San Miguel",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4554,
+    "name": "Albergue Capuchinos Rocamador",
+    "originalOpeningPeriod": "1 March to 23 December (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "e jun",
+    "openingPeriod": "1 March to 23 December (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4555,
+    "name": "Albergue de la fundación ANFAS",
+    "originalOpeningPeriod": "15 May to 10 September",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 May to 10 September",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4556,
+    "name": "Albergue La Hostería de Curtidores",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "All year",
+    "checkInTimes": "12:30 - 19:00"
+  },
+  {
+    "id": 4557,
+    "name": "Ágora Hostel",
+    "originalOpeningPeriod": "1 March to 12 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "1 March to 12 November",
+    "checkInTimes": "13:00 - 19:00"
+  },
+  {
+    "id": 4558,
+    "name": "Alda Estella Hostel",
+    "originalOpeningPeriod": "15 March to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "24:00",
+    "openingPeriod": "15 March to 31 October",
+    "checkInTimes": "14:00 - 24:00"
+  },
+  {
+    "id": 4559,
+    "name": "Albergue juvenil Oncineda",
+    "originalOpeningPeriod": "mid-March to October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "mid-March to October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4560,
+    "name": "Albergue de peregrinos San Cipriano",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4561,
+    "name": "Albergue Oasis Trails",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "0 los",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4562,
+    "name": "Albergue Villamayor de Monjardín",
+    "originalOpeningPeriod": "1 March to 10 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 10 November",
+    "checkInTimes": "12:00 - 20:00"
+  },
+  {
+    "id": 4563,
+    "name": "Albergue Casa Tiago",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4564,
+    "name": "Albergue de peregrinos Isaac Santiago",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4565,
+    "name": "Albergue La Fuente - Casa de Austria",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4566,
+    "name": "Albergue Casa de la Abuela",
+    "originalOpeningPeriod": "1 March to 31 October (confirm availability during the rest of the year)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "18:00",
+    "openingPeriod": "1 March to 31 October (confirm availability during the rest of the year)",
+    "checkInTimes": "13:00 - 18:00"
+  },
+  {
+    "id": 4701,
+    "name": "Albergue El Cantero",
+    "originalOpeningPeriod": "2 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "2 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4702,
+    "name": "Albergue Cirauqui Casa Maralotx",
+    "originalOpeningPeriod": "1 April to 14 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 April to 14 October",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 4703,
+    "name": "Albergue de Lorca",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4704,
+    "name": "Albergue La Bodega del Camino",
+    "originalOpeningPeriod": "1 April to 31 October (groups only during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 April to 31 October (groups only during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00"
+  },
+  {
+    "id": 4705,
+    "name": "Albergue La Casa Mágica",
+    "originalOpeningPeriod": "8 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "8 March to 31 October",
+    "checkInTimes": "12:00 - 21:00"
+  },
+  {
+    "id": 4706,
+    "name": "Albergue Etxeurdina",
+    "originalOpeningPeriod": "February 2023 note: temporarily closed. Previously listed season: 5 March to 15-30 October (end date unclear); closed 14-19 August. Current opening status needs confirmation.",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "en ll",
+    "openingPeriod": "February 2023 note: temporarily closed. Previously listed season: 5 March to 15-30 October (end date unclear); closed 14-19 August. Current opening status needs confirmation.",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4733,
+    "name": "Albergue Palacio de Sansol",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4734,
+    "name": "Albergue Karma",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4735,
+    "name": "Albergue Sansol",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4736,
+    "name": "Albergue-Hotel La Pata de Oca",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4737,
+    "name": "Albergue Casa Mariela",
+    "originalOpeningPeriod": "All year, except some days around Christmas",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except some days around Christmas",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4738,
+    "name": "Albergue-Hostal San Andrés",
+    "originalOpeningPeriod": "12:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 12:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4739,
+    "name": "Albergue de peregrinos Andrés Muñoz",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4740,
+    "name": "Albergue parroquial Santa María",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4741,
+    "name": "Albergue Izar",
+    "originalOpeningPeriod": "1 March to 31 October (groups only in low season)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October (groups only in low season)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4877,
+    "name": "Albergue de peregrinos de Logroño",
+    "originalOpeningPeriod": "13:00 (April to October) / 15:00 (rest of the year)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "bril ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 13:00 (April to October) / 15:00 (rest of the year) (confirm with accommodation)"
+  },
+  {
+    "id": 4878,
+    "name": "Albergue parroquial Santiago El Real",
+    "originalOpeningPeriod": "12:00 (June to September) / 14:00 (rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "unio ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 12:00 (June to September) / 14:00 (rest of the year) (confirm with accommodation)"
+  },
+  {
+    "id": 4879,
+    "name": "Albergue Albas",
+    "originalOpeningPeriod": "1 March to 15 December",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "17:00",
+    "openingPeriod": "1 March to 15 December",
+    "checkInTimes": "13:00 - 17:00"
+  },
+  {
+    "id": 4880,
+    "name": "Albergue Logroño - Pensión La Bilbaina",
+    "originalOpeningPeriod": "All year (except 25 December to 1 January)",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (except 25 December to 1 January)",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4881,
+    "name": "Albergue Santiago Apóstol",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4882,
+    "name": "Albergue Logroño Centro",
+    "originalOpeningPeriod": "14:00 to 24:00",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "24:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 to 24:00"
+  },
+  {
+    "id": 4883,
+    "name": "Winederful Hostel & Café",
+    "originalOpeningPeriod": "1 March to 8 December",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "osibl",
+    "openingPeriod": "1 March to 8 December",
+    "checkInTimes": "15:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4891,
+    "name": "Albergue de peregrinos de Nájera",
+    "originalOpeningPeriod": "15 March to 15 December",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to 15 December",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4892,
+    "name": "Albergue Puerta de Nájera",
+    "originalOpeningPeriod": "1 March to 15 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 15 November",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4893,
+    "name": "Albergue Sancho III - La Judería",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4894,
+    "name": "Albergue Nido de Сigüeña",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4895,
+    "name": "Albergue Las Peñas",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4897,
+    "name": "Albergue de peregrinos de Azofra",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:30 - 20:00"
+  },
+  {
+    "id": 4898,
+    "name": "Albergue Virgen de Guadalupe",
+    "originalOpeningPeriod": "15 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4899,
+    "name": "Albergue Victoria",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:30 - 20:00"
+  },
+  {
+    "id": 4900,
+    "name": "Albergue de la Cofradía del Santo",
+    "originalOpeningPeriod": "11:00 (13:00 in winter)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "0 en ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); original time note: 11:00 (13:00 in winter) (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4901,
+    "name": "Hospedería de la Abadía Cisterciense",
+    "originalOpeningPeriod": "1 May to 30 September",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 May to 30 September",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4904,
+    "name": "Albergue municipal El Corro",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4905,
+    "name": "Albergue parroquial de Belorado",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4906,
+    "name": "Albergue Cuatro Cantones",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4907,
+    "name": "Albergue-Pensión Caminante",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:30 - 19:00"
+  },
+  {
+    "id": 4908,
+    "name": "Albergue A Santiago",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "18:00",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "11:00 - 18:00"
+  },
+  {
+    "id": 4909,
+    "name": "Hostel Punto B",
+    "originalOpeningPeriod": "All year (confirm December availability)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "21:30",
+    "openingPeriod": "All year (confirm December availability)",
+    "checkInTimes": "13:00 - 21:30"
+  },
+  {
+    "id": 4910,
+    "name": "Albergue parroquial de San Juan de Ortega",
+    "originalOpeningPeriod": "3 April to 12 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "3 April to 12 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4911,
+    "name": "Alojamiento El descanso de San Juan",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4912,
+    "name": "Albergue El Camino de Santovenia",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "9:00 ",
+    "originalCheckInCloses": "1:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "9:00 - 1:00; original time note: 23:00 (confirm meaning with accommodation)"
+  },
+  {
+    "id": 4913,
+    "name": "Albergue municipal de Agés",
+    "originalOpeningPeriod": "Closed on Wednesdays. All year (confirm availability in low season)",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "16:00",
+    "openingPeriod": "Closed on Wednesdays. All year (confirm availability in low season)",
+    "checkInTimes": "14:00 - 16:00"
+  },
+  {
+    "id": 4914,
+    "name": "Albergue El Pajar de Agés",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4915,
+    "name": "Albergue Fagus",
+    "originalOpeningPeriod": "14 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "14 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4916,
+    "name": "Albergue El Peregrino",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4917,
+    "name": "Albergue La Hutte",
+    "originalOpeningPeriod": "2022 note: open from 1 May. Current opening dates need confirmation.",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "2022 note: open from 1 May. Current opening dates need confirmation.",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4918,
+    "name": "Hostel La Plazuela Verde",
+    "originalOpeningPeriod": "13:00 to 20:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 to 20:00"
+  },
+  {
+    "id": 4919,
+    "name": "Albergue de peregrinos de Olmos de Atapuerca",
+    "originalOpeningPeriod": "Opening period not recorded. Source lists facilities: kitchen available for guests to use; microwave; fridge; covered bicycle storage.",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded. Source lists facilities: kitchen available for guests to use; microwave; fridge; covered bicycle storage.",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4920,
+    "name": "Albergue municipal La Parada",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4921,
+    "name": "Albergue Vía Minera",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4922,
+    "name": "Albergue Santa Fe",
+    "originalOpeningPeriod": "All year, except 22 November to 28 February",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year, except 22 November to 28 February",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4923,
+    "name": "Albergue de peregrinos Casa del Cubo y de los Lerma",
+    "originalOpeningPeriod": "12:00 (Holy Week to 15 September) / 14:00 (rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "emana",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 12:00 (Holy Week to 15 September) / 14:00 (rest of the year) (confirm with accommodation)"
+  },
+  {
+    "id": 4924,
+    "name": "Albergue Casa de Peregrinos de Emaús",
+    "originalOpeningPeriod": "1 April to 31 October (closed 6 to 10 April)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 April to 31 October (closed 6 to 10 April)",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 4925,
+    "name": "Albergue Santiago y Santa Catalina",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "0 a p",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4926,
+    "name": "Hostel Catedral Burgos",
+    "originalOpeningPeriod": "13:00 to 22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 to 22:00"
+  },
+  {
+    "id": 4931,
+    "name": "Albergue de peregrinos de Tardajos",
+    "originalOpeningPeriod": "2023 season: 1 April to 12 November. Current opening dates need confirmation.",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "2023 season: 1 April to 12 November. Current opening dates need confirmation.",
+    "checkInTimes": "15:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4932,
+    "name": "Albergue La Fábrica",
+    "originalOpeningPeriod": "All year, except in January",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except in January",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4933,
+    "name": "Albergue-Hotel La Casa de Beli",
+    "originalOpeningPeriod": "1 March to 23 December",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 23 December",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4934,
+    "name": "Albergue Liberanos Domine",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4935,
+    "name": "Albergue de peregrinos de Hornillos del Camino",
+    "originalOpeningPeriod": "All year, except February",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except February",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4936,
+    "name": "Albergue El Alfar de Hornillos",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4937,
+    "name": "Albergue Hornillos Meeting Point",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4941,
+    "name": "Albergue de peregrinos de San Bol",
+    "originalOpeningPeriod": "4 April to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "4 April to 31 October",
+    "checkInTimes": "14:00 - 19:00"
+  },
+  {
+    "id": 4942,
+    "name": "Albergue Fuente Sidres",
+    "originalOpeningPeriod": "1 February to \"31 November\" (invalid end date in source; confirm closing date). May open at weekends during the rest of the year.",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 February to \"31 November\" (invalid end date in source; confirm closing date). May open at weekends during the rest of the year.",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4943,
+    "name": "Albergue municipal Antiguo Hospital de San Juan",
+    "originalOpeningPeriod": "All year (enquire about December and January opening)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "mana ",
+    "openingPeriod": "All year (enquire about December and January opening)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4944,
+    "name": "Albergue El Puntido",
+    "originalOpeningPeriod": "March to November (enquire about opening outside these months)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "March to November (enquire about opening outside these months)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4945,
+    "name": "Albergue Santa Brígida",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4946,
+    "name": "Albergue Juan de Yepes - Santa Brígida",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4947,
+    "name": "Albergue Hospital de peregrinos de San Antón",
+    "originalOpeningPeriod": "1 April to 19 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 19 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4948,
+    "name": "Albergue de peregrinos San Esteban",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4949,
+    "name": "Albergue Casa Nostra",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4950,
+    "name": "Albergue Ultreia",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4951,
+    "name": "Albergue Rosalía",
+    "originalOpeningPeriod": "26 March to 1 November",
+    "originalCheckInOpens": "12:15",
+    "originalCheckInCloses": "20:30",
+    "openingPeriod": "26 March to 1 November",
+    "checkInTimes": "12:15 - 20:30"
+  },
+  {
+    "id": 4952,
+    "name": "Albergue Orión",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4953,
+    "name": "Albergue-Hotel A Cien Leguas",
+    "originalOpeningPeriod": "Closed on Tuesdays. All year (confirm availability in low season)",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Closed on Tuesdays. All year (confirm availability in low season)",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4954,
+    "name": "Albergue La Rinconada",
+    "originalOpeningPeriod": "Opening period not recorded. Source lists languages and facilities: Spanish, English and French; dinner; breakfast EUR 4; washing machine and dryer; individual lockers with keys; beds with individual power sockets and lights; accessible for people with reduced mobility; bicycle storage; garden.",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded. Source lists languages and facilities: Spanish, English and French; dinner; breakfast EUR 4; washing machine and dryer; individual lockers with keys; beds with individual power sockets and lights; accessible for people with reduced mobility; bicycle storage; garden.",
+    "checkInTimes": "12:00 - 19:00"
+  },
+  {
+    "id": 4962,
+    "name": "Albergue de peregrinos de Frómista",
+    "originalOpeningPeriod": "12:00 in summer and 15:00 during the rest of the year",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "rano ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 12:00 in summer and 15:00 during the rest of the year (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4963,
+    "name": "Albergue Luz de Frómista",
+    "originalOpeningPeriod": "All year, except 5 December to 17 January",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except 5 December to 17 January",
+    "checkInTimes": "13:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4964,
+    "name": "Albergue Estrella del Camino",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4965,
+    "name": "Acogida de invierno Betania",
+    "originalOpeningPeriod": "Intermittent opening from December to February and October to May (overlapping periods as recorded; confirm availability).",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Intermittent opening from December to February and October to May (overlapping periods as recorded; confirm availability).",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4966,
+    "name": "Albergue Vicus",
+    "originalOpeningPeriod": "All year, except during the Christmas holidays",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except during the Christmas holidays",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4967,
+    "name": "Albergue Amanecer",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4968,
+    "name": "Albergue de peregrinos Casa del Peregrino",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 - 22:00"
+  },
+  {
+    "id": 4969,
+    "name": "Albergue Don Camino",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4970,
+    "name": "Albergue parroquial Santa María",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4971,
+    "name": "Albergue-hospedería del Convento de Santa Clara",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4972,
+    "name": "Albergue Espíritu Santo",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:30 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4976,
+    "name": "Albergue de peregrinos de Calzadilla de la Cueza",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4977,
+    "name": "Albergue Camino Real",
+    "originalOpeningPeriod": "10 March to 10 November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "10 March to 10 November",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4978,
+    "name": "Albergue Los Canarios",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4979,
+    "name": "Albergue El Palomar",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4980,
+    "name": "Albergue La Morena",
+    "originalOpeningPeriod": "Check-in: 13:00 to 20:00",
+    "originalCheckInOpens": "Check",
+    "originalCheckInCloses": "e 13:",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 to 20:00"
+  },
+  {
+    "id": 4981,
+    "name": "Albergue Jacques de Molay",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4982,
+    "name": "Albergue Los Templarios",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4985,
+    "name": "Albergue Hospital San Bruno",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4986,
+    "name": "Albergue-hostal Moratinos",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4987,
+    "name": "Albergue Laganares",
+    "originalOpeningPeriod": "mid-March to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "mid-March to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4988,
+    "name": "Albergue de peregrinos Cluny",
+    "originalOpeningPeriod": "All year, except during the Christmas holidays",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year, except during the Christmas holidays",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4989,
+    "name": "Albergue de peregrinos de la Santa Cruz",
+    "originalOpeningPeriod": "15 March to 15 November",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "15 March to 15 November",
+    "checkInTimes": "12:30 - 20:00"
+  },
+  {
+    "id": 4990,
+    "name": "Albergue Viatoris",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4991,
+    "name": "Albergue-hostal Sahagún",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4992,
+    "name": "Albergue de peregrinos San Roque",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "ntati",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 4993,
+    "name": "Albergue parroquial Casa Rectoral",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4994,
+    "name": "Albergue Santa Clara",
+    "originalOpeningPeriod": "Closed on Thursdays. All year",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Closed on Thursdays. All year",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4995,
+    "name": "Albergue Bercianos 1900",
+    "originalOpeningPeriod": "1 March to \"31 November\" (invalid end date in source; confirm closing date).",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to \"31 November\" (invalid end date in source; confirm closing date).",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 4996,
+    "name": "Albergue La Perala",
+    "originalOpeningPeriod": "Opening period not recorded. Source lists facilities: bar/restaurant; set menu EUR 14; washing machine and dryer; individual lockers with keys; accessible for people with reduced mobility; covered bicycle storage.",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded. Source lists facilities: bar/restaurant; set menu EUR 14; washing machine and dryer; individual lockers with keys; accessible for people with reduced mobility; covered bicycle storage.",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5001,
+    "name": "Albergue de peregrinos de Calzadilla de los Hermanillos",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5002,
+    "name": "Albergue-Hostal Vía Trajana",
+    "originalOpeningPeriod": "1 April to 31 October, except 1 July to 26 August",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 31 October, except 1 July to 26 August",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5003,
+    "name": "Albergue de peregrinos Domenico Laffi",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5004,
+    "name": "Albergue La Laguna",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5005,
+    "name": "Albergue de peregrinos La Vieja Escuela",
+    "originalOpeningPeriod": "Opening period not recorded. Source accommodation note: one 4-bed dormitory and two 2-bed dormitories.",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded. Source accommodation note: one 4-bed dormitory and two 2-bed dormitories.",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5006,
+    "name": "Albergue de peregrinos de Reliegos",
+    "originalOpeningPeriod": "13:00 in summer and 14:30 during the rest of the year",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "rano ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 13:00 in summer and 14:30 during the rest of the year (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5007,
+    "name": "Albergue La Parada",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5008,
+    "name": "Albergue Las Hadas",
+    "originalOpeningPeriod": "1 April to 31 October (see additional comments)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:30",
+    "openingPeriod": "1 April to 31 October (see additional comments)",
+    "checkInTimes": "12:00 - 20:30"
+  },
+  {
+    "id": 5009,
+    "name": "Albergue Gil",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5010,
+    "name": "Albergue Vive tu Camino",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5011,
+    "name": "Albergue El Jardín del Camino",
+    "originalOpeningPeriod": "All year (closed on some winter days; confirm availability)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (closed on some winter days; confirm availability)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5012,
+    "name": "Albergue Gaia",
+    "originalOpeningPeriod": "All year, except during the Christmas holidays and February",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except during the Christmas holidays and February",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5015,
+    "name": "Albergue San Pelayo",
+    "originalOpeningPeriod": "All year (advance notice required in winter)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (advance notice required in winter)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5016,
+    "name": "Albergue-Hostal El Delfín Verde",
+    "originalOpeningPeriod": "Opening period not recorded (source says \"None\"; meaning unclear).",
+    "originalCheckInOpens": "No ti",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded (source says \"None\"; meaning unclear).",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5017,
+    "name": "Albergue La Torre",
+    "originalOpeningPeriod": "Temporarily closed (undated source note; confirm current status). Previously listed as open all year, with reservations required in low season.",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Temporarily closed (undated source note; confirm current status). Previously listed as open all year, with reservations required in low season.",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5018,
+    "name": "Albergue del convento de las carbajalas",
+    "originalOpeningPeriod": "All year (telephone ahead in winter)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (telephone ahead in winter)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5019,
+    "name": "Albergue-Residencia San Francisco de Asís",
+    "originalOpeningPeriod": "00:00",
+    "originalCheckInOpens": "8:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "8:00 - 20:00 (assumed); original time note: 00:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5020,
+    "name": "Albergue Santo Tomás de Canterbury",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5021,
+    "name": "Albergue-Residencia Miguel de Unamuno",
+    "originalOpeningPeriod": "For pilgrims: July to mid-September",
+    "originalCheckInOpens": "Abier",
+    "originalCheckInCloses": " 24 h",
+    "openingPeriod": "For pilgrims: July to mid-September",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5022,
+    "name": "Albergue Check in León",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5023,
+    "name": "Albergue Muralla Leonesa",
+    "originalOpeningPeriod": "1 March to 31 October daily; Thursdays to Sundays during the rest of the year",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 March to 31 October daily; Thursdays to Sundays during the rest of the year",
+    "checkInTimes": "12:00 - 21:00"
+  },
+  {
+    "id": 5030,
+    "name": "Albergue La Casa del Camino",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5031,
+    "name": "Albergue de peregrinos de Villadangos del Páramo",
+    "originalOpeningPeriod": "13:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 13:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5032,
+    "name": "Albergue de peregrinos de San Martín del Camino",
+    "originalOpeningPeriod": "All year (confirm winter availability)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (confirm winter availability)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5033,
+    "name": "Albergue Santa Ana",
+    "originalOpeningPeriod": "Opening period not recorded (source says \"None\"; meaning unclear).",
+    "originalCheckInOpens": "No ti",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded (source says \"None\"; meaning unclear).",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5034,
+    "name": "Albergue Vieira",
+    "originalOpeningPeriod": "22:30",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); original time note: 22:30 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5035,
+    "name": "Albergue La Casa Verde",
+    "originalOpeningPeriod": "1 March to 25 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 25 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5036,
+    "name": "Albergue La Huella",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5042,
+    "name": "Albergue parroquial Karl Leisner",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5043,
+    "name": "Albergue San Miguel",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5044,
+    "name": "Albergue Verde",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5045,
+    "name": "Albergue La Encina",
+    "originalOpeningPeriod": "All year, except during the Christmas holidays",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except during the Christmas holidays",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5046,
+    "name": "Albergue Casa de los Hidalgos",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5047,
+    "name": "Albergue Villares de Órbigo",
+    "originalOpeningPeriod": "1 April to 30 September",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 30 September",
+    "checkInTimes": "11:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5048,
+    "name": "Albergue el Encanto",
+    "originalOpeningPeriod": "All year, except November, the Christmas holidays and February",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except November, the Christmas holidays and February",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5049,
+    "name": "Albergue parroquial de Santibáñez de Valdeiglesias",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": ".",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5050,
+    "name": "Albergue Camino Francés",
+    "originalOpeningPeriod": "8 March to 29 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "8 March to 29 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5051,
+    "name": "L'Abilleiru Albergue Rural",
+    "originalOpeningPeriod": "1 February to 17 December",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 February to 17 December",
+    "checkInTimes": "13:00 - 21:00"
+  },
+  {
+    "id": 5052,
+    "name": "Albergue de peregrinos Siervas de María",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "o / 1",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5053,
+    "name": "Albergue San Javier",
+    "originalOpeningPeriod": "2023 season: 24 April to 31 October. Current opening dates need confirmation.",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "22:30",
+    "openingPeriod": "2023 season: 24 April to 31 October. Current opening dates need confirmation.",
+    "checkInTimes": "11:00 - 22:30"
+  },
+  {
+    "id": 5054,
+    "name": "Albergue Só Por Hoje",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:30 - 19:00"
+  },
+  {
+    "id": 5055,
+    "name": "Albergue MyWay",
+    "originalOpeningPeriod": "1 April to mid-November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "1 April to mid-November",
+    "checkInTimes": "12:00 - 19:00"
+  },
+  {
+    "id": 5062,
+    "name": "Albergue de Jesús",
+    "originalOpeningPeriod": "All year, except during the Christmas holidays",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year, except during the Christmas holidays",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5063,
+    "name": "Albergue San Antonio de Padua",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:30 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5064,
+    "name": "Albergue Tío Pepe",
+    "originalOpeningPeriod": "All year, except January and February",
+    "originalCheckInOpens": "Por l",
+    "originalCheckInCloses": "na",
+    "openingPeriod": "All year, except January and February",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5065,
+    "name": "Albergue Santa Lucía",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5084,
+    "name": "Albergue de peregrinos Ecce Homo",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "No ti",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5085,
+    "name": "Albergue de peregrinos de Murias de Rechivaldo",
+    "originalOpeningPeriod": "1 April to 15 November",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 15 November",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5086,
+    "name": "Albergue Las Águedas",
+    "originalOpeningPeriod": "All year (groups only from November to February)",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (groups only from November to February)",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5087,
+    "name": "Albergue de peregrinos de Castrillo de los Polvazares",
+    "originalOpeningPeriod": "12:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 12:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5088,
+    "name": "Albergue Hospedería San Blas",
+    "originalOpeningPeriod": "All year (prior reservation required in low season)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in low season)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5089,
+    "name": "Albergue-Casa Rural El Caminante",
+    "originalOpeningPeriod": "Opening period not recorded (source says \"None\"; meaning unclear).",
+    "originalCheckInOpens": "Por l",
+    "originalCheckInCloses": "na",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded (source says \"None\"; meaning unclear).",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5090,
+    "name": "Albergue La Bohéme",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5091,
+    "name": "Albergue Gabino",
+    "originalOpeningPeriod": "1 March to 15 November",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 15 November",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5092,
+    "name": "Albergue Indian Way",
+    "originalOpeningPeriod": "10:00",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "10:00 - 20:00 (assumed); original time note: 10:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5093,
+    "name": "Albergue municipal de Rabanal del Camino",
+    "originalOpeningPeriod": "All year (confirm winter availability)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (confirm winter availability)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5094,
+    "name": "Refugio Gaucelmo",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "Entre",
+    "originalCheckInCloses": "2:00 ",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 (assumed) - 2:00; confirm with accommodation"
+  },
+  {
+    "id": 5095,
+    "name": "Albergue Nuestra Señora del Pilar",
+    "originalOpeningPeriod": "All year, except 8 January to 28 February",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year, except 8 January to 28 February",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5096,
+    "name": "Albergue La Senda",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "9:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "9:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5097,
+    "name": "Albergue parroquial Domus Dei",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "Entre",
+    "originalCheckInCloses": "2:00 ",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 (assumed) - 2:00; confirm with accommodation"
+  },
+  {
+    "id": 5098,
+    "name": "Albergue Monte Irago",
+    "originalOpeningPeriod": "All year (confirm winter availability)",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year (confirm winter availability)",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5099,
+    "name": "Albergue La Posada del Druida",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5100,
+    "name": "Albergue La Cruz de Fierro",
+    "originalOpeningPeriod": "March to November (prior reservation required during the rest of the year)",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "March to November (prior reservation required during the rest of the year)",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5101,
+    "name": "Albergue El Convento de Foncebadón",
+    "originalOpeningPeriod": "March to November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "March to November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5102,
+    "name": "Albergue Casa Chelo",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5109,
+    "name": "Albergue parroquial Santiago Apóstol",
+    "originalOpeningPeriod": "1 March to 15 November",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 15 November",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5110,
+    "name": "Albergue Mesón El Acebo",
+    "originalOpeningPeriod": "Closed on Tuesdays. All year, except December and January.",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Closed on Tuesdays. All year, except December and January.",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5111,
+    "name": "Albergue La Casa del Peregrino",
+    "originalOpeningPeriod": "14 March to 13 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "14 March to 13 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5112,
+    "name": "Albergue de peregrinos de Riego de Ambrós",
+    "originalOpeningPeriod": "21:30",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 21:30 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5113,
+    "name": "Albergue Santa Marina",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5114,
+    "name": "Albergue Compostela",
+    "originalOpeningPeriod": "22:30",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 22:30 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5115,
+    "name": "Albergue Señor Oso",
+    "originalOpeningPeriod": "All year, except during the Christmas holidays",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except during the Christmas holidays",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5116,
+    "name": "Albergue San Roque",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5117,
+    "name": "Albergue-Casa Rural Lua Bierzo",
+    "originalOpeningPeriod": "20 April to 30 October",
+    "originalCheckInOpens": "Por l",
+    "originalCheckInCloses": "na",
+    "openingPeriod": "20 April to 30 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5118,
+    "name": "Albergue parroquial San Nicolás de Flüe",
+    "originalOpeningPeriod": "Between 13:00 and 15:00, depending on the season (type of time not specified).",
+    "originalCheckInOpens": "Entre",
+    "originalCheckInCloses": "3:00 ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 (assumed) - 3:00; original time note: Between 13:00 and 15:00, depending on the season (type of time not specified). (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5119,
+    "name": "Albergue Alea",
+    "originalOpeningPeriod": "1 April to 30 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 30 November",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5120,
+    "name": "Albergue Guiana",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "11:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5121,
+    "name": "Albergue Alda Pilgrim Ponferrada",
+    "originalOpeningPeriod": "14:00 to 00:00",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "00:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 to 00:00"
+  },
+  {
+    "id": 5122,
+    "name": "Albergue El Templarín",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5128,
+    "name": "Albergue Naraya",
+    "originalOpeningPeriod": "1 April to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5129,
+    "name": "Albergue La Medina",
+    "originalOpeningPeriod": "All year (prior reservation required in winter)",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in winter)",
+    "checkInTimes": "13:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5130,
+    "name": "Albergue de peregrinos de Cacabelos",
+    "originalOpeningPeriod": "1 April to 24 September; an alternative shelter opens during the rest of the year.",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 24 September; an alternative shelter opens during the rest of the year.",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5131,
+    "name": "Albergue-Hostal La Gallega",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5132,
+    "name": "Albergue-Pensión El Molino",
+    "originalOpeningPeriod": "All year, except two weeks in September",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except two weeks in September",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5133,
+    "name": "Albergue El Serbal y la Luna",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5135,
+    "name": "Albergue de peregrinos de Villafranca del Bierzo",
+    "originalOpeningPeriod": "1 March to 15 December",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 15 December",
+    "checkInTimes": "11:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5136,
+    "name": "Albergue Ave Fénix",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "0 en ",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5137,
+    "name": "Albergue de la Piedra",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5138,
+    "name": "Albergue Leo",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5139,
+    "name": "Albergue El Castillo",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5140,
+    "name": "Albergue-Hospedería San Nicolás El Real",
+    "originalOpeningPeriod": "All year (prior reservation required in winter)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in winter)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5141,
+    "name": "Albergue La Yedra",
+    "originalOpeningPeriod": "22:30",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:30 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5142,
+    "name": "Albergue-Hostel Viña Femita",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 22:00"
+  },
+  {
+    "id": 5151,
+    "name": "Albergue Lamas",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "Check",
+    "originalCheckInCloses": "las 1",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5152,
+    "name": "Albergue de peregrinos de Trabadelo",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5153,
+    "name": "Albergue parroquial Trabadelo",
+    "originalOpeningPeriod": "All year (prior reservation required in winter)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in winter)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5154,
+    "name": "Albergue Crispeta",
+    "originalOpeningPeriod": "All year (prior reservation required in winter)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in winter)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5155,
+    "name": "Albergue Camino y Leyenda",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "17:00",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 17:00"
+  },
+  {
+    "id": 5156,
+    "name": "Albergue Casa Susi",
+    "originalOpeningPeriod": "12 April to 15 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "12 April to 15 November",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5157,
+    "name": "Albergue-Hostal El Peregrino",
+    "originalOpeningPeriod": "March to mid-November",
+    "originalCheckInOpens": "No ti",
+    "originalCheckInCloses": "",
+    "openingPeriod": "March to mid-November",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5158,
+    "name": "Albergue Vagabond Vieiras",
+    "originalOpeningPeriod": "Holy Week to 8 November",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 8 November",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5159,
+    "name": "Albergue-Hostal Camynos",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5160,
+    "name": "Albergue de peregrinos de Vega de Valcarce",
+    "originalOpeningPeriod": "late March to early November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "late March to early November",
+    "checkInTimes": "13:00 - 21:00"
+  },
+  {
+    "id": 5161,
+    "name": "Albergue El Paso",
+    "originalOpeningPeriod": "1 April to 10 December",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 10 December",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5162,
+    "name": "Albergue Pequeño Potala",
+    "originalOpeningPeriod": "13:00 approximately",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "imada",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 13:00 approximately (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5163,
+    "name": "Albergue El Rincón de PIN",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5164,
+    "name": "Albergue Las Herrerías",
+    "originalOpeningPeriod": "1 April to 15 November",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 15 November",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5165,
+    "name": "Albergue-Pensión Casa Lixa",
+    "originalOpeningPeriod": "15 March to 15 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to 15 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5166,
+    "name": "Albergue de La Faba",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5167,
+    "name": "Tito's La Faba Rooms",
+    "originalOpeningPeriod": "1 March to late November",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to late November",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5168,
+    "name": "Albergue La Escuela",
+    "originalOpeningPeriod": "March to November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "March to November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5169,
+    "name": "Albergue de peregrinos de O Cebreiro",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5170,
+    "name": "Albergue Casa Campelo",
+    "originalOpeningPeriod": "1 May to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 May to 30 November",
+    "checkInTimes": "12:00 - 20:00"
+  },
+  {
+    "id": 5173,
+    "name": "Albergue Linar do Rei",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "18:30",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 18:30"
+  },
+  {
+    "id": 5174,
+    "name": "Albergue de peregrinos de Hospital da Condesa",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5175,
+    "name": "Albergue El Puerto",
+    "originalOpeningPeriod": "All year, except some days in winter",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year, except some days in winter",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5176,
+    "name": "Albergue-Pensión A Reboleira",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5177,
+    "name": "Albergue Fillobal",
+    "originalOpeningPeriod": "2022 note: open from 1 May, then all year. Current opening dates need confirmation.",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "2022 note: open from 1 May, then all year. Current opening dates need confirmation.",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5178,
+    "name": "Albergue de peregrinos de Triacastela",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5179,
+    "name": "Albergue Aitzenea",
+    "originalOpeningPeriod": "15 April to 15 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 April to 15 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5180,
+    "name": "Albergue Berce do Camiño",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5181,
+    "name": "Albergue Refugio del Oribio",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5182,
+    "name": "Albergue-Pensión Complexo Xacobeo",
+    "originalOpeningPeriod": "1 February to 21 December",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 February to 21 December",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5183,
+    "name": "Albergue A Horta de Abel",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5184,
+    "name": "Albergue-Pensión Lemos",
+    "originalOpeningPeriod": "Holy Week to the first weekend in November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "Holy Week to the first weekend in November",
+    "checkInTimes": "11:00 - 21:00"
+  },
+  {
+    "id": 5185,
+    "name": "Albergue Atrio",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5194,
+    "name": "Albergue Ecológico El Beso",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5195,
+    "name": "Albergue de peregrinos de Calvor",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5196,
+    "name": "Albergue de peregrinos de Sarria",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5197,
+    "name": "Albergue Monasterio de la Magdalena",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5198,
+    "name": "Albergue-Pensión Don Álvaro",
+    "originalOpeningPeriod": "1 March to 12 November (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 12 November (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5199,
+    "name": "Albergue O Durmiñento",
+    "originalOpeningPeriod": "1 April to 30 November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 30 November",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5200,
+    "name": "Albergue Los Blasones",
+    "originalOpeningPeriod": "1 March to 30 November (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5201,
+    "name": "Albergue San Lázaro",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5202,
+    "name": "Albergue Casa Peltre",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5203,
+    "name": "Albergue Mayor",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5204,
+    "name": "Albergue-Pensión A Pedra",
+    "originalOpeningPeriod": "15 March to 30 November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to 30 November",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5205,
+    "name": "Albergue Oasis",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "21:30",
+    "openingPeriod": "All year",
+    "checkInTimes": "11:30 - 21:30"
+  },
+  {
+    "id": 5206,
+    "name": "Albergue Obradoiro",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5207,
+    "name": "Albergue Credencial",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5208,
+    "name": "Albergue-Pensión Puente Ribeira",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "10:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "10:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5209,
+    "name": "Albergue Alma do Camiño",
+    "originalOpeningPeriod": "1 March to 31 October (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5210,
+    "name": "Albergue-Pensión Matías Locanda",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5211,
+    "name": "Albergue Barullo",
+    "originalOpeningPeriod": "1 March to 31 October, and some days in December",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "1 March to 31 October, and some days in December",
+    "checkInTimes": "11:00 - 22:00"
+  },
+  {
+    "id": 5212,
+    "name": "Albergue-Pensión El Bordón de la Casa Batallón",
+    "originalOpeningPeriod": "All year, except 30 December to 10 January",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except 30 December to 10 January",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5213,
+    "name": "Albergue Internacional",
+    "originalOpeningPeriod": "Holy Week to mid-October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to mid-October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5214,
+    "name": "Sleeping Sarria Hostel",
+    "originalOpeningPeriod": "All year (prior reservation required in winter)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in winter)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5224,
+    "name": "Albergue de peregrinos Casa Forte de Lusío",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5225,
+    "name": "Albergue del Monasterio de Samos",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5226,
+    "name": "Albergue Tras do Convento",
+    "originalOpeningPeriod": "1 April to 15 December",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 15 December",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5227,
+    "name": "Albergue Val de Samos",
+    "originalOpeningPeriod": "1 April to 31 October (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5268,
+    "name": "Albergue-Pensión Casa Barbadelo",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5269,
+    "name": "Albergue de peregrinos de Barbadelo",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5270,
+    "name": "Albergue A Casa de Carmen",
+    "originalOpeningPeriod": "1 April to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5271,
+    "name": "Albergue O Pombal",
+    "originalOpeningPeriod": "Holy Week to 30 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 30 November",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5272,
+    "name": "Albergue Molino de Marzán",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 21:00"
+  },
+  {
+    "id": 5273,
+    "name": "Albergue-Pensión Casa Morgade",
+    "originalOpeningPeriod": "1 April to 7 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 April to 7 November",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 5274,
+    "name": "Albergue de peregrinos de Ferreiros",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5275,
+    "name": "Albergue Casa Cruceiro de Ferreiros",
+    "originalOpeningPeriod": "Holy Week to early November",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to early November",
+    "checkInTimes": "11:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5276,
+    "name": "Albergue de Mercadoiro",
+    "originalOpeningPeriod": "Closed on Saturdays. 1 March to mid-November.",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Closed on Saturdays. 1 March to mid-November.",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5277,
+    "name": "Albergue Casa Banderas",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5278,
+    "name": "Albergue de peregrinos de Portomarín",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5279,
+    "name": "Albergue Ferramenteiro",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5280,
+    "name": "Albergue-Pensión El Caminante",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5281,
+    "name": "Albergue-Pensión PortoSantiago",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5282,
+    "name": "Albergue-Pensión Ultreia",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5283,
+    "name": "Albergue Novo Porto",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5284,
+    "name": "Albergue Folgueira",
+    "originalOpeningPeriod": "10:00",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "10:00 - 20:00 (assumed); original time note: 10:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5285,
+    "name": "Albergue Casa Cruz",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5286,
+    "name": "Albergue-Pensión Manuel",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5287,
+    "name": "Albergue Casa do Marabillas",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5288,
+    "name": "Albergue-Pensión Pons Minea",
+    "originalOpeningPeriod": "00:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 00:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5289,
+    "name": "Albergue-Pensión Aqua Portomarín",
+    "originalOpeningPeriod": "Holy Week to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "Holy Week to 30 November",
+    "checkInTimes": "12:00 - 22:00"
+  },
+  {
+    "id": 5290,
+    "name": "Albergue Pasiño a Pasiño",
+    "originalOpeningPeriod": "All year (prior reservation required in winter)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in winter)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5291,
+    "name": "Albergue-Pensión Casona da Ponte",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:30 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5292,
+    "name": "Albergue Huellas",
+    "originalOpeningPeriod": "1 April to November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to November",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5308,
+    "name": "Albergue de peregrinos de Gonzar",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5309,
+    "name": "Albergue Casa García",
+    "originalOpeningPeriod": "Holy Week to November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5310,
+    "name": "Albergue-Hostería de Gonzar",
+    "originalOpeningPeriod": "Holy Week to 30 November",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Holy Week to 30 November",
+    "checkInTimes": "14:00 - 20:00"
+  },
+  {
+    "id": 5311,
+    "name": "Albergue Ortiz",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5312,
+    "name": "Albergue de peregrinos de Hospital da Cruz",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5313,
+    "name": "Albergue Casa Molar",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5314,
+    "name": "Albergue-Pensión O Cruceiro",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5315,
+    "name": "Albergue La Fuente del Peregrino",
+    "originalOpeningPeriod": "",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5316,
+    "name": "Albergue de peregrinos de Airexe-Ligonde",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5317,
+    "name": "Albergue-Pensión A Paso de Formiga",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5318,
+    "name": "Albergue de peregrinos Os Chacotes",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5319,
+    "name": "Albergue de peregrinos de Palas de Rei",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5320,
+    "name": "Albergue Buen Camino",
+    "originalOpeningPeriod": "Holy Week to 15 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 15 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5321,
+    "name": "Albergue Mesón de Benito",
+    "originalOpeningPeriod": "15 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5322,
+    "name": "Albergue Castro",
+    "originalOpeningPeriod": "All year, except January",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except January",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5323,
+    "name": "Albergue-Pensión San Marcos",
+    "originalOpeningPeriod": "Holy Week to 8 or 10 December (confirm closing date); groups accepted in March by prior reservation.",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 8 or 10 December (confirm closing date); groups accepted in March by prior reservation.",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5324,
+    "name": "Albergue Outeiro",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5325,
+    "name": "Albergue A Casiña di Marcello",
+    "originalOpeningPeriod": "All year (prior reservation required in low season)",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "4:30 ",
+    "openingPeriod": "All year (prior reservation required in low season)",
+    "checkInTimes": "13:30 - 4:30"
+  },
+  {
+    "id": 5326,
+    "name": "Albergue-Pensión Zendoira",
+    "originalOpeningPeriod": "All year, except 21 December to 21 January (except for groups with prior reservations)",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except 21 December to 21 January (except for groups with prior reservations)",
+    "checkInTimes": "10:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5327,
+    "name": "Albergue-Pensión Arenas Palas",
+    "originalOpeningPeriod": "13:00 to 21:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 to 21:00"
+  },
+  {
+    "id": 5339,
+    "name": "Albergue O Abrigadoiro",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5340,
+    "name": "Albergue Casa Domingo",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5341,
+    "name": "Albergue de peregrinos de Casanova",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5342,
+    "name": "Albergue de peregrinos de Melide",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5343,
+    "name": "Albergue O Apalpador",
+    "originalOpeningPeriod": "15 March to December",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to December",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5344,
+    "name": "Albergue O Cruceiro",
+    "originalOpeningPeriod": "1 April to 31 October (groups accepted in March by prior reservation)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October (groups accepted in March by prior reservation)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5345,
+    "name": "Albergue Pereiro",
+    "originalOpeningPeriod": "1 March to 30 November (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5346,
+    "name": "Albergue Melide",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5347,
+    "name": "Albergue San Antón",
+    "originalOpeningPeriod": "1 March to 31 October (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5348,
+    "name": "Albergue Alfonso II El Casto",
+    "originalOpeningPeriod": "Holy Week to 31 October (groups during the rest of the year)",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October (groups during the rest of the year)",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5349,
+    "name": "Albergue Arraigos",
+    "originalOpeningPeriod": "All year, except 12 December to 8 January",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "16 de",
+    "openingPeriod": "All year, except 12 December to 8 January",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5350,
+    "name": "Albergue Montoto",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5351,
+    "name": "Albergue O Candil",
+    "originalOpeningPeriod": "15 March to 15 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "15 March to 15 October",
+    "checkInTimes": "12:00 - 21:00"
+  },
+  {
+    "id": 5352,
+    "name": "Albergue Ezequiel",
+    "originalOpeningPeriod": "13:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 13:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5353,
+    "name": "Albergue-Pensión Boente",
+    "originalOpeningPeriod": "1 March to 30 November (groups by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November (groups by prior reservation during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5354,
+    "name": "Albergue El Alemán",
+    "originalOpeningPeriod": "Closed on Saturdays. 1 April to 30 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Closed on Saturdays. 1 April to 30 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5355,
+    "name": "Albergue Fuente Saleta",
+    "originalOpeningPeriod": "All year, except during the Christmas holidays",
+    "originalCheckInOpens": "11:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except during the Christmas holidays",
+    "checkInTimes": "11:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5356,
+    "name": "Albergue Santiago",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5357,
+    "name": "Albergue de peregrinos de Ribadiso de Baixo",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5358,
+    "name": "Albergue-Pensión Los Caminantes I",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5359,
+    "name": "Albergue Milpés",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5360,
+    "name": "Albergue Mirador de Ribadiso",
+    "originalOpeningPeriod": "Opening period not recorded. Source lists facilities: microwave; fridge; washing machine and dryer; individual lockers with keys; beds with individual power sockets and lights.",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded. Source lists facilities: microwave; fridge; washing machine and dryer; individual lockers with keys; beds with individual power sockets and lights.",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5361,
+    "name": "Albergue de peregrinos de Arzúa",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5362,
+    "name": "Albergue de Camino",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5363,
+    "name": "Albergue Don Quijote",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5364,
+    "name": "Albergue Vía Lactea",
+    "originalOpeningPeriod": "All year",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5365,
+    "name": "Albergue Ultreia",
+    "originalOpeningPeriod": "1 March to 31 October (groups by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October (groups by prior reservation during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5366,
+    "name": "Albergue Santiago Apóstol",
+    "originalOpeningPeriod": "All year, prior reservation required in winter",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "All year, prior reservation required in winter",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5367,
+    "name": "Albergue Los Caminantes II",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5368,
+    "name": "Albergue A Conda - Pensión Vilariño Moscoso",
+    "originalOpeningPeriod": "1 April to 30 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 30 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5369,
+    "name": "Albergue de Selmo",
+    "originalOpeningPeriod": "Holy Week to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Holy Week to 31 October",
+    "checkInTimes": "12:30 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5370,
+    "name": "Albergue-Pensión Cima do Lugar",
+    "originalOpeningPeriod": "All year, except January and February",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except January and February",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5371,
+    "name": "Albergue Casa del Peregrino",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5372,
+    "name": "Albergue O Santo",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 22:00"
+  },
+  {
+    "id": 5373,
+    "name": "Albergue-Pensión Arzúa",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5374,
+    "name": "Albergue San Francisco",
+    "originalOpeningPeriod": "1 February to 10 December",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "19:00",
+    "openingPeriod": "1 February to 10 December",
+    "checkInTimes": "13:30 - 19:00"
+  },
+  {
+    "id": 5375,
+    "name": "Albergue Los Tres Abetos",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5376,
+    "name": "Albergue del Peregrino",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5377,
+    "name": "Albergue Cruce de Caminos",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "18:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 18:00; original time note: 23:00 (confirm meaning with accommodation)"
+  },
+  {
+    "id": 5395,
+    "name": "Albergue-Pensión Camiño das Ocas",
+    "originalOpeningPeriod": "1 March to 30 November (enquire about opening during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "14:00",
+    "openingPeriod": "1 March to 30 November (enquire about opening during the rest of the year)",
+    "checkInTimes": "12:00 - 14:00"
+  },
+  {
+    "id": 5396,
+    "name": "Albergue Taberna Vella",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "15:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5397,
+    "name": "Albergue A Ponte de Ferreiros",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5398,
+    "name": "Albergue-Hotel Rural Salceda",
+    "originalOpeningPeriod": "All year (confirm winter availability)",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (confirm winter availability)",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5399,
+    "name": "Albergue-Pensión Alborada",
+    "originalOpeningPeriod": "Holy Week to 30 November",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "20:30",
+    "openingPeriod": "Holy Week to 30 November",
+    "checkInTimes": "12:30 - 20:30"
+  },
+  {
+    "id": 5400,
+    "name": "Albergue La Corona",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "20:30",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:30 - 20:30"
+  },
+  {
+    "id": 5401,
+    "name": "Albergue Andaina",
+    "originalOpeningPeriod": "23:00",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "12:00 - 20:00 (assumed); original time note: 23:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5402,
+    "name": "Albergue de peregrinos de Santa Irene",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5403,
+    "name": "Albergue Rural Astrar",
+    "originalOpeningPeriod": "1 April to 15 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 15 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5404,
+    "name": "Albergue Espíritu Xacobeo",
+    "originalOpeningPeriod": "1 April to 31 October (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5405,
+    "name": "Camping Peregrino O Castiñeiro",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 22:00"
+  },
+  {
+    "id": 5406,
+    "name": "Albergue de peregrinos de Arca - O Pino",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5407,
+    "name": "Albergue Mirador de Pedrouzo",
+    "originalOpeningPeriod": "15 March to 15 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "15 March to 15 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5408,
+    "name": "Albergue O Burgo",
+    "originalOpeningPeriod": "1 March to 29 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 29 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5409,
+    "name": "Albergue Edreira",
+    "originalOpeningPeriod": "1 March to 31 October (groups only by prior reservation during the rest of the year)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 31 October (groups only by prior reservation during the rest of the year)",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5410,
+    "name": "Albergue Otero",
+    "originalOpeningPeriod": "mid-March to 30 November",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "mid-March to 30 November",
+    "checkInTimes": "11:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5411,
+    "name": "Albergue Cruceiro de Pedrouzo",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5412,
+    "name": "Albergue O Trisquel",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "12:00 - 20:00"
+  },
+  {
+    "id": 5413,
+    "name": "Albergue Porta de Santiago",
+    "originalOpeningPeriod": "1 March to 15 December",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 15 December",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 5414,
+    "name": "Albergue Rem",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "18:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "12:00 - 18:00"
+  },
+  {
+    "id": 5424,
+    "name": "Albergue Lavacolla",
+    "originalOpeningPeriod": "All year (prior reservation required in winter)",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (prior reservation required in winter)",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5425,
+    "name": "Albergue de peregrinos del Monte do Gozo",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5426,
+    "name": "Albergue Monte do Gozo",
+    "originalOpeningPeriod": "All year (confirm availability in low season)",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year (confirm availability in low season)",
+    "checkInTimes": "15:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5427,
+    "name": "Albergue del Centro Europeo de Peregrinación Juan Pablo II",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5428,
+    "name": "Residencia de peregrinos San Lázaro",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation"
+  },
+  {
+    "id": 5429,
+    "name": "Albergue Seminario Menor",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "13:30",
+    "originalCheckInCloses": "23:00",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "13:30 - 23:00"
+  },
+  {
+    "id": 5430,
+    "name": "Albergue Fin del Camino",
+    "originalOpeningPeriod": "Holy Week to mid-October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Holy Week to mid-October",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 5431,
+    "name": "Albergue Meiga Backpackers",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "10:00",
+    "originalCheckInCloses": "18:00",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "10:00 - 18:00"
+  },
+  {
+    "id": 5432,
+    "name": "Albergue Mundoalbergue",
+    "originalOpeningPeriod": "Opening period not recorded. Source note: prices vary by season.",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation); Opening period not recorded. Source note: prices vary by season.",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5433,
+    "name": "Albergue The Last Stamp",
+    "originalOpeningPeriod": "All year, except 15 December to 15 January",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "All year, except 15 December to 15 January",
+    "checkInTimes": "14:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5434,
+    "name": "Albergue La Estación",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "12:00 - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5435,
+    "name": "Albergue Porta Real",
+    "originalOpeningPeriod": "1 April to 31 October",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 April to 31 October",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5436,
+    "name": "Albergue Azabache",
+    "originalOpeningPeriod": "1 February to December",
+    "originalCheckInOpens": "11:00",
+    "originalCheckInCloses": "18:30",
+    "openingPeriod": "1 February to December",
+    "checkInTimes": "11:00 - 18:30"
+  },
+  {
+    "id": 5437,
+    "name": "Albergue La Credencial",
+    "originalOpeningPeriod": "1 March to 30 November (groups only by prior reservation in low season)",
+    "originalCheckInOpens": "12:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 March to 30 November (groups only by prior reservation in low season)",
+    "checkInTimes": "12:00 - 21:00"
+  },
+  {
+    "id": 5438,
+    "name": "Albergue Monterrey",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 5439,
+    "name": "Albergue Blanco",
+    "originalOpeningPeriod": "14:00 to 22:00",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "22:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 to 22:00"
+  },
+  {
+    "id": 5440,
+    "name": "Albergue La Estrella de Santiago",
+    "originalOpeningPeriod": "1 March to December",
+    "originalCheckInOpens": "NULL",
+    "originalCheckInCloses": "NULL",
+    "openingPeriod": "1 March to December",
+    "checkInTimes": "14:00 (assumed) - 20:00 (assumed); confirm with accommodation"
+  },
+  {
+    "id": 5441,
+    "name": "Albergue SIXTOS no Caminho",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 5442,
+    "name": "Albergue Santiago Km.0",
+    "originalOpeningPeriod": "1 March to 8-10 December (confirm closing date); groups only by prior reservation during the rest of the year.",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 March to 8-10 December (confirm closing date); groups only by prior reservation during the rest of the year.",
+    "checkInTimes": "13:00 - 21:00"
+  },
+  {
+    "id": 5443,
+    "name": "Albergue Santos",
+    "originalOpeningPeriod": "1 March to 30 November",
+    "originalCheckInOpens": "10:30",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "1 March to 30 November",
+    "checkInTimes": "10:30 - 21:00"
+  },
+  {
+    "id": 5444,
+    "name": "Albergue SCQ",
+    "originalOpeningPeriod": "1 March to 15 December",
+    "originalCheckInOpens": "12:30",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 15 December",
+    "checkInTimes": "12:30 - 20:00"
+  },
+  {
+    "id": 5445,
+    "name": "Albergue Alda O Fogar de Teodomiro",
+    "originalOpeningPeriod": "15:00 to 21:00",
+    "originalCheckInOpens": "15:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "15:00 to 21:00"
+  },
+  {
+    "id": 5446,
+    "name": "Albergue A Fonte de Compostela",
+    "originalOpeningPeriod": "16:30 to 20:00",
+    "originalCheckInOpens": "16:30",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "16:30 to 20:00"
+  },
+  {
+    "id": 5447,
+    "name": "Albergue Dream in Santiago",
+    "originalOpeningPeriod": "1 March to 31 October",
+    "originalCheckInOpens": "15:30",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to 31 October",
+    "checkInTimes": "15:30 - 20:00"
+  },
+  {
+    "id": 5448,
+    "name": "Albergue Linares",
+    "originalOpeningPeriod": "13:00 to 17:00",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "17:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "13:00 to 17:00"
+  },
+  {
+    "id": 5473,
+    "name": "Albergue Irugoienea",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 - 21:00; original time note: 22:00 (confirm meaning with accommodation)"
+  },
+  {
+    "id": 5477,
+    "name": "Albergue El Palo de Avellano",
+    "originalOpeningPeriod": "1 March to mid-November",
+    "originalCheckInOpens": "13:00",
+    "originalCheckInCloses": "20:00",
+    "openingPeriod": "1 March to mid-November",
+    "checkInTimes": "13:00 - 20:00"
+  },
+  {
+    "id": 5746,
+    "name": "Albergue Irugoienea",
+    "originalOpeningPeriod": "22:00",
+    "originalCheckInOpens": "14:00",
+    "originalCheckInCloses": "21:00",
+    "openingPeriod": "Easter week till mid October (assumed; confirm with accommodation)",
+    "checkInTimes": "14:00 - 21:00; original time note: 22:00 (confirm meaning with accommodation)"
+  }
+]

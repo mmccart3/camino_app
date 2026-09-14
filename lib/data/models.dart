@@ -145,11 +145,16 @@ class Albergue extends Accommodation {
   bool? get dryer => _facility('dryingMachineAvailable');
   bool? get communalMeal => _facility('communalMealAvailable');
   bool? get kitchen => _facility('kitchenFacilitiesAvailable');
-  final String? openingPeriod, checkInOpens, checkInCloses;
+  final String? openingPeriod, checkInOpens, checkInCloses, checkInTimes;
   Albergue.fromRow(Row r)
     : numberOfBeds = optionalInt(r, 'numberOfBeds'),
       numberOfDorms = optionalInt(r, 'numberOfDorms'),
       openingPeriod = text(r, 'openingPeriod'),
+      checkInTimes =
+          text(r, 'checkInTimes') ??
+          (text(r, 'check_in_opens') == null
+              ? null
+              : '${text(r, 'check_in_opens')} - ${text(r, 'check_in_closes') ?? 'not recorded'}'),
       checkInOpens = text(r, 'check_in_opens'),
       checkInCloses = text(r, 'check_in_closes'),
       super.fromRow(r, 'albergue');
