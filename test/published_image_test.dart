@@ -17,7 +17,7 @@ void main() {
           jsonDecode(await rootBundle.loadString('assets/stage_images.json'))
               as Map<String, dynamic>;
       final images = manifest['images'] as Map<String, dynamic>;
-      expect(images.length, 75);
+      expect(images.length, 76);
       expect(StageImageAssets.paths.length, images.length);
       for (final entry in images.entries) {
         final item = entry.value as Map<String, dynamic>;
@@ -36,7 +36,10 @@ void main() {
         codec.dispose();
       }
       expect(StageImageAssets.map(43), isNull);
-      expect(StageImageAssets.elevation(1), isNull);
+      expect(
+        StageImageAssets.elevation(1),
+        'assets/elevation_charts/stage_1.png',
+      );
     },
   );
   testWidgets('bundled image stays local in full-screen viewer', (

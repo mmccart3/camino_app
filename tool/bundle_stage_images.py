@@ -22,6 +22,16 @@ def main():
         rows = db.execute('SELECT ID, stageMap1920URL, stageElevationChartURL FROM stages ORDER BY ID').fetchall()
     jobs = [(stage, kind, url) for stage, map_url, chart_url in rows for kind, url in [('stage_maps', map_url), ('elevation_charts', chart_url)] if url]
     missing = [{'stage': stage, 'kind': kind} for stage, map_url, chart_url in rows for kind, url in [('stage_maps', map_url), ('elevation_charts', chart_url)] if not url]
+    # Owner-supplied artwork takes precedence, including on --refresh.
+    overrides = {key: entry for key, entry in previous.get('images', {}).items()
+                 if entry.get('local_override')}
+    for key, entry in overrides.items():
+        asset_path = ROOT / entry['asset']
+        if hashlib.sha256(asset_path.read_bytes()).hexdigest() != entry['sha256']:
+            raise ValueError(f'Local override checksum mismatch: {key}')
+    jobs = [job for job in jobs if f'{job[1]}/{job[0]}' not in overrides]
+    missing = [entry for entry in missing
+               if f"{entry['kind']}/{entry['stage']}" not in overrides]
     def fetch(job):
         stage, kind, url = job
         parsed = urlsplit(url)
@@ -59,6 +69,7 @@ def main():
     with ThreadPoolExecutor(max_workers=3) as pool:
         results = dict(pool.map(attempt, jobs))
     images = {key: value for key, value in results.items() if 'asset' in value}
+    images.update(overrides)
     failures = {key: value for key, value in results.items() if 'error' in value}
     manifest = {'images': images, 'missing_source_urls': missing, 'unavailable': failures}
     temp = manifest_path.with_suffix('.tmp')

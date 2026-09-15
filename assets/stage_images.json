@@ -599,6 +599,15 @@
       "bytes": 96230,
       "width": 1125,
       "height": 464
+    },
+    "elevation_charts/1": {
+      "asset": "assets/elevation_charts/stage_1.png",
+      "source": "Owner-supplied stage_1.png, 2026-09-14; via Orisson",
+      "local_override": true,
+      "sha256": "66f92f17c4f2ec29f78903103df3599254685de83e823617685618d04735431a",
+      "bytes": 94385,
+      "width": 1637,
+      "height": 1038
     }
   },
   "missing_source_urls": [
@@ -624,10 +633,6 @@
     }
   ],
   "unavailable": {
-    "elevation_charts/1": {
-      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1643200298/SJPP2RoncevallesVOelevation_dia1co.jpg",
-      "error": "HTTP Error 404: Not Found"
-    },
     "stage_maps/43": {
       "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810115/caminoAppImages/maps/1920maps/sjpp2roncesvallesX_bmbh0c.jpg",
       "error": "HTTP Error 404: Not Found"

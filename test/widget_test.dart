@@ -236,6 +236,59 @@ void main() {
     );
     await tester.pumpWidget(const SizedBox.shrink());
   });
+  testWidgets('stage 1 displays the updated offline elevation chart', (
+    tester,
+  ) async {
+    late Stage stage;
+    await tester.runAsync(() async {
+      stage = (await repository.stage(1))!;
+    });
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StageDetailScreen(
+          repository: repository,
+          settings: settings,
+          stage: stage,
+        ),
+      ),
+    );
+    await tester.runAsync(() async {
+      await precacheImage(
+        const AssetImage('assets/stage_maps/stage_1.jpg'),
+        tester.element(find.byType(StageDetailScreen)),
+      );
+      await precacheImage(
+        const AssetImage('assets/elevation_charts/stage_1.png'),
+        tester.element(find.byType(StageDetailScreen)),
+      );
+    });
+    await finishDatabaseWork(tester);
+    await tester.scrollUntilVisible(
+      find.text('Published elevation chart'),
+      700,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 50,
+    );
+    await tester.runAsync(() async {
+      await precacheImage(
+        const AssetImage('assets/elevation_charts/stage_1.png'),
+        tester.element(find.text('Published elevation chart')),
+      );
+    });
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is Image &&
+            widget.image is AssetImage &&
+            (widget.image as AssetImage).assetName ==
+                'assets/elevation_charts/stage_1.png',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Image unavailable in this app version.'), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
   testWidgets('home opens real stage and location details', (tester) async {
     await tester.runAsync(() async {
       await local.database;
