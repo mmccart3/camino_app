@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_title.dart';
+import 'app_logo.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 /// Reads the installed package, including Flutter build-name/number overrides.
@@ -42,11 +43,7 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.hiking,
-                size: 88,
-                color: Theme.of(context).colorScheme.primary,
-              ),
+              const AppLogo(size: 220),
               const SizedBox(height: 20),
               Container(
                 width: double.infinity,

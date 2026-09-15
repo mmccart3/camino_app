@@ -12,6 +12,7 @@ import 'settings_screen.dart';
 import 'widgets.dart';
 import 'contact_links.dart';
 import 'app_title.dart';
+import 'app_logo.dart';
 import 'stage_directions.dart';
 import 'location_navigation.dart';
 
@@ -41,7 +42,7 @@ class HomeScreen extends StatelessWidget {
     body: ListView(
       padding: const EdgeInsets.all(24),
       children: [
-        const Icon(Icons.hiking, size: 80),
+        const AppLogo(),
         const SizedBox(height: 24),
         Text(
           'One stage at a time.',
@@ -68,7 +69,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         const Text(
-          'Guide text and available route geometry work offline. Photos and optional map tiles need a connection.',
+          'Guide text, available route geometry and bundled maps work offline. Accommodation photos and Google Maps may need a connection.',
         ),
       ],
     ),

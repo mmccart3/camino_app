@@ -8,7 +8,7 @@ Places along the way, the published stage map and elevation chart appear before 
 
 ## Run and validate
 
-Version **0.2.5+10** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+Version **0.2.6+11** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
 
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 
@@ -255,3 +255,4 @@ Fiesta is by Bartek Nowak / Nowak.tv, downloaded from https://www.dafont.com/fie
 Stages 1–5 offline map: 252 tiles, zooms 0–14, 5.92 MiB. All 4059 track points have tile coverage at zooms 12–14, including 419 for stage 5. All original vector features preserved. SHA256: 1e325973a60161d47ebc7d6c6747413deacc77dd1a1e87f35fe0bef96121b8ae.
 
 The current asset is `assets/offline_maps/stages1_5.mbtiles`, covering Saint-Jean-Pied-de-Port to Estella. Rebuild and reinstall to include it; its new fingerprint automatically selects a fresh device copy. Guide database and route guidance eligibility are unchanged.
+
