@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:latlong2/latlong.dart' show LatLng;
 import 'package:flutter/material.dart' hide Path;
 import 'package:camino_app/ui/location_navigation.dart';
+import 'package:camino_app/ui/stage_map_coverage.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:camino_app/data/models.dart';
 import 'package:camino_app/data/route_assembler.dart';
@@ -63,6 +64,35 @@ StageRoute route(
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  for (final covered in [true, false]) {
+    testWidgets('stage map Google fallback when coverage is $covered', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: StageMapCoverage(
+              route: route(1, 1, 2, [
+                point(1, -1.5),
+                point(2, -1.499, previous: 1),
+              ]),
+              coverageCheck: (_) async => covered,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Join this stage with Google Maps'),
+        covered ? findsNothing : findsOneWidget,
+      );
+      expect(
+        find.textContaining('outside your downloaded map area'),
+        covered ? findsNothing : findsOneWidget,
+      );
+      expect(find.text('Online basemap'), findsNothing);
+    });
+  }
   testWidgets(
     'uncovered destination explains fallback without requesting GPS',
     (tester) async {

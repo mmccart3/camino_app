@@ -1,7 +1,5 @@
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:camino_app/services/map_tiles.dart';
 import 'dart:io';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -16,16 +14,6 @@ import 'package:camino_app/ui/settings_screen.dart';
 import 'test_support.dart';
 
 void main() {
-  test('native tile provider identifies app and surfaces HTTP errors', () {
-    final provider = MapTiles.provider();
-    expect(provider.headers['User-Agent'], 'CaminoGuideOfflineMVP/0.1.3');
-    expect(provider.headers.containsKey('Cache-Control'), isFalse);
-    expect(provider.headers.containsKey('Pragma'), isFalse);
-    expect(provider.attemptDecodeOfHttpErrorResponses, isFalse);
-    expect(provider.cachingProvider, isNull); // Library default disk cache.
-    provider.dispose();
-  });
-
   TestWidgetsFlutterBinding.ensureInitialized();
   sqfliteFfiInit();
   late Directory temporary;
@@ -71,16 +59,22 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: MapScreen(
-          initialOffline: false,
+          showOfflineMap: false,
           repository: repository,
           settings: settings,
           stage: stage,
-          initialTiles: false,
         ),
       ),
     );
     await finishDatabaseWork(tester);
     expect(find.byType(TileLayer), findsNothing);
+    expect(find.text('Online basemap'), findsNothing);
+    expect(find.text('Offline stages 1–5 map'), findsNothing);
+    expect(
+      find.textContaining('Offline maps only. Bundled coverage:'),
+      findsNothing,
+    );
+    expect(find.byType(SwitchListTile), findsNothing);
     final line = tester
         .widget<PolylineLayer>(find.byType(PolylineLayer))
         .polylines
@@ -94,109 +88,6 @@ void main() {
     );
     await tester.pumpWidget(const SizedBox.shrink());
   });
-  testWidgets(
-    'basemap loads by default and can be switched off without losing the route',
-    (tester) async {
-      late Stage stage;
-      await tester.runAsync(() async {
-        stage = (await repository.stage(1))!;
-      });
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MapScreen(
-            initialOffline: false,
-            repository: repository,
-            settings: settings,
-            stage: stage,
-            tileProvider: TestTileProvider(),
-          ),
-        ),
-      );
-      await finishDatabaseWork(tester);
-      expect(find.byType(TileLayer), findsOneWidget);
-      expect(
-        find.descendant(
-          of: find.byType(FlutterMap),
-          matching: find.text('© OpenStreetMap contributors'),
-        ),
-        findsOneWidget,
-      );
-      final toggle = tester.widget<SwitchListTile>(find.byType(SwitchListTile));
-      expect(toggle.value, isTrue);
-      toggle.onChanged!(false);
-      await tester.pumpAndSettle();
-      expect(find.byType(TileLayer), findsNothing);
-      expect(
-        tester
-            .widget<PolylineLayer>(find.byType(PolylineLayer))
-            .polylines
-            .single
-            .points
-            .length,
-        778,
-      );
-      await tester.pumpWidget(const SizedBox.shrink());
-    },
-  );
-  for (final status in [403, 429]) {
-    testWidgets('HTTP $status pauses maps for the session and retains route', (
-      tester,
-    ) async {
-      await tester.binding.setSurfaceSize(const Size(1000, 1600));
-      addTearDown(() => tester.binding.setSurfaceSize(null));
-      MapTiles.blockedStatus = null;
-      addTearDown(() {
-        MapTiles.blockedStatus = null;
-      });
-      late Stage stage;
-      await tester.runAsync(() async {
-        stage = (await repository.stage(1))!;
-      });
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MapScreen(
-            initialOffline: false,
-            repository: repository,
-            settings: settings,
-            stage: stage,
-            tileProvider: TestTileProvider(),
-          ),
-        ),
-      );
-      await finishDatabaseWork(tester);
-      expect(tester.widget<TileLayer>(find.byType(TileLayer)).panBuffer, 0);
-      final dynamic state = tester.state(find.byType(MapScreen));
-      state.tileError(
-        NetworkImageLoadException(
-          statusCode: status,
-          uri: Uri.parse('https://tile.openstreetmap.org/1/0/0.png'),
-        ),
-      );
-      await tester.pumpAndSettle();
-      expect(find.byType(TileLayer), findsNothing);
-      expect(find.textContaining('returned HTTP $status'), findsOneWidget);
-      expect(
-        tester.widget<SwitchListTile>(find.byType(SwitchListTile)).onChanged,
-        isNull,
-      );
-      expect(find.byType(PolylineLayer), findsOneWidget);
-      await tester.pumpWidget(const SizedBox.shrink());
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MapScreen(
-            initialOffline: false,
-            repository: repository,
-            settings: settings,
-            stage: stage,
-            tileProvider: TestTileProvider(),
-          ),
-        ),
-      );
-      await finishDatabaseWork(tester);
-      expect(find.byType(TileLayer), findsNothing);
-      await tester.pumpWidget(const SizedBox.shrink());
-    });
-  }
   testWidgets('stage without tracks shows markers and disables full guidance', (
     tester,
   ) async {
@@ -207,11 +98,10 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: MapScreen(
-          initialOffline: false,
+          showOfflineMap: false,
           repository: repository,
           settings: settings,
           stage: stage,
-          initialTiles: false,
         ),
       ),
     );
@@ -310,10 +200,7 @@ void main() {
     await finishDatabaseWork(tester);
     await tester.tap(find.text('Saint-Jean-Pied-de-Port to Roncesvalles'));
     await finishDatabaseWork(tester);
-    expect(
-      find.text('Full-stage track geometry is available.'),
-      findsOneWidget,
-    );
+    expect(find.text('Places along the way'), findsOneWidget);
     await tester.tap(find.text('St Jean Pied de Port'));
     await finishDatabaseWork(tester);
     expect(find.text('St Jean Pied de Port'), findsOneWidget);
@@ -372,16 +259,4 @@ void main() {
     expect(find.text('Walking pace saved on this device.'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
   });
-}
-
-class TestTileProvider extends TileProvider {
-  @override
-  ImageProvider getImage(
-    TileCoordinates coordinates,
-    TileLayer options,
-  ) => MemoryImage(
-    base64Decode(
-      'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNYtfvMfwAHdQMxTAUe1QAAAABJRU5ErkJggg==',
-    ),
-  );
 }

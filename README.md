@@ -2,9 +2,13 @@
 
 The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. The SQLite file and its URLs were left unchanged. The old fictional fixture generator has been removed.
 
+## Stage page layout
+
+Places along the way, the published stage map and elevation chart appear before Route & guidance. Route & guidance has no online basemap switch, offline-map checkbox or static stages-coverage description. Missing-coverage warnings and Google Maps fallback remain available.
+
 ## Run and validate
 
-Version **0.2.3+8** adds location destination navigation with detailed offline tile coverage checks and an explicit Google Maps fallback. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+Version **0.2.5+10** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
 
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 
@@ -75,7 +79,7 @@ Equal nearest-point distances choose the earliest point in route order; there is
 
 ## Offline and external content
 
-All guide records, available route geometry and walking pace work offline. flutter_map online tiles load by default when a map screen opens. The Online basemap switch can disable them for that screen. OpenStreetMap attribution is displayed directly on the map while tiles are enabled. Before release set your real application identifier and review your tile provider's usage policy. There is no bulk tile downloading.
+All guide records, available route geometry and walking pace work offline. Map screens render the bundled vector maps only, with no online tile layer or tile downloads. Missing coverage is explained and Google Maps walking directions are offered through an external link. OpenStreetMap and OpenMapTiles attribution remains visible because it applies to the bundled map data.
 
 Photos and published stage maps/elevation charts load from their stored Cloudinary HTTPS URLs, with an unavailable-image fallback. There is no durable offline photo cache. Private accommodation currently has no image URL columns, so no images are invented.
 
@@ -130,15 +134,15 @@ After populating numbers, rebuild and fully restart the app; the asset fingerpri
 
 References: [url_launcher](https://pub.dev/packages/url_launcher), [WhatsApp click to chat](https://faq.whatsapp.com/5913398998672934).
 
-## Offline stages 1–3 basemap
+## Offline stages 1–5 basemap
 
-The app bundles `assets/offline_maps/stages1_5.mbtiles` (4.26 MiB), replacing the wider Navarra archive at the owner's request. The offline map opens by default. It covers approximately 1 km corridors along the main route from Saint-Jean-Pied-de-Port through Roncesvalles and Zubiri to Pamplona. It does not include the Valcarlos alternative or wider Navarra coverage. Outside these corridors the basemap can be blank; available route lines and markers remain visible.
+The app bundles `assets/offline_maps/stages1_5.mbtiles`, covering the supplied stage corridors from Saint-Jean-Pied-de-Port to Estella. It opens by default and is the only in-app basemap. Outside its downloaded coverage, route lines and markers remain visible and the app offers external Google Maps directions. It does not include the Valcarlos alternative or wider Navarra coverage.
 
-The archive combines the supplied stage1_france.mbtiles (Aquitaine source), stage1_spain.mbtiles, stage2.mbtiles and stage3.mbtiles (Navarra source). All 2,770 route points have tile coverage at every zoom from 0 through 14. Higher zooms enlarge existing vector detail. Tile availability does not guarantee the completeness or accuracy of all OSM features.
+The archive combines the supplied French and Spanish Stage 1 tiles and the Stage 2–5 tiles. Coverage checks use actual detailed tile presence, not just the archive bounds. Higher zooms enlarge existing vector detail. Tile availability does not guarantee the completeness or accuracy of all OSM features.
 
 On first map opening the archive is verified by SHA256 and copied to application-support storage under `offline_maps/stages1-3-<fingerprint>.mbtiles`. Later launches reuse this copy. Old Navarra copies may remain in application-support storage but are not used. The new installation contains only the smaller archive. Allow space for both the bundled archive and its installed copy. The guide database is separate and unchanged.
 
-The local provider handles TMS coordinates and compressed vector tiles. The bundled style needs no remote sprites or glyphs; labels use platform fonts. Offline mode makes no tile downloads. The optional online basemap retains caching and HTTP 403/429 handling. Missing offline tiles never automatically trigger online requests.
+The local provider handles TMS coordinates and compressed vector tiles. The bundled style needs no remote sprites or glyphs; labels use platform fonts. Offline mode makes no tile downloads. There is no online basemap option. Missing offline tiles never trigger online tile requests; users can choose external Google Maps walking directions instead.
 
 To update the map, merge compatible source archives with `python tool/merge_camino_tiles.py NEW_OUTPUT.mbtiles INPUT1.mbtiles INPUT2.mbtiles ...`, review the result and update its name/description metadata. The merger preserves geometry commands and removes exact geometry/property duplicates. Differently clipped or generalized overlaps may remain; matching layer versions and extents are required. Replace the bundled stages1_5.mbtiles, update the lowercase SHA256 fingerprint in lib/services/offline_map.dart, review the coverage text and tests, then format, analyze, test and rebuild. PowerShell `Get-FileHash assets/offline_maps/stages1_5.mbtiles -Algorithm SHA256` provides the hash.
 
@@ -172,13 +176,9 @@ Both accommodation types use the existing email column. Valid email addresses ap
 
 Albergues show numberOfDorms and labeled icons for washingMachineAvailable, dryingMachineAvailable, communalMealAvailable and kitchenFacilitiesAvailable. Stored 1 means Yes, 0 means No, and missing/unrecognized values mean Not recorded. The database is unchanged.
 
-## OSM HTTP 403 / 429 handling
+## Offline maps and Google Maps fallback (0.2.4)
 
-Native tile requests now explicitly identify the app as CaminoGuideOfflineMVP/0.1.3, retaining its existing product identity. The tile layer requests the visible viewport with panBuffer=0 and a native zoom ceiling of 19. flutter_map's built-in native disk cache remains enabled and honors expiry and conditional requests; no no-cache headers, scraping or bulk downloads are used.
-
-HTTP 403 and 429 responses are treated as errors rather than rendered as tile images. The map removes the tile layer and disables further tile loading for the current app session, while route lines and markers remain available. Already in-flight requests may complete. This is not a guarantee of restored access: the previous library-formatted User-Agent already included the app name, and the actual server-side reason has not been established. Do not rotate identities, proxy requests or repeatedly restart to evade a block. If it persists, contact OSM operations or arrange a suitable licensed tile provider. No live requests to the blocked service were made during automated validation.
-
-Policy: https://operations.osmfoundation.org/policies/tiles/
+The online OSM provider, raster tile layer, online/offline switches and obsolete HTTP 403/429 handling have been removed. The app makes no requests to public OSM tile servers. Stage maps check their stored track segments and location pins against detailed bundled tiles, show a message if coverage is incomplete or cannot be checked, and offer Google Maps. Location destination navigation retains its route coverage checks and Google Maps fallback. Google Maps opens only after the user selects its link and may require internet connectivity. Attribution links are retained; these are not online tile sources.
 
 ## Albergue affiliate removal (9 September 2026)
 
@@ -198,7 +198,7 @@ The script generates assets/stage_maps/, assets/elevation_charts/, assets/stage_
 
 The first bundle has 75 images (about 23.8 MiB). Stage 1's elevation-chart URL and stage 43's map URL return HTTP 404. Stages 15, 23, 25, 29 and 43 have no elevation-chart URL. These show Image unavailable in this app version; correct the database source URL and rerun the script to include them. No substitute image is invented.
 
-Flutter reads these files directly from its asset bundle; there is no first-launch download or extra device-storage copy. Both inline and full-screen views use AssetImage and make no image network requests. The existing stage and accommodation database is unchanged. Accommodation photos still require connectivity. The separately bundled stages 1–3 vector basemap is described above.
+Flutter reads these files directly from its asset bundle; there is no first-launch download or extra device-storage copy. Both inline and full-screen views use AssetImage and make no image network requests. The existing stage and accommodation database is unchanged. Accommodation photos still require connectivity. The separately bundled stages 1–5 vector basemap is described above.
 
 ## Guide paragraphs populated from Word
 

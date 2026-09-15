@@ -185,28 +185,6 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
           const SizedBox(height: 12),
-          FilledButton.icon(
-            onPressed: () => navigate(
-              context,
-              MapScreen(
-                repository: widget.repository,
-                settings: widget.settings,
-                stage: widget.stage,
-              ),
-            ),
-            icon: const Icon(Icons.map_outlined),
-            label: const Text('Route & guidance'),
-          ),
-          const SizedBox(height: 16),
-          StageDirections(route: route),
-          const SizedBox(height: 16),
-          if (route.canGuide)
-            const Text('Full-stage track geometry is available.')
-          else ...[
-            const Text('Route data needs attention:'),
-            for (final issue in route.issues) Text('• $issue'),
-          ],
-          const SizedBox(height: 20),
           Text(
             route.locationsOrdered
                 ? 'Places along the way'
@@ -226,19 +204,6 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
                   repository: widget.repository,
                   location: location,
                 ),
-              ),
-            ),
-          if (widget.stage.nextStageId != null && widget.stage.nextStageId! > 0)
-            OutlinedButton(
-              onPressed: () => openStage(widget.stage.nextStageId!),
-              child: Text('Next stage · ${widget.stage.nextStageId}'),
-            ),
-          if (widget.stage.alternativeNextStageId != null &&
-              widget.stage.alternativeNextStageId! > 0)
-            OutlinedButton(
-              onPressed: () => openStage(widget.stage.alternativeNextStageId!),
-              child: Text(
-                'Alternative next stage · ${widget.stage.alternativeNextStageId}',
               ),
             ),
           ...[
@@ -265,6 +230,42 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
               title: 'Published elevation chart',
             ),
           ],
+          const SizedBox(height: 20),
+          FilledButton.icon(
+            onPressed: () => navigate(
+              context,
+              MapScreen(
+                repository: widget.repository,
+                settings: widget.settings,
+                stage: widget.stage,
+              ),
+            ),
+            icon: const Icon(Icons.map_outlined),
+            label: const Text('Route & guidance'),
+          ),
+          const SizedBox(height: 16),
+          StageDirections(route: route),
+          const SizedBox(height: 16),
+          if (route.canGuide)
+            const Text('Full-stage track geometry is available.')
+          else ...[
+            const Text('Route data needs attention:'),
+            for (final issue in route.issues) Text('• $issue'),
+          ],
+          const SizedBox(height: 20),
+          if (widget.stage.nextStageId != null && widget.stage.nextStageId! > 0)
+            OutlinedButton(
+              onPressed: () => openStage(widget.stage.nextStageId!),
+              child: Text('Next stage · ${widget.stage.nextStageId}'),
+            ),
+          if (widget.stage.alternativeNextStageId != null &&
+              widget.stage.alternativeNextStageId! > 0)
+            OutlinedButton(
+              onPressed: () => openStage(widget.stage.alternativeNextStageId!),
+              child: Text(
+                'Alternative next stage · ${widget.stage.alternativeNextStageId}',
+              ),
+            ),
         ],
       ),
     ),
