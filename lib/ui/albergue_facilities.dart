@@ -9,13 +9,7 @@ class AlbergueFacilities extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(
-        albergue.numberOfBeds != null && albergue.numberOfDorms != null
-            ? '${albergue.numberOfBeds} ${albergue.numberOfBeds == 1 ? "bed" : "beds"} spread across ${albergue.numberOfDorms} ${albergue.numberOfDorms == 1 ? "dormitory" : "dormitories"}'
-            : albergue.numberOfBeds != null
-            ? '${albergue.numberOfBeds} beds (dormitory count not recorded)'
-            : 'Dormitories: ${albergue.numberOfDorms ?? "Not recorded"}',
-      ),
+      Text('Dormitories: ${albergue.numberOfDorms ?? "Not recorded"}'),
       const SizedBox(height: 8),
       Wrap(
         spacing: 8,
