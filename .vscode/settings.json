@@ -1,6 +1,9 @@
 {
     "chat.tools.terminal.autoApprove": {
         "printf": true,
-        "true": true
-    }
+        "true": true,
+        "java": true
+    },
+    "java.jdt.ls.java.home": "C:\\Program Files\\Android\\Android Studio\\jbr",
+    "java.import.gradle.java.home": "C:\\Program Files\\Android\\Android Studio\\jbr"
 }
