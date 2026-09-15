@@ -318,6 +318,7 @@ void main() {
     await finishDatabaseWork(tester);
     expect(find.text('St Jean Pied de Port'), findsOneWidget);
     expect(find.byType(LocationDetailScreen), findsOneWidget);
+    expect(find.text('Navigate here offline'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
   });
   testWidgets(
@@ -333,7 +334,9 @@ void main() {
         MaterialApp(home: AlbergueDetailScreen(albergue: hostel)),
       );
       await tester.pumpAndSettle();
-      expect(find.text('Beds: 32'), findsOneWidget);
+      final bedSummary = find.textContaining('32 beds');
+      await tester.scrollUntilVisible(bedSummary, 250);
+      expect(bedSummary, findsOneWidget);
       expect(find.text('Open booking website'), findsNothing);
       await tester.pumpWidget(
         MaterialApp(

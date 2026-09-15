@@ -4,6 +4,8 @@ The app uses the populated `assets/database/camino.sqlite` in this project. It d
 
 ## Run and validate
 
+Version **0.2.3+8** adds location destination navigation with detailed offline tile coverage checks and an explicit Google Maps fallback. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 
 ```powershell

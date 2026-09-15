@@ -13,6 +13,7 @@ import 'widgets.dart';
 import 'contact_links.dart';
 import 'app_title.dart';
 import 'stage_directions.dart';
+import 'location_navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   final CaminoRepository repository;
@@ -298,6 +299,10 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
       builder: (data) => ListView(
         padding: const EdgeInsets.all(20),
         children: [
+          LocationNavigationButton(
+            repository: widget.repository,
+            location: widget.location,
+          ),
           for (final url in widget.location.imageUrls) DatabaseImage(url),
           const SizedBox(height: 12),
           for (final paragraph in data.$1)
