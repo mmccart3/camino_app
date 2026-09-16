@@ -1,0 +1,90 @@
+{
+  "stage": 6,
+  "points_added": 33,
+  "segments": [
+    {
+      "between": [
+        6527,
+        6528
+      ],
+      "added_ids": [
+        6706,
+        6707,
+        6708,
+        6709,
+        6710
+      ],
+      "original_gap_metres": 250.51168972850786,
+      "max_new_gap_metres": 41.468589845552295
+    },
+    {
+      "between": [
+        6528,
+        6529
+      ],
+      "added_ids": [
+        6711,
+        6712,
+        6713,
+        6714,
+        6715
+      ],
+      "original_gap_metres": 254.8005619485742,
+      "max_new_gap_metres": 42.16369700131974
+    },
+    {
+      "between": [
+        6578,
+        6579
+      ],
+      "added_ids": [
+        6716,
+        6717,
+        6718,
+        6719,
+        6720,
+        6721
+      ],
+      "original_gap_metres": 327.38105342311997,
+      "max_new_gap_metres": 46.66640658298863
+    },
+    {
+      "between": [
+        6587,
+        6588
+      ],
+      "added_ids": [
+        6722,
+        6723,
+        6724,
+        6725,
+        6726,
+        6727,
+        6728,
+        6729,
+        6730,
+        6731,
+        6732,
+        6733
+      ],
+      "original_gap_metres": 632.8039866570001,
+      "max_new_gap_metres": 48.61807013714865
+    },
+    {
+      "between": [
+        6659,
+        6660
+      ],
+      "added_ids": [
+        6734,
+        6735,
+        6736,
+        6737,
+        6738
+      ],
+      "original_gap_metres": 294.4438388437761,
+      "max_new_gap_metres": 47.58082300245243
+    }
+  ],
+  "method": "Linear coordinate and elevation interpolation. Incoming distances and walking weights apportioned across each segment, preserving totals. Synthetic points, not surveyed geometry. Slope retained for each original segment. Only gaps over 250 m subdivided; resulting intervals below 50 m."
+}

@@ -93,7 +93,7 @@ void main() {
   ) async {
     late Stage stage;
     await tester.runAsync(() async {
-      stage = (await repository.stage(6))!;
+      stage = (await repository.stage(7))!;
     });
     await tester.pumpWidget(
       MaterialApp(

@@ -274,7 +274,7 @@ void main() {
   test(
     'missing tracks and invalid stage graphs do not become invented routes',
     () async {
-      final noTracks = await repository.route((await repository.stage(6))!);
+      final noTracks = await repository.route((await repository.stage(7))!);
       expect(noTracks.canGuide, isFalse);
       expect(noTracks.points, isEmpty);
       expect(noTracks.locations, isNotEmpty);
@@ -293,7 +293,7 @@ void main() {
       for (final stage in await repository.stages()) {
         final route = await repository.route(stage);
         expect(route.locations, isNotEmpty, reason: 'Stage ${stage.id}');
-        if (stage.id != 1 && stage.id != 2 && stage.id != 3) {
+        if (![1, 2, 3, 6].contains(stage.id)) {
           expect(route.canGuide, isFalse);
         }
       }

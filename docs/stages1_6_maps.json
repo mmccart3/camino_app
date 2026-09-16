@@ -1,0 +1,19 @@
+{
+  "tiles": 299,
+  "size_bytes": 6774784,
+  "sha256": "ef97028deebbe2c1333fcf258ac5539cabecd86b1a6edd17661b3b21a983ad6b",
+  "track_point_counts": {
+    "1": 778,
+    "2": 1270,
+    "3": 722,
+    "4": 870,
+    "5": 419,
+    "6": 739
+  },
+  "coverage_zooms_checked": [
+    12,
+    13,
+    14
+  ],
+  "all_source_features_preserved": true
+}

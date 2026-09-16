@@ -1,6 +1,10 @@
 # Camino: offline Flutter MVP using the real database
 
-The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. The SQLite file and its URLs were left unchanged. The old fictional fixture generator has been removed.
+The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. Existing records and URLs are preserved; location service fields and their supporting evidence are added by the documented maintenance workflow. The old fictional fixture generator has been removed.
+
+## Location services
+
+Location pages show large 48-pixel icons with short labels for available bars/cafés, pharmacies and groceries. Unavailable and unknown services are hidden; if none are available, the entire section is hidden. The database still distinguishes yes, no and unknown. Source-check dates and business evidence are retained. See [Location services workflow](docs/location_facilities.md) and the [review report](docs/location_facilities_review.md). All data is bundled and read offline; the app does not query Overpass.
 
 ## Stage page layout
 
@@ -8,7 +12,7 @@ Places along the way, the published stage map and elevation chart appear before 
 
 ## Run and validate
 
-Version **0.2.6+11** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+Version **0.2.11+16** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
 
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 
@@ -24,7 +28,7 @@ Flutter with Dart 3.10+ is required. Android and iOS runner projects are include
 
 ## Existing schema mapping
 
-Dart classes map directly to your existing columns; each model also retains an immutable `source` row containing fields the MVP does not yet display. No tables, columns, views or migration DDL are added.
+Dart classes map directly to your existing columns; each model also retains an immutable `source` row containing fields the MVP does not yet display. Location service fields and the `locationFacilities` evidence table are added by the offline maintenance tool; the app does not restructure the original guide tables.
 
 | Dart model | Existing table | Relationships and ordering |
 | --- | --- | --- |
@@ -36,7 +40,7 @@ Dart classes map directly to your existing columns; each model also retains an i
 | Path | paths | pathID, stageID, originLoc, destinationLoc; one location-to-location segment |
 | TrackPoint | track_points | track_point_id, pathID, previous_track_point_id, waypoint, elevation and distance metrics |
 
-Original spellings such as `onedPersonRateMin`, `twodPersonRateMax` and `StreetAdress` are intentional in the mappings. `mapLocationCoords` is preserved but not queried: its pixel coordinates belong to the published raster maps, not geographic route geometry.
+Original spellings such as `onedPersonRateMin`, `twodPersonRateMax` and `StreetAdress` are intentional in the mappings. `mapLocationCoords` supplies clickable hotspots on the published raster maps; these pixel coordinates are separate from geographic route geometry.
 
 Stage list badges are database IDs, not consecutive walking-day numbers. Stages follow the stored nextStage links, with altNextStage immediately after the corresponding primary next stage. Parallel branches are traversed together and shared destinations appear once. Starting stages (including Valcarlos) appear first; IDs only break ties between starts or disconnected records. Missing links and cycles cannot hide stages or cause an infinite loop. Detail buttons follow the same stored links. Paragraphs appear on their owning location detail, not as invented stage paragraphs. Nulls remain null in the models.
 
@@ -134,11 +138,11 @@ After populating numbers, rebuild and fully restart the app; the asset fingerpri
 
 References: [url_launcher](https://pub.dev/packages/url_launcher), [WhatsApp click to chat](https://faq.whatsapp.com/5913398998672934).
 
-## Offline stages 1–5 basemap
+## Offline stages 1–6 basemap
 
-The app bundles `assets/offline_maps/stages1_5.mbtiles`, covering the supplied stage corridors from Saint-Jean-Pied-de-Port to Estella. It opens by default and is the only in-app basemap. Outside its downloaded coverage, route lines and markers remain visible and the app offers external Google Maps directions. It does not include the Valcarlos alternative or wider Navarra coverage.
+The app bundles `assets/offline_maps/stages1_6.mbtiles`, covering the supplied stage corridors from Saint-Jean-Pied-de-Port to Los Arcos. It opens by default and is the only in-app basemap. Outside its downloaded coverage, route lines and markers remain visible and the app offers external Google Maps directions. It does not include the Valcarlos alternative or wider Navarra coverage.
 
-The archive combines the supplied French and Spanish Stage 1 tiles and the Stage 2–5 tiles. Coverage checks use actual detailed tile presence, not just the archive bounds. Higher zooms enlarge existing vector detail. Tile availability does not guarantee the completeness or accuracy of all OSM features.
+The archive combines the supplied French and Spanish Stage 1 tiles and the Stage 2–6 tiles. Coverage checks use actual detailed tile presence, not just the archive bounds. Higher zooms enlarge existing vector detail. Tile availability does not guarantee the completeness or accuracy of all OSM features.
 
 On first map opening the archive is verified by SHA256 and copied to application-support storage under `offline_maps/stages1-3-<fingerprint>.mbtiles`. Later launches reuse this copy. Old Navarra copies may remain in application-support storage but are not used. The new installation contains only the smaller archive. Allow space for both the bundled archive and its installed copy. The guide database is separate and unchanged.
 
@@ -198,7 +202,7 @@ The script generates assets/stage_maps/, assets/elevation_charts/, assets/stage_
 
 The first bundle has 75 images (about 23.8 MiB). Stage 1's elevation-chart URL and stage 43's map URL return HTTP 404. Stages 15, 23, 25, 29 and 43 have no elevation-chart URL. These show Image unavailable in this app version; correct the database source URL and rerun the script to include them. No substitute image is invented.
 
-Flutter reads these files directly from its asset bundle; there is no first-launch download or extra device-storage copy. Both inline and full-screen views use AssetImage and make no image network requests. The existing stage and accommodation database is unchanged. Accommodation photos still require connectivity. The separately bundled stages 1–5 vector basemap is described above.
+Flutter reads these files directly from its asset bundle; there is no first-launch download or extra device-storage copy. Both inline and full-screen views use AssetImage and make no image network requests. The existing stage and accommodation database is unchanged. Accommodation photos still require connectivity. The separately bundled stages 1–6 vector basemap is described above.
 
 ## Guide paragraphs populated from Word
 
@@ -252,7 +256,22 @@ Fiesta is by Bartek Nowak / Nowak.tv, downloaded from https://www.dafont.com/fie
 
 ## Stage 5 offline map update
 
-Stages 1–5 offline map: 252 tiles, zooms 0–14, 5.92 MiB. All 4059 track points have tile coverage at zooms 12–14, including 419 for stage 5. All original vector features preserved. SHA256: 1e325973a60161d47ebc7d6c6747413deacc77dd1a1e87f35fe0bef96121b8ae.
+Stages 1–5 offline map: 252 tiles, zooms 0–14, 5.92 MiB. All 4059 stages 1–5 track points have tile coverage at zooms 12–14, including 419 for stage 5. All original vector features preserved. SHA256: 1e325973a60161d47ebc7d6c6747413deacc77dd1a1e87f35fe0bef96121b8ae.
 
 The current asset is `assets/offline_maps/stages1_5.mbtiles`, covering Saint-Jean-Pied-de-Port to Estella. Rebuild and reinstall to include it; its new fingerprint automatically selects a fresh device copy. Guide database and route guidance eligibility are unchanged.
+
+
+## Stage 6 track import (16 September 2026)
+
+Imported 706 corrected CSV track points (6000–6705), preserving elevations, distances and walking weights. Points 6704–6705 use Stage 6 path 43 rather than Stage 7 path 44. See docs/stage6_import.json for the audit. Existing records are unchanged. The initial import contained large gaps, subsequently subdivided in version 0.2.8 as documented below. The map bundle was expanded to stages 1–6 in version 0.2.9.
+
+
+## Stage 6 interpolation (0.2.8)
+
+Added 33 synthetic points (6706–6738) in the five segments over 250 metres, reducing their intervals to below 50 metres. Coordinates and elevations are linearly interpolated; incoming distances and walking weights are apportioned while preserving totals. Stage 6 now contains 739 points. Existing route validation is unchanged. These points estimate straight segments between recorded positions, not surveyed trail geometry. See docs/stage6_interpolation.json. Stage 6 tiles were added in version 0.2.9.
+
+
+## Stage 6 offline maps (0.2.9)
+
+Current bundle: assets/offline_maps/stages1_6.mbtiles, 299 vector tiles, zooms 0–14, 6.46 MiB. All 4798 track points across stages 1–6 have tile coverage at zooms 12–14. All source vector features are preserved in overlapping tiles. The new fingerprint selects a fresh device copy automatically after rebuilding and installing the app. No online map tiles are used. See docs/stages1_6_maps.json.
 

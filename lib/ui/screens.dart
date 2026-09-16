@@ -15,6 +15,7 @@ import 'app_title.dart';
 import 'app_logo.dart';
 import 'stage_directions.dart';
 import 'location_navigation.dart';
+import 'location_facilities.dart';
 
 class HomeScreen extends StatelessWidget {
   final CaminoRepository repository;
@@ -305,6 +306,7 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
             repository: widget.repository,
             location: widget.location,
           ),
+          LocationFacilities(location: widget.location),
           for (final url in widget.location.imageUrls) DatabaseImage(url),
           const SizedBox(height: 12),
           for (final paragraph in data.$1)

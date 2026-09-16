@@ -1,0 +1,70 @@
+{
+  "source": "C:\\Users\\markj\\OneDrive\\Desktop\\Python\\screenscraper\\output3.csv",
+  "source_sha256": "885a32d6d57f7f813d20e76ce991f3352ea9ade3d04b45184a93ca097d396cc6",
+  "stage": 6,
+  "points_added": 706,
+  "ids": [
+    6000,
+    6705
+  ],
+  "path_counts": {
+    "38": 82,
+    "39": 42,
+    "40": 15,
+    "41": 146,
+    "42": 120,
+    "43": 301
+  },
+  "corrections": [
+    {
+      "track_point_id": 6704,
+      "column": "pathID",
+      "from": 44,
+      "to": 43
+    },
+    {
+      "track_point_id": 6705,
+      "column": "pathID",
+      "from": 44,
+      "to": 43
+    }
+  ],
+  "distance_metres": 21852.72968764917,
+  "weighted_minutes_at_4_6_kmh": 241.87374205941958,
+  "elevation_range": [
+    421.3180541992188,
+    675.2647705078125
+  ],
+  "segments_over_250m": [
+    {
+      "from": 6527,
+      "to": 6528,
+      "metres": 250.51168972850786
+    },
+    {
+      "from": 6528,
+      "to": 6529,
+      "metres": 254.8005619485742
+    },
+    {
+      "from": 6578,
+      "to": 6579,
+      "metres": 327.38105342311997
+    },
+    {
+      "from": 6587,
+      "to": 6588,
+      "metres": 632.8039866570001
+    },
+    {
+      "from": 6659,
+      "to": 6660,
+      "metres": 294.4438388437761
+    }
+  ],
+  "notes": [
+    "Original coordinates, elevations and metrics retained. No interpolation performed.",
+    "Final two points assigned to stage 6 path 43 instead of stage 7 path 44.",
+    "Full guidance remains subject to existing geometry validation; offline tiles currently cover stages 1\u20135 only."
+  ]
+}

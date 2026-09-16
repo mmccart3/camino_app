@@ -52,6 +52,15 @@ class Stage extends SourceRecord {
 }
 
 class Location extends SourceRecord {
+  bool? facility(String column) => switch (source[column]) {
+    1 => true,
+    0 => false,
+    _ => null,
+  };
+  bool? get hasBarCafe => facility('hasBarCafe');
+  bool? get hasPharmacy => facility('hasPharmacy');
+  bool? get hasGroceryStore => facility('hasGroceryStore');
+
   final int id;
   final int? priorLocationId,
       nextLocationId,

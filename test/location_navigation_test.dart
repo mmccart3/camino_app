@@ -230,7 +230,7 @@ void main() {
         data.points.first.position,
       );
       expect(planned, isNotNull);
-      final map = File('assets/offline_maps/stages1_5.mbtiles').absolute.path;
+      final map = File('assets/offline_maps/stages1_6.mbtiles').absolute.path;
       expect(
         await OfflineCoverage.covers(
           planned!.points.map((p) => p.position).toList(),
