@@ -7,6 +7,7 @@ import 'ui/app_title.dart';
 import 'ui/app_theme.dart';
 import 'ui/splash_screen.dart';
 import 'ui/walking_alerts.dart';
+import 'ui/app_viewport.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,11 +38,13 @@ class _CaminoAppState extends State<CaminoApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: appTitle,
-    builder: (context, child) => Column(
-      children: [
-        Expanded(child: child ?? const SizedBox.shrink()),
-        const WalkingSessionBanner(),
-      ],
+    builder: (context, child) => AppViewport(
+      child: Column(
+        children: [
+          Expanded(child: child ?? const SizedBox.shrink()),
+          const WalkingSessionBanner(),
+        ],
+      ),
     ),
     debugShowCheckedModeBanner: false,
     theme: buildCaminoTheme(),

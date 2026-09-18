@@ -75,7 +75,8 @@ class Location extends SourceRecord {
       name = title(r, 'locationName'),
       priorLocationId = optionalInt(r, 'priorLoc'),
       nextLocationId = optionalInt(r, 'nextLoc'),
-      alternativePriorLocationId = optionalInt(r, 'altPriorLoc'),
+      alternativePriorLocationId =
+          optionalInt(r, 'altPriorLoc') ?? optionalInt(r, 'altProrLoc'),
       alternativeNextLocationId = optionalInt(r, 'altNextLoc'),
       imageUrls = List.unmodifiable([
         for (var i = 1; i <= 4; i++)

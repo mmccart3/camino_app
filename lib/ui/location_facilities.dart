@@ -33,7 +33,18 @@ class LocationFacilities extends StatelessWidget {
             children: [
               Icon(icon, size: 48),
               const SizedBox(height: 6),
-              Text(label, textAlign: TextAlign.center),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  softWrap: false,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(fontSize: 12),
+                ),
+              ),
             ],
           ),
         ),

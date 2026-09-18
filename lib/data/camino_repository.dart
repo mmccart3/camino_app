@@ -7,6 +7,17 @@ import 'stage_order.dart';
 class CaminoRepository {
   final LocalDatabase local;
   CaminoRepository(this.local);
+  Future<Map<int, Location>> locationsByIds(Set<int> ids) async {
+    if (ids.isEmpty) return {};
+    final db = await local.database;
+    final rows = await db.query(
+      'locations',
+      where: 'ID IN (${List.filled(ids.length, '?').join(',')})',
+      whereArgs: ids.toList(),
+    );
+    return {for (final row in rows) integer(row, 'ID'): Location.fromRow(row)};
+  }
+
   Future<List<Row>> _rows(
     String table, {
     String? where,

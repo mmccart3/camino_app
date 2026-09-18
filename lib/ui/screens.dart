@@ -16,6 +16,7 @@ import 'app_logo.dart';
 import 'stage_directions.dart';
 import 'location_navigation.dart';
 import 'location_facilities.dart';
+import 'location_links.dart';
 import 'elevation_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -47,7 +48,7 @@ class HomeScreen extends StatelessWidget {
         const AppLogo(),
         const SizedBox(height: 24),
         Text(
-          'One stage at a time.',
+          'One step at a time.',
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         const SizedBox(height: 12),
@@ -68,14 +69,6 @@ class HomeScreen extends StatelessWidget {
           label: const Text('Trail elevation'),
         ),
         const SizedBox(height: 24),
-        const Card(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              'Your Camino guide is stored on this device. Each stage shows whether its route is ready for guidance.',
-            ),
-          ),
-        ),
         const Text(
           'Guide text, available route geometry and bundled maps work offline. Accommodation photos and Google Maps may need a connection.',
         ),
@@ -321,6 +314,10 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
         padding: const EdgeInsets.all(20),
         children: [
           LocationNavigationButton(
+            repository: widget.repository,
+            location: widget.location,
+          ),
+          LocationLinks(
             repository: widget.repository,
             location: widget.location,
           ),
