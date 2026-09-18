@@ -16,6 +16,7 @@ import 'app_logo.dart';
 import 'stage_directions.dart';
 import 'location_navigation.dart';
 import 'location_facilities.dart';
+import 'elevation_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final CaminoRepository repository;
@@ -59,6 +60,12 @@ class HomeScreen extends StatelessWidget {
           ),
           icon: const Icon(Icons.route),
           label: const Text('Explore stages'),
+        ),
+        OutlinedButton.icon(
+          onPressed: () =>
+              navigate(context, ElevationScreen(repository: repository)),
+          icon: const Icon(Icons.landscape_outlined),
+          label: const Text('Trail elevation'),
         ),
         const SizedBox(height: 24),
         const Card(
@@ -230,6 +237,17 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
             PublishedImage(
               assetPath: StageImageAssets.elevation(widget.stage.id),
               title: 'Published elevation chart',
+            ),
+            OutlinedButton.icon(
+              onPressed: () => navigate(
+                context,
+                ElevationScreen(
+                  repository: widget.repository,
+                  stage: widget.stage,
+                ),
+              ),
+              icon: const Icon(Icons.landscape_outlined),
+              label: const Text('Explore elevation profile'),
             ),
           ],
           const SizedBox(height: 20),

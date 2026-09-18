@@ -2,6 +2,12 @@
 
 The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. Existing records and URLs are preserved; location service fields and their supporting evidence are added by the documented maintenance workflow. The old fictional fixture generator has been removed.
 
+## Offline elevation profiles
+
+Version 0.2.12 adds **Trail elevation** on Home and **Explore elevation profile** beside the published elevation chart on each stage. Profiles use the separate `elevation_points` table imported from the supplied 10 m CSV. The published charts remain available. Tap or use the slider to inspect points; pinch to zoom. Update my route elevation requests a foreground GPS fix and marks the nearest supplied elevation sample.
+
+The initial import has 12,520 samples on paths 1–42. Stage 6 is partial (path 43 is missing); later and alternative stages remain unavailable until supplied. The chart distance is the sum of **sampled sections**, not total trail distance: unsampled joins and endpoints are excluded. See [workflow and coverage](docs/elevation_profiles.md) and [import audit](docs/elevation_import.json).
+
 ## Location services
 
 Location pages show large 48-pixel icons with short labels for available bars/cafés, pharmacies and groceries. Unavailable and unknown services are hidden; if none are available, the entire section is hidden. The database still distinguishes yes, no and unknown. Source-check dates and business evidence are retained. See [Location services workflow](docs/location_facilities.md) and the [review report](docs/location_facilities_review.md). All data is bundled and read offline; the app does not query Overpass.
@@ -12,7 +18,7 @@ Places along the way, the published stage map and elevation chart appear before 
 
 ## Run and validate
 
-Version **0.2.11+16** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+Version **0.2.12+17** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
 
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 

@@ -1,0 +1,385 @@
+{
+  "sourceSHA256": "f6407f3a5565d87b929c047296c5a9a96cf7e6bed06ccb9c6d5a7ffffbdbdeab",
+  "distanceBasis": "sampling_interval",
+  "paths": [
+    {
+      "pathID": 1,
+      "stageID": 1,
+      "samples": 528,
+      "sampledMetres": 5270.0,
+      "startOffsetMetres": 20.6,
+      "endOffsetMetres": 32.2,
+      "gapSequences": []
+    },
+    {
+      "pathID": 2,
+      "stageID": 1,
+      "samples": 232,
+      "sampledMetres": 2310.0,
+      "startOffsetMetres": 8.0,
+      "endOffsetMetres": 19.4,
+      "gapSequences": []
+    },
+    {
+      "pathID": 3,
+      "stageID": 1,
+      "samples": 373,
+      "sampledMetres": 3720.0,
+      "startOffsetMetres": 32.3,
+      "endOffsetMetres": 19.7,
+      "gapSequences": []
+    },
+    {
+      "pathID": 4,
+      "stageID": 1,
+      "samples": 327,
+      "sampledMetres": 3260.0,
+      "startOffsetMetres": 11.0,
+      "endOffsetMetres": 37.7,
+      "gapSequences": []
+    },
+    {
+      "pathID": 5,
+      "stageID": 1,
+      "samples": 178,
+      "sampledMetres": 1770.0,
+      "startOffsetMetres": 5.8,
+      "endOffsetMetres": 14.5,
+      "gapSequences": []
+    },
+    {
+      "pathID": 6,
+      "stageID": 1,
+      "samples": 229,
+      "sampledMetres": 2280.0,
+      "startOffsetMetres": 109.0,
+      "endOffsetMetres": 3.3,
+      "gapSequences": []
+    },
+    {
+      "pathID": 7,
+      "stageID": 1,
+      "samples": 161,
+      "sampledMetres": 1600.0,
+      "startOffsetMetres": 29.0,
+      "endOffsetMetres": 24.4,
+      "gapSequences": []
+    },
+    {
+      "pathID": 8,
+      "stageID": 1,
+      "samples": 391,
+      "sampledMetres": 3900.0,
+      "startOffsetMetres": 10.6,
+      "endOffsetMetres": 13.9,
+      "gapSequences": []
+    },
+    {
+      "pathID": 9,
+      "stageID": 2,
+      "samples": 303,
+      "sampledMetres": 3020.0,
+      "startOffsetMetres": 19.1,
+      "endOffsetMetres": 36.1,
+      "gapSequences": []
+    },
+    {
+      "pathID": 10,
+      "stageID": 2,
+      "samples": 371,
+      "sampledMetres": 3700.0,
+      "startOffsetMetres": 11.9,
+      "endOffsetMetres": 52.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 11,
+      "stageID": 2,
+      "samples": 492,
+      "sampledMetres": 4910.0,
+      "startOffsetMetres": 7.8,
+      "endOffsetMetres": 27.6,
+      "gapSequences": []
+    },
+    {
+      "pathID": 12,
+      "stageID": 2,
+      "samples": 177,
+      "sampledMetres": 1760.0,
+      "startOffsetMetres": 8.6,
+      "endOffsetMetres": 51.4,
+      "gapSequences": []
+    },
+    {
+      "pathID": 13,
+      "stageID": 2,
+      "samples": 449,
+      "sampledMetres": 4480.0,
+      "startOffsetMetres": 13.9,
+      "endOffsetMetres": 55.5,
+      "gapSequences": []
+    },
+    {
+      "pathID": 14,
+      "stageID": 2,
+      "samples": 367,
+      "sampledMetres": 3660.0,
+      "startOffsetMetres": 9.2,
+      "endOffsetMetres": 153.3,
+      "gapSequences": []
+    },
+    {
+      "pathID": 15,
+      "stageID": 3,
+      "samples": 285,
+      "sampledMetres": 2840.0,
+      "startOffsetMetres": 147.0,
+      "endOffsetMetres": 39.5,
+      "gapSequences": []
+    },
+    {
+      "pathID": 16,
+      "stageID": 3,
+      "samples": 54,
+      "sampledMetres": 530.0,
+      "startOffsetMetres": 21.1,
+      "endOffsetMetres": 80.6,
+      "gapSequences": []
+    },
+    {
+      "pathID": 17,
+      "stageID": 3,
+      "samples": 201,
+      "sampledMetres": 2000.0,
+      "startOffsetMetres": 19.5,
+      "endOffsetMetres": 60.0,
+      "gapSequences": []
+    },
+    {
+      "pathID": 18,
+      "stageID": 3,
+      "samples": 61,
+      "sampledMetres": 600.0,
+      "startOffsetMetres": 11.5,
+      "endOffsetMetres": 48.4,
+      "gapSequences": []
+    },
+    {
+      "pathID": 19,
+      "stageID": 3,
+      "samples": 307,
+      "sampledMetres": 3060.0,
+      "startOffsetMetres": 4.7,
+      "endOffsetMetres": 50.1,
+      "gapSequences": []
+    },
+    {
+      "pathID": 20,
+      "stageID": 3,
+      "samples": 190,
+      "sampledMetres": 1890.0,
+      "startOffsetMetres": 23.2,
+      "endOffsetMetres": 86.2,
+      "gapSequences": []
+    },
+    {
+      "pathID": 21,
+      "stageID": 3,
+      "samples": 114,
+      "sampledMetres": 1130.0,
+      "startOffsetMetres": 12.4,
+      "endOffsetMetres": 55.4,
+      "gapSequences": []
+    },
+    {
+      "pathID": 22,
+      "stageID": 3,
+      "samples": 62,
+      "sampledMetres": 610.0,
+      "startOffsetMetres": 26.0,
+      "endOffsetMetres": 59.9,
+      "gapSequences": []
+    },
+    {
+      "pathID": 23,
+      "stageID": 3,
+      "samples": 300,
+      "sampledMetres": 2990.0,
+      "startOffsetMetres": 16.0,
+      "endOffsetMetres": 59.6,
+      "gapSequences": []
+    },
+    {
+      "pathID": 24,
+      "stageID": 3,
+      "samples": 65,
+      "sampledMetres": 640.0,
+      "startOffsetMetres": 12.0,
+      "endOffsetMetres": 62.5,
+      "gapSequences": []
+    },
+    {
+      "pathID": 25,
+      "stageID": 3,
+      "samples": 394,
+      "sampledMetres": 3930.0,
+      "startOffsetMetres": 15.2,
+      "endOffsetMetres": 38.5,
+      "gapSequences": []
+    },
+    {
+      "pathID": 26,
+      "stageID": 4,
+      "samples": 504,
+      "sampledMetres": 5030.0,
+      "startOffsetMetres": 44.7,
+      "endOffsetMetres": 77.7,
+      "gapSequences": []
+    },
+    {
+      "pathID": 27,
+      "stageID": 4,
+      "samples": 620,
+      "sampledMetres": 6190.0,
+      "startOffsetMetres": 23.3,
+      "endOffsetMetres": 61.2,
+      "gapSequences": []
+    },
+    {
+      "pathID": 28,
+      "stageID": 4,
+      "samples": 232,
+      "sampledMetres": 2310.0,
+      "startOffsetMetres": 17.8,
+      "endOffsetMetres": 60.0,
+      "gapSequences": []
+    },
+    {
+      "pathID": 29,
+      "stageID": 4,
+      "samples": 349,
+      "sampledMetres": 3480.0,
+      "startOffsetMetres": 7.8,
+      "endOffsetMetres": 103.4,
+      "gapSequences": []
+    },
+    {
+      "pathID": 30,
+      "stageID": 4,
+      "samples": 279,
+      "sampledMetres": 2780.0,
+      "startOffsetMetres": 13.5,
+      "endOffsetMetres": 105.6,
+      "gapSequences": []
+    },
+    {
+      "pathID": 31,
+      "stageID": 4,
+      "samples": 177,
+      "sampledMetres": 1760.0,
+      "startOffsetMetres": 69.7,
+      "endOffsetMetres": 69.6,
+      "gapSequences": []
+    },
+    {
+      "pathID": 32,
+      "stageID": 4,
+      "samples": 297,
+      "sampledMetres": 2960.0,
+      "startOffsetMetres": 14.7,
+      "endOffsetMetres": 368.7,
+      "gapSequences": []
+    },
+    {
+      "pathID": 33,
+      "stageID": 5,
+      "samples": 444,
+      "sampledMetres": 4430.0,
+      "startOffsetMetres": 395.7,
+      "endOffsetMetres": 9.9,
+      "gapSequences": []
+    },
+    {
+      "pathID": 34,
+      "stageID": 5,
+      "samples": 267,
+      "sampledMetres": 2660.0,
+      "startOffsetMetres": 43.0,
+      "endOffsetMetres": 140.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 35,
+      "stageID": 5,
+      "samples": 750,
+      "sampledMetres": 7490.0,
+      "startOffsetMetres": 145.6,
+      "endOffsetMetres": 1764.1,
+      "gapSequences": []
+    },
+    {
+      "pathID": 36,
+      "stageID": 5,
+      "samples": 667,
+      "sampledMetres": 6660.0,
+      "startOffsetMetres": 3.5,
+      "endOffsetMetres": 1546.6,
+      "gapSequences": []
+    },
+    {
+      "pathID": 37,
+      "stageID": 5,
+      "samples": 398,
+      "sampledMetres": 3970.0,
+      "startOffsetMetres": 83.7,
+      "endOffsetMetres": 131.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 38,
+      "stageID": 6,
+      "samples": 163,
+      "sampledMetres": 1620.0,
+      "startOffsetMetres": 140.3,
+      "endOffsetMetres": 53.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 39,
+      "stageID": 6,
+      "samples": 107,
+      "sampledMetres": 1060.0,
+      "startOffsetMetres": 6.6,
+      "endOffsetMetres": 53.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 40,
+      "stageID": 6,
+      "samples": 64,
+      "sampledMetres": 630.0,
+      "startOffsetMetres": 7.4,
+      "endOffsetMetres": 46.6,
+      "gapSequences": []
+    },
+    {
+      "pathID": 41,
+      "stageID": 6,
+      "samples": 395,
+      "sampledMetres": 3940.0,
+      "startOffsetMetres": 12.5,
+      "endOffsetMetres": 61.0,
+      "gapSequences": []
+    },
+    {
+      "pathID": 42,
+      "stageID": 6,
+      "samples": 196,
+      "sampledMetres": 1950.0,
+      "startOffsetMetres": 21.3,
+      "endOffsetMetres": 40.0,
+      "gapSequences": []
+    }
+  ],
+  "sampleCount": 12520
+}

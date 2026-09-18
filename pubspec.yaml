@@ -1,7 +1,7 @@
 name: camino_app
 description: Offline-first Camino MVP with a replaceable bundled SQLite dataset.
 publish_to: none
-version: 0.2.11+16
+version: 0.2.12+17
 environment:
   sdk: '>=3.10.0 <4.0.0'
 dependencies:
