@@ -2,6 +2,14 @@
 
 The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. Existing records and URLs are preserved; location service fields and their supporting evidence are added by the documented maintenance workflow. The old fictional fixture generator has been removed.
 
+## Ahead of me
+
+Version 0.2.14 adds **Ahead of me** on Home, stage pages and the route map toolbar. Choose a stage, then **Update position** or **Preview from stage start**. Upcoming path destinations appear in route order with walking distance, estimated minutes and available service icons. Filters show recorded cafés, pharmacies or groceries; tapping a place opens its location page.
+
+The view ends at the selected stage's finish and uses validated navigation tracks, not the elevation samples. Distance sums incoming `distance_3d_meters` after the nearest track point; time sums `weighted_distance / paceKmh` seconds and displays rounded-up minutes. Missing distance/time inputs remain unavailable independently. Passed destinations and zero-distance repeated boundaries are omitted. Estimates end at location waypoints, not business doors, and exclude stops.
+
+GPS is user-triggered and must be recent (within two minutes), accurate to 50 m or better, and within 150 m of a recorded track point. A distant or inaccurate fix produces a message rather than estimates. The displayed timestamp identifies the snapshot; tap Update position as you walk. No new background tracking is enabled. Preview requires no GPS. Incomplete/unvalidated stages explain why estimates are unavailable. Unknown or absent service icons remain hidden. All route and service data is read offline.
+
 ## Location navigation and layout
 
 Version 0.2.13 adds named prior, next and alternate location links to location pages, using existing database relationships (`priorLoc`, `nextLoc`, `altPriorLoc`, `altNextLoc`). Null, zero, missing and self-referencing destinations are omitted. Local service labels use smaller single-line text beneath the large icons. Home now says “One step at a time.” and the extra stored-guide explanation is removed.
@@ -24,7 +32,7 @@ Places along the way, the published stage map and elevation chart appear before 
 
 ## Run and validate
 
-Version **0.2.13+18** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+Version **0.2.14+19** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
 
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 

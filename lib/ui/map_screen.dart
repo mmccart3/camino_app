@@ -1,4 +1,5 @@
 import 'offline_basemap.dart';
+import 'ahead_screen.dart';
 import 'walking_alerts.dart';
 import '../services/navigation_session.dart';
 import 'stage_map_coverage.dart';
@@ -97,7 +98,23 @@ class _MapScreenState extends State<MapScreen> {
       : '${(duration.inMicroseconds / Duration.microsecondsPerMinute).ceil()} min';
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(widget.stage.name)),
+    appBar: AppBar(
+      title: Text(widget.stage.name),
+      actions: [
+        IconButton(
+          tooltip: 'Ahead of me',
+          icon: const Icon(Icons.directions_walk),
+          onPressed: () => navigate(
+            context,
+            AheadScreen(
+              repository: widget.repository,
+              settings: widget.settings,
+              stage: widget.stage,
+            ),
+          ),
+        ),
+      ],
+    ),
     body: DataView(
       future: future,
       builder: (route) {

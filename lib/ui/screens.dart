@@ -18,6 +18,7 @@ import 'location_navigation.dart';
 import 'location_facilities.dart';
 import 'location_links.dart';
 import 'elevation_screen.dart';
+import 'ahead_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final CaminoRepository repository;
@@ -61,6 +62,14 @@ class HomeScreen extends StatelessWidget {
           ),
           icon: const Icon(Icons.route),
           label: const Text('Explore stages'),
+        ),
+        FilledButton.icon(
+          onPressed: () => navigate(
+            context,
+            AheadStagePicker(repository: repository, settings: settings),
+          ),
+          icon: const Icon(Icons.directions_walk),
+          label: const Text('Ahead of me'),
         ),
         OutlinedButton.icon(
           onPressed: () =>
@@ -255,6 +264,18 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
             ),
             icon: const Icon(Icons.map_outlined),
             label: const Text('Route & guidance'),
+          ),
+          OutlinedButton.icon(
+            onPressed: () => navigate(
+              context,
+              AheadScreen(
+                repository: widget.repository,
+                settings: widget.settings,
+                stage: widget.stage,
+              ),
+            ),
+            icon: const Icon(Icons.directions_walk),
+            label: const Text('Ahead of me'),
           ),
           const SizedBox(height: 16),
           StageDirections(route: route),
