@@ -2,9 +2,9 @@
 
 ## Using the app
 
-Open **Trail elevation** from Home for an overview of every stage. Stages with samples have charts; unsupplied stages are explicitly unavailable. Alternative stages stay separate and are never concatenated into the primary route. Open **Explore this profile**, or **Explore elevation profile** on a stage page, for tap inspection, a sample slider and pinch zoom.
+Open **Trail elevation** from Home for an overview of every stage. Stages with samples have charts; unsupplied stages are explicitly unavailable. Alternative stages stay separate and are never concatenated into the primary route. Open **Explore this profile**, or **Explore elevation profile** on a stage page, for tap inspection and a sample slider. All charts support pinch zoom, +/− buttons, dragging while zoomed and Reset view. Numbered pointers identify nearby guide locations, with a matching name key underneath. Locations without a sample within 150 m on their associated paths are listed as unavailable instead of being placed on invented terrain.
 
-**Update my route elevation** obtains one foreground GPS fix and shows the nearest dataset sample within 35 m as an orange marker. The fix must be no older than two minutes and its reported horizontal accuracy must be at most 50 m. It reports route elevation from the CSV, not GPS altitude. Tap again to refresh as you walk. GPS permission denial, poor accuracy and absent nearby samples produce an unavailable message, never a guessed elevation. White marks the manually selected sample. The chart and sample queries work offline; no online elevation API or background GPS is added.
+**Update my route elevation** obtains one foreground GPS fix and shows the nearest dataset sample within 200 m as a larger orange marker with a white border and vertical guide. The fix must be no older than two minutes and its reported horizontal accuracy must be at most 50 m. It reports route elevation from the CSV, not GPS altitude, and displays the offset from your GPS position to the matched sample. Tap again to refresh as you walk. GPS permission denial, poor accuracy and absent nearby samples produce an unavailable message, never a guessed elevation. White marks the manually selected sample. The chart and sample queries work offline; no online elevation API or background GPS is added.
 
 ## Current coverage and limitations
 

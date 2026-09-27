@@ -73,6 +73,12 @@ class ElevationRepository {
       offset += points.last.distanceMetres;
       previous = points.last;
     }
-    return ElevationProfile(stage, sections, missing, issues);
+    return ElevationProfile(
+      stage,
+      sections,
+      missing,
+      issues,
+      locations: await guide.locations(stage.id),
+    );
   }
 }

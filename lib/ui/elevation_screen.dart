@@ -66,8 +66,8 @@ class _ElevationScreenState extends State<ElevationScreen> {
                   ? 'The location fix is too old. Please try again.'
                   : fix.accuracy > 50
                   ? 'GPS accuracy is too low to identify a nearby elevation sample. Please try again.'
-                  : 'No elevation sample within 35 m of your position in this view.')
-            : 'Route elevation near you: ${nearest.point.elevationMetres.round()} m · stage $stage, path ${nearest.point.pathId}.\nUpdated ${TimeOfDay.fromDateTime(fix.timestamp.toLocal()).format(context)}. Tap Update to refresh.';
+                  : 'No elevation sample within 200 m of your position in this view.')
+            : 'Route elevation near you: ${nearest.point.elevationMetres.round()} m · stage $stage, path ${nearest.point.pathId}. ${nearest.distanceFromRoute.round()} m from the matched route sample.\nUpdated ${TimeOfDay.fromDateTime(fix.timestamp.toLocal()).format(context)}. Tap Update to refresh.';
       });
     } catch (error) {
       if (mounted) setState(() => locationStatus = error.toString());
@@ -137,6 +137,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
                       ? null
                       : (point) => setState(() => selected = point),
                 ),
+                _ElevationLocationKey(profile: profile),
                 if (widget.stage == null)
                   TextButton(
                     onPressed: () => navigate(
@@ -189,4 +190,37 @@ class _ElevationScreenState extends State<ElevationScreen> {
       },
     ),
   );
+}
+
+class _ElevationLocationKey extends StatelessWidget {
+  final ElevationProfile profile;
+  const _ElevationLocationKey({required this.profile});
+  @override
+  Widget build(BuildContext context) {
+    final landmarks = profile.landmarks;
+    final marked = landmarks.map((mark) => mark.location.id).toSet();
+    final missing = profile.locations.where(
+      (place) => !marked.contains(place.id),
+    );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 16,
+            runSpacing: 8,
+            children: [
+              for (var i = 0; i < landmarks.length; i++)
+                Text('${i + 1}. ${landmarks[i].location.name}'),
+            ],
+          ),
+          if (missing.isNotEmpty)
+            Text(
+              'No nearby elevation sample for: ${missing.map((place) => place.name).join(', ')}.',
+            ),
+        ],
+      ),
+    );
+  }
 }

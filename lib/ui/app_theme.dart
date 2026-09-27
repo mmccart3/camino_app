@@ -34,7 +34,7 @@ ThemeData buildCaminoTheme() {
     colorScheme: colors,
     scaffoldBackgroundColor: surface,
     appBarTheme: const AppBarTheme(
-      centerTitle: false,
+      centerTitle: true,
       backgroundColor: caminoBlue,
       foregroundColor: caminoYellow,
       surfaceTintColor: Colors.transparent,

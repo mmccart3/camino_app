@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart' show Distance, LengthUnit;
 import '../data/elevation_profile.dart';
 import 'app_title.dart';
 
-class ElevationChart extends StatelessWidget {
+class ElevationChart extends StatefulWidget {
   final ElevationProfile profile;
   final ElevationMatch? current;
   final ElevationPoint? selected;
@@ -16,6 +16,48 @@ class ElevationChart extends StatelessWidget {
     this.selected,
     this.onSelect,
   });
+
+  @override
+  State<ElevationChart> createState() => _ElevationChartState();
+}
+
+class _ElevationChartState extends State<ElevationChart> {
+  final transformation = TransformationController();
+  ElevationProfile get profile => widget.profile;
+  ElevationMatch? get current => widget.current;
+  ElevationPoint? get selected => widget.selected;
+  ValueChanged<ElevationPoint>? get onSelect => widget.onSelect;
+
+  @override
+  void dispose() {
+    transformation.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant ElevationChart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.profile != widget.profile) {
+      transformation.value = Matrix4.identity();
+    }
+  }
+
+  void zoom(double factor, double width) {
+    final old = transformation.value;
+    final scale = old.getMaxScaleOnAxis();
+    final next = (scale * factor).clamp(1.0, 8.0);
+    final tx = (width / 2 - (width / 2 - old.entry(0, 3)) / scale * next).clamp(
+      -width * (next - 1),
+      0.0,
+    );
+    final ty = (160 - (160 - old.entry(1, 3)) / scale * next).clamp(
+      -320 * (next - 1),
+      0.0,
+    );
+    transformation.value = Matrix4.diagonal3Values(next, next, 1)
+      ..setEntry(0, 3, tx)
+      ..setEntry(1, 3, ty);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,15 +99,49 @@ class ElevationChart extends StatelessWidget {
                     if (nearest != null) onSelect!(nearest);
                   },
             child: CustomPaint(
-              size: Size(width, 250),
+              key: const ValueKey('elevation-canvas'),
+              size: Size(width, 320),
               painter: ElevationPainter(profile, current, selected),
             ),
           );
-          return SizedBox(
-            height: 250,
-            child: onSelect == null
-                ? chart
-                : InteractiveViewer(minScale: 1, maxScale: 6, child: chart),
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: 320,
+                child: InteractiveViewer(
+                  transformationController: transformation,
+                  minScale: 1,
+                  maxScale: 8,
+                  panEnabled: true,
+                  scaleEnabled: true,
+                  child: chart,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    tooltip: 'Zoom out',
+                    onPressed: () => zoom(1 / 1.5, width),
+                    icon: const Icon(Icons.remove),
+                  ),
+                  IconButton(
+                    tooltip: 'Zoom in',
+                    onPressed: () => zoom(1.5, width),
+                    icon: const Icon(Icons.add),
+                  ),
+                  TextButton(
+                    onPressed: () => transformation.value = Matrix4.identity(),
+                    child: const Text('Reset view'),
+                  ),
+                ],
+              ),
+              const Text(
+                'Pinch or use + / − to zoom; drag to pan when zoomed.',
+                style: TextStyle(fontSize: 12),
+              ),
+            ],
           );
         },
       ),
@@ -91,7 +167,7 @@ class ElevationPainter extends CustomPainter {
       (points.map((p) => p.elevationMetres).reduce(math.max) / 100).ceil() *
           100.0,
     );
-    final area = Rect.fromLTRB(52, 24, size.width - 16, size.height - 48);
+    final area = Rect.fromLTRB(52, 96, size.width - 16, size.height - 48);
     double x(double metres) => area.left + metres / profile.length * area.width;
     double y(double elevation) =>
         area.bottom - (elevation - low) / (high - low) * area.height;
@@ -135,6 +211,38 @@ class ElevationPainter extends CustomPainter {
       Offset(size.width / 2, size.height - 17),
       centered: true,
     );
+    final landmarks = profile.landmarks;
+    for (var i = 0; i < landmarks.length; i++) {
+      final match = landmarks[i].match;
+      final anchorX = landmarks.length == 1
+          ? area.center.dx
+          : area.left + 12 + i * (area.width - 24) / (landmarks.length - 1);
+      final anchorY = 14.0 + (i % 3) * 24;
+      final point = Offset(
+        x(match.chartDistance),
+        y(match.point.elevationMetres),
+      );
+      canvas.drawLine(
+        Offset(anchorX, anchorY + 10),
+        point,
+        Paint()
+          ..color = Colors.white54
+          ..strokeWidth = 1,
+      );
+      canvas.drawCircle(point, 3, Paint()..color = Colors.white);
+    }
+    for (var i = 0; i < landmarks.length; i++) {
+      final anchorX = landmarks.length == 1
+          ? area.center.dx
+          : area.left + 12 + i * (area.width - 24) / (landmarks.length - 1);
+      final anchorY = 14.0 + (i % 3) * 24;
+      canvas.drawCircle(
+        Offset(anchorX, anchorY),
+        10,
+        Paint()..color = const Color(0xFF102F50),
+      );
+      label('${i + 1}', Offset(anchorX, anchorY - 6), centered: true);
+    }
     canvas.save();
     canvas.clipRect(area.inflate(5));
     const geography = Distance();
@@ -188,7 +296,17 @@ class ElevationPainter extends CustomPainter {
     }
     final fix = current;
     if (fix != null) {
-      marker(fix.chartDistance, fix.point.elevationMetres, Colors.orangeAccent);
+      final point = Offset(x(fix.chartDistance), y(fix.point.elevationMetres));
+      canvas.drawLine(
+        point,
+        Offset(point.dx, area.bottom),
+        Paint()
+          ..color = Colors.orangeAccent
+          ..strokeWidth = 2,
+      );
+      canvas.drawCircle(point, 13, Paint()..color = Colors.black87);
+      canvas.drawCircle(point, 11, Paint()..color = Colors.white);
+      canvas.drawCircle(point, 8, Paint()..color = Colors.orangeAccent);
     }
     canvas.restore();
   }

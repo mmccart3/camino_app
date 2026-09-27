@@ -122,6 +122,61 @@ void main() {
     }
   });
 
+  test(
+    'matches at 100 metres but rejects positions beyond 200 metres',
+    () async {
+      final profile = await ElevationRepository(
+        guide,
+      ).profile((await guide.stage(1))!);
+      final first = profile.sections.first;
+      final point = first.points.first;
+      final isolated = ElevationProfile(
+        profile.stage,
+        [
+          ElevationSection(first.path, [point], 0),
+        ],
+        [],
+        [],
+      );
+      expect(
+        isolated.nearest(
+          LatLng(point.position.latitude + .0009, point.position.longitude),
+        ),
+        isNotNull,
+      );
+      expect(
+        isolated.nearest(
+          LatLng(point.position.latitude + .002, point.position.longitude),
+        ),
+        isNull,
+      );
+      expect(isolated.nearest(point.position, accuracy: 51), isNull);
+    },
+  );
+
+  test('location annotations use nearby samples on their own paths', () async {
+    final profile = await ElevationRepository(
+      guide,
+    ).profile((await guide.stage(1))!);
+    expect(
+      profile.landmarks.map((mark) => mark.location.id),
+      containsAll([1, 9]),
+    );
+    expect(
+      profile.landmarks.every((mark) => mark.match.distanceFromRoute <= 150),
+      isTrue,
+    );
+    final partial = await ElevationRepository(
+      guide,
+    ).profile((await guide.stage(6))!);
+    expect(
+      partial.landmarks.any(
+        (mark) => mark.location.id == partial.stage.finishLocationId,
+      ),
+      isFalse,
+    );
+  });
+
   testWidgets('phone chart renders, accepts taps, and exports visual check', (
     tester,
   ) async {
@@ -178,9 +233,25 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.byType(CustomPaint).last);
+    await tester.tap(find.byKey(const ValueKey('elevation-canvas')));
     expect(selected, isNotNull);
     expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('Zoom in'));
+    await tester.pump();
+    final viewer = tester.widget<InteractiveViewer>(
+      find.byType(InteractiveViewer),
+    );
+    expect(
+      viewer.transformationController!.value.getMaxScaleOnAxis(),
+      greaterThan(1),
+    );
+    final beforePan = viewer.transformationController!.value.clone();
+    await tester.drag(find.byType(InteractiveViewer), const Offset(-30, -10));
+    await tester.pumpAndSettle();
+    expect(viewer.transformationController!.value, isNot(beforePan));
+    await tester.tap(find.text('Reset view'));
+    await tester.pump();
+    expect(viewer.transformationController!.value.getMaxScaleOnAxis(), 1);
     await tester.runAsync(() async {
       final image =
           await (key.currentContext!.findRenderObject()
@@ -213,6 +284,11 @@ void main() {
       }
       await tester.pumpAndSettle();
       expect(find.byType(ElevationChart), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.text('Missing elevation data for paths: 43.'),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(
         find.text('Missing elevation data for paths: 43.'),
         findsOneWidget,

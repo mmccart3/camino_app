@@ -37,6 +37,7 @@ class HomeScreen extends StatelessWidget {
       actions: [
         IconButton(
           tooltip: 'Settings',
+          iconSize: 30,
           icon: const Icon(Icons.settings_outlined),
           onPressed: () =>
               navigate(context, SettingsScreen(settings: settings)),

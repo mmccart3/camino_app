@@ -2,6 +2,10 @@
 
 The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. Existing records and URLs are preserved; location service fields and their supporting evidence are added by the documented maintenance workflow. The old fictional fixture generator has been removed.
 
+## Display and elevation improvements
+
+Version 0.2.15 centres AppBar titles, enlarges the Home settings button to 30 px, and adds a larger outlined current-elevation marker. Elevation matching now accepts samples within 200 m (GPS accuracy and freshness checks still apply). Both overview and detailed elevation charts support pan, pinch zoom, +/− and Reset view. Numbered pointers and a location-name key annotate nearby samples on each location's associated paths; unavailable locations are listed separately. This changes elevation lookup only, not off-route alert settings or Ahead of me thresholds.
+
 ## Ahead of me
 
 Version 0.2.14 adds **Ahead of me** on Home, stage pages and the route map toolbar. Choose a stage, then **Update position** or **Preview from stage start**. Upcoming path destinations appear in route order with walking distance, estimated minutes and available service icons. Filters show recorded cafés, pharmacies or groceries; tapping a place opens its location page.
@@ -32,7 +36,7 @@ Places along the way, the published stage map and elevation chart appear before 
 
 ## Run and validate
 
-Version **0.2.14+19** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+Version **0.2.15+20** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
 
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 
