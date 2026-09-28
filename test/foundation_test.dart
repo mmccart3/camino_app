@@ -144,7 +144,7 @@ void main() {
       final private = (await repository.privateAccommodation(1)).first;
       expect(
         private.bookingUrl,
-        'https://www.booking.com/hotel/fr/maison-e-bernat.html',
+        'https://www.booking.com/hotel/fr/maison-e-bernat.html?aid=818289&label=affnetcj-15734710_pub-8073556_site-101884570_pname-MM3+Enterprise+Limited_clkid-_cjevent-5b29e765ba1911f180aa00a10a18b8f7&utm_source=affnetcj&utm_medium=bannerindex&utm_campaign=fr&utm_term=index-15734710',
       );
       expect(private.imageUrls, isEmpty);
       expect((await repository.paths(1)).length, 8);

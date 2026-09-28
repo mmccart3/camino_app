@@ -8,7 +8,7 @@ class RouteNotifications {
   Future<void> prepare() async {
     if (!_initialized) {
       await plugin.initialize(
-        const InitializationSettings(
+        settings: const InitializationSettings(
           android: AndroidInitializationSettings('ic_stat_route'),
           iOS: DarwinInitializationSettings(
             requestAlertPermission: false,
@@ -38,10 +38,10 @@ class RouteNotifications {
   }
 
   Future<void> show(String title, String message) => plugin.show(
-    4102,
-    title,
-    message,
-    const NotificationDetails(
+    id: 4102,
+    title: title,
+    body: message,
+    notificationDetails: const NotificationDetails(
       android: AndroidNotificationDetails(
         'camino_off_route',
         'Off-route alerts',
@@ -56,6 +56,6 @@ class RouteNotifications {
     ),
   );
   Future<void> clear() async {
-    if (_initialized) await plugin.cancel(4102);
+    if (_initialized) await plugin.cancel(id: 4102);
   }
 }

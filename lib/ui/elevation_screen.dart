@@ -207,14 +207,6 @@ class _ElevationLocationKey extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Wrap(
-            spacing: 16,
-            runSpacing: 8,
-            children: [
-              for (var i = 0; i < landmarks.length; i++)
-                Text('${i + 1}. ${landmarks[i].location.name}'),
-            ],
-          ),
           if (missing.isNotEmpty)
             Text(
               'No nearby elevation sample for: ${missing.map((place) => place.name).join(', ')}.',

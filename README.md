@@ -2,6 +2,20 @@
 
 The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. Existing records and URLs are preserved; location service fields and their supporting evidence are added by the documented maintenance workflow. The old fictional fixture generator has been removed.
 
+## Astorga hotspot correction
+
+Version 0.2.18 fixes the stage 30 Astorga hotspot (ID 181, location 163). The rectangle now covers its visible label at (3, 195)–(204, 333) on the retained 1920-pixel map. Coordinates for all smaller map sizes are scaled consistently. No other database records changed. See `docs/astorga_hotspot_fix.json`.
+
+## Hotspot and stage database update
+
+Version 0.2.17 imports the supplied stages and mapLocationCoords tables while preserving all other app data. The existing 1920-pixel bundled maps remain in use. The ten corrected 1024-pixel hotspot rectangles on stage 36 are scaled by 1920/1024 into the 1920 coordinate fields; other 1920 coordinates remain unchanged. See `docs/hotspot_coordinate_update.json`. The existing invalid Astorga hotspot (ID 181, bottom Y = 0) remains excluded; no replacement coordinates were guessed. Rebuild and install the app to activate the updated asset database automatically.
+
+## Named elevation labels and Booking.com partner links
+
+Version 0.2.16 uses full location names on the elevation charts, arranged on non-overlapping rows with vertical pointer lines. The numbered name key is removed. Pan, zoom and the current-elevation marker remain available.
+
+The bundled database now applies the owner-supplied Booking.com partner parameters to 196 albergue links and 529 private-accommodation links: affiliate ID `818289`, the supplied CJ label/event string and UTM parameters. Existing destination paths, unrelated query parameters and fragments are preserved. Non-Booking URLs and “not on Booking” values are unchanged. See `docs/booking_partner_changes.json` for the before/after audit. Rebuild/install the app so the fingerprint-based database copy picks up these changes.
+
 ## Display and elevation improvements
 
 Version 0.2.15 centres AppBar titles, enlarges the Home settings button to 30 px, and adds a larger outlined current-elevation marker. Elevation matching now accepts samples within 200 m (GPS accuracy and freshness checks still apply). Both overview and detailed elevation charts support pan, pinch zoom, +/− and Reset view. Numbered pointers and a location-name key annotate nearby samples on each location's associated paths; unavailable locations are listed separately. This changes elevation lookup only, not off-route alert settings or Ahead of me thresholds.
@@ -36,7 +50,7 @@ Places along the way, the published stage map and elevation chart appear before 
 
 ## Run and validate
 
-Version **0.2.15+20** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
+Version **0.2.16+21** uses bundled offline maps only. Online OSM tiles and their switch have been removed. Stage and location navigation offer Google Maps when local coverage is unavailable. See [Location navigation](docs/location_navigation.md) for use, distance/ETA calculations, and coverage limitations. Install a rebuilt app to get this feature; updating SQLite alone does not update the screens.
 
 From `C:\Users\markj\src\camino_app_parts\camino_app`:
 

@@ -1,14 +1,14 @@
 name: camino_app
 description: Offline-first Camino MVP with a replaceable bundled SQLite dataset.
 publish_to: none
-version: 0.2.15+20
+version: 0.2.18+23
 environment:
   sdk: '>=3.10.0 <4.0.0'
 dependencies:
   flutter:
     sdk: flutter
   flutter_map: ^8.3.2
-  latlong2: ^0.9.1
+  latlong2: ^0.10.1
   geolocator: ^14.0.3
   sqflite: ^2.4.2
   sqflite_common_ffi: ^2.3.6
@@ -17,9 +17,9 @@ dependencies:
   crypto: ^3.0.7
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.2
-  flutter_map_vector_tiles: 2.8.1
+  flutter_map_vector_tiles: ^2.9.0
   flutter_map_vector_tiles_mbtiles: 1.0.0
-  flutter_local_notifications: ^19.5.0
+  flutter_local_notifications: ^22.3.1
   package_info_plus: ^10.2.1
 dev_dependencies:
   flutter_test:

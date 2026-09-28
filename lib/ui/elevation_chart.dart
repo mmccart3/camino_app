@@ -42,7 +42,7 @@ class _ElevationChartState extends State<ElevationChart> {
     }
   }
 
-  void zoom(double factor, double width) {
+  void zoom(double factor, double width, double height) {
     final old = transformation.value;
     final scale = old.getMaxScaleOnAxis();
     final next = (scale * factor).clamp(1.0, 8.0);
@@ -50,10 +50,8 @@ class _ElevationChartState extends State<ElevationChart> {
       -width * (next - 1),
       0.0,
     );
-    final ty = (160 - (160 - old.entry(1, 3)) / scale * next).clamp(
-      -320 * (next - 1),
-      0.0,
-    );
+    final ty = (height / 2 - (height / 2 - old.entry(1, 3)) / scale * next)
+        .clamp(-height * (next - 1), 0.0);
     transformation.value = Matrix4.diagonal3Values(next, next, 1)
       ..setEntry(0, 3, tx)
       ..setEntry(1, 3, ty);
@@ -72,6 +70,12 @@ class _ElevationChartState extends State<ElevationChart> {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final width = constraints.maxWidth;
+          final labels = _locationLabels(profile, width);
+          final header = labels.fold<double>(
+            24,
+            (h, label) => math.max(h, label.rect.bottom + 12),
+          );
+          final height = math.max(320.0, header + 224);
           final chart = GestureDetector(
             onTapUp: onSelect == null
                 ? null
@@ -100,7 +104,7 @@ class _ElevationChartState extends State<ElevationChart> {
                   },
             child: CustomPaint(
               key: const ValueKey('elevation-canvas'),
-              size: Size(width, 320),
+              size: Size(width, height),
               painter: ElevationPainter(profile, current, selected),
             ),
           );
@@ -108,7 +112,7 @@ class _ElevationChartState extends State<ElevationChart> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                height: 320,
+                height: height,
                 child: InteractiveViewer(
                   transformationController: transformation,
                   minScale: 1,
@@ -123,12 +127,12 @@ class _ElevationChartState extends State<ElevationChart> {
                 children: [
                   IconButton(
                     tooltip: 'Zoom out',
-                    onPressed: () => zoom(1 / 1.5, width),
+                    onPressed: () => zoom(1 / 1.5, width, height),
                     icon: const Icon(Icons.remove),
                   ),
                   IconButton(
                     tooltip: 'Zoom in',
-                    onPressed: () => zoom(1.5, width),
+                    onPressed: () => zoom(1.5, width, height),
                     icon: const Icon(Icons.add),
                   ),
                   TextButton(
@@ -167,7 +171,12 @@ class ElevationPainter extends CustomPainter {
       (points.map((p) => p.elevationMetres).reduce(math.max) / 100).ceil() *
           100.0,
     );
-    final area = Rect.fromLTRB(52, 96, size.width - 16, size.height - 48);
+    final labels = _locationLabels(profile, size.width);
+    final header = labels.fold<double>(
+      24,
+      (h, label) => math.max(h, label.rect.bottom + 12),
+    );
+    final area = Rect.fromLTRB(52, header, size.width - 16, size.height - 48);
     double x(double metres) => area.left + metres / profile.length * area.width;
     double y(double elevation) =>
         area.bottom - (elevation - low) / (high - low) * area.height;
@@ -211,19 +220,14 @@ class ElevationPainter extends CustomPainter {
       Offset(size.width / 2, size.height - 17),
       centered: true,
     );
-    final landmarks = profile.landmarks;
-    for (var i = 0; i < landmarks.length; i++) {
-      final match = landmarks[i].match;
-      final anchorX = landmarks.length == 1
-          ? area.center.dx
-          : area.left + 12 + i * (area.width - 24) / (landmarks.length - 1);
-      final anchorY = 14.0 + (i % 3) * 24;
+    for (final annotation in labels) {
+      final match = annotation.landmark.match;
       final point = Offset(
         x(match.chartDistance),
         y(match.point.elevationMetres),
       );
       canvas.drawLine(
-        Offset(anchorX, anchorY + 10),
+        Offset(point.dx, annotation.rect.bottom),
         point,
         Paint()
           ..color = Colors.white54
@@ -231,17 +235,15 @@ class ElevationPainter extends CustomPainter {
       );
       canvas.drawCircle(point, 3, Paint()..color = Colors.white);
     }
-    for (var i = 0; i < landmarks.length; i++) {
-      final anchorX = landmarks.length == 1
-          ? area.center.dx
-          : area.left + 12 + i * (area.width - 24) / (landmarks.length - 1);
-      final anchorY = 14.0 + (i % 3) * 24;
-      canvas.drawCircle(
-        Offset(anchorX, anchorY),
-        10,
+    for (final annotation in labels) {
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          annotation.rect.inflate(2),
+          const Radius.circular(3),
+        ),
         Paint()..color = const Color(0xFF102F50),
       );
-      label('${i + 1}', Offset(anchorX, anchorY - 6), centered: true);
+      annotation.text.paint(canvas, annotation.rect.topLeft);
     }
     canvas.save();
     canvas.clipRect(area.inflate(5));
@@ -316,4 +318,66 @@ class ElevationPainter extends CustomPainter {
       oldDelegate.profile != profile ||
       oldDelegate.current != current ||
       oldDelegate.selected != selected;
+}
+
+class _LocationLabel {
+  final ElevationLandmark landmark;
+  final TextPainter text;
+  final Rect rect;
+  const _LocationLabel(this.landmark, this.text, this.rect);
+}
+
+List<_LocationLabel> _locationLabels(ElevationProfile profile, double width) {
+  if (profile.length <= 0 || width < 100) return [];
+  final entries = [
+    for (final mark in profile.landmarks)
+      (
+        mark,
+        TextPainter(
+          text: TextSpan(
+            text: mark.location.name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 11,
+              fontFamily: 'Roboto',
+            ),
+          ),
+          textDirection: TextDirection.ltr,
+          textAlign: TextAlign.center,
+        )..layout(maxWidth: math.min(110, width - 68)),
+      ),
+  ];
+  final rowHeight = entries.fold<double>(
+    18,
+    (height, entry) => math.max(height, entry.$2.height + 10),
+  );
+  final rightEdges = <double>[];
+  final result = <_LocationLabel>[];
+  for (final entry in entries) {
+    final anchor =
+        52 + entry.$1.match.chartDistance / profile.length * (width - 68);
+    final left = (anchor - entry.$2.width / 2).clamp(
+      52.0,
+      width - 16 - entry.$2.width,
+    );
+    var lane = rightEdges.indexWhere((right) => left >= right + 8);
+    if (lane < 0) {
+      lane = rightEdges.length;
+      rightEdges.add(0);
+    }
+    rightEdges[lane] = left + entry.$2.width;
+    result.add(
+      _LocationLabel(
+        entry.$1,
+        entry.$2,
+        Rect.fromLTWH(
+          left,
+          8 + lane * rowHeight,
+          entry.$2.width,
+          entry.$2.height,
+        ),
+      ),
+    );
+  }
+  return result;
 }
