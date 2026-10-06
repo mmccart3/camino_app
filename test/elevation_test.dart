@@ -38,24 +38,88 @@ void main() {
     () async {
       final repository = ElevationRepository(guide);
       final stage1 = await repository.profile((await guide.stage(1))!);
-      expect(stage1.sampleCount, 2419);
+      expect(stage1.sampleCount, 2455);
+      final stage2 = await repository.profile((await guide.stage(2))!);
+      expect(stage2.sampleCount, 2185);
+      expect(stage2.missingPaths, isEmpty);
+      final stage3 = await repository.profile((await guide.stage(3))!);
+      expect(stage3.sampleCount, 2079);
+      expect(stage3.missingPaths, isEmpty);
+      expect(stage3.sections.length, 11);
+      final stage4 = await repository.profile((await guide.stage(4))!);
+      expect(stage4.sampleCount, 2495);
+      expect(stage4.missingPaths, isEmpty);
+
+      expect(stage2.sections.map((s) => s.points.length), [
+        307,
+        380,
+        493,
+        184,
+        457,
+        364,
+      ]);
+
       expect(stage1.sections.length, 8);
       expect(stage1.sections.first.points.first.distanceMetres, 0);
-      expect(stage1.sections.first.points.last.distanceMetres, 5270);
+      expect(stage1.sections.first.points.last.distanceMetres, 5300);
       expect(stage1.sections[1].points.first.sequence, 0);
       expect(stage1.sections[1].points.first.distanceMetres, 0);
       final stage5 = await repository.profile((await guide.stage(5))!);
-      expect(stage5.issues.any((i) => i.contains('35–36')), isTrue);
-      expect(stage5.issues.any((i) => i.contains('36–37')), isTrue);
+      expect(stage5.sampleCount, 2162);
+      expect(stage5.issues, isEmpty);
       final stage6 = await repository.profile((await guide.stage(6))!);
-      expect(stage6.missingPaths, contains(43));
-      expect((await guide.route((await guide.stage(6))!)).points.length, 739);
+      expect(stage6.missingPaths, isEmpty);
+      expect(stage6.sampleCount, 2155);
+      final stage7 = await repository.profile((await guide.stage(7))!);
+      expect(stage7.sampleCount, 2801);
+      final stage8 = await repository.profile((await guide.stage(8))!);
+      expect(stage8.sampleCount, 2859);
+      final stage9 = await repository.profile((await guide.stage(11))!);
+      expect(stage9.sampleCount, 2121);
+      final stage10 = await repository.profile((await guide.stage(12))!);
+      expect(stage10.sampleCount, 2245);
+      final stage11 = await repository.profile((await guide.stage(13))!);
+      expect(stage11.sampleCount, 2390);
+      final stage12 = await repository.profile((await guide.stage(14))!);
+      expect(stage12.sampleCount, 2647);
+      final river = await repository.profile((await guide.stage(15))!);
+      expect(river.sampleCount, 2643);
+      final stage13 = await repository.profile((await guide.stage(16))!);
+      expect(stage13.sampleCount, 2043);
+      final stage14 = await repository.profile((await guide.stage(17))!);
+      expect(stage14.sampleCount, 1998);
+      final stage15 = await repository.profile((await guide.stage(18))!);
+      expect(stage15.sampleCount, 2486);
+      final road16 = await repository.profile((await guide.stage(19))!);
+      expect(road16.sampleCount, 1884);
+      final river16 = await repository.profile((await guide.stage(20))!);
+      expect(river16.sampleCount, 2001);
+      final stage17 = await repository.profile((await guide.stage(21))!);
+      expect(stage17.sampleCount, 2645);
+      expect(stage17.missingPaths, isEmpty);
+      expect(river16.missingPaths, isEmpty);
+      expect(road16.missingPaths, isEmpty);
+      expect(stage15.missingPaths, isEmpty);
+      expect(stage14.missingPaths, isEmpty);
+      expect(stage13.missingPaths, isEmpty);
+      expect(river.missingPaths, isEmpty);
+      expect(stage12.missingPaths, isEmpty);
+      expect(stage11.missingPaths, isEmpty);
+      expect(stage10.missingPaths, isEmpty);
+
+      expect(stage9.missingPaths, isEmpty);
+
+      expect(stage8.missingPaths, isEmpty);
+
+      expect(stage7.missingPaths, isEmpty);
+
+      expect((await guide.route((await guide.stage(6))!)).points.length, 896);
       final db = await local.database;
       expect(
         (await db.rawQuery(
           'SELECT count(*) n FROM elevation_points',
         )).single['n'],
-        12520,
+        44294,
       );
     },
   );
@@ -95,7 +159,7 @@ void main() {
         [],
         [],
       );
-      expect(isolated.nearest(middle), isNull);
+      expect(isolated.nearest(middle), isNotNull);
     },
   );
 
@@ -173,7 +237,7 @@ void main() {
       partial.landmarks.any(
         (mark) => mark.location.id == partial.stage.finishLocationId,
       ),
-      isFalse,
+      isTrue,
     );
   });
 
@@ -258,9 +322,9 @@ void main() {
                   as RenderRepaintBoundary)
               .toImage(pixelRatio: 2);
       final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-      await Directory('../elevation_demo').create(recursive: true);
+      await Directory('build/elevation_demo').create(recursive: true);
       await File(
-        '../elevation_demo/chart_preview.png',
+        'build/elevation_demo/chart_preview.png',
       ).writeAsBytes(bytes!.buffer.asUint8List());
       image.dispose();
     });
@@ -284,14 +348,11 @@ void main() {
       }
       await tester.pumpAndSettle();
       expect(find.byType(ElevationChart), findsOneWidget);
+      expect(find.text('Missing elevation data for paths: 43.'), findsNothing);
       await tester.scrollUntilVisible(
-        find.text('Missing elevation data for paths: 43.'),
+        find.byType(Slider),
         200,
         scrollable: find.byType(Scrollable).first,
-      );
-      expect(
-        find.text('Missing elevation data for paths: 43.'),
-        findsOneWidget,
       );
       expect(find.byType(Slider), findsOneWidget);
       expect(tester.takeException(), isNull);

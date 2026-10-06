@@ -1,0 +1,32 @@
+{
+  "1": {
+    "tiles": 14,
+    "missing": 0
+  },
+  "2": {
+    "tiles": 15,
+    "missing": 0
+  },
+  "3": {
+    "tiles": 14,
+    "missing": 0
+  },
+  "4": {
+    "tiles": 18,
+    "missing": 0
+  },
+  "5": {
+    "tiles": 15,
+    "missing": 0
+  },
+  "6": {
+    "tiles": 15,
+    "missing": 0
+  },
+  "7": {
+    "tiles": 19,
+    "missing": 2
+  },
+  "sha256": "1aea907eec1f2b0a120c24b694151d284dd176fe30377ba8d698773fe176792a",
+  "bytes": 7319552
+}

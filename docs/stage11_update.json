@@ -1,0 +1,79 @@
+{
+  "stage": 13,
+  "trackCount": 909,
+  "trackIDRange": [
+    19000,
+    19908
+  ],
+  "distanceMetres": 24204.326618608004,
+  "walkingMinutesAtTrueFlat4_2": 356.85660850934886,
+  "elevation": {
+    "sourceSHA256": "21cc6b39ccf070c4f3f5cc955cbe11ce23737d890a6274a82089cf5c97fe5812",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 66,
+        "stageID": 13,
+        "samples": 483,
+        "sampledMetres": 4820.0,
+        "startOffsetMetres": 54.0,
+        "endOffsetMetres": 18.0,
+        "gapSequences": []
+      },
+      {
+        "pathID": 67,
+        "stageID": 13,
+        "samples": 197,
+        "sampledMetres": 1960.0,
+        "startOffsetMetres": 15.9,
+        "endOffsetMetres": 24.3,
+        "gapSequences": []
+      },
+      {
+        "pathID": 68,
+        "stageID": 13,
+        "samples": 174,
+        "sampledMetres": 1730.0,
+        "startOffsetMetres": 18.7,
+        "endOffsetMetres": 25.6,
+        "gapSequences": []
+      },
+      {
+        "pathID": 69,
+        "stageID": 13,
+        "samples": 326,
+        "sampledMetres": 3250.0,
+        "startOffsetMetres": 19.3,
+        "endOffsetMetres": 12.5,
+        "gapSequences": []
+      },
+      {
+        "pathID": 70,
+        "stageID": 13,
+        "samples": 365,
+        "sampledMetres": 3640.0,
+        "startOffsetMetres": 5.8,
+        "endOffsetMetres": 6.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 71,
+        "stageID": 13,
+        "samples": 845,
+        "sampledMetres": 8440.0,
+        "startOffsetMetres": 3.4,
+        "endOffsetMetres": 97.1,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2390
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 18761,
+    "externalReferences": []
+  },
+  "beforeSHA256": "b84ffd8c1cdfc8e802b1170f193b3af023dc5f871a5b4c1bb0c996ed66fdd2d3",
+  "afterSHA256": "80981840e513897dbb8fd15ae4df3c63f5e3aa38eef7bc302b422210d48aa8e1",
+  "stageDistanceInMetres": 24204
+}

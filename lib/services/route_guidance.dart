@@ -1,6 +1,7 @@
 import 'package:latlong2/latlong.dart';
 import '../data/models.dart';
 import 'settings_service.dart';
+import 'walking_time.dart';
 
 class RouteGuidance {
   final TrackPoint nearestTrackPoint;
@@ -22,8 +23,7 @@ class RouteGuidance {
 
 /// Estimates along an ordered route, starting at the nearest stored point.
 /// Each row stores the incoming segment from previous_track_point_id.
-/// The database's weighted_distance / paceKmh yields seconds (owner convention),
-/// so no additional metres/kilometres conversion is applied to that value.
+/// Stored weights are normalized to true flat-ground speed by WalkingTime.
 class RouteGuidanceService {
   final Distance _distance = const Distance(roundResult: false);
   RouteGuidance? calculate(
@@ -83,12 +83,7 @@ class RouteGuidanceService {
         break;
       }
     }
-    Duration? eta(double? weighted) => weighted == null
-        ? null
-        : Duration(
-            microseconds: (weighted / paceKmh * Duration.microsecondsPerSecond)
-                .round(),
-          );
+    Duration? eta(double? weighted) => WalkingTime.estimate(weighted, paceKmh);
     return RouteGuidance(
       nearestTrackPoint: points[nearestIndex],
       nextWaypoint: nextIndex == null ? null : points[nextIndex],

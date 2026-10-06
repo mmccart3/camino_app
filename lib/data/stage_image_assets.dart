@@ -2,6 +2,7 @@
 class StageImageAssets {
   static const paths = <String, String>{
     'elevation_charts/1': 'assets/elevation_charts/stage_1.png',
+    'stage_maps/43': 'assets/stage_maps/stage_1.jpg',
     'stage_maps/1': 'assets/stage_maps/stage_1.jpg',
     'stage_maps/2': 'assets/stage_maps/stage_2.jpg',
     'elevation_charts/2': 'assets/elevation_charts/stage_2.jpg',
@@ -32,6 +33,7 @@ class StageImageAssets {
     'elevation_charts/17': 'assets/elevation_charts/stage_17.jpg',
     'stage_maps/18': 'assets/stage_maps/stage_18.jpg',
     'elevation_charts/18': 'assets/elevation_charts/stage_18.jpg',
+    'stage_maps/19': 'assets/stage_maps/stage_20.jpg',
     'stage_maps/20': 'assets/stage_maps/stage_20.jpg',
     'elevation_charts/20': 'assets/elevation_charts/stage_20.jpg',
     'stage_maps/21': 'assets/stage_maps/stage_21.jpg',

@@ -1,0 +1,70 @@
+{
+  "stage": 18,
+  "trackCount": 645,
+  "trackIDRange": [
+    24000,
+    24644
+  ],
+  "distanceMetres": 25241.601930622113,
+  "walkingMinutesAtTrueFlat4_2": 363.1327303793889,
+  "elevation": {
+    "sourceSHA256": "29ff2f9ad1add4e9144fdbc58093c727d81d0a9d4982690ce462038e29b69ae6",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 96,
+        "stageID": 18,
+        "samples": 346,
+        "sampledMetres": 3450.0,
+        "startOffsetMetres": 15.9,
+        "endOffsetMetres": 11.6,
+        "gapSequences": []
+      },
+      {
+        "pathID": 97,
+        "stageID": 18,
+        "samples": 494,
+        "sampledMetres": 4930.0,
+        "startOffsetMetres": 9.3,
+        "endOffsetMetres": 16.2,
+        "gapSequences": []
+      },
+      {
+        "pathID": 98,
+        "stageID": 18,
+        "samples": 261,
+        "sampledMetres": 2600.0,
+        "startOffsetMetres": 10.6,
+        "endOffsetMetres": 10.1,
+        "gapSequences": []
+      },
+      {
+        "pathID": 99,
+        "stageID": 18,
+        "samples": 799,
+        "sampledMetres": 7980.0,
+        "startOffsetMetres": 10.8,
+        "endOffsetMetres": 35.1,
+        "gapSequences": []
+      },
+      {
+        "pathID": 100,
+        "stageID": 18,
+        "samples": 586,
+        "sampledMetres": 5850.0,
+        "startOffsetMetres": 23.0,
+        "endOffsetMetres": 73.7,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2486
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 23522,
+    "externalReferences": []
+  },
+  "beforeSHA256": "241604043e2c2cae99032a8d865fa4153b54f78aa75b7891acd78e71013adbdc",
+  "afterSHA256": "fb1a92d3e578fa44f90cfa31e7d09bb2b15f48df1d7ba58b5bcf6cb9bf4db569",
+  "stageDistanceInMetres": 25242
+}

@@ -1,6 +1,7 @@
 import '../data/models.dart';
 import '../data/route_assembler.dart';
 import 'settings_service.dart';
+import 'walking_time.dart';
 
 class AheadPlace {
   final Location location;
@@ -51,17 +52,7 @@ class AheadOfMeService {
       if (location == null || !seen.add(location.id)) continue;
       if (metres == 0) continue; // Repeated boundary already reached.
       result.add(
-        AheadPlace(
-          location,
-          metres,
-          weighted == null
-              ? null
-              : Duration(
-                  microseconds:
-                      (weighted / pace * Duration.microsecondsPerSecond)
-                          .round(),
-                ),
-        ),
+        AheadPlace(location, metres, WalkingTime.estimate(weighted, pace)),
       );
     }
     return result;

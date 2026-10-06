@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:io';
 import 'test_support.dart';
 import 'package:flutter/material.dart';
@@ -58,15 +59,21 @@ void main() {
       final ahead = service.calculate(fixture(), 1, 4.6);
       expect(ahead.map((p) => p.location.id), [2, 3]);
       expect(ahead.map((p) => p.metres), [100, 300]);
-      expect(ahead.first.walkingTime!.inSeconds, 100);
-      expect(ahead.last.walkingTime!.inSeconds, 300);
+      expect(
+        ahead.first.walkingTime!.inSeconds,
+        closeTo(100 * math.exp(-0.1575), 1),
+      );
+      expect(
+        ahead.last.walkingTime!.inSeconds,
+        closeTo(300 * math.exp(-0.1575), 1),
+      );
       expect(service.calculate(fixture(), 2, 4.6).map((p) => p.location.id), [
         3,
       ]);
       expect(service.calculate(fixture(), 4, 4.6), isEmpty);
       expect(
         service.calculate(fixture(), 1, 2.3).last.walkingTime!.inSeconds,
-        600,
+        closeTo(600 * math.exp(-0.1575), 1),
       );
     },
   );
@@ -79,7 +86,10 @@ void main() {
         4.6,
       );
       expect(result.every((p) => p.metres == null), isTrue);
-      expect(result.last.walkingTime!.inSeconds, 300);
+      expect(
+        result.last.walkingTime!.inSeconds,
+        closeTo(300 * math.exp(-0.1575), 1),
+      );
       expect(
         AheadOfMeService().calculate(fixture(valid: false), 0, 4.6),
         isEmpty,

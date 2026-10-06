@@ -1,0 +1,424 @@
+{
+  "added": 65,
+  "total": 875,
+  "newIDRange": [
+    9355,
+    9419
+  ],
+  "maxGPSGap": 74.41976106682431,
+  "changes": [
+    {
+      "fromID": 8547,
+      "toID": 8548,
+      "insertedIDs": [
+        9355
+      ]
+    },
+    {
+      "fromID": 8555,
+      "toID": 8556,
+      "insertedIDs": [
+        9356,
+        9357
+      ]
+    },
+    {
+      "fromID": 8556,
+      "toID": 8557,
+      "insertedIDs": [
+        9358
+      ]
+    },
+    {
+      "fromID": 8564,
+      "toID": 8565,
+      "insertedIDs": [
+        9359
+      ]
+    },
+    {
+      "fromID": 8569,
+      "toID": 8570,
+      "insertedIDs": [
+        9360
+      ]
+    },
+    {
+      "fromID": 8577,
+      "toID": 8578,
+      "insertedIDs": [
+        9361
+      ]
+    },
+    {
+      "fromID": 8578,
+      "toID": 8579,
+      "insertedIDs": [
+        9362
+      ]
+    },
+    {
+      "fromID": 8583,
+      "toID": 8584,
+      "insertedIDs": [
+        9363
+      ]
+    },
+    {
+      "fromID": 8627,
+      "toID": 8628,
+      "insertedIDs": [
+        9364
+      ]
+    },
+    {
+      "fromID": 8657,
+      "toID": 8658,
+      "insertedIDs": [
+        9365
+      ]
+    },
+    {
+      "fromID": 8658,
+      "toID": 8659,
+      "insertedIDs": [
+        9366
+      ]
+    },
+    {
+      "fromID": 8663,
+      "toID": 8664,
+      "insertedIDs": [
+        9367
+      ]
+    },
+    {
+      "fromID": 8664,
+      "toID": 8665,
+      "insertedIDs": [
+        9368
+      ]
+    },
+    {
+      "fromID": 8684,
+      "toID": 8685,
+      "insertedIDs": [
+        9369
+      ]
+    },
+    {
+      "fromID": 8698,
+      "toID": 8699,
+      "insertedIDs": [
+        9370
+      ]
+    },
+    {
+      "fromID": 8709,
+      "toID": 8710,
+      "insertedIDs": [
+        9371
+      ]
+    },
+    {
+      "fromID": 8727,
+      "toID": 8728,
+      "insertedIDs": [
+        9372
+      ]
+    },
+    {
+      "fromID": 8738,
+      "toID": 8739,
+      "insertedIDs": [
+        9373
+      ]
+    },
+    {
+      "fromID": 8744,
+      "toID": 8745,
+      "insertedIDs": [
+        9374,
+        9375,
+        9376
+      ]
+    },
+    {
+      "fromID": 8749,
+      "toID": 8750,
+      "insertedIDs": [
+        9377
+      ]
+    },
+    {
+      "fromID": 8760,
+      "toID": 8761,
+      "insertedIDs": [
+        9378,
+        9379
+      ]
+    },
+    {
+      "fromID": 8761,
+      "toID": 8762,
+      "insertedIDs": [
+        9380
+      ]
+    },
+    {
+      "fromID": 8781,
+      "toID": 8782,
+      "insertedIDs": [
+        9381
+      ]
+    },
+    {
+      "fromID": 8784,
+      "toID": 8785,
+      "insertedIDs": [
+        9382
+      ]
+    },
+    {
+      "fromID": 8785,
+      "toID": 8786,
+      "insertedIDs": [
+        9383
+      ]
+    },
+    {
+      "fromID": 8787,
+      "toID": 8788,
+      "insertedIDs": [
+        9384
+      ]
+    },
+    {
+      "fromID": 8789,
+      "toID": 8790,
+      "insertedIDs": [
+        9385,
+        9386
+      ]
+    },
+    {
+      "fromID": 8796,
+      "toID": 8797,
+      "insertedIDs": [
+        9387
+      ]
+    },
+    {
+      "fromID": 8806,
+      "toID": 8807,
+      "insertedIDs": [
+        9388
+      ]
+    },
+    {
+      "fromID": 8837,
+      "toID": 8838,
+      "insertedIDs": [
+        9389
+      ]
+    },
+    {
+      "fromID": 8839,
+      "toID": 8840,
+      "insertedIDs": [
+        9390
+      ]
+    },
+    {
+      "fromID": 8847,
+      "toID": 8848,
+      "insertedIDs": [
+        9391
+      ]
+    },
+    {
+      "fromID": 8856,
+      "toID": 8857,
+      "insertedIDs": [
+        9392
+      ]
+    },
+    {
+      "fromID": 8878,
+      "toID": 8879,
+      "insertedIDs": [
+        9393,
+        9394
+      ]
+    },
+    {
+      "fromID": 8895,
+      "toID": 8896,
+      "insertedIDs": [
+        9395
+      ]
+    },
+    {
+      "fromID": 8965,
+      "toID": 8966,
+      "insertedIDs": [
+        9396
+      ]
+    },
+    {
+      "fromID": 8975,
+      "toID": 8976,
+      "insertedIDs": [
+        9397
+      ]
+    },
+    {
+      "fromID": 9058,
+      "toID": 9059,
+      "insertedIDs": [
+        9398
+      ]
+    },
+    {
+      "fromID": 9082,
+      "toID": 9083,
+      "insertedIDs": [
+        9399
+      ]
+    },
+    {
+      "fromID": 9085,
+      "toID": 9086,
+      "insertedIDs": [
+        9400
+      ]
+    },
+    {
+      "fromID": 9089,
+      "toID": 9090,
+      "insertedIDs": [
+        9401
+      ]
+    },
+    {
+      "fromID": 9102,
+      "toID": 9103,
+      "insertedIDs": [
+        9402
+      ]
+    },
+    {
+      "fromID": 9110,
+      "toID": 9111,
+      "insertedIDs": [
+        9403
+      ]
+    },
+    {
+      "fromID": 9116,
+      "toID": 9117,
+      "insertedIDs": [
+        9404
+      ]
+    },
+    {
+      "fromID": 9117,
+      "toID": 9118,
+      "insertedIDs": [
+        9405
+      ]
+    },
+    {
+      "fromID": 9122,
+      "toID": 9123,
+      "insertedIDs": [
+        9406
+      ]
+    },
+    {
+      "fromID": 9125,
+      "toID": 9126,
+      "insertedIDs": [
+        9407
+      ]
+    },
+    {
+      "fromID": 9206,
+      "toID": 9207,
+      "insertedIDs": [
+        9408,
+        9409
+      ]
+    },
+    {
+      "fromID": 9207,
+      "toID": 9208,
+      "insertedIDs": [
+        9410
+      ]
+    },
+    {
+      "fromID": 9237,
+      "toID": 9238,
+      "insertedIDs": [
+        9411
+      ]
+    },
+    {
+      "fromID": 9240,
+      "toID": 9241,
+      "insertedIDs": [
+        9412
+      ]
+    },
+    {
+      "fromID": 9254,
+      "toID": 9255,
+      "insertedIDs": [
+        9413
+      ]
+    },
+    {
+      "fromID": 9304,
+      "toID": 9305,
+      "insertedIDs": [
+        9414
+      ]
+    },
+    {
+      "fromID": 9335,
+      "toID": 9336,
+      "insertedIDs": [
+        9415
+      ]
+    },
+    {
+      "fromID": 9336,
+      "toID": 9337,
+      "insertedIDs": [
+        9416
+      ]
+    },
+    {
+      "fromID": 9346,
+      "toID": 9347,
+      "insertedIDs": [
+        9417
+      ]
+    },
+    {
+      "fromID": 9350,
+      "toID": 9351,
+      "insertedIDs": [
+        9418
+      ]
+    },
+    {
+      "fromID": 9353,
+      "toID": 9354,
+      "insertedIDs": [
+        9419
+      ]
+    }
+  ]
+}

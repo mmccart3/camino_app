@@ -1,0 +1,83 @@
+{
+  "stage": 12,
+  "trackCount": 762,
+  "trackIDRange": [
+    18000,
+    18761
+  ],
+  "distanceMetres": 22594.795680681837,
+  "walkingMinutesAtTrueFlat4_2": 329.6159206749398,
+  "elevation": {
+    "sourceSHA256": "5f350b2e60c732d1ea2c271a56772148bc5a1bb7b2bd641b828b183a7740ae64",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 60,
+        "stageID": 12,
+        "samples": 645,
+        "sampledMetres": 6440.0,
+        "startOffsetMetres": 120.4,
+        "endOffsetMetres": 38.4,
+        "gapSequences": []
+      },
+      {
+        "pathID": 61,
+        "stageID": 12,
+        "samples": 399,
+        "sampledMetres": 3980.0,
+        "startOffsetMetres": 23.1,
+        "endOffsetMetres": 3.4,
+        "gapSequences": []
+      },
+      {
+        "pathID": 62,
+        "stageID": 12,
+        "samples": 162,
+        "sampledMetres": 1610.0,
+        "startOffsetMetres": 8.6,
+        "endOffsetMetres": 16.6,
+        "gapSequences": []
+      },
+      {
+        "pathID": 63,
+        "stageID": 12,
+        "samples": 196,
+        "sampledMetres": 1950.0,
+        "startOffsetMetres": 15.8,
+        "endOffsetMetres": 7.4,
+        "gapSequences": []
+      },
+      {
+        "pathID": 64,
+        "stageID": 12,
+        "samples": 358,
+        "sampledMetres": 3570.0,
+        "startOffsetMetres": 7.1,
+        "endOffsetMetres": 4.5,
+        "gapSequences": []
+      },
+      {
+        "pathID": 65,
+        "stageID": 12,
+        "samples": 485,
+        "sampledMetres": 4840.0,
+        "startOffsetMetres": 6.5,
+        "endOffsetMetres": 86.9,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2245
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 17712,
+    "externalReferences": []
+  },
+  "beforeSHA256": "a3bc532fffa717b6a0778ea48809635ba57195ee514fe1ed78be71d928da9d45",
+  "afterSHA256": "e04061566f0f10981d2eca4b9fdce73bb29d1d6928236bdf45161b632cf289f6",
+  "locationUpdate": {
+    "ID": 66,
+    "latitude": 42.44088,
+    "longitude": -2.95372
+  }
+}

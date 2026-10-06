@@ -1,0 +1,72 @@
+[
+  {
+    "databaseStageID": 1,
+    "name": "Saint-Jean-Pied-de-Port to Roncesvalles",
+    "previousMetres": 24890,
+    "calculatedMetres": 24703.78,
+    "storedMetres": 24704
+  },
+  {
+    "databaseStageID": 2,
+    "name": "Roncesvalles to Zubiri",
+    "previousMetres": 22515,
+    "calculatedMetres": 21986.025977940055,
+    "storedMetres": 21986
+  },
+  {
+    "databaseStageID": 3,
+    "name": "Zubiri to Pamplona",
+    "previousMetres": 21209,
+    "calculatedMetres": 21021.490507208102,
+    "storedMetres": 21021
+  },
+  {
+    "databaseStageID": 4,
+    "name": "Pamplona to Puente La Reina",
+    "previousMetres": 24388,
+    "calculatedMetres": 25347.593955168373,
+    "storedMetres": 25348
+  },
+  {
+    "databaseStageID": 5,
+    "name": "Puente La Reina to Estella",
+    "previousMetres": 21428,
+    "calculatedMetres": 21625.185917241397,
+    "storedMetres": 21625
+  },
+  {
+    "databaseStageID": 6,
+    "name": "Estella to Los Arcos via Monjardín",
+    "previousMetres": 21684,
+    "calculatedMetres": 21856.504682512023,
+    "storedMetres": 21857
+  },
+  {
+    "databaseStageID": 7,
+    "name": "Los Arcos to Logroño ",
+    "previousMetres": 27942,
+    "calculatedMetres": 28495.105981420482,
+    "storedMetres": 28495
+  },
+  {
+    "databaseStageID": 8,
+    "name": "Logroño to Nájera",
+    "previousMetres": 29801,
+    "calculatedMetres": 28832.544307309403,
+    "storedMetres": 28833
+  },
+  {
+    "databaseStageID": 11,
+    "name": "Nájera to Santo Domingo de la Calzada ",
+    "previousMetres": 20724,
+    "calculatedMetres": 21103.09761922281,
+    "storedMetres": 21103
+  },
+  {
+    "databaseStageID": 12,
+    "name": "Santo Domingo de la Calzada to Belorado ",
+    "previousMetres": 23125,
+    "calculatedMetres": 22594.795680681837,
+    "storedMetres": 22595
+  }
+]

@@ -24,8 +24,10 @@ void main() {
             'https://www.booking.com/hotel/test.html',
         'numberOfBeds': 46,
         'numberOfDorms': 5,
-        'openingPeriod': 'Easter week till mid October (assumed)',
-        'checkInTimes': '14:00 - 20:00 (assumed)',
+        'openingPeriod':
+            'Easter week till mid October (assumed; confirm with accommodation)',
+        'checkInTimes':
+            '14:00 (assumed) - 20:00 (assumed); original time note: 22:00 (confirm meaning with accommodation); confirm with accommodation',
       };
       final Accommodation place = private
           ? PrivateAccommodation.fromRow(row)
@@ -57,6 +59,12 @@ void main() {
           ),
         );
         expect(find.text('Check-in: 14:00 - 20:00 (assumed)'), findsOneWidget);
+        expect(
+          find.text('Opening period: Easter week till mid October (assumed)'),
+          findsOneWidget,
+        );
+        expect(find.textContaining('confirm with accommodation'), findsNothing);
+        expect(find.textContaining('original time note'), findsNothing);
       }
     });
   }

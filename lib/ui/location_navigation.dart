@@ -319,7 +319,7 @@ class _LocationNavigationScreenState extends State<LocationNavigationScreen>
             'Next: ${result.nextWaypoint?.waypointName ?? (result.nextWaypoint == null ? widget.location.name : 'Next waypoint')} · ${metres(result.distanceToNextMeters)} · ${minutes(result.timeToNext)}',
           ),
           Text(
-            'Walking pace: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
+            'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
           ),
           Text(
             '${result.offRouteMeters.round()} m from nearest track point · GPS accuracy ±${fix.accuracy.round()} m',

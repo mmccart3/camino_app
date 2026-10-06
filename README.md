@@ -2,6 +2,14 @@
 
 The app uses the populated `assets/database/camino.sqlite` in this project. It does not create a new schema or replace your data with a sample. Existing records and URLs are preserved; location service fields and their supporting evidence are added by the documented maintenance workflow. The old fictional fixture generator has been removed.
 
+## Shared Valcarlos map
+
+Version 0.2.20 uses the same 1920- and 1280-pixel map URLs for Valcarlos (stage 43) as Orisson (stage 1), as confirmed by the owner. The offline image lookup reuses the existing bundled stage 1 map without duplicating image bytes. Stage 43 hotspots and route data remain unchanged.
+
+## Website repair audit
+
+Version 0.2.19: 24 verified replacements; 18 website fields cleared. 42 accommodation records reviewed. All booking links and other data are preserved. Cleared fields are SQL NULL and hide the website button; this does not indicate accommodation closure. See `docs/website_repairs.json` for every old/new value and evidence. Rebuild and install to activate the new asset database. Unverified connection/access failures and the two unresolved Valcarlos image URLs remain unchanged.
+
 ## Astorga hotspot correction
 
 Version 0.2.18 fixes the stage 30 Astorga hotspot (ID 181, location 163). The rectangle now covers its visible label at (3, 195)–(204, 333) on the retained 1920-pixel map. Coordinates for all smaller map sizes are scaled consistently. No other database records changed. See `docs/astorga_hotspot_fix.json`.
@@ -24,7 +32,7 @@ Version 0.2.15 centres AppBar titles, enlarges the Home settings button to 30 px
 
 Version 0.2.14 adds **Ahead of me** on Home, stage pages and the route map toolbar. Choose a stage, then **Update position** or **Preview from stage start**. Upcoming path destinations appear in route order with walking distance, estimated minutes and available service icons. Filters show recorded cafés, pharmacies or groceries; tapping a place opens its location page.
 
-The view ends at the selected stage's finish and uses validated navigation tracks, not the elevation samples. Distance sums incoming `distance_3d_meters` after the nearest track point; time sums `weighted_distance / paceKmh` seconds and displays rounded-up minutes. Missing distance/time inputs remain unavailable independently. Passed destinations and zero-distance repeated boundaries are omitted. Estimates end at location waypoints, not business doors, and exclude stops.
+The view ends at the selected stage's finish and uses validated navigation tracks, not the elevation samples. Distance sums incoming `distance_3d_meters` after the nearest track point; time sums `weighted_distance * exp(-0.1575) / flatSpeedKmh` seconds and displays rounded-up minutes. Missing distance/time inputs remain unavailable independently. Passed destinations and zero-distance repeated boundaries are omitted. Estimates end at location waypoints, not business doors, and exclude stops.
 
 GPS is user-triggered and must be recent (within two minutes), accurate to 50 m or better, and within 150 m of a recorded track point. A distant or inaccurate fix produces a message rather than estimates. The displayed timestamp identifies the snapshot; tap Update position as you walk. No new background tracking is enabled. Preview requires no GPS. Incomplete/unvalidated stages explain why estimates are unavailable. Unknown or absent service icons remain hidden. All route and service data is read offline.
 
@@ -113,9 +121,9 @@ Waypoint flags come from the database. Flagged segment endpoints use the corresp
 
 Guidance finds the nearest stored track point by GPS distance, then selects the next flagged/named waypoint ahead in route order (or the stage endpoint). Each row's `distance_3d_meters` and `weighted_distance` describe the incoming segment from `previous_track_point_id`. Sums therefore start at the row AFTER the nearest point and include the destination waypoint. The nearest point's incoming segment is already behind the user and is excluded.
 
-Remaining distance is `SUM(distance_3d_meters)`. The database owner's confirmed time convention is `SUM(weighted_distance) / paceKmh` in seconds; divide by 60 for minutes. No additional factor of 1000 or 3.6 applies to weighted values. Times are summed before rounding and displayed rounded up to whole minutes. The same calculations extend to the stage end. Missing, negative or non-finite metrics produce an unavailable estimate rather than a guessed horizontal-distance substitute.
+Remaining distance is `SUM(distance_3d_meters)`. Stored weights use metres × 3.6 / slope effect. To make the setting true flat-ground speed, time is `SUM(weighted_distance) * exp(-0.1575) / flatSpeedKmh` in seconds; divide by 60 for minutes. The normalization is the model's slope effect at zero gradient. No additional factor of 1000 or 3.6 applies to weighted values. Times are summed before rounding and displayed rounded up to whole minutes. The same calculations extend to the stage end. Missing, negative or non-finite metrics produce an unavailable estimate rather than a guessed horizontal-distance substitute.
 
-Average walking pace is saved locally, defaults to 4.6 km/h, and is adjustable from 1.0 to 8.5 km/h in 0.1 increments. Existing valid saved preferences are retained. This is the user's chosen average, not an automatically learned speed. Change it in Settings and save it.
+Flat-ground walking speed is saved locally, defaults to 4.2 km/h, and is adjustable from 1.0 to 8.5 km/h in 0.1 increments. Existing valid saved preferences are retained. Saved numeric choices are now interpreted as flat-ground speeds. This is the user's chosen speed, not an automatically learned speed. Change it in Settings and save it.
 
 Equal nearest-point distances choose the earliest point in route order; there is no heading/history map matching at crossings. A waypoint at the nearest point is treated as reached. Estimates exclude breaks and travel back to the selected track point. The UI shows that point's ID, GPS accuracy, timestamp and distance from it. Position updates can be requested once, or streamed during an explicitly started walking-alert session.
 
@@ -313,3 +321,47 @@ Added 33 synthetic points (6706–6738) in the five segments over 250 metres, re
 
 Current bundle: assets/offline_maps/stages1_6.mbtiles, 299 vector tiles, zooms 0–14, 6.46 MiB. All 4798 track points across stages 1–6 have tile coverage at zooms 12–14. All source vector features are preserved in overlapping tiles. The new fingerprint selects a fresh device copy automatically after rebuilding and installing the app. No online map tiles are used. See docs/stages1_6_maps.json.
 
+
+## Stage 7 Navarra map update (0.2.35+40)
+
+The active bundle is `assets/offline_maps/stages1_7_navarra.mbtiles`. It preserves stages 1–6 and adds the supplied stage 7 Navarra tiles. The La Rioja section remains pending: two of the 19 detailed tiles along the stage 7 track are missing. Existing older archives are retained in source but excluded from Flutter assets to avoid bundling duplicate maps. The changed fingerprint installs the new map copy after rebuilding. See `docs/stage7a_maps.json`.
+
+## Complete stage 7 offline map (0.2.36+41)
+
+The active bundle is `assets/offline_maps/stages1_7.mbtiles` (7.53 MiB). Navarra and La Rioja tiles are merged with all existing features preserved. All current stage 1–7 routes have detailed tile coverage, checked along segments at 25 m intervals. Older bundles are excluded from Flutter assets. The fingerprint installs a new device copy after rebuilding. See `docs/stages1_7_maps.json`.
+
+## Stage 8 offline map (0.2.38+43)
+
+The active bundle is `assets/offline_maps/stages1_8.mbtiles` (8.33 MiB). All source vector features are preserved, and all current stage 1–8 routes have detailed tile coverage, checked at 25 m intervals. Older map bundles remain excluded from Flutter assets. Rebuild and install to use the new fingerprinted map copy. See `docs/stages1_8_maps.json`.
+
+## Stage 9 offline map (0.2.40+45)
+
+The active bundle is `assets/offline_maps/stages1_9.mbtiles` (8.82 MiB), through Santo Domingo de la Calzada. Stage 9 uses database stage ID 11. All source vector features are preserved and all current stage 1–9 routes have detailed tile coverage, checked at 25 m intervals. Older map bundles remain excluded from Flutter assets. Rebuild and install for the new fingerprinted copy. See `docs/stages1_9_maps.json`.
+
+## Stage 10 offline map (0.2.43+48)
+
+The previous bundle was `assets/offline_maps/stages1_10.mbtiles` (9.61 MiB), through Belorado. Stage 10 uses database stage ID 12. Both regional extracts are merged with all source vector features preserved. All current stage 1–10 routes have detailed tile coverage, checked at 25 m intervals. Older map bundles remain excluded from Flutter assets. Rebuild and install for the new fingerprinted copy. See `docs/stages1_10_maps.json`.
+
+
+The previous bundle was `assets/offline_maps/stages1_11.mbtiles` (9.95 MiB), through San Juan de Ortega. Stage 11 uses database stage ID 13. All source vector features are preserved, and stage 1–11 routes have zoom-14 tile coverage checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_11_maps.json`.
+
+
+The previous bundle was `assets/offline_maps/stages1_12.mbtiles` (12.38 MiB), through Burgos via Villafria. Stage 12 uses database stage ID 14. All source vector features are preserved, and stage 1–12 routes have zoom-14 tile coverage checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_12_maps.json`.
+
+
+The previous bundle was `assets/offline_maps/stages1_13.mbtiles` (12.80 MiB), through Hornillos del Camino. Stage 13 uses database stage ID 16. All source vector features are preserved. Detailed zoom-14 tiles are present along all current stage 1–13 routes, including stage 12b, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_13_maps.json`.
+
+
+The previous bundle was `assets/offline_maps/stages1_14.mbtiles` (13.05 MiB), through Castrojeriz. Stage 14 uses database stage ID 17. All source vector features are preserved. Detailed zoom-14 tiles are present along all current stage 1–14 routes, including stage 12b, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_14_maps.json`.
+
+
+The previous bundle was `assets/offline_maps/stages1_15.mbtiles` (13.39 MiB), through Fromista. Stage 15 uses database stage ID 18. All source vector features are preserved. Detailed zoom-14 tiles are present along all current stage 1–15 routes, including stage 12b, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_15_maps.json`.
+
+
+Stage 16 alternatives (0.2.58+63): database stage 19 is 16a, the road route via Poblacion, Revenga, Villarmentero and Villalcazar; database stage 20 is 16b via Poblacion, Villovieco and Villalcazar. Road paths retain IDs 101–105; river paths use 503–506. Both use the stage 20 map URLs, bundled 1920 image and hotspot coordinates. Stage 18 links to 19 then alternative 20; both lead to 21. River distance/time remain unrecorded pending tracks; existing road values are retained. No track or elevation samples have been invented.
+
+
+The previous bundle was `assets/offline_maps/stages1_16.mbtiles` (13.60 MiB), through Carrion de los Condes. Both stage 16a (database ID 19) and 16b (ID 20) are covered. All source vector features are preserved. Detailed zoom-14 tiles are present along every imported route, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_16_maps.json`.
+
+
+The current active bundle is `assets/offline_maps/stages1_17.mbtiles` (13.76 MiB), through Terradillos de los Templarios. Stage 17 uses database ID 21. All source vector features are preserved. Detailed zoom-14 tiles are present along every imported route, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_17_maps.json`.

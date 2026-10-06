@@ -1,0 +1,654 @@
+[
+  {
+    "table": "albergues",
+    "id": 4427,
+    "name": "Gîte-Chambre d'hôtes Ferme Ithurburia",
+    "column": "albergueWebsiteURL",
+    "before": "http://www.gites-de-france-64.com/ferme-ithurburia",
+    "after": "https://www.ferme-ithurburia-paysbasque.fr/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.ferme-ithurburia-paysbasque.fr/",
+    "validation": {
+      "id": "4427",
+      "url": "https://www.ferme-ithurburia-paysbasque.fr/",
+      "code": 200,
+      "final_url": "https://www.ferme-ithurburia-paysbasque.fr/",
+      "title": "Ferme Ithurburia - Basse Navarre - Pays Basque"
+    }
+  },
+  {
+    "table": "albergues",
+    "id": 4468,
+    "name": "Albergue parroquial de Zabaldika",
+    "column": "albergueWebsiteURL",
+    "before": "http://malele11.wix.com/zabaldika",
+    "after": "https://malele11.wixsite.com/zabaldika",
+    "action": "Replaced",
+    "note": "Recovered the existing Zabaldika site using wixsite.com instead of obsolete wix.com.",
+    "source": "https://malele11.wixsite.com/zabaldika",
+    "validation": {
+      "id": "4468",
+      "url": "https://malele11.wixsite.com/zabaldika",
+      "code": 200,
+      "final_url": "https://malele11.wixsite.com/zabaldika",
+      "title": "Zabaldika una pausa en el camino."
+    }
+  },
+  {
+    "table": "albergues",
+    "id": 4737,
+    "name": "Albergue Casa Mariela",
+    "column": "albergueWebsiteURL",
+    "before": "https://albergue-casa-mariela.negocio.site/",
+    "after": "https://alberguecasamariela.es/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://alberguecasamariela.es/",
+    "validation": {
+      "id": "4737",
+      "url": "https://alberguecasamariela.es/",
+      "code": 200,
+      "final_url": "https://alberguecasamariela.es/",
+      "title": "Albergue Casa Mariela - Torres del R&iacute;o"
+    }
+  },
+  {
+    "table": "albergues",
+    "id": 4898,
+    "name": "Albergue Virgen de Guadalupe",
+    "column": "albergueWebsiteURL",
+    "before": "http://albergue-virgendeguadalupe.webnode.es/",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://www.todosbiz.es/albergue-virgen-de-guadalupe-638-92-40-69",
+    "validation": null
+  },
+  {
+    "table": "albergues",
+    "id": 4558,
+    "name": "Alda Estella Hostel",
+    "column": "albergueWebsiteURL",
+    "before": "https://www.aldahotels.es/alojamientos/alda-estella-hostel/",
+    "after": "https://www.aldahotels.es/hoteles/navarra/estella/estella/alda-estella-hostel",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.aldahotels.es/hoteles/navarra/estella/estella/alda-estella-hostel",
+    "validation": {
+      "id": "4558",
+      "url": "https://www.aldahotels.es/hoteles/navarra/estella/estella/alda-estella-hostel",
+      "code": 200,
+      "final_url": "https://www.aldahotels.es/hoteles/navarra/estella/estella/alda-estella-hostel",
+      "title": "Albergue en Estella | Alda Estella Hostel"
+    }
+  },
+  {
+    "table": "albergues",
+    "id": 4995,
+    "name": "Albergue Bercianos 1900",
+    "column": "albergueWebsiteURL",
+    "before": "http://www.bercianos1900.com/",
+    "after": "https://www.albergue1900.com/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.albergue1900.com/",
+    "validation": {
+      "id": "4995",
+      "url": "https://www.albergue1900.com/",
+      "code": 200,
+      "final_url": "https://www.albergue1900.com/",
+      "title": "Inicio"
+    }
+  },
+  {
+    "table": "albergues",
+    "id": 5151,
+    "name": "Albergue Lamas",
+    "column": "albergueWebsiteURL",
+    "before": "https://alberguelamas.business.site/",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://caminodesantiago.fundaciononce.es/es/puntos-de-interes/albergue-lamas",
+    "validation": null
+  },
+  {
+    "table": "albergues",
+    "id": 5121,
+    "name": "Albergue Alda Pilgrim Ponferrada",
+    "column": "albergueWebsiteURL",
+    "before": "https://aldahotels.es/alojamientos/albergue-alda-pilgrim-ponferrada",
+    "after": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/albergue-alda-pilgrim-ponferrada",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/albergue-alda-pilgrim-ponferrada",
+    "validation": {
+      "id": "5121",
+      "url": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/albergue-alda-pilgrim-ponferrada",
+      "code": 200,
+      "final_url": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/albergue-alda-pilgrim-ponferrada",
+      "title": "Alda Pilgrim Ponferrada | Albergue en el centro"
+    }
+  },
+  {
+    "table": "albergues",
+    "id": 5313,
+    "name": "Albergue Casa Molar",
+    "column": "albergueWebsiteURL",
+    "before": "https://casa-molar.negocio.site/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Only directory listings and social profiles found; no standalone property website verified.",
+    "source": "https://www.paxinasgalegas.es/casa-molar-158278em.html",
+    "validation": null
+  },
+  {
+    "table": "albergues",
+    "id": 5396,
+    "name": "Albergue Taberna Vella",
+    "column": "albergueWebsiteURL",
+    "before": "https://taberna-vella.business.site/",
+    "after": "https://www.tabernavella.com/en",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.tabernavella.com/en",
+    "validation": {
+      "id": "5396",
+      "url": "https://www.tabernavella.com/en",
+      "code": 200,
+      "final_url": "https://www.tabernavella.com/en",
+      "title": "Pilgerherberge TabernaVella, heidi`s place | camino frances"
+    }
+  },
+  {
+    "table": "albergues",
+    "id": 5443,
+    "name": "Albergue Santos",
+    "column": "albergueWebsiteURL",
+    "before": "https://albergue-santos.negocio.site/",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://www.caminodesantiago.gal/gl/recurso/-/recurso/210701000035",
+    "validation": null
+  },
+  {
+    "table": "albergues",
+    "id": 5445,
+    "name": "Albergue Alda O Fogar de Teodomiro",
+    "column": "albergueWebsiteURL",
+    "before": "https://aldahotels.es/alojamientos/albergue-alda-fogar-teodomiro-santiago/",
+    "after": "https://www.aldahotels.es/hoteles/galicia/a-coruna/santiago-de-compostela/albergue-alda-o-fogar-de-teodomiro",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.aldahotels.es/hoteles/galicia/a-coruna/santiago-de-compostela/albergue-alda-o-fogar-de-teodomiro",
+    "validation": {
+      "id": "5445",
+      "url": "https://www.aldahotels.es/hoteles/galicia/a-coruna/santiago-de-compostela/albergue-alda-o-fogar-de-teodomiro",
+      "code": 200,
+      "final_url": "https://www.aldahotels.es/hoteles/galicia/a-coruna/santiago-de-compostela/albergue-alda-o-fogar-de-teodomiro",
+      "title": "Albergue en Santiago de Compostela centro | Alda o Fogar de Teodomiro"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6051,
+    "name": "Alda Centro Pamplona",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.aldahotels.es/alojamientos/hotel-alda-centro-pamplona/",
+    "after": "https://www.aldahotels.es/hoteles/navarra/pamplona/pamplona/hotel-alda-centro-pamplona",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.aldahotels.es/hoteles/navarra/pamplona/pamplona/hotel-alda-centro-pamplona",
+    "validation": {
+      "id": "6051",
+      "url": "https://www.aldahotels.es/hoteles/navarra/pamplona/pamplona/hotel-alda-centro-pamplona",
+      "code": 200,
+      "final_url": "https://www.aldahotels.es/hoteles/navarra/pamplona/pamplona/hotel-alda-centro-pamplona",
+      "title": "Hotel en Pamplona | Alda Centro Pamplona"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6115,
+    "name": "B&B La Perla Negra",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://alberguelaperlanegra.business.site/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Search results included websites of different nearby properties; these were rejected.",
+    "source": "https://www.gronze.com/navarra/azqueta/casa-peregrinos-perla-negra",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6354,
+    "name": "Casa Rural El Olivo",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.elolivodesansol.com/",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://www.gronze.com/navarra/sansol/casa-rural-olivo",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6627,
+    "name": "Camping Fuentes Blancas",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.campingburgos.com/",
+    "after": "https://www.campingfuentesblancas.com/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.campingfuentesblancas.com/",
+    "validation": {
+      "id": "6627",
+      "url": "https://www.campingfuentesblancas.com/",
+      "code": 200,
+      "final_url": "https://www.campingfuentesblancas.com/",
+      "title": "\r\n    Camping en Burgos Camping Fuentes Blancas\r\n  "
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6675,
+    "name": "La Casa del Abuelo",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://lacasadelabuelohornillos.webnode.es/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Search found an about page, but direct verification still returned HTTP 410. No working replacement verified.",
+    "source": null,
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6704,
+    "name": "Hostal Plaza Mayor",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://hostalplazamayorcarrion.com/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Indexed English page returned 404; www variant blocked access (403). No working replacement verified; manual follow-up recommended.",
+    "source": null,
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6639,
+    "name": "Hotel Alda Entrearcos",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.aldahotels.es/alojamientos/hotel-alda-entrearcos/",
+    "after": "https://www.aldahotels.es/hoteles/castilla-y-leon/burgos/burgos/hotel-alda-entrearcos",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.aldahotels.es/hoteles/castilla-y-leon/burgos/burgos/hotel-alda-entrearcos",
+    "validation": {
+      "id": "6639",
+      "url": "https://www.aldahotels.es/hoteles/castilla-y-leon/burgos/burgos/hotel-alda-entrearcos",
+      "code": 200,
+      "final_url": "https://www.aldahotels.es/hoteles/castilla-y-leon/burgos/burgos/hotel-alda-entrearcos",
+      "title": "Alda Entrearcos | Hotel en Burgos centro"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6616,
+    "name": "Casa Rural Los Nómadas de Atapuerca",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.atapuercarural.com/casa-rural-los-nomadas-de-atapuerca",
+    "after": "https://atapuercarural.com/producto/casa-rural-los-nomadas-de-atapuerca/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://atapuercarural.com/producto/casa-rural-los-nomadas-de-atapuerca/",
+    "validation": {
+      "id": "6616",
+      "url": "https://atapuercarural.com/producto/casa-rural-los-nomadas-de-atapuerca/",
+      "code": 200,
+      "final_url": "https://atapuercarural.com/producto/casa-rural-los-nomadas-de-atapuerca/",
+      "title": "Casa Rural Los Nómadas de Atapuerca *** - Atapuerca Rural"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6617,
+    "name": "Casa Rural El Pesebre",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.atapuercarural.com/casa-rural-el-pesebre/",
+    "after": "https://atapuercarural.com/producto/casa-rural-el-pesebre/",
+    "action": "Replaced",
+    "note": "Operator redirects the former English page to its current property page.",
+    "source": "https://atapuercarural.com/producto/casa-rural-el-pesebre/",
+    "validation": {
+      "id": "6617",
+      "url": "https://www.atapuercarural.com/en/casa-rural-el-pesebre/",
+      "code": 200,
+      "final_url": "https://atapuercarural.com/producto/casa-rural-el-pesebre/",
+      "title": "Casa Rural El Pesebre de Atapuerca *** - Atapuerca Rural"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6775,
+    "name": "Hotel La Posada Regia",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.regialeon.com/posada-regia/",
+    "after": "https://regialeon.com/",
+    "action": "Replaced",
+    "note": "Operator homepage contains Hotel Posada Regia; obsolete deep link removed.",
+    "source": "https://regialeon.com/",
+    "validation": {
+      "id": "6775",
+      "url": "https://regialeon.com/",
+      "code": 200,
+      "final_url": "https://regialeon.com/",
+      "title": "Inicio - Bodega Regia"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6768,
+    "name": "Hostal Alda Casco Antiguo",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.aldacascoantiguo.es/",
+    "after": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/leon/hostal-alda-casco-antiguo",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/leon/hostal-alda-casco-antiguo",
+    "validation": {
+      "id": "6768",
+      "url": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/leon/hostal-alda-casco-antiguo",
+      "code": 200,
+      "final_url": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/leon/hostal-alda-casco-antiguo",
+      "title": "Alda Casco Antiguo | Hostal en León"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6707,
+    "name": "Hostal Santiago",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.hostalsantiago.es/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Indexed HTTPS homepage returned 404; www variant returned 403. No working replacement verified; manual follow-up recommended.",
+    "source": null,
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6839,
+    "name": "Casa Rural Molino Galochas",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.molinogalochas.com/",
+    "after": "https://www.molinodelsol.com/index-en.html",
+    "action": "Replaced",
+    "note": "Owner website explicitly identifies El Molino del Sol as formerly Molino Galochas. Website updated; database name retained for owner review.",
+    "source": "https://www.molinodelsol.com/index-en.html",
+    "validation": {
+      "id": "6839",
+      "url": "https://www.molinodelsol.com/index-en.html",
+      "code": 200,
+      "final_url": "https://www.molinodelsol.com/index-en.html",
+      "title": "El Molino del Sol | Villavante, León (Spain)"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6619,
+    "name": "Casa Rural Los Olmos de Atapuerca",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.atapuercarural.com/casa-rural-los-olmos-de-atapuerca/",
+    "after": "https://atapuercarural.com/producto/casa-rural-los-olmos-de-atapuerca-copia/",
+    "action": "Replaced",
+    "note": "Operator redirects the former English page to its current property page.",
+    "source": "https://atapuercarural.com/producto/casa-rural-los-olmos-de-atapuerca-copia/",
+    "validation": {
+      "id": "6619",
+      "url": "https://www.atapuercarural.com/en/casa-rural-los-olmos-de-atapuerca/",
+      "code": 200,
+      "final_url": "https://atapuercarural.com/producto/casa-rural-los-olmos-de-atapuerca-copia/",
+      "title": "Casa Rural Los Olmos de Atapuerca *** - Atapuerca Rural"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6956,
+    "name": "B&B La Casita Camponaraya",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://lacasitacamponaraya.wordpress.com/",
+    "after": "https://lacasitacamponaraya.wixsite.com/elbierzo",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://lacasitacamponaraya.wixsite.com/elbierzo",
+    "validation": {
+      "id": "6956",
+      "url": "https://lacasitacamponaraya.wixsite.com/elbierzo",
+      "code": 200,
+      "final_url": "https://lacasitacamponaraya.wixsite.com/elbierzo",
+      "title": "La Casita Camponaraya | El Bierzo"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6960,
+    "name": "Hostal Santa María",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://hostal.moncloadesanlazaro.com/",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://cacabelos.org/turismo/hoteles-y-hostales/",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6992,
+    "name": "Casa Rural Rosalía",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.casaruralrosalia.com/index_es.htm",
+    "after": null,
+    "action": "Cleared",
+    "note": "Matched Trabadelo property; similarly named properties elsewhere rejected. Domain root did not connect.",
+    "source": "https://www.mycaminobed.com/es/hotel/casa-rural-rosalia/",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 6923,
+    "name": "Hotel Alda Centro Ponferrada",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.aldahotels.es/alojamientos/hotel-alda-centro-ponferrada/",
+    "after": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/hotel-alda-centro-ponferrada",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/hotel-alda-centro-ponferrada",
+    "validation": {
+      "id": "6923",
+      "url": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/hotel-alda-centro-ponferrada",
+      "code": 200,
+      "final_url": "https://www.aldahotels.es/hoteles/castilla-y-leon/leon/ponferrada/hotel-alda-centro-ponferrada",
+      "title": "Alda Centro Ponferrada | Hotel en Ponferrada"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7045,
+    "name": "Pazo Torre do Barrio",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.pazotorredobarrio.com/pazo.html",
+    "after": "https://www.pazotorredobarrio.com/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://www.pazotorredobarrio.com/",
+    "validation": {
+      "id": "7045",
+      "url": "https://www.pazotorredobarrio.com/",
+      "code": 200,
+      "final_url": "https://www.pazotorredobarrio.com/",
+      "title": "Inicio | Pazo Torre do Barrio"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7025,
+    "name": "Apartamento O Forno",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.reboleirafonfria.com/apartamento-o-forno/",
+    "after": "https://www.reboleirafonfria.com/o-forno/",
+    "action": "Replaced",
+    "note": "Recovered the current O Forno page from the accommodation operator website.",
+    "source": "https://www.reboleirafonfria.com/o-forno/",
+    "validation": {
+      "id": "7025",
+      "url": "https://www.reboleirafonfria.com/o-forno/",
+      "final_url": "https://www.reboleirafonfria.com/o-forno/",
+      "code": 200,
+      "title": [
+        "O Forno - Albergue A Reboleira Fonfría"
+      ]
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7036,
+    "name": "Hotel Iberik Triacastela",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.iberikhoteles.com/hoteles/iberik-triacastela-hotel/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Found evidence of a change to Alda Triacastela, but the property link on Alda’s own site also returned 404. Manual operator confirmation recommended.",
+    "source": "https://www.aldahotels.es/info-alda-hotels/noticias/nuevas-aperturas-de-alda-hotels-en-la-provincia-de-zaragoza-y-en-navarra",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7120,
+    "name": "Hostal El Padrino",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://omiradorportomarin.com/hostal-el-padrino",
+    "after": "https://hostalelpadrino.com/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://hostalelpadrino.com/",
+    "validation": {
+      "id": "7120",
+      "url": "https://hostalelpadrino.com/",
+      "code": 200,
+      "final_url": "https://hostalelpadrino.com/",
+      "title": "Hostal El Padrino"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7158,
+    "name": "Pensión Casa Camiño",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://pensioncasacamino.es/pension-casa-camino-2/",
+    "after": "https://pensioncasacamino.es/pension-casa-camino-ii/",
+    "action": "Replaced",
+    "note": "Recovered Casa Camino II page; same reservations phone. Original URL was the property 2 page.",
+    "source": "https://pensioncasacamino.es/pension-casa-camino-ii/",
+    "validation": {
+      "id": "7158",
+      "url": "https://pensioncasacamino.es/pension-casa-camino-ii/",
+      "final_url": "https://pensioncasacamino.es/pension-casa-camino-ii/",
+      "code": 200,
+      "title": [
+        "Alojamiento para peregrinos, Pensión Casa Camiño II"
+      ]
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7228,
+    "name": "Apartamentos Arzúa",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://apartamentos-arzua.negocio.site/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Matched listing using street address and telephone; no verified standalone website found.",
+    "source": "https://www.paxinasgalegas.es/arzua-651811em.html",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7271,
+    "name": "Pensión Noja Rooms",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://noja-rooms.negocio.site/",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://www.booking.com/hotel/es/pension-lucas.es.html",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7280,
+    "name": "Pensión Diana",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://pension-diana.negocio.site/",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://www.mycaminobed.com/es/hotel/pension-diana/",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7307,
+    "name": "Pensión Kilómetro 15",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://barkilometro15.negocio.site/",
+    "after": "https://pensionkm15.com/",
+    "action": "Replaced",
+    "note": "Verified property/operator page returned HTTP 200.",
+    "source": "https://pensionkm15.com/",
+    "validation": {
+      "id": "7307",
+      "url": "https://pensionkm15.com/",
+      "code": 200,
+      "final_url": "https://pensionkm15.com/",
+      "title": "Kilómetro 15 &#8211; Pensión Bar en el Camino de Santiago"
+    }
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7281,
+    "name": "Casa Santaia",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://casasantaia.com/",
+    "after": null,
+    "action": "Cleared",
+    "note": "Existing non-www URL returns 404; www variant blocked access. No working replacement verified; manual follow-up recommended.",
+    "source": "https://www.gronze.com/galicia/coruna/o-pedrouzo-o-pino/casa-rural-santaia",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7276,
+    "name": "Pensión Maruja",
+    "column": "privateAccommWebsiteURL",
+    "before": "http://www.albergueoburgo.es/index.php/es/pension",
+    "after": null,
+    "action": "Cleared",
+    "note": "No working official property website verified after searching by property name and location. No website recorded; does not imply closure.",
+    "source": "https://www.paginasamarillas.es/f/o-pedrouzo/maruja_199489774_000000001.html",
+    "validation": null
+  },
+  {
+    "table": "privateAccommDetail",
+    "id": 7343,
+    "name": "Apartamentos Duerming Casas Reales",
+    "column": "privateAccommWebsiteURL",
+    "before": "https://www.ocahotels.com/hoteles/apartamentos-duerming-casas-reales/habitaciones",
+    "after": null,
+    "action": "Cleared",
+    "note": "Tourism office lists a DuermingBeds property page, but that page returned 404. No verified property-specific replacement.",
+    "source": "https://www.santiagoturismo.com/aloxamentos-santiagoturismo/duerming-casas-reales",
+    "validation": null
+  }
+]

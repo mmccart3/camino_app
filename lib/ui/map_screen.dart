@@ -310,7 +310,7 @@ class _MapScreenState extends State<MapScreen> {
                             '${guidanceDistance(result.remainingMeters)} · ${time(result.timeRemaining)} to stage end',
                           ),
                           Text(
-                            'Walking pace: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
+                            'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
                           ),
                           const Divider(),
                           Text(
@@ -327,7 +327,7 @@ class _MapScreenState extends State<MapScreen> {
                             'Position recorded: ${fixedAt?.toLocal().toString().split('.').first}. Tap Update to refresh.',
                           ),
                           const Text(
-                            'Times use weighted route distances and your saved pace; they exclude breaks and the walk back to the track point.',
+                            'Times use weighted route distances and your saved flat-ground speed; they exclude breaks and the walk back to the track point.',
                           ),
                         ],
                       ),

@@ -608,6 +608,14 @@
       "bytes": 94385,
       "width": 1637,
       "height": 1038
+    },
+    "stage_maps/43": {
+      "asset": "assets/stage_maps/stage_1.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699957173/caminoAppImages/maps/1920maps/sjpp2roncesvallesX_widsnx.jpg",
+      "sha256": "ea9dd0d66eacf37e4c68b11e80978c6172e62e474108ccd3d71a9600097a654a",
+      "bytes": 1376106,
+      "width": 1920,
+      "height": 3364
     }
   },
   "missing_source_urls": [

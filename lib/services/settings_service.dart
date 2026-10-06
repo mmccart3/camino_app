@@ -5,7 +5,7 @@ class SettingsService extends ChangeNotifier {
   final SharedPreferencesAsync _preferences;
   SettingsService({SharedPreferencesAsync? preferences})
     : _preferences = preferences ?? SharedPreferencesAsync();
-  static const defaultPaceKmh = 4.6;
+  static const defaultPaceKmh = 4.2;
   static const minimumPaceKmh = 1.0;
   static const maximumPaceKmh = 8.5;
   double offRouteMetres = 50;

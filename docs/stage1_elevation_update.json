@@ -1,0 +1,81 @@
+{
+  "sourceSHA256": "1dc20130d9f529bd9034f78d83698fe2fd8ab9ab8e18d3c41d0e60c3e22fa0e1",
+  "distanceBasis": "cumulative",
+  "paths": [
+    {
+      "pathID": 1,
+      "stageID": 1,
+      "samples": 531,
+      "sampledMetres": 5300.0,
+      "startOffsetMetres": 20.6,
+      "endOffsetMetres": 7.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 2,
+      "stageID": 1,
+      "samples": 234,
+      "sampledMetres": 2330.0,
+      "startOffsetMetres": 19.5,
+      "endOffsetMetres": 31.2,
+      "gapSequences": []
+    },
+    {
+      "pathID": 3,
+      "stageID": 1,
+      "samples": 378,
+      "sampledMetres": 3770.0,
+      "startOffsetMetres": 20.0,
+      "endOffsetMetres": 24.0,
+      "gapSequences": []
+    },
+    {
+      "pathID": 4,
+      "stageID": 1,
+      "samples": 332,
+      "sampledMetres": 3310.0,
+      "startOffsetMetres": 25.3,
+      "endOffsetMetres": 28.3,
+      "gapSequences": []
+    },
+    {
+      "pathID": 5,
+      "stageID": 1,
+      "samples": 180,
+      "sampledMetres": 1790.0,
+      "startOffsetMetres": 25.0,
+      "endOffsetMetres": 14.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 6,
+      "stageID": 1,
+      "samples": 239,
+      "sampledMetres": 2380.0,
+      "startOffsetMetres": 13.4,
+      "endOffsetMetres": 24.8,
+      "gapSequences": []
+    },
+    {
+      "pathID": 7,
+      "stageID": 1,
+      "samples": 168,
+      "sampledMetres": 1670.0,
+      "startOffsetMetres": 25.6,
+      "endOffsetMetres": 12.3,
+      "gapSequences": []
+    },
+    {
+      "pathID": 8,
+      "stageID": 1,
+      "samples": 393,
+      "sampledMetres": 3920.0,
+      "startOffsetMetres": 7.3,
+      "endOffsetMetres": 13.8,
+      "gapSequences": []
+    }
+  ],
+  "sampleCount": 2455,
+  "originalCSV_SHA256": "341d5f51dc2acda7131be716c1c3baed3219578665c513ce4011f9f46ceefc12",
+  "approvedCorrection": "Previously approved continuation of path 1 sequences 511\u2013530 at 5110\u20135300 metres."
+}

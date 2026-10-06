@@ -1,0 +1,49 @@
+{
+  "1": {
+    "databaseStageID": 1,
+    "tiles": 14,
+    "missing": 0
+  },
+  "2": {
+    "databaseStageID": 2,
+    "tiles": 15,
+    "missing": 0
+  },
+  "3": {
+    "databaseStageID": 3,
+    "tiles": 14,
+    "missing": 0
+  },
+  "4": {
+    "databaseStageID": 4,
+    "tiles": 18,
+    "missing": 0
+  },
+  "5": {
+    "databaseStageID": 5,
+    "tiles": 15,
+    "missing": 0
+  },
+  "6": {
+    "databaseStageID": 6,
+    "tiles": 15,
+    "missing": 0
+  },
+  "7": {
+    "databaseStageID": 7,
+    "tiles": 19,
+    "missing": 0
+  },
+  "8": {
+    "databaseStageID": 8,
+    "tiles": 18,
+    "missing": 0
+  },
+  "9": {
+    "databaseStageID": 11,
+    "tiles": 15,
+    "missing": 0
+  },
+  "sha256": "a64fe3e3287b455e3508eec8fa886309ca5846e97498b6d3dfa2b33aa34f8355",
+  "bytes": 9244672
+}

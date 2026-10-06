@@ -1,0 +1,62 @@
+{
+  "stage": 20,
+  "trackCount": 509,
+  "trackIDRange": [
+    26000,
+    26508
+  ],
+  "distanceMetres": 19306.337300983512,
+  "walkingMinutesAtTrueFlat4_2": 277.8200171699726,
+  "elevation": {
+    "sourceSHA256": "c94a472b46dea43fac500b50d866da73807b6a2b1b317137c01d2455a0c15510",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 503,
+        "stageID": 20,
+        "samples": 343,
+        "sampledMetres": 3420.0,
+        "startOffsetMetres": 59.9,
+        "endOffsetMetres": 19.2,
+        "gapSequences": []
+      },
+      {
+        "pathID": 504,
+        "stageID": 20,
+        "samples": 446,
+        "sampledMetres": 4450.0,
+        "startOffsetMetres": 9.9,
+        "endOffsetMetres": 13.0,
+        "gapSequences": []
+      },
+      {
+        "pathID": 505,
+        "stageID": 20,
+        "samples": 688,
+        "sampledMetres": 6870.0,
+        "startOffsetMetres": 11.1,
+        "endOffsetMetres": 278.7,
+        "gapSequences": []
+      },
+      {
+        "pathID": 506,
+        "stageID": 20,
+        "samples": 524,
+        "sampledMetres": 5230.0,
+        "startOffsetMetres": 293.6,
+        "endOffsetMetres": 27.1,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2001
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 24644,
+    "externalReferences": []
+  },
+  "beforeSHA256": "500ae90d6c185c990203cde19880cc379396e6317e3d62c8019cf4825c8dd71d",
+  "afterSHA256": "85262dc0d5af96340764b490715f677c201bd41c85357c1f683e698042f8fa3b",
+  "stageDistanceInMetres": 19306,
+  "notes": "Supplied Villalcazar path boundary retained: elevation endpoints 278.7/293.6m from stored village; nearest track point about153m. Location unchanged."
+}

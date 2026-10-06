@@ -1,0 +1,19 @@
+{
+  "tileCount": 561,
+  "routeCoverageZoom14": {
+    "1": 14,
+    "2": 15,
+    "3": 14,
+    "4": 18,
+    "5": 15,
+    "6": 15,
+    "7": 19,
+    "8": 18,
+    "11": 15,
+    "12": 14,
+    "13": 16
+  },
+  "allSourceFeaturesPreserved": true,
+  "bytes": 10428416,
+  "sha256": "231e55580d7aa78065ee66c577eba7dbd38eb9e5ff06d5b583020691b54095a6"
+}

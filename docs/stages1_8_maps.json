@@ -1,0 +1,36 @@
+{
+  "1": {
+    "tiles": 14,
+    "missing": 0
+  },
+  "2": {
+    "tiles": 15,
+    "missing": 0
+  },
+  "3": {
+    "tiles": 14,
+    "missing": 0
+  },
+  "4": {
+    "tiles": 18,
+    "missing": 0
+  },
+  "5": {
+    "tiles": 15,
+    "missing": 0
+  },
+  "6": {
+    "tiles": 15,
+    "missing": 0
+  },
+  "7": {
+    "tiles": 19,
+    "missing": 0
+  },
+  "8": {
+    "tiles": 18,
+    "missing": 0
+  },
+  "sha256": "ebb1d19125aa98f7308c10f0f06708477becd47518dca33da20be26523330a3f",
+  "bytes": 8732672
+}

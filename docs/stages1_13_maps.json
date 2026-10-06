@@ -1,0 +1,64 @@
+{
+  "tileCount": 648,
+  "routeCoverageZoom14": {
+    "1": {
+      "requiredTiles": 14,
+      "missingTiles": 0
+    },
+    "2": {
+      "requiredTiles": 15,
+      "missingTiles": 0
+    },
+    "3": {
+      "requiredTiles": 14,
+      "missingTiles": 0
+    },
+    "4": {
+      "requiredTiles": 18,
+      "missingTiles": 0
+    },
+    "5": {
+      "requiredTiles": 15,
+      "missingTiles": 0
+    },
+    "6": {
+      "requiredTiles": 15,
+      "missingTiles": 0
+    },
+    "7": {
+      "requiredTiles": 19,
+      "missingTiles": 0
+    },
+    "8": {
+      "requiredTiles": 18,
+      "missingTiles": 0
+    },
+    "11": {
+      "requiredTiles": 15,
+      "missingTiles": 0
+    },
+    "12": {
+      "requiredTiles": 14,
+      "missingTiles": 0
+    },
+    "13": {
+      "requiredTiles": 16,
+      "missingTiles": 0
+    },
+    "14": {
+      "requiredTiles": 19,
+      "missingTiles": 0
+    },
+    "15": {
+      "requiredTiles": 20,
+      "missingTiles": 0
+    },
+    "16": {
+      "requiredTiles": 15,
+      "missingTiles": 0
+    }
+  },
+  "allSourceFeaturesPreserved": true,
+  "bytes": 13426688,
+  "sha256": "990c70e46e9f162028f313fc265f6f6611ee9edbe2cd43b7b9b099304c44065b"
+}

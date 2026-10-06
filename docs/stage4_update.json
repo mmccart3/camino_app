@@ -1,0 +1,87 @@
+{
+  "stage": 4,
+  "trackCount": 991,
+  "trackIDRange": [
+    9420,
+    10410
+  ],
+  "distanceMetres": 25347.593955168373,
+  "walkingMinutesAtTrueFlat4_2": 369.7825057936288,
+  "elevation": {
+    "sourceSHA256": "7b1232abcf57bde8b61adfdb23c57e31f318301acfb634dbad24a8367fec462a",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 26,
+        "stageID": 4,
+        "samples": 509,
+        "sampledMetres": 5080.0,
+        "startOffsetMetres": 44.7,
+        "endOffsetMetres": 29.1,
+        "gapSequences": []
+      },
+      {
+        "pathID": 27,
+        "stageID": 4,
+        "samples": 623,
+        "sampledMetres": 6220.0,
+        "startOffsetMetres": 23.3,
+        "endOffsetMetres": 36.2,
+        "gapSequences": []
+      },
+      {
+        "pathID": 28,
+        "stageID": 4,
+        "samples": 237,
+        "sampledMetres": 2360.0,
+        "startOffsetMetres": 18.5,
+        "endOffsetMetres": 12.1,
+        "gapSequences": []
+      },
+      {
+        "pathID": 29,
+        "stageID": 4,
+        "samples": 358,
+        "sampledMetres": 3570.0,
+        "startOffsetMetres": 7.8,
+        "endOffsetMetres": 13.5,
+        "gapSequences": []
+      },
+      {
+        "pathID": 30,
+        "stageID": 4,
+        "samples": 292,
+        "sampledMetres": 2910.0,
+        "startOffsetMetres": 8.5,
+        "endOffsetMetres": 24.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 31,
+        "stageID": 4,
+        "samples": 177,
+        "sampledMetres": 1760.0,
+        "startOffsetMetres": 20.6,
+        "endOffsetMetres": 18.0,
+        "gapSequences": []
+      },
+      {
+        "pathID": 32,
+        "stageID": 4,
+        "samples": 299,
+        "sampledMetres": 2973.4541252204785,
+        "startOffsetMetres": 8.8,
+        "endOffsetMetres": 2.2,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2495
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 8544,
+    "stage5FirstTrack5000": 10410
+  },
+  "beforeSHA256": "6fe13710c1e12024f01c865e7ccc93f5d907af7b54b17dcd6aac4312c1fef742",
+  "afterSHA256": "c1ba60a2c2413308bbbe686586563e3c63fd6e021ee23f5db4efda5de97f7ba9"
+}

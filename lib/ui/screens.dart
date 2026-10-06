@@ -20,6 +20,17 @@ import 'location_links.dart';
 import 'elevation_screen.dart';
 import 'ahead_screen.dart';
 
+// Keep detailed source notes in the database, but show a concise assumption label.
+String _accommodationTimeLabel(String value) {
+  if (!value.toLowerCase().contains('assumed')) return value;
+  var label = value.replaceAll(
+    RegExp(r'\(assumed[^)]*\)', caseSensitive: false),
+    '',
+  );
+  label = label.split(';').first.replaceAll(RegExp(r'\s+'), ' ').trim();
+  return '$label (assumed)';
+}
+
 class HomeScreen extends StatelessWidget {
   final CaminoRepository repository;
   final SettingsService settings;
@@ -459,9 +470,13 @@ class AccommodationDetail extends StatelessWidget {
         if (place is Albergue) ...[
           AlbergueFacilities(albergue: place as Albergue),
           if ((place as Albergue).openingPeriod != null)
-            Text('Opening period: ${(place as Albergue).openingPeriod}'),
+            Text(
+              'Opening period: ${_accommodationTimeLabel((place as Albergue).openingPeriod!)}',
+            ),
           if ((place as Albergue).checkInTimes != null)
-            Text('Check-in: ${(place as Albergue).checkInTimes}'),
+            Text(
+              'Check-in: ${_accommodationTimeLabel((place as Albergue).checkInTimes!)}',
+            ),
         ],
         const SizedBox(height: 12),
       ],

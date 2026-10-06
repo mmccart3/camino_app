@@ -22,7 +22,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       children: [
         const AppVersionLabel(),
         const SizedBox(height: 20),
-        Text('Walking pace', style: Theme.of(context).textTheme.headlineSmall),
+        Text(
+          'Flat-ground walking speed',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         Text(
           '${pace.toStringAsFixed(1)} km/h',
           style: Theme.of(context).textTheme.headlineMedium,
@@ -51,7 +54,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Walking pace saved on this device.'),
+                          content: Text(
+                            'Flat-ground walking speed saved on this device.',
+                          ),
                         ),
                       );
                     }
@@ -71,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         const SizedBox(height: 20),
         const Text(
-          'Time estimates use weighted distances and your saved average walking pace. Distances use the stored 3D metres. Estimates start at the nearest track point and exclude breaks and the walk back to it.',
+          'Time estimates use weighted distances and your saved flat-ground walking speed. Distances use the stored 3D metres. Estimates start at the nearest track point and exclude breaks and the walk back to it.',
         ),
         const SizedBox(height: 20),
         AlertDistanceSetting(settings: widget.settings),

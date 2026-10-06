@@ -67,7 +67,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
                   : fix.accuracy > 50
                   ? 'GPS accuracy is too low to identify a nearby elevation sample. Please try again.'
                   : 'No elevation sample within 200 m of your position in this view.')
-            : 'Route elevation near you: ${nearest.point.elevationMetres.round()} m · stage $stage, path ${nearest.point.pathId}. ${nearest.distanceFromRoute.round()} m from the matched route sample.\nUpdated ${TimeOfDay.fromDateTime(fix.timestamp.toLocal()).format(context)}. Tap Update to refresh.';
+            : 'Route elevation near you: ${nearest.point.elevationMetres.round()} m · stage $stage, path ${nearest.point.pathId}. ${nearest.distanceFromRoute.round()} m from the matched route sample.\nUpdated ${TimeOfDay.fromDateTime(fix.timestamp.toLocal()).format(context)}. Tap the location button again to refresh.';
       });
     } catch (error) {
       if (mounted) setState(() => locationStatus = error.toString());
@@ -105,7 +105,10 @@ class _ElevationScreenState extends State<ElevationScreen> {
                 onPressed: locating ? null : () => locate(profiles),
                 icon: const Icon(Icons.my_location),
                 label: Text(
-                  locating ? 'Finding position…' : 'Update my route elevation',
+                  locating
+                      ? 'Finding position…'
+                      : 'Show me where I am on the elevation chart!',
+                  textAlign: TextAlign.center,
                 ),
               ),
               if (locationStatus != null)
@@ -126,7 +129,9 @@ class _ElevationScreenState extends State<ElevationScreen> {
                 )
               else ...[
                 Text(
-                  '${profile.sampleCount} samples · ${(profile.length / 1000).toStringAsFixed(2)} km of sampled sections',
+                  profile.stage.distanceMeters == null
+                      ? 'Stage distance = Not recorded'
+                      : 'Stage distance = ${(profile.stage.distanceMeters! / 1000).toStringAsFixed(2)} km',
                 ),
                 const SizedBox(height: 8),
                 ElevationChart(

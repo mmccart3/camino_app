@@ -6,6 +6,14 @@ Open **Trail elevation** from Home for an overview of every stage. Stages with s
 
 **Update my route elevation** obtains one foreground GPS fix and shows the nearest dataset sample within 200 m as a larger orange marker with a white border and vertical guide. The fix must be no older than two minutes and its reported horizontal accuracy must be at most 50 m. It reports route elevation from the CSV, not GPS altitude, and displays the offset from your GPS position to the matched sample. Tap again to refresh as you walk. GPS permission denial, poor accuracy and absent nearby samples produce an unavailable message, never a guessed elevation. White marks the manually selected sample. The chart and sample queries work offline; no online elevation API or background GPS is added.
 
+## Stage 1 refresh — 2 October 2026
+
+Version 0.2.22 imports 2,455 samples across paths 1–8 from the latest owner CSV. The previously approved path 1 distance correction is reapplied. Elevations and coordinates are preserved exactly as supplied. Other stages and navigation data are unchanged. The current `stage1_elevation_update.json` and `stage1_elevation_corrected.csv` document this import.
+
+## Stage 1 refresh — 30 September 2026
+
+Version 0.2.21 replaces paths 1–8 with 2,463 supplied samples (44 additional points). Distances are now cumulative. With owner approval, path 1 sequences 511–530 continue at 5,110–5,300 metres instead of resetting to zero. Elevations and coordinates are unchanged from the supplied file. Other stages, navigation tracks and published chart images are preserved. The original coverage notes below describe the initial import. See `stage1_elevation_update.json` and `stage1_elevation_corrected.csv` for the refresh audit and exact imported data.
+
 ## Current coverage and limitations
 
 The supplied `track_points_10m.csv` has 12,520 samples across paths 1–42: stage 1 through stage 5, plus part of stage 6. Path 43 and subsequent paths have no samples yet. Existing track_points and published charts are preserved.

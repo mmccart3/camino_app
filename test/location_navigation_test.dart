@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:latlong2/latlong.dart' show LatLng;
@@ -136,7 +137,7 @@ void main() {
       4.6,
     )!;
     expect(a.remainingMeters, 200);
-    expect(a.timeRemaining!.inSeconds, 300);
+    expect(a.timeRemaining!.inSeconds, closeTo(300 * math.exp(-0.1575), 1));
     final reverse = LocationRoutePlanner.plan(
       [route(1, 1, 2, points)],
       location(1, -1.5),
@@ -149,7 +150,7 @@ void main() {
     )!;
     expect(reverse.reversed, isTrue);
     expect(b.remainingMeters, 200);
-    expect(b.timeRemaining!.inSeconds, 300);
+    expect(b.timeRemaining!.inSeconds, closeTo(300 * math.exp(-0.1575), 1));
   });
   test(
     'cross-stage paths join only on compatible location and predecessor',
@@ -230,7 +231,7 @@ void main() {
         data.points.first.position,
       );
       expect(planned, isNotNull);
-      final map = File('assets/offline_maps/stages1_6.mbtiles').absolute.path;
+      final map = File('assets/offline_maps/stages1_17.mbtiles').absolute.path;
       expect(
         await OfflineCoverage.covers(
           planned!.points.map((p) => p.position).toList(),

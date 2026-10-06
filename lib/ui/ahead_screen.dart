@@ -182,7 +182,7 @@ class _AheadScreenState extends State<AheadScreen> {
                         : 'From your position recorded at ${TimeOfDay.fromDateTime(fixedAt!.toLocal()).format(context)}. Tap Update position as you walk.',
                   ),
                   Text(
-                    'Walking pace: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h. Times exclude stops.',
+                    'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h. Times exclude stops.',
                   ),
                   Wrap(
                     spacing: 8,
