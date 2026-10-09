@@ -1,0 +1,47 @@
+{
+  "stage": 25,
+  "trackCount": 570,
+  "trackIDRange": [
+    31000,
+    31569
+  ],
+  "distanceMetres": 23780.59792779018,
+  "walkingMinutesAtTrueFlat4_2": 337.3031705224857,
+  "elevation": {
+    "sourceSHA256": "30441c866166e9579bc4b31913708821104a82fb6d27a4c6f9c621ae8b0b4bd8",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 129,
+        "stageID": 25,
+        "samples": 1771,
+        "sampledMetres": 17900.0,
+        "startOffsetMetres": 6.9,
+        "endOffsetMetres": 212.2,
+        "gapSequences": []
+      },
+      {
+        "pathID": 130,
+        "stageID": 25,
+        "samples": 601,
+        "sampledMetres": 6000.0,
+        "startOffsetMetres": 208.1,
+        "endOffsetMetres": 19.6,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2372
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 29691,
+    "externalReferences": []
+  },
+  "beforeSHA256": "d3aabf3ad82cff5a30865b63aa6d59bff8c20d7ed2573b02f4841e33fc8fe2a2",
+  "afterSHA256": "97510c41dd83d87999c1bc4c763797c2e058301045f890fb6e91d8de183f8ed6",
+  "pathCorrection": "Path 130 destination corrected from Reliegos (133) to Mansilla (134)",
+  "notes": [
+    "Reliegos retains its shared stage 19a coordinates; stage 19b samples pass approximately 208 metres away.",
+    "Elevation profile cumulative distance is 23900 metres; track 3D distance is 23780.598 metres."
+  ]
+}

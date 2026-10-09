@@ -69,7 +69,8 @@ class LocationFacilities extends StatelessWidget {
           if (mapped)
             const ExternalLinkButton(
               url: 'https://www.openstreetmap.org/copyright',
-              label: '© OpenStreetMap contributors',
+              label: '\u00a9 OpenStreetMap contributors',
+              fontSize: 11,
             ),
         ],
       ),

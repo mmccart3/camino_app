@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart' show supportsLaunchMode;
 import 'package:url_launcher/url_launcher_string.dart';
 
 class SafeLinks {
@@ -80,10 +82,53 @@ class SafeLinks {
         !RegExp(r'[\x00-\x20\x7f]').hasMatch(value);
   }
 
+  static bool isBookingWebsite(String value) {
+    if (!isSafe(value)) return false;
+    final host = Uri.parse(value).host.toLowerCase();
+    return host == 'booking.com' || host.endsWith('.booking.com');
+  }
+
+  static Future<void> openBookingWebsite(String value) async {
+    if (!isBookingWebsite(value)) {
+      throw ArgumentError('Invalid Booking.com website link.');
+    }
+    final mobile =
+        !kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.iOS);
+    var mode = LaunchMode.externalApplication;
+    if (mobile) {
+      // Android Custom Tabs can follow verified app links into Booking.com.
+      // The embedded Android WebView keeps web navigation in this activity.
+      mode = defaultTargetPlatform == TargetPlatform.android
+          ? LaunchMode.inAppWebView
+          : LaunchMode.inAppBrowserView;
+      if (!await supportsLaunchMode(mode)) {
+        // Never fall back to an external application for mobile bookings.
+        throw StateError(
+          'An embedded booking browser is unavailable on this device.',
+        );
+      }
+    }
+    // Keep affiliate parameters and their original encoding unchanged.
+    if (!await launchUrlString(
+      value,
+      mode: mode,
+      browserConfiguration: const BrowserConfiguration(showTitle: true),
+      webViewConfiguration: const WebViewConfiguration(
+        enableJavaScript: true,
+        enableDomStorage: true,
+      ),
+    )) {
+      throw StateError('Could not open the booking website. Please try again.');
+    }
+  }
+
   static Future<void> open(String value) async {
     if (!isSafe(value)) {
       throw ArgumentError('Only valid HTTPS links can be opened.');
     }
+    if (isBookingWebsite(value)) return openBookingWebsite(value);
     // Pass the original database string: never rebuild query parameters.
     if (!await launchUrlString(value, mode: LaunchMode.externalApplication)) {
       throw StateError('Could not open this link.');

@@ -1,0 +1,232 @@
+[
+  {
+    "stageID": 1,
+    "stage": "Saint-Jean-Pied-de-Port to Roncesvalles",
+    "points": 778,
+    "oldDistanceMetres": 24703.78,
+    "distanceMetres": 24653.710924944335,
+    "oldMinutes": 406.72340943452235,
+    "minutes": 406.91364745210353,
+    "weightedDistance": 120033.97203862992
+  },
+  {
+    "stageID": 2,
+    "stage": "Roncesvalles to Zubiri",
+    "points": 1088,
+    "oldDistanceMetres": 21986.025977940055,
+    "distanceMetres": 21842.98251089949,
+    "oldMinutes": 315.04748187387816,
+    "minutes": 313.178687343852,
+    "weightedDistance": 92383.43819409888
+  },
+  {
+    "stageID": 3,
+    "stage": "Zubiri to Pamplona",
+    "points": 718,
+    "oldDistanceMetres": 21021.490507208102,
+    "distanceMetres": 20818.942081618065,
+    "oldMinutes": 307.91037117920536,
+    "minutes": 305.1088078898211,
+    "weightedDistance": 90002.93390085256
+  },
+  {
+    "stageID": 4,
+    "stage": "Pamplona to Puente La Reina",
+    "points": 991,
+    "oldDistanceMetres": 25347.593955168373,
+    "distanceMetres": 24995.175583697564,
+    "oldMinutes": 369.7825057936288,
+    "minutes": 364.87006817036456,
+    "weightedDistance": 107631.69000285178
+  },
+  {
+    "stageID": 5,
+    "stage": "Puente La Reina to Estella",
+    "points": 662,
+    "oldDistanceMetres": 21625.185917241397,
+    "distanceMetres": 21653.597080396234,
+    "oldMinutes": 319.1697942222424,
+    "minutes": 319.5240777359738,
+    "weightedDistance": 94255.24175161362
+  },
+  {
+    "stageID": 6,
+    "stage": "Estella to Los Arcos via Monjard\u00edn",
+    "points": 896,
+    "oldDistanceMetres": 21856.504682512023,
+    "distanceMetres": 21606.655505908446,
+    "oldMinutes": 318.89063348854273,
+    "minutes": 315.35650780632943,
+    "weightedDistance": 93025.86550548305
+  },
+  {
+    "stageID": 7,
+    "stage": "Los Arcos to Logro\u00f1o ",
+    "points": 1322,
+    "oldDistanceMetres": 28495.105981420482,
+    "distanceMetres": 28121.37073472293,
+    "oldMinutes": 414.3206753627565,
+    "minutes": 409.1259927037555,
+    "weightedDistance": 120686.58369159211
+  },
+  {
+    "stageID": 8,
+    "stage": "Logro\u00f1o to N\u00e1jera",
+    "points": 1234,
+    "oldDistanceMetres": 28832.544307309403,
+    "distanceMetres": 28649.467957045777,
+    "oldMinutes": 418.78718656517526,
+    "minutes": 416.1811846583545,
+    "weightedDistance": 122767.76902196417
+  },
+  {
+    "stageID": 11,
+    "stage": "N\u00e1jera to Santo Domingo de la Calzada ",
+    "points": 713,
+    "oldDistanceMetres": 21103.09761922281,
+    "distanceMetres": 21295.619885597247,
+    "oldMinutes": 310.29344580485827,
+    "minutes": 312.8589721264053,
+    "weightedDistance": 92289.12656874149
+  },
+  {
+    "stageID": 12,
+    "stage": "Santo Domingo de la Calzada to Belorado ",
+    "points": 762,
+    "oldDistanceMetres": 22594.795680681837,
+    "distanceMetres": 22462.92116461367,
+    "oldMinutes": 329.6159206749398,
+    "minutes": 327.7436413034446,
+    "weightedDistance": 96679.90081528795
+  },
+  {
+    "stageID": 13,
+    "stage": "Belorado to San Juan de Ortega",
+    "points": 909,
+    "oldDistanceMetres": 24204.326618608004,
+    "distanceMetres": 23934.275367845592,
+    "oldMinutes": 356.85660850934886,
+    "minutes": 353.1199303852525,
+    "weightedDistance": 104165.55973374056
+  },
+  {
+    "stageID": 14,
+    "stage": "San Juan de Ortega to Burgos (Main Route)",
+    "points": 738,
+    "oldDistanceMetres": 26689.52508132728,
+    "distanceMetres": 26474.17609445874,
+    "oldMinutes": 379.5378067424903,
+    "minutes": 376.51725795322466,
+    "weightedDistance": 111067.4520164348
+  },
+  {
+    "stageID": 15,
+    "stage": "San Juan de Ortega to Burgos (River Option)",
+    "points": 708,
+    "oldDistanceMetres": 26567.38660906025,
+    "distanceMetres": 26439.241878590114,
+    "oldMinutes": 377.90169379360754,
+    "minutes": 376.110343667829,
+    "weightedDistance": 110947.41785621154
+  },
+  {
+    "stageID": 16,
+    "stage": "Burgos to Hornillos del Camino",
+    "points": 575,
+    "oldDistanceMetres": 20437.593927585865,
+    "distanceMetres": 20476.550112217566,
+    "oldMinutes": 292.9652486670551,
+    "minutes": 293.5217919746679,
+    "weightedDistance": 86584.92235693065
+  },
+  {
+    "stageID": 17,
+    "stage": "Hornillos del Camino to Castrojeriz ",
+    "points": 523,
+    "oldDistanceMetres": 20506.78133842524,
+    "distanceMetres": 20015.41003501014,
+    "oldMinutes": 294.6593347200715,
+    "minutes": 287.6707852679612,
+    "weightedDistance": 84858.95523877609
+  },
+  {
+    "stageID": 18,
+    "stage": "Castrojeriz to Fr\u00f3mista",
+    "points": 645,
+    "oldDistanceMetres": 25241.601930622113,
+    "distanceMetres": 24901.616791466986,
+    "oldMinutes": 363.1327303793889,
+    "minutes": 358.366170142802,
+    "weightedDistance": 105713.12885635097
+  },
+  {
+    "stageID": 19,
+    "stage": "16a: Fr\u00f3mista to Carri\u00f3n de los Condes (road route)",
+    "points": 449,
+    "oldDistanceMetres": 17977.044030398145,
+    "distanceMetres": 18843.504316875045,
+    "oldMinutes": 258.7312288436343,
+    "minutes": 271.09505529189056,
+    "weightedDistance": 79969.34113778494
+  },
+  {
+    "stageID": 20,
+    "stage": "16b: Fr\u00f3mista to Carri\u00f3n de los Condes (river route)",
+    "points": 509,
+    "oldDistanceMetres": 19306.337300983512,
+    "distanceMetres": 20044.512223007132,
+    "oldMinutes": 277.8200171699726,
+    "minutes": 288.3436132588826,
+    "weightedDistance": 85057.43031267633
+  },
+  {
+    "stageID": 21,
+    "stage": "Carri\u00f3n de los Condes to Terradillos de los Templarios",
+    "points": 638,
+    "oldDistanceMetres": 26361.39604669724,
+    "distanceMetres": 26508.402077362556,
+    "oldMinutes": 378.84553067422416,
+    "minutes": 380.9039181874081,
+    "weightedDistance": 112361.45691204334
+  },
+  {
+    "stageID": 22,
+    "stage": "Terradillos de los Templarios to Bercianos del Real Camino",
+    "points": 611,
+    "oldDistanceMetres": 23105.076845775537,
+    "distanceMetres": 23381.832864837386,
+    "oldMinutes": 330.06200798317616,
+    "minutes": 334.01113788103805,
+    "weightedDistance": 98528.72676068862
+  },
+  {
+    "stageID": 23,
+    "stage": "Terradillos de los Templarios to Calzadilla de los Hermanillos",
+    "points": 692,
+    "oldDistanceMetres": 25674.50782778079,
+    "distanceMetres": 26450.31144978204,
+    "oldMinutes": 367.82723449690917,
+    "minutes": 378.89940781082186,
+    "weightedDistance": 111770.15371048971
+  },
+  {
+    "stageID": 24,
+    "stage": "Bercianos del Real Camino to Mansilla de las Mulas",
+    "points": 607,
+    "oldDistanceMetres": 24585.01819297043,
+    "distanceMetres": 26154.714355141743,
+    "oldMinutes": 349.8781521958609,
+    "minutes": 372.2504952357835,
+    "weightedDistance": 109808.8152517854
+  },
+  {
+    "stageID": 25,
+    "stage": "Calzadilla de los Hermanillos to Mansilla de las Mulas",
+    "points": 570,
+    "oldDistanceMetres": 23780.59792779018,
+    "distanceMetres": 23780.59792777539,
+    "oldMinutes": 337.3031705224857,
+    "minutes": 337.3031705222827,
+    "weightedDistance": 99499.83145693975
+  }
+]

@@ -23,15 +23,15 @@ class _LocationLinksState extends State<LocationLinks> {
   Future<List<(String, Location, IconData)>> load() async {
     final location = widget.location;
     final links = [
-      ('Prior location', location.priorLocationId, Icons.arrow_back),
+      ('Previous location', location.priorLocationId, Icons.arrow_back),
       (
-        'Alternate prior location',
+        'Alternative previous location',
         location.alternativePriorLocationId,
         Icons.alt_route,
       ),
       ('Next location', location.nextLocationId, Icons.arrow_forward),
       (
-        'Alternate next location',
+        'Alternative next location',
         location.alternativeNextLocationId,
         Icons.alt_route,
       ),
@@ -75,8 +75,13 @@ class _LocationLinksState extends State<LocationLinks> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              'Along the Camino',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 8),
             for (final link in links)
-              TextButton.icon(
+              OutlinedButton.icon(
                 icon: Icon(link.$3),
                 label: Text('${link.$1}: ${link.$2.name}'),
                 onPressed: () => navigate(

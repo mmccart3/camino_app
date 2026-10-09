@@ -364,4 +364,49 @@ Stage 16 alternatives (0.2.58+63): database stage 19 is 16a, the road route via 
 The previous bundle was `assets/offline_maps/stages1_16.mbtiles` (13.60 MiB), through Carrion de los Condes. Both stage 16a (database ID 19) and 16b (ID 20) are covered. All source vector features are preserved. Detailed zoom-14 tiles are present along every imported route, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_16_maps.json`.
 
 
-The current active bundle is `assets/offline_maps/stages1_17.mbtiles` (13.76 MiB), through Terradillos de los Templarios. Stage 17 uses database ID 21. All source vector features are preserved. Detailed zoom-14 tiles are present along every imported route, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_17_maps.json`.
+The previous bundle was `assets/offline_maps/stages1_17.mbtiles` (13.76 MiB), through Terradillos de los Templarios. Stage 17 uses database ID 21. All source vector features are preserved. Detailed zoom-14 tiles are present along every imported route, checked at 25 m intervals. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_17_maps.json`.
+
+
+The previous bundle was `assets/offline_maps/stages1_18b.mbtiles` (14.09 MiB), adding stage 18b to Calzadilla de los Hermanillos (database ID 23). All source vector features are preserved. Stage 18b and earlier bundled routes have zoom-14 tile coverage checked at 25 m intervals. Stage 18a has 2 missing route tiles at zoom 14 and still requires its map extract. Older bundles are excluded from Flutter assets. See `docs/stages1_18b_maps.json`.
+
+
+The previous bundle was `assets/offline_maps/stages1_18.mbtiles` (14.12 MiB), including both stage 18a to Bercianos and 18b to Calzadilla de los Hermanillos. All source vector features are preserved. Every imported route has zoom-14 tiles checked at 25 m intervals, with no missing route tiles. Older bundles are excluded from Flutter assets. Rebuild and install to load the new fingerprinted copy. See `docs/stages1_18_maps.json`.
+
+
+The earlier stage 19a bundle covered the routes imported at that time. Its historical audit is in `docs/stages1_19a_maps.json`; see the Stage 20 offline maps section below for the active bundle and remaining stage 19b coverage gap.
+
+### Stage 19b data update (0.2.70+75)
+
+Imported 570 track points (31000–31569) and 2,372 elevation samples for Calzadilla de los Hermanillos to Mansilla via Reliegos. Stage distance: 23,781 metres. Weighted estimate at true flat speed 4.2 km/h: about 5 hours 37 minutes. Path 130 now ends at Mansilla. Reliegos retains its shared location coordinates. No new offline map tiles were added by this import. See `docs/stage19b_update.json` for the import audit.
+
+### WGS84 recalculation (0.2.71+76)
+
+All 23 routes with imported tracks now use WGS84 ellipsoidal horizontal distances combined with elevation differences. Slopes and weighted walking values were recalculated. Path and stage distance/time totals use these values, with stored times based on 4.2 km/h true flat-ground speed (stage minutes rounded up). User-selected pace continues to control live guidance. Stage starts have zero incoming distance; cross-stage predecessor links are preserved. Routes without tracks and the separate elevation samples are unchanged. Earlier import audit totals are historical; see `docs/wgs84_recalculation.json` for corrected totals.
+
+### My walking day (0.2.73+78)
+
+Home now includes an offline walking-day planner with searchable start/finish places, route alternatives, adjustable pace, combined track elevation, optional dates, and saved plans with deletion controls. Plans are stored separately from the guide database. See `docs/walking_day.md` for calculation limits, privacy and storage details.
+
+### Walking-day arrival times (0.2.75+80)
+
+My walking day now saves a starting time and displays approximate arrivals at every place, using cumulative slope-adjusted walking time. Times use local Camino clock time, exclude breaks and identify next-day arrivals. Older plans default to 08:00.
+
+### Planned walking-day breaks (0.2.76+81)
+
+Add optional breaks at intermediate places using quick durations or a custom number of minutes. Arrival/departure times and overall duration include planned breaks. Breaks save locally with the plan; old plans default to none.
+
+### Stage 20 tracks (0.2.78+83)
+
+Imported 515 track points (32000-32514) and 1,876 elevation samples for Mansilla to Leon (database stage 26, paths 132-136). Corrected WGS84 distance: 18.740 km; walking time about 4 hours 30 minutes at 4.2 km/h true flat-ground pace. Leon now uses the supplied endpoint, 42.59918, -5.56755. No offline map tiles were added. See `docs/stage20_update.json` for validation and provenance.
+
+### Stage 20 offline maps (0.2.79+84)
+
+The active bundle is `assets/offline_maps/stages1_20.mbtiles` (989 vector tiles, 16,158,720 bytes). It includes the previous bundle plus the supplied stage 20 tiles. Actual zoom-14 tile coverage was checked along the route every 25 metres, and all source vector features were preserved during the merge. Stage 20 is fully covered. Stage 19b remains incomplete (three required zoom-14 tiles missing); the bundle name does not imply coverage of every variant. See `docs/stages1_20_maps.json`. The changed map fingerprint installs a fresh on-device copy on next launch after rebuilding. Older archives remain outside the active Flutter assets.
+
+### Complete imported-route map coverage (0.2.80+85)
+
+The active bundle is now `assets/offline_maps/stages1_20_complete.mbtiles` (997 vector tiles; 16,187,392 bytes). Stage 19b is included and its previously reported gaps are resolved. All 24 currently imported routes have their required zoom-14 tiles, checked along every track segment at intervals of at most 25 metres. This does not imply coverage of alternatives without imported tracks. All source vector features remain present. Older bundles are excluded from Flutter assets. See `docs/stages1_20_complete_maps.json`.
+
+Offline service markers and zoom levels: [offline map services](docs/offline_map_services.md).
+
+My Camino plan (0.2.82): [create a day-by-day itinerary and record accommodation](docs/camino_plan.md). User plans are kept in a separate SQLite database, never in the replaceable guide asset.

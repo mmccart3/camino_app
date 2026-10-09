@@ -49,6 +49,6 @@ class AlbergueFacilities extends StatelessWidget {
         : available
         ? 'Yes'
         : 'No';
-    return Chip(avatar: Icon(icon, size: 20), label: Text('$label: $status'));
+    return Chip(avatar: Icon(icon, size: 26), label: Text('$label: $status'));
   }
 }

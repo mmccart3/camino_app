@@ -96,6 +96,20 @@ void main() {
       expect(river16.sampleCount, 2001);
       final stage17 = await repository.profile((await guide.stage(21))!);
       expect(stage17.sampleCount, 2645);
+      final stage18a = await repository.profile((await guide.stage(22))!);
+      expect(stage18a.sampleCount, 2338);
+      final stage18b = await repository.profile((await guide.stage(23))!);
+      expect(stage18b.sampleCount, 2646);
+      final stage19a = await repository.profile((await guide.stage(24))!);
+      expect(stage19a.sampleCount, 2609);
+      final stage19b = await repository.profile((await guide.stage(25))!);
+      expect(stage19b.sampleCount, 2372);
+      final stage20 = await repository.profile((await guide.stage(26))!);
+      expect(stage20.sampleCount, 1876);
+      expect(stage20.missingPaths, isEmpty);
+      expect(stage19a.missingPaths, isEmpty);
+      expect(stage18b.missingPaths, isEmpty);
+      expect(stage18a.missingPaths, isEmpty);
       expect(stage17.missingPaths, isEmpty);
       expect(river16.missingPaths, isEmpty);
       expect(road16.missingPaths, isEmpty);
@@ -119,7 +133,7 @@ void main() {
         (await db.rawQuery(
           'SELECT count(*) n FROM elevation_points',
         )).single['n'],
-        44294,
+        56135,
       );
     },
   );
@@ -227,7 +241,11 @@ void main() {
       containsAll([1, 9]),
     );
     expect(
-      profile.landmarks.every((mark) => mark.match.distanceFromRoute <= 150),
+      profile.landmarks.every(
+        (mark) =>
+            mark.match.distanceFromRoute <=
+            ElevationProfile.maximumLandmarkMetres,
+      ),
       isTrue,
     );
     final partial = await ElevationRepository(
@@ -239,6 +257,25 @@ void main() {
       ),
       isTrue,
     );
+  });
+
+  test('Reliegos is labelled on both stage 19 alternatives', () async {
+    final repository = ElevationRepository(guide);
+    for (final stageId in [24, 25]) {
+      final profile = await repository.profile((await guide.stage(stageId))!);
+      final reliegos = profile.landmarks.singleWhere(
+        (mark) => mark.location.id == 133,
+      );
+      expect(
+        reliegos.match.distanceFromRoute,
+        lessThanOrEqualTo(ElevationProfile.maximumLandmarkMetres),
+      );
+      if (stageId == 25) {
+        expect(reliegos.match.distanceFromRoute, lessThan(10));
+        expect(reliegos.match.point.pathId, anyOf(129, 130));
+        expect(reliegos.match.chartDistance, inInclusiveRange(17000, 19000));
+      }
+    }
   });
 
   testWidgets('phone chart renders, accepts taps, and exports visual check', (

@@ -1,7 +1,7 @@
 name: camino_app
 description: Offline-first Camino MVP with a replaceable bundled SQLite dataset.
 publish_to: none
-version: 0.2.63+68
+version: 0.2.99+104
 environment:
   sdk: '>=3.10.0 <4.0.0'
 dependencies:
@@ -21,6 +21,8 @@ dependencies:
   flutter_map_vector_tiles_mbtiles: 1.0.0
   flutter_local_notifications: ^22.3.1
   package_info_plus: ^10.2.1
+  pdf: ^3.13.1
+  printing: ^5.15.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -29,12 +31,20 @@ flutter:
   uses-material-design: true
   assets:
     - assets/branding/app_icon.png
+    - assets/fonts/LiberationSans-Regular.ttf
+    - assets/fonts/LiberationSans-Bold.ttf
+    - assets/fonts/LICENSE_LIBERATION
     - assets/database/camino.sqlite
     - assets/stage_maps/
     - assets/elevation_charts/
     - assets/stage_images.json
-    - assets/offline_maps/stages1_17.mbtiles
+    - assets/offline_maps/stages1_22_complete.mbtiles
     - assets/offline_maps/style.json
+    - assets/offline_maps/poi_icons.png
+    - assets/offline_maps/poi_icons.json
+    - assets/offline_maps/poi_icons@2x.png
+    - assets/offline_maps/poi_icons@2x.json
+    - assets/offline_maps/poi_icons_license.txt
 
   fonts:
     - family: Fiesta

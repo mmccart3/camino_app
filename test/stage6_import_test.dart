@@ -9,7 +9,7 @@ import 'package:camino_app/services/offline_map.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   test(
-    'stage 6 replacement enables guidance and preserves supplied totals',
+    'stage 6 replacement enables guidance and uses corrected WGS84 totals',
     () async {
       sqfliteFfiInit();
       final directory = await Directory.systemTemp.createTemp('stage6_import_');
@@ -42,13 +42,13 @@ void main() {
         );
         expect(
           route.points.fold<double>(0, (sum, p) => sum + p.distance3dMeters!),
-          closeTo(21856.504682512023, 0.000001),
+          closeTo(21606.655505908446, 0.000001),
         );
         expect(
           route.points.fold<double>(0, (sum, p) => sum + p.weightedDistance!) /
               4.6 /
               60,
-          closeTo(340.8274795090391, 0.000001),
+          closeTo(337.0502373387067, 0.000001),
         );
       } finally {
         await local.close();

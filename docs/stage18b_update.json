@@ -1,0 +1,88 @@
+{
+  "stage": 23,
+  "trackCount": 692,
+  "trackIDRange": [
+    29000,
+    29691
+  ],
+  "distanceMetres": 25674.50782778079,
+  "walkingMinutesAtTrueFlat4_2": 367.82723449690917,
+  "elevation": {
+    "sourceSHA256": "c852fcd5900813b49aac0a69bf8410a1860d275414969c3ff98a5c6df04693c2",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 116,
+        "stageID": 23,
+        "samples": 314,
+        "sampledMetres": 3130.0,
+        "startOffsetMetres": 25.1,
+        "endOffsetMetres": 7.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 117,
+        "stageID": 23,
+        "samples": 271,
+        "sampledMetres": 2700.0,
+        "startOffsetMetres": 7.9,
+        "endOffsetMetres": 12.8,
+        "gapSequences": []
+      },
+      {
+        "pathID": 118,
+        "stageID": 23,
+        "samples": 470,
+        "sampledMetres": 4690.0,
+        "startOffsetMetres": 8.9,
+        "endOffsetMetres": 5.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 119,
+        "stageID": 23,
+        "samples": 225,
+        "sampledMetres": 2240.0,
+        "startOffsetMetres": 6.7,
+        "endOffsetMetres": 20.0,
+        "gapSequences": []
+      },
+      {
+        "pathID": 120,
+        "stageID": 23,
+        "samples": 490,
+        "sampledMetres": 4890.0,
+        "startOffsetMetres": 18.9,
+        "endOffsetMetres": 24.1,
+        "gapSequences": []
+      },
+      {
+        "pathID": 121,
+        "stageID": 23,
+        "samples": 150,
+        "sampledMetres": 1490.0,
+        "startOffsetMetres": 20.8,
+        "endOffsetMetres": 9.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 122,
+        "stageID": 23,
+        "samples": 726,
+        "sampledMetres": 7250.0,
+        "startOffsetMetres": 13.2,
+        "endOffsetMetres": 130.6,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2646
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 27637,
+    "externalReferences": []
+  },
+  "beforeSHA256": "122c62c14057f4384f5a40549533f7f7fb3e0bd0d2835e2c4da159f9b0f9e245",
+  "afterSHA256": "5ace2b4d3f42122dc6dfdafdb626265cede1df9a2e4911b0cd796942fb757dab",
+  "stageDistanceInMetres": 25675
+}

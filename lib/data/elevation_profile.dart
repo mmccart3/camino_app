@@ -39,6 +39,9 @@ class ElevationMatch {
 /// counted as known walking distance or drawn as invented elevation profiles.
 class ElevationProfile {
   static const maximumMatchMetres = 200.0;
+  // Village coordinates can be offset from an alternative route through it.
+  // This allowance applies only to labels on the location's own paths.
+  static const maximumLandmarkMetres = 300.0;
   final List<guide.Location> locations;
   final guide.Stage stage;
   final List<ElevationSection> sections;
@@ -68,7 +71,7 @@ class ElevationProfile {
         }
         for (final point in section.points) {
           final metres = distance(coordinate, point.position);
-          if (metres <= 150 &&
+          if (metres <= maximumLandmarkMetres &&
               (match == null || metres < match.distanceFromRoute)) {
             match = ElevationMatch(
               point,

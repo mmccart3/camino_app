@@ -47,12 +47,12 @@ void main() {
 
         await show(1);
         expect(find.text('Next location: Huntto'), findsOneWidget);
-        expect(find.text('Alternate next location: Arnéguy'), findsOneWidget);
-        expect(find.textContaining('Prior location:'), findsNothing);
+        expect(find.text('Alternative next location: Arnéguy'), findsOneWidget);
+        expect(find.textContaining('Previous location:'), findsNothing);
         await show(9);
-        expect(find.textContaining('Prior location:'), findsOneWidget);
+        expect(find.textContaining('Previous location:'), findsOneWidget);
         expect(
-          find.textContaining('Alternate prior location:'),
+          find.textContaining('Alternative previous location:'),
           findsOneWidget,
         );
         expect(find.text('Next location: Burguete'), findsOneWidget);

@@ -8,6 +8,31 @@ class SettingsService extends ChangeNotifier {
   static const defaultPaceKmh = 4.2;
   static const minimumPaceKmh = 1.0;
   static const maximumPaceKmh = 8.5;
+  bool autoPosition = false;
+  bool followPosition = false;
+  int positionIntervalSeconds = 120;
+  static const positionIntervals = [30, 60, 120, 300, 600];
+  Future<void> setAutoPosition(bool value) async {
+    await _preferences.setBool('auto_position', value);
+    autoPosition = value;
+    notifyListeners();
+  }
+
+  Future<void> setFollowPosition(bool value) async {
+    await _preferences.setBool('follow_position', value);
+    followPosition = value;
+    notifyListeners();
+  }
+
+  Future<void> setPositionInterval(int value) async {
+    if (!positionIntervals.contains(value)) {
+      throw ArgumentError('Invalid update interval');
+    }
+    await _preferences.setInt('position_interval_seconds', value);
+    positionIntervalSeconds = value;
+    notifyListeners();
+  }
+
   double offRouteMetres = 50;
   Future<void> setOffRouteMetres(double value) async {
     if (!value.isFinite || value < 20 || value > 500) {
@@ -21,6 +46,12 @@ class SettingsService extends ChangeNotifier {
   double _pace = defaultPaceKmh;
   double get paceKmh => _pace;
   Future<void> load() async {
+    autoPosition = await _preferences.getBool('auto_position') ?? false;
+    followPosition = await _preferences.getBool('follow_position') ?? false;
+    final interval = await _preferences.getInt('position_interval_seconds');
+    if (positionIntervals.contains(interval)) {
+      positionIntervalSeconds = interval!;
+    }
     final threshold = await _preferences.getDouble('off_route_metres');
     if (threshold != null &&
         threshold.isFinite &&

@@ -6,10 +6,15 @@ import 'widgets.dart';
 
 class ContactLinks extends StatelessWidget {
   final Accommodation place;
+  final bool showPhones, showDirections, showOther, showHeading;
   final Future<void> Function(String) call, open, openWebsite, email;
   const ContactLinks({
     super.key,
     required this.place,
+    this.showPhones = true,
+    this.showDirections = true,
+    this.showOther = true,
+    this.showHeading = true,
     this.call = SafeLinks.call,
     this.email = SafeLinks.email,
     this.open = SafeLinks.open,
@@ -38,52 +43,53 @@ class ContactLinks extends StatelessWidget {
     final appleDirections = Theme.of(context).platform == TargetPlatform.iOS
         ? MapLinks.appleWalkingDirections(place.position)
         : null;
-    if (phones.isEmpty &&
-        whatsApp == null &&
-        directions == null &&
-        !hasWebsite &&
-        address == null) {
+    if (!(showPhones && (phones.isNotEmpty || whatsApp != null)) &&
+        !(showDirections && (directions != null || appleDirections != null)) &&
+        !(showOther && (hasWebsite || address != null))) {
       return const SizedBox.shrink();
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 12),
-        Text(
-          'Contact & directions',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        if (address != null)
+        if (showHeading)
+          Text(
+            'Contact & directions',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        if (showOther && address != null)
           TextButton.icon(
             onPressed: () => _launch(context, () => email(address)),
             icon: const Icon(Icons.email_outlined),
             label: Text('Email $address'),
           ),
-        if (hasWebsite)
+        if (showOther && hasWebsite)
           TextButton.icon(
             onPressed: () => _launch(context, () => openWebsite(website)),
             icon: const Icon(Icons.language),
             label: const Text('Visit accommodation website'),
           ),
-        if (directions != null)
-          TextButton.icon(
+        if (showDirections && directions != null)
+          OutlinedButton.icon(
             onPressed: () => _launch(context, () => open(directions)),
             icon: const Icon(Icons.directions_walk),
             label: const Text('Walk here with Google Maps'),
           ),
-        if (appleDirections != null)
-          TextButton.icon(
+        if (showDirections && appleDirections != null)
+          OutlinedButton.icon(
             onPressed: () => _launch(context, () => open(appleDirections)),
             icon: const Icon(Icons.directions_walk),
             label: const Text('Walk here with Apple Maps'),
           ),
-        for (final phone in phones)
-          TextButton.icon(
-            onPressed: () => _launch(context, () => call(phone.international)),
-            icon: const Icon(Icons.phone_outlined),
-            label: Text('Call ${phone.international}'),
-          ),
-        if (whatsApp != null)
+        if (showPhones)
+          for (final phone in phones)
+            TextButton.icon(
+              onPressed: () =>
+                  _launch(context, () => call(phone.international)),
+              icon: const Icon(Icons.phone_outlined),
+              label: Text('Call ${phone.international}'),
+            ),
+        if (showPhones && whatsApp != null)
           TextButton.icon(
             onPressed: () => _launch(context, () => open(whatsApp.whatsAppUrl)),
             icon: const Icon(Icons.chat_outlined),

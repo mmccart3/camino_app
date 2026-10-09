@@ -1,0 +1,87 @@
+{
+  "stage": 26,
+  "trackCount": 515,
+  "trackIDRange": [
+    32000,
+    32514
+  ],
+  "distanceMetres": 18739.652536108126,
+  "walkingMinutesAtTrueFlat4_2": 269.8473903595411,
+  "elevation": {
+    "sourceSHA256": "5d39c12dd080dec7eb03d5a51b42d7fe45d862ed2cf51d0b52ee335c6bea80f0",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 132,
+        "stageID": 26,
+        "samples": 465,
+        "sampledMetres": 4640.0,
+        "startOffsetMetres": 12.0,
+        "endOffsetMetres": 5.1,
+        "gapSequences": []
+      },
+      {
+        "pathID": 133,
+        "stageID": 26,
+        "samples": 91,
+        "sampledMetres": 900.0,
+        "startOffsetMetres": 6.9,
+        "endOffsetMetres": 16.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 134,
+        "stageID": 26,
+        "samples": 504,
+        "sampledMetres": 5030.0,
+        "startOffsetMetres": 14.0,
+        "endOffsetMetres": 20.8,
+        "gapSequences": []
+      },
+      {
+        "pathID": 135,
+        "stageID": 26,
+        "samples": 356,
+        "sampledMetres": 3550.0,
+        "startOffsetMetres": 20.8,
+        "endOffsetMetres": 9.3,
+        "gapSequences": []
+      },
+      {
+        "pathID": 136,
+        "stageID": 26,
+        "samples": 460,
+        "sampledMetres": 4590.0,
+        "startOffsetMetres": 4.5,
+        "endOffsetMetres": 1.1,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 1876
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 31569,
+    "externalReferences": []
+  },
+  "beforeSHA256": "7246bca2d44ad3e4953a20e648cb1352177c019649a1943aee39efbe7967e467",
+  "afterSHA256": "023f487681f20fa1213acd6f7750bdba46e80d394e4c5bf2bd9d276e962d7c1e",
+  "locationUpdate": {
+    "locationID": 141,
+    "name": "Leon",
+    "before": [
+      42.59503,
+      -5.56817
+    ],
+    "after": [
+      42.59918,
+      -5.56755
+    ]
+  },
+  "validation": {
+    "maximumHorizontalGapMetres": 48.25452900913869,
+    "wgs84DistanceMaximumErrorMetres": 2.474518367989731e-09,
+    "integrity": "ok",
+    "unrelatedDataPreserved": true
+  }
+}

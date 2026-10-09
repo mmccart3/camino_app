@@ -1,3 +1,5 @@
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:camino_app/services/offline_coverage.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui' as ui;
@@ -14,6 +16,66 @@ import 'package:camino_app/ui/offline_basemap.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  test('stage 20 is covered along its full recorded route', () async {
+    sqfliteFfiInit();
+    final db = await databaseFactoryFfi.openDatabase(
+      File('assets/database/camino.sqlite').absolute.path,
+      options: OpenDatabaseOptions(readOnly: true),
+    );
+    try {
+      final rows = await db.rawQuery(
+        'SELECT t.latitude,t.longitude FROM track_points t JOIN paths p ON p.pathID=t.pathID WHERE p.stageID=26 ORDER BY t.track_point_id',
+      );
+      expect(rows.length, 515);
+      final points = rows
+          .map(
+            (r) => LatLng(
+              (r['latitude'] as num).toDouble(),
+              (r['longitude'] as num).toDouble(),
+            ),
+          )
+          .toList();
+      expect(
+        await OfflineCoverage.covers(
+          points,
+          path: File(OfflineMap.assetPath).absolute.path,
+        ),
+        isTrue,
+      );
+    } finally {
+      await db.close();
+    }
+  });
+  test('stage 19b is covered along its full recorded route', () async {
+    sqfliteFfiInit();
+    final db = await databaseFactoryFfi.openDatabase(
+      File('assets/database/camino.sqlite').absolute.path,
+      options: OpenDatabaseOptions(readOnly: true),
+    );
+    try {
+      final rows = await db.rawQuery(
+        'SELECT t.latitude,t.longitude FROM track_points t JOIN paths p ON p.pathID=t.pathID WHERE p.stageID=25 ORDER BY t.track_point_id',
+      );
+      expect(rows.length, 570);
+      final points = rows
+          .map(
+            (r) => LatLng(
+              (r['latitude'] as num).toDouble(),
+              (r['longitude'] as num).toDouble(),
+            ),
+          )
+          .toList();
+      expect(
+        await OfflineCoverage.covers(
+          points,
+          path: File(OfflineMap.assetPath).absolute.path,
+        ),
+        isTrue,
+      );
+    } finally {
+      await db.close();
+    }
+  });
   test(
     'asset copies once and provides actual stage corridor tiles with TMS conversion',
     () async {
@@ -26,7 +88,10 @@ void main() {
         final provider = await MbTilesVectorTileProvider.open(path);
         try {
           expect(provider.maximumZoom, 14);
-          expect(provider.metadata.values['name'], 'Camino stages 1-17');
+          expect(
+            provider.metadata.values['name'],
+            'Camino offline maps through stage 20',
+          );
           expect(provider.cacheBytesToDisk, isFalse);
           final tile = await provider.load(const vt.TileKey(14, 8117, 6031));
           expect(tile, isA<vt.TileResponseData>());
@@ -90,9 +155,20 @@ void main() {
 
     await tester.runAsync(() async {
       style = await OfflineMap.load(
-        path: File('assets/offline_maps/stages1_17.mbtiles').absolute.path,
+        path: File(
+          'assets/offline_maps/stages1_22_complete.mbtiles',
+        ).absolute.path,
       );
     });
+    // Widget tests otherwise render labels with the square Ahem test font.
+    final previewFont = Platform.environment['CAMINO_MAP_PREVIEW_FONT'];
+    if (previewFont != null) {
+      await tester.runAsync(() async {
+        final loader = FontLoader('CaminoMap')
+          ..addFont(File(previewFont).readAsBytes().then(ByteData.sublistView));
+        await loader.load();
+      });
+    }
     final key = GlobalKey();
     await tester.pumpWidget(
       MaterialApp(
@@ -102,7 +178,7 @@ void main() {
             child: FlutterMap(
               options: const MapOptions(
                 initialCenter: LatLng(43.163667, -1.234916),
-                initialZoom: 15,
+                initialZoom: 17,
               ),
               children: [
                 OfflineBasemap(loadStyle: () async => style),

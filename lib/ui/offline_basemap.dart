@@ -59,6 +59,7 @@ class _OfflineBasemapState extends State<OfflineBasemap> {
       }
       return vt.VectorTileLayer(
         theme: style.theme,
+        sprites: style.sprites,
         tileProviders: style.providers,
         diskCacheMaximumSizeInBytes: 0,
         concurrency: 2,

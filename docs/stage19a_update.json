@@ -1,0 +1,53 @@
+{
+  "stage": 24,
+  "trackCount": 607,
+  "trackIDRange": [
+    30000,
+    30606
+  ],
+  "distanceMetres": 24585.01819297043,
+  "walkingMinutesAtTrueFlat4_2": 349.8781521958609,
+  "elevation": {
+    "sourceSHA256": "8c222a75ed46846f62780d8056e0b71242d5663ca850d2e3acdb80fd36b51a09",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 125,
+        "stageID": 24,
+        "samples": 727,
+        "sampledMetres": 7260.0,
+        "startOffsetMetres": 5.1,
+        "endOffsetMetres": 28.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 126,
+        "stageID": 24,
+        "samples": 1267,
+        "sampledMetres": 12760.0,
+        "startOffsetMetres": 13.1,
+        "endOffsetMetres": 20.2,
+        "gapSequences": []
+      },
+      {
+        "pathID": 127,
+        "stageID": 24,
+        "samples": 615,
+        "sampledMetres": 6140.0,
+        "startOffsetMetres": 2.5,
+        "endOffsetMetres": 155.2,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2609
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 28610,
+    "externalReferences": []
+  },
+  "beforeSHA256": "5d6ca240ce65c308ccafc26cda58ab2d4c4523eaba2398589e147350aeeabef4",
+  "afterSHA256": "3967542a320d8e2a1027ef676e2a804672c2a0768e05e6fcc8fe9ec2094a24ab",
+  "stageDistanceInMetres": 24585,
+  "notes": "Removed empty erroneous path124; first predecessor corrected29691 to28610; elevation endpoint155.2m from village but within25m of track endpoint. Locations unchanged."
+}

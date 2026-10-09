@@ -1,0 +1,83 @@
+{
+  "stage": 22,
+  "trackCount": 611,
+  "trackIDRange": [
+    28000,
+    28610
+  ],
+  "distanceMetres": 23105.076845775537,
+  "walkingMinutesAtTrueFlat4_2": 330.06200798317616,
+  "elevation": {
+    "sourceSHA256": "e765311f7f7abe7bab80c0ab81a720ed582f3455aaff0fd2504d0e320500811e",
+    "distanceBasis": "cumulative",
+    "paths": [
+      {
+        "pathID": 110,
+        "stageID": 22,
+        "samples": 312,
+        "sampledMetres": 3110.0,
+        "startOffsetMetres": 26.6,
+        "endOffsetMetres": 10.7,
+        "gapSequences": []
+      },
+      {
+        "pathID": 111,
+        "stageID": 22,
+        "samples": 270,
+        "sampledMetres": 2690.0,
+        "startOffsetMetres": 5.1,
+        "endOffsetMetres": 18.5,
+        "gapSequences": []
+      },
+      {
+        "pathID": 112,
+        "stageID": 22,
+        "samples": 470,
+        "sampledMetres": 4690.0,
+        "startOffsetMetres": 8.9,
+        "endOffsetMetres": 5.4,
+        "gapSequences": []
+      },
+      {
+        "pathID": 113,
+        "stageID": 22,
+        "samples": 224,
+        "sampledMetres": 2230.0,
+        "startOffsetMetres": 6.7,
+        "endOffsetMetres": 22.8,
+        "gapSequences": []
+      },
+      {
+        "pathID": 114,
+        "stageID": 22,
+        "samples": 477,
+        "sampledMetres": 4760.0,
+        "startOffsetMetres": 22.8,
+        "endOffsetMetres": 24.9,
+        "gapSequences": []
+      },
+      {
+        "pathID": 115,
+        "stageID": 22,
+        "samples": 585,
+        "sampledMetres": 5840.0,
+        "startOffsetMetres": 20.8,
+        "endOffsetMetres": 229.4,
+        "gapSequences": []
+      }
+    ],
+    "sampleCount": 2338
+  },
+  "retainedElevationPaths": [],
+  "predecessorCorrections": {
+    "firstTrack": 27637,
+    "externalReferences": []
+  },
+  "beforeSHA256": "f2b309a51f3b4ea84d804a043474ef5b4367bb0a01710431c1effc008898ebe7",
+  "afterSHA256": "b4fa9923076add3d38b83fb663cd394781c3055318d4a4a0089d533b13f4c204",
+  "stageDistanceInMetres": 23105,
+  "bercianosCoordinates": [
+    42.3883,
+    -5.145229999999997
+  ]
+}

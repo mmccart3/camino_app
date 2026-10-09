@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "name": "Camino offline Navarra",
+  "name": "Camino offline services",
   "sources": {
     "openmaptiles": {
       "type": "vector",
@@ -190,6 +190,1142 @@
       ]
     },
     {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "restaurant"
+      ],
+      "id": "poi-restaurant",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "restaurant",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "restaurant"
+      ],
+      "id": "poi-restaurant-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Restaurant"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "cafe"
+      ],
+      "id": "poi-cafe",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "cafe",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "cafe"
+      ],
+      "id": "poi-cafe-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Cafe"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "bar"
+      ],
+      "id": "poi-bar",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "bar",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "bar"
+      ],
+      "id": "poi-bar-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Bar"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "pub"
+      ],
+      "id": "poi-pub",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "pub",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "pub"
+      ],
+      "id": "poi-pub-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Pub"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "fast_food"
+      ],
+      "id": "poi-fast_food",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "fast_food",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "fast_food"
+      ],
+      "id": "poi-fast_food-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Food"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "supermarket"
+      ],
+      "id": "poi-supermarket",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "supermarket",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "supermarket"
+      ],
+      "id": "poi-supermarket-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Supermarket"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "convenience"
+      ],
+      "id": "poi-convenience",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "convenience",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "convenience"
+      ],
+      "id": "poi-convenience-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Groceries"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "greengrocer"
+      ],
+      "id": "poi-greengrocer",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "greengrocer",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "greengrocer"
+      ],
+      "id": "poi-greengrocer-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Groceries"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "bakery"
+      ],
+      "id": "poi-bakery",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "bakery",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "bakery"
+      ],
+      "id": "poi-bakery-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Bakery"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "pharmacy"
+      ],
+      "id": "poi-pharmacy",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "pharmacy",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "pharmacy"
+      ],
+      "id": "poi-pharmacy-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Pharmacy"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "doctors"
+      ],
+      "id": "poi-doctors",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "doctors",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "doctors"
+      ],
+      "id": "poi-doctors-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Doctor"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "clinic"
+      ],
+      "id": "poi-clinic",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "clinic",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "clinic"
+      ],
+      "id": "poi-clinic-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Clinic"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "hospital"
+      ],
+      "id": "poi-hospital",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "hospital",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "hospital"
+      ],
+      "id": "poi-hospital-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Hospital"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "drinking_water"
+      ],
+      "id": "poi-drinking_water",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "drinking_water",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "drinking_water"
+      ],
+      "id": "poi-drinking_water-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Drinking water"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "toilets"
+      ],
+      "id": "poi-toilets",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "toilets",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "toilets"
+      ],
+      "id": "poi-toilets-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "Toilets"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "atm"
+      ],
+      "id": "poi-atm",
+      "type": "symbol",
+      "minzoom": 12,
+      "layout": {
+        "icon-image": "atm",
+        "icon-size": 1,
+        "icon-allow-overlap": false,
+        "icon-padding": 2
+      }
+    },
+    {
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "filter": [
+        "==",
+        [
+          "get",
+          "subclass"
+        ],
+        "atm"
+      ],
+      "id": "poi-atm-label",
+      "type": "symbol",
+      "minzoom": 13,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name"
+          ],
+          "ATM"
+        ],
+        "text-font": [
+          "CaminoMap"
+        ],
+        "text-size": 20,
+        "text-anchor": "top",
+        "text-offset": [
+          0,
+          1.1
+        ],
+        "text-max-width": 12,
+        "text-padding": 3,
+        "text-allow-overlap": false,
+        "symbol-sort-key": [
+          "coalesce",
+          [
+            "get",
+            "rank"
+          ],
+          1000
+        ]
+      },
+      "paint": {
+        "text-color": "#083c70",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
       "id": "places",
       "type": "symbol",
       "source": "openmaptiles",
@@ -227,5 +1363,6 @@
         ]
       }
     }
-  ]
+  ],
+  "sprite": "asset://assets/offline_maps/poi_icons"
 }

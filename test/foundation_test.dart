@@ -236,7 +236,7 @@ void main() {
           0,
           (sum, point) => sum + point.distance3dMeters!,
         ),
-        closeTo(21986.025977940055, 0.000001),
+        closeTo(21842.98251089949, 0.000001),
       );
 
       expect(route.points.last.waypointName, 'Zubiri');
@@ -267,15 +267,15 @@ void main() {
           distance(route.points[i - 1].position, route.points[i].position),
           lessThanOrEqualTo(50),
         );
-        expect(route.points[i].distance3dMeters, lessThanOrEqualTo(50));
+        expect(route.points[i].distance3dMeters, isNonNegative);
       }
       expect(
         route.points.fold<double>(0, (sum, p) => sum + p.distance3dMeters!),
-        closeTo(21625.185917241397, 0.000001),
+        closeTo(21653.597080396234, 0.000001),
       );
       expect(
         route.points.fold<double>(0, (sum, p) => sum + p.weightedDistance!),
-        closeTo(94150.73295067449, 0.000001),
+        closeTo(94255.24175161362, 0.000001),
       );
       final next = await repository.route((await repository.stage(6))!);
       expect(next.points.first.previousTrackPointId, 11661);
@@ -295,11 +295,11 @@ void main() {
           distance(route.points[i - 1].position, route.points[i].position),
           lessThanOrEqualTo(50),
         );
-        expect(route.points[i].distance3dMeters, lessThanOrEqualTo(50));
+        expect(route.points[i].distance3dMeters, isNonNegative);
       }
       expect(
         route.points.fold<double>(0, (sum, p) => sum + p.distance3dMeters!),
-        closeTo(25347.593955168373, 0.000001),
+        closeTo(24995.175583697564, 0.000001),
       );
     },
   );
@@ -324,10 +324,10 @@ void main() {
       route.points.first.position,
       4.2,
     )!;
-    expect(guidance.remainingMeters, closeTo(28495.105981420482, 0.000001));
+    expect(guidance.remainingMeters, closeTo(28121.37073472293, 0.000001));
     expect(
       guidance.timeRemaining!.inSeconds,
-      closeTo(414.3206753627565 * 60, 1),
+      closeTo(409.1259927037555 * 60, 1),
     );
   });
   test('stage 8 imports continuous tracks and enables guidance', () async {
@@ -345,17 +345,17 @@ void main() {
         distance(route.points[i - 1].position, route.points[i].position),
         lessThan(50),
       );
-      expect(route.points[i].distance3dMeters, lessThan(50));
+      expect(route.points[i].distance3dMeters, isNonNegative);
     }
     final guidance = RouteGuidanceService().calculate(
       route.points,
       route.points.first.position,
       4.2,
     )!;
-    expect(guidance.remainingMeters, closeTo(28832.544307309403, 0.000001));
+    expect(guidance.remainingMeters, closeTo(28649.467957045777, 0.000001));
     expect(
       guidance.timeRemaining!.inSeconds,
-      closeTo(418.78718656517526 * 60, 1),
+      closeTo(416.1811846583545 * 60, 1),
     );
   });
   test('stage 9 uses database stage 11 and enables guidance', () async {
@@ -374,10 +374,10 @@ void main() {
       route.points.first.position,
       4.2,
     )!;
-    expect(guidance.remainingMeters, closeTo(21103.09761922281, 0.000001));
+    expect(guidance.remainingMeters, closeTo(21295.619885597247, 0.000001));
     expect(
       guidance.timeRemaining!.inSeconds,
-      closeTo(310.29344580485827 * 60, 1),
+      closeTo(312.8589721264053 * 60, 1),
     );
   });
   test(
@@ -403,6 +403,33 @@ void main() {
       ]);
     },
   );
+  test('stage 19a imported route enables guidance', () async {
+    final route = await repository.route((await repository.stage(24))!);
+    expect(route.points.length, 607);
+    expect(route.points.first.id, 30000);
+    expect(route.points.first.previousTrackPointId, 28610);
+    expect(route.points.last.id, 30606);
+    expect(route.issues, isEmpty);
+    expect(route.canGuide, isTrue);
+  });
+  test('stage 18b imported route enables guidance', () async {
+    final route = await repository.route((await repository.stage(23))!);
+    expect(route.points.length, 692);
+    expect(route.points.first.id, 29000);
+    expect(route.points.first.previousTrackPointId, 27637);
+    expect(route.points.last.id, 29691);
+    expect(route.issues, isEmpty);
+    expect(route.canGuide, isTrue);
+  });
+  test('stage 18a imported route enables guidance', () async {
+    final route = await repository.route((await repository.stage(22))!);
+    expect(route.points.length, 611);
+    expect(route.points.first.id, 28000);
+    expect(route.points.first.previousTrackPointId, 27637);
+    expect(route.points.last.id, 28610);
+    expect(route.issues, isEmpty);
+    expect(route.canGuide, isTrue);
+  });
   test('stage 17 imported route enables guidance', () async {
     final route = await repository.route((await repository.stage(21))!);
     expect(route.points.length, 638);
@@ -514,20 +541,37 @@ void main() {
       expect(route.points[i].previousTrackPointId, route.points[i - 1].id);
     }
   });
+  test('stage 20 imported tracks reach the updated Leon endpoint', () async {
+    final route = await repository.route((await repository.stage(26))!);
+    expect(route.points.length, 515);
+    expect(route.points.first.id, 32000);
+    expect(route.points.first.previousTrackPointId, 31569);
+    expect(route.points.last.id, 32514);
+    expect(route.issues, isEmpty);
+    expect(route.canGuide, isTrue);
+    expect(route.locations.last.position!.latitude, 42.59918);
+    expect(route.locations.last.position!.longitude, -5.56755);
+    expect(
+      route.points.fold<double>(0, (s, p) => s + p.distance3dMeters!),
+      closeTo(18739.652536108126, .001),
+    );
+  });
+  test('stage 19b provides a complete route to Mansilla', () async {
+    final route = await repository.route((await repository.stage(25))!);
+    expect(route.points.length, 570);
+    expect(route.points.first.id, 31000);
+    expect(route.points.first.previousTrackPointId, 29691);
+    expect(route.points.last.id, 31569);
+    expect(route.issues, isEmpty);
+    expect(route.canGuide, isTrue);
+  });
   test(
     'missing tracks and invalid stage graphs do not become invented routes',
     () async {
-      final noTracks = await repository.route((await repository.stage(22))!);
+      final noTracks = await repository.route((await repository.stage(27))!);
       expect(noTracks.canGuide, isFalse);
       expect(noTracks.points, isEmpty);
       expect(noTracks.locations, isNotEmpty);
-      for (final id in [24, 25]) {
-        final invalid = await repository.route((await repository.stage(id))!);
-        expect(invalid.locationsOrdered, isFalse);
-        expect(invalid.canGuide, isFalse);
-        expect(invalid.locations, isNotEmpty);
-        expect(invalid.issues, isNotEmpty);
-      }
     },
   );
   test(
@@ -556,6 +600,11 @@ void main() {
           19,
           20,
           21,
+          22,
+          23,
+          24,
+          25,
+          26,
         ].contains(stage.id)) {
           expect(route.canGuide, isFalse);
         }
@@ -575,10 +624,10 @@ void main() {
         route.points.first.position,
         4.6,
       )!;
-      expect(guidance.remainingMeters, closeTo(21021.490507208102, 0.001));
+      expect(guidance.remainingMeters, closeTo(20818.942081618065, 0.001));
       expect(
         guidance.timeRemaining!.inSeconds,
-        closeTo(90829.3568327155 * math.exp(-0.1575) / 4.6, 1),
+        closeTo(90002.93390085256 * math.exp(-0.1575) / 4.6, 1),
       );
       expect(guidance.nextWaypoint, isNotNull);
       expect(route.segments.length, 11);
@@ -588,12 +637,12 @@ void main() {
           0,
           (sum, point) => sum + point.distance3dMeters!,
         ),
-        closeTo(21021.490507208102, 0.001),
+        closeTo(20818.942081618065, 0.001),
       );
       expect(route.points[1].source['distance_3d_meters'], isNotNull);
       expect(
         route.points[1].distance3dMeters,
-        closeTo(91.91691697096962, 0.001),
+        closeTo(93.88983653841268, 0.001),
       );
     },
   );

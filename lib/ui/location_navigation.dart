@@ -1,3 +1,6 @@
+import 'navigation_summary.dart';
+import 'position_controls.dart';
+import 'compass_layer.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -140,7 +143,7 @@ class _LocationNavigationButtonState extends State<LocationNavigationButton> {
   }
 }
 
-/// Foreground destination guidance. Stops GPS on leaving or locking the screen;
+/// Foreground destination guidance. Pauses refreshes on leaving or locking the screen;
 /// existing opt-in screen-locked stage alerts remain a separate session.
 class LocationNavigationScreen extends StatefulWidget {
   final Location location;
@@ -159,82 +162,42 @@ class LocationNavigationScreen extends StatefulWidget {
       _LocationNavigationScreenState();
 }
 
-class _LocationNavigationScreenState extends State<LocationNavigationScreen>
-    with WidgetsBindingObserver {
-  StreamSubscription<Position>? subscription;
-  Timer? freshnessTimer;
+class _LocationNavigationScreenState extends State<LocationNavigationScreen> {
   late Position fix = widget.initialPosition;
-  String? gpsError;
   final guidance = RouteGuidanceService();
+  final mapController = MapController();
+  bool mapReady = false;
+  Timer? freshnessTimer;
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
-    start();
     freshnessTimer = Timer.periodic(const Duration(seconds: 10), (_) {
       if (mounted) setState(() {});
     });
   }
 
-  void start() {
-    subscription =
-        Geolocator.getPositionStream(
-          locationSettings: const LocationSettings(
-            accuracy: LocationAccuracy.high,
-            distanceFilter: 3,
-          ),
-        ).listen(
-          (value) {
-            if (mounted) {
-              setState(() {
-                fix = value;
-                gpsError = null;
-              });
-            }
-          },
-          onError: (Object error) {
-            if (mounted) {
-              setState(() => gpsError = 'GPS update unavailable: $error');
-            }
-          },
-          onDone: () {
-            if (mounted) {
-              setState(
-                () => gpsError =
-                    'GPS updates stopped. Reopen navigation to retry.',
-              );
-            }
-          },
-        );
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      if (subscription == null) start();
-    } else {
-      unawaited(subscription?.cancel());
-      subscription = null;
-      if (mounted) {
-        setState(() => gpsError = 'GPS paused while the app is not visible.');
-      }
+  void updatePosition(Position value) {
+    if (!mounted) return;
+    setState(() => fix = value);
+    if (mapReady && widget.settings.followPosition) {
+      mapController.move(
+        LatLng(value.latitude, value.longitude),
+        mapController.camera.zoom,
+      );
     }
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     freshnessTimer?.cancel();
-    unawaited(subscription?.cancel());
+    mapController.dispose();
     super.dispose();
   }
 
   String metres(double? value) => value == null
       ? 'Distance unavailable'
       : '${(value / 1000).toStringAsFixed(2)} km';
-  String minutes(Duration? value) => value == null
-      ? 'Time unavailable'
-      : '${(value.inSeconds / 60).ceil()} min';
+  String minutes(Duration? value) => navigationTime(value);
   @override
   Widget build(BuildContext context) {
     final position = LatLng(fix.latitude, fix.longitude);
@@ -251,98 +214,121 @@ class _LocationNavigationScreenState extends State<LocationNavigationScreen>
         fix.accuracy <= 50 &&
         const Distance()(position, widget.location.position!) <= 30;
     return Scaffold(
-      appBar: AppBar(title: Text('To ${widget.location.name}')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          SizedBox(
-            height: 360,
-            child: FlutterMap(
-              options: MapOptions(
-                initialCameraFit: CameraFit.bounds(
-                  bounds: LatLngBounds.fromPoints([
-                    ...coordinates,
-                    widget.location.position!,
-                  ]),
-                  padding: const EdgeInsets.all(30),
-                  maxZoom: 16,
+      appBar: AppBar(
+        title: Text('To ${widget.location.name}'),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: navigationMapHeight(context),
+                child: FlutterMap(
+                  mapController: mapController,
+                  options: MapOptions(
+                    onMapReady: () => mapReady = true,
+                    initialCameraFit: CameraFit.bounds(
+                      bounds: LatLngBounds.fromPoints([
+                        ...coordinates,
+                        widget.location.position!,
+                      ]),
+                      padding: const EdgeInsets.all(30),
+                      maxZoom: 16,
+                    ),
+                  ),
+                  children: [
+                    const OfflineBasemap(),
+                    PolylineLayer(
+                      polylines: [
+                        Polyline(
+                          points: coordinates,
+                          strokeWidth: 5,
+                          color: Colors.blue,
+                        ),
+                      ],
+                    ),
+                    MarkerLayer(
+                      markers: [
+                        Marker(
+                          point: widget.location.position!,
+                          child: const Icon(Icons.flag, color: Colors.red),
+                        ),
+                      ],
+                    ),
+                    CompassLayer(position: position),
+                  ],
                 ),
               ),
-              children: [
-                const OfflineBasemap(),
-                PolylineLayer(
-                  polylines: [
-                    Polyline(
-                      points: coordinates,
-                      strokeWidth: 5,
-                      color: Colors.blue,
-                    ),
-                  ],
+              NavigationSummary(
+                title: arrived
+                    ? 'You are near ${widget.location.name}'
+                    : 'Next: ${result.nextWaypoint?.waypointName ?? (result.nextWaypoint == null ? widget.location.name : "Next waypoint")}',
+                distance: metres(result.distanceToNextMeters),
+                time: minutes(result.timeToNext),
+                remaining:
+                    '${metres(result.remainingMeters)} / ${minutes(result.timeRemaining)} to ${widget.location.name}',
+                warning: result.offRouteMeters > widget.settings.offRouteMetres
+                    ? 'You are away from the recorded track.'
+                    : null,
+              ),
+              PositionControls(
+                settings: widget.settings,
+                onPosition: updatePosition,
+                initialTimestamp: widget.initialPosition.timestamp,
+              ),
+              if (stale)
+                const Text(
+                  'This is a recorded position, not a live fix. Update to check arrival.',
                 ),
-                MarkerLayer(
-                  markers: [
-                    Marker(
-                      point: position,
-                      child: const Icon(Icons.my_location, color: Colors.blue),
-                    ),
-                    Marker(
-                      point: widget.location.position!,
-                      child: const Icon(Icons.flag, color: Colors.red),
-                    ),
-                  ],
+              if (fix.accuracy > 50)
+                const Text(
+                  'GPS accuracy is poor; distance and arrival estimates may be unreliable.',
                 ),
-              ],
-            ),
+              ExpansionTile(
+                title: const Text('Route details'),
+                children: [
+                  Text(
+                    'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
+                  ),
+                  Text(
+                    '${result.offRouteMeters.round()} m from nearest track point · GPS accuracy ±${fix.accuracy.round()} m',
+                  ),
+                  if (result.offRouteMeters > widget.settings.offRouteMetres)
+                    const Text(
+                      'You are away from the recorded track. Return to the track or use Google Maps.',
+                    ),
+                  Text(
+                    'The track ends ${widget.route.destinationOffset.round()} m from the location pin. Estimates exclude the walk to and from the track and breaks. Follow local signs for the final approach.',
+                  ),
+                  if (widget.route.reversed)
+                    const Text(
+                      'Reverse travel uses the stored walking weights; uphill/downhill times may differ.',
+                    ),
+                  const Text(
+                    'Enable automatic updates or update manually. Automatic position updates pause when this map is hidden or the screen is locked.',
+                  ),
+                ],
+              ),
+              ExternalLinkButton(
+                url: MapLinks.walkingDirections(widget.location.position)!,
+                label: 'Navigate with Google Maps',
+              ),
+              const ExternalLinkButton(
+                url: 'https://www.openstreetmap.org/copyright',
+                label: '\u00a9 OpenStreetMap contributors',
+                fontSize: 11,
+              ),
+              const ExternalLinkButton(
+                url: 'https://www.openmaptiles.org/',
+                label: '\u00a9 OpenMapTiles',
+                fontSize: 11,
+              ),
+            ],
           ),
-          const ExternalLinkButton(
-            url: 'https://www.openstreetmap.org/copyright',
-            label: '© OpenStreetMap contributors',
-          ),
-          const ExternalLinkButton(
-            url: 'https://www.openmaptiles.org/',
-            label: '© OpenMapTiles',
-          ),
-          if (gpsError != null) Text(gpsError!),
-          if (stale)
-            const Text('Position is out of date. Waiting for a fresh GPS fix.'),
-          if (fix.accuracy > 50)
-            const Text(
-              'GPS accuracy is poor; distance and arrival estimates may be unreliable.',
-            ),
-          Text(
-            arrived
-                ? 'You are near ${widget.location.name}'
-                : '${metres(result.remainingMeters)} · ${minutes(result.timeRemaining)} to ${widget.location.name}',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          Text(
-            'Next: ${result.nextWaypoint?.waypointName ?? (result.nextWaypoint == null ? widget.location.name : 'Next waypoint')} · ${metres(result.distanceToNextMeters)} · ${minutes(result.timeToNext)}',
-          ),
-          Text(
-            'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
-          ),
-          Text(
-            '${result.offRouteMeters.round()} m from nearest track point · GPS accuracy ±${fix.accuracy.round()} m',
-          ),
-          if (result.offRouteMeters > widget.settings.offRouteMetres)
-            const Text(
-              'You are away from the recorded track. Return to the track or use Google Maps.',
-            ),
-          Text(
-            'The track ends ${widget.route.destinationOffset.round()} m from the location pin. Estimates exclude the walk to and from the track and breaks. Follow local signs for the final approach.',
-          ),
-          if (widget.route.reversed)
-            const Text(
-              'Reverse travel uses the stored walking weights; uphill/downhill times may differ.',
-            ),
-          const Text(
-            'Keep this screen open for GPS updates. Destination guidance pauses when the app is hidden or the screen is locked.',
-          ),
-          ExternalLinkButton(
-            url: MapLinks.walkingDirections(widget.location.position)!,
-            label: 'Navigate with Google Maps',
-          ),
-        ],
+        ),
       ),
     );
   }

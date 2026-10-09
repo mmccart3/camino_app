@@ -1,0 +1,104 @@
+{
+  "bytes": 16187392,
+  "tileCount": 997,
+  "routeCoverageZoom14": {
+    "1": {
+      "required": 14,
+      "missing": 0
+    },
+    "2": {
+      "required": 15,
+      "missing": 0
+    },
+    "3": {
+      "required": 14,
+      "missing": 0
+    },
+    "4": {
+      "required": 18,
+      "missing": 0
+    },
+    "5": {
+      "required": 15,
+      "missing": 0
+    },
+    "6": {
+      "required": 15,
+      "missing": 0
+    },
+    "7": {
+      "required": 19,
+      "missing": 0
+    },
+    "8": {
+      "required": 18,
+      "missing": 0
+    },
+    "11": {
+      "required": 15,
+      "missing": 0
+    },
+    "12": {
+      "required": 14,
+      "missing": 0
+    },
+    "13": {
+      "required": 16,
+      "missing": 0
+    },
+    "14": {
+      "required": 19,
+      "missing": 0
+    },
+    "15": {
+      "required": 20,
+      "missing": 0
+    },
+    "16": {
+      "required": 15,
+      "missing": 0
+    },
+    "17": {
+      "required": 14,
+      "missing": 0
+    },
+    "18": {
+      "required": 17,
+      "missing": 0
+    },
+    "19": {
+      "required": 14,
+      "missing": 0
+    },
+    "20": {
+      "required": 14,
+      "missing": 0
+    },
+    "21": {
+      "required": 18,
+      "missing": 0
+    },
+    "22": {
+      "required": 14,
+      "missing": 0
+    },
+    "23": {
+      "required": 17,
+      "missing": 0
+    },
+    "24": {
+      "required": 20,
+      "missing": 0
+    },
+    "25": {
+      "required": 17,
+      "missing": 0
+    },
+    "26": {
+      "required": 13,
+      "missing": 0
+    }
+  },
+  "sha256": "36ca08d6e956f76f430e88311e65e427dcf3babacd35a906acc1e6c13899a714",
+  "allSourceFeaturesPreserved": true
+}
