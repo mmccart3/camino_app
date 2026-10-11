@@ -1,8 +1,12 @@
+import 'feature_navigation.dart';
 import 'package:flutter/material.dart';
 import '../services/safe_links.dart';
 
-void navigate(BuildContext context, Widget screen) =>
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
+void navigate(BuildContext context, Widget screen) {
+  if (FeatureNavigation.handle(context, screen)) return;
+  Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
+}
+
 void showFailure(BuildContext context, Object error) => ScaffoldMessenger.of(
   context,
 ).showSnackBar(SnackBar(content: Text(error.toString())));

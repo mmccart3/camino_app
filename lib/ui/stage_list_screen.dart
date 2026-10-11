@@ -1,3 +1,4 @@
+import 'map_screen.dart';
 import 'package:flutter/material.dart';
 import '../data/camino_repository.dart';
 import '../data/models.dart' hide Row;
@@ -11,8 +12,10 @@ import 'widgets.dart';
 class StageListScreen extends StatefulWidget {
   final CaminoRepository repository;
   final SettingsService settings;
+  final bool mapMode;
   const StageListScreen({
     super.key,
+    this.mapMode = false,
     required this.repository,
     required this.settings,
   });
@@ -42,11 +45,17 @@ class _StageListScreenState extends State<StageListScreen> {
   Future<void> open(Stage stage) async {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) => StageDetailScreen(
-          repository: widget.repository,
-          settings: widget.settings,
-          stage: stage,
-        ),
+        builder: (_) => widget.mapMode
+            ? MapScreen(
+                repository: widget.repository,
+                settings: widget.settings,
+                stage: stage,
+              )
+            : StageDetailScreen(
+                repository: widget.repository,
+                settings: widget.settings,
+                stage: stage,
+              ),
       ),
     );
     await restore();
@@ -54,7 +63,10 @@ class _StageListScreenState extends State<StageListScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Stages'), centerTitle: true),
+    appBar: AppBar(
+      title: Text(widget.mapMode ? 'Choose a stage map' : 'Stages'),
+      centerTitle: true,
+    ),
     body: SafeArea(
       child: DataView(
         future: future,

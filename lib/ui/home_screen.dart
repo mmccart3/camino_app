@@ -1,3 +1,4 @@
+import 'feature_navigation.dart';
 import 'personal_library.dart';
 import 'package:flutter/material.dart';
 import '../data/camino_repository.dart';
@@ -58,6 +59,17 @@ class _HomeScreenState extends State<HomeScreen> {
     load();
   }
 
+  int? lastTab;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final selected = context
+        .dependOnInheritedWidgetOfExactType<FeatureNavigation>()
+        ?.selected;
+    if (selected == 0 && lastTab != null && lastTab != 0) load();
+    lastTab = selected;
+  }
+
   Future<void> load() async {
     final token = ++revision;
     Stage? stage;
@@ -96,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> open(Widget screen) async {
+    if (FeatureNavigation.handle(context, screen)) return;
     await Navigator.of(
       context,
     ).push(MaterialPageRoute<void>(builder: (_) => screen));

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import '../data/camino_repository.dart';
 import '../data/models.dart';
-import 'screens.dart'
-    show AlbergueDetailScreen, PrivateAccommodationDetailScreen;
+import 'screens.dart' show AccommodationBrowser;
 
 /// Local property markers; grouped at wider zooms so nearby stays remain tappable.
 class AccommodationMapLayer extends StatefulWidget {
@@ -17,21 +16,17 @@ class AccommodationMapLayer extends StatefulWidget {
 class _AccommodationMapLayerState extends State<AccommodationMapLayer> {
   late final places = widget.repository.mapAccommodation();
 
-  void open(Accommodation place) {
+  void open(Accommodation place, List<Accommodation> group) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) => place is Albergue
-            ? AlbergueDetailScreen(albergue: place)
-            : PrivateAccommodationDetailScreen(
-                accommodation: place as PrivateAccommodation,
-              ),
+        builder: (_) => AccommodationBrowser(places: group, initial: place),
       ),
     );
   }
 
   void choose(List<Accommodation> group) {
     if (group.length == 1) {
-      open(group.single);
+      open(group.single, group);
       return;
     }
     showModalBottomSheet<void>(
@@ -64,7 +59,7 @@ class _AccommodationMapLayerState extends State<AccommodationMapLayer> {
                       ),
                       onTap: () {
                         Navigator.pop(sheetContext);
-                        open(place);
+                        open(place, group);
                       },
                     ),
                 ],

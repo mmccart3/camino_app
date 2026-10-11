@@ -1,3 +1,4 @@
+import 'detail_pager.dart';
 import 'personal_library.dart';
 import '../services/ahead_of_me.dart';
 import '../services/walking_time.dart';
@@ -48,14 +49,156 @@ class StageDetailScreen extends StatefulWidget {
     required this.stage,
   });
   @override
-  State<StageDetailScreen> createState() => _StageDetailScreenState();
+  State<StageDetailScreen> createState() => _StageBrowserState();
 }
 
-class _StageDetailScreenState extends State<StageDetailScreen> {
+class _StageBrowserState extends State<StageDetailScreen> {
   @override
   void initState() {
     super.initState();
     RecentWalk.save(widget.stage.id, map: false).ignore();
+  }
+
+  late final future = widget.repository.stages();
+  @override
+  Widget build(BuildContext context) => FutureBuilder<List<Stage>>(
+    future: future,
+    builder: (context, snapshot) {
+      final stages = snapshot.data ?? [widget.stage];
+      final index = stages.indexWhere((s) => s.id == widget.stage.id);
+      final items = index < 0 ? [widget.stage] : stages;
+      // Keep the same pager while data loads so it starts at the requested stage.
+      if (snapshot.connectionState != ConnectionState.done) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      return DetailPager<Stage>(
+        items: items,
+        initialIndex: index < 0 ? 0 : index,
+        label: (s) => '${s.displayNumber}: ${s.name}',
+        onChanged: (s) => RecentWalk.save(s.id, map: false).ignore(),
+        builder: (s) => _StageDetailPage(
+          key: ValueKey(s.id),
+          repository: widget.repository,
+          settings: widget.settings,
+          stage: s,
+        ),
+      );
+    },
+  );
+}
+
+class LocationDetailScreen extends StatefulWidget {
+  final CaminoRepository repository;
+  final Location location;
+  final List<Location>? sequence;
+  const LocationDetailScreen({
+    super.key,
+    required this.repository,
+    required this.location,
+    this.sequence,
+  });
+  @override
+  State<LocationDetailScreen> createState() => _LocationBrowserState();
+}
+
+class _LocationBrowserState extends State<LocationDetailScreen> {
+  late final future = load();
+  Future<List<Location>> load() async {
+    if (widget.sequence != null) return widget.sequence!;
+    final rows = await (await widget.repository.local.database).query(
+      'locations',
+    );
+    final byId = {
+      for (final r in rows) Location.fromRow(r).id: Location.fromRow(r),
+    };
+    final items = <Location>[widget.location];
+    final seen = <int>{widget.location.id};
+    var current = widget.location;
+    while (current.alternativePriorLocationId == null ||
+        current.alternativePriorLocationId! <= 0) {
+      final prior = byId[current.priorLocationId];
+      if (prior == null || !seen.add(prior.id)) break;
+      items.insert(0, prior);
+      current = prior;
+    }
+    current = widget.location;
+    while (current.alternativeNextLocationId == null ||
+        current.alternativeNextLocationId! <= 0) {
+      final next = byId[current.nextLocationId];
+      if (next == null || !seen.add(next.id)) break;
+      items.add(next);
+      current = next;
+    }
+    return items;
+  }
+
+  @override
+  Widget build(BuildContext context) => FutureBuilder<List<Location>>(
+    future: future,
+    builder: (context, snapshot) {
+      if (snapshot.connectionState != ConnectionState.done) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      final sequence = snapshot.data ?? [widget.location];
+      final index = sequence.indexWhere((l) => l.id == widget.location.id);
+      return DetailPager<Location>(
+        items: index < 0 ? [widget.location] : sequence,
+        initialIndex: index < 0 ? 0 : index,
+        label: (l) => l.name,
+        builder: (l) => _LocationDetailPage(
+          key: ValueKey(l.id),
+          repository: widget.repository,
+          location: l,
+        ),
+      );
+    },
+  );
+}
+
+class AccommodationBrowser extends StatelessWidget {
+  final List<Accommodation> places;
+  final Accommodation initial;
+  const AccommodationBrowser({
+    super.key,
+    required this.places,
+    required this.initial,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final index = places.indexWhere(
+      (p) => p.id == initial.id && p.runtimeType == initial.runtimeType,
+    );
+    return DetailPager<Accommodation>(
+      items: index < 0 ? [initial] : places,
+      initialIndex: index < 0 ? 0 : index,
+      label: (p) => p.name,
+      builder: (p) => AccommodationDetail(
+        key: ValueKey('${p.runtimeType}:${p.id}'),
+        place: p,
+        kind: p is Albergue ? 'Albergue' : 'Private accommodation',
+      ),
+    );
+  }
+}
+
+class _StageDetailPage extends StatefulWidget {
+  final CaminoRepository repository;
+  final SettingsService settings;
+  final Stage stage;
+  const _StageDetailPage({
+    super.key,
+    required this.repository,
+    required this.settings,
+    required this.stage,
+  });
+  @override
+  State<_StageDetailPage> createState() => _StageDetailScreenState();
+}
+
+class _StageDetailScreenState extends State<_StageDetailPage> {
+  @override
+  void initState() {
+    super.initState();
   }
 
   late final Future<StageRoute> future = load();
@@ -134,6 +277,36 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                children: [
+                  const Chip(label: Text('Overview')),
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.map_outlined),
+                    label: const Text('Map'),
+                    onPressed: () => navigate(
+                      context,
+                      MapScreen(
+                        repository: widget.repository,
+                        settings: widget.settings,
+                        stage: widget.stage,
+                      ),
+                    ),
+                  ),
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.landscape_outlined),
+                    label: const Text('Elevation'),
+                    onPressed: () => navigate(
+                      context,
+                      ElevationScreen(
+                        repository: widget.repository,
+                        stage: widget.stage,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16),
@@ -268,6 +441,9 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
                       LocationDetailScreen(
                         repository: widget.repository,
                         location: route.locations[i],
+                        sequence: route.locationsOrdered
+                            ? route.locations
+                            : [route.locations[i]],
                       ),
                     ),
                   ),
@@ -287,6 +463,11 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
                       LocationDetailScreen(
                         repository: widget.repository,
                         location: location,
+                        sequence:
+                            route.locationsOrdered &&
+                                route.locations.any((l) => l.id == location.id)
+                            ? route.locations
+                            : [location],
                       ),
                     ),
                   ),
@@ -371,19 +552,19 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
   );
 }
 
-class LocationDetailScreen extends StatefulWidget {
+class _LocationDetailPage extends StatefulWidget {
   final CaminoRepository repository;
   final Location location;
-  const LocationDetailScreen({
+  const _LocationDetailPage({
     super.key,
     required this.repository,
     required this.location,
   });
   @override
-  State<LocationDetailScreen> createState() => _LocationDetailScreenState();
+  State<_LocationDetailPage> createState() => _LocationDetailScreenState();
 }
 
-class _LocationDetailScreenState extends State<LocationDetailScreen> {
+class _LocationDetailScreenState extends State<_LocationDetailPage> {
   late final future = load();
   Future<(List<Paragraph>, List<Albergue>, List<PrivateAccommodation>)>
   load() async => (
@@ -465,13 +646,13 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
               const SizedBox(height: 12),
               AccommodationComparison(
                 places: [...data.$2, ...data.$3],
+                onBrowse: (place, shown) => navigate(
+                  context,
+                  AccommodationBrowser(places: shown, initial: place),
+                ),
                 onDetails: (place) => navigate(
                   context,
-                  place is Albergue
-                      ? AlbergueDetailScreen(albergue: place)
-                      : PrivateAccommodationDetailScreen(
-                          accommodation: place as PrivateAccommodation,
-                        ),
+                  AccommodationBrowser(places: [place], initial: place),
                 ),
               ),
             ],

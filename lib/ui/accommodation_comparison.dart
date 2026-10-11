@@ -19,10 +19,12 @@ bool matchesAccommodation(
 class AccommodationComparison extends StatefulWidget {
   final List<Accommodation> places;
   final ValueChanged<Accommodation> onDetails;
+  final void Function(Accommodation, List<Accommodation>)? onBrowse;
   const AccommodationComparison({
     super.key,
     required this.places,
     required this.onDetails,
+    this.onBrowse,
   });
   @override
   State<AccommodationComparison> createState() =>
@@ -95,7 +97,9 @@ class _AccommodationComparisonState extends State<AccommodationComparison> {
             key: ValueKey('${place.runtimeType}:${place.id}'),
             place: place,
             kind: place is Albergue ? 'Albergue' : 'Private accommodation',
-            onTap: () => widget.onDetails(place),
+            onTap: () => widget.onBrowse != null
+                ? widget.onBrowse!(place, shown)
+                : widget.onDetails(place),
           ),
         const Padding(
           padding: EdgeInsets.only(top: 8),

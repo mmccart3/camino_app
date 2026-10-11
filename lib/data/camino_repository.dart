@@ -7,6 +7,17 @@ import 'stage_order.dart';
 class CaminoRepository {
   final LocalDatabase local;
   CaminoRepository(this.local);
+  Future<Accommodation?> accommodationById(String kind, int id) async {
+    final table = kind == 'albergue'
+        ? CaminoSchema.albergues
+        : CaminoSchema.privateAccommodation;
+    final rows = await _rows(table, where: 'ID = ?', args: [id]);
+    if (rows.isEmpty) return null;
+    return kind == 'albergue'
+        ? Albergue.fromRow(rows.single)
+        : PrivateAccommodation.fromRow(rows.single);
+  }
+
   Future<Map<int, Location>> locationsByIds(Set<int> ids) async {
     if (ids.isEmpty) return {};
     final db = await local.database;

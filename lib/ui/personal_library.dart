@@ -1,10 +1,6 @@
 import 'dart:typed_data';
 import 'diary_photo_editor.dart';
-import 'screens.dart'
-    show
-        LocationDetailScreen,
-        AlbergueDetailScreen,
-        PrivateAccommodationDetailScreen;
+import 'screens.dart' show LocationDetailScreen, AccommodationBrowser;
 import 'package:flutter/material.dart';
 import '../data/models.dart' hide Row;
 import '../data/camino_repository.dart';
@@ -342,17 +338,27 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
             location: location,
           );
         }
-      } else if (entry.kind == 'albergue') {
-        final matches = await widget.repository.albergues(entry.locationId);
-        final place = matches.where((p) => p.id == entry.sourceId).firstOrNull;
-        if (place != null) screen = AlbergueDetailScreen(albergue: place);
       } else {
-        final matches = await widget.repository.privateAccommodation(
-          entry.locationId,
+        final place = await widget.repository.accommodationById(
+          entry.kind,
+          entry.sourceId,
         );
-        final place = matches.where((p) => p.id == entry.sourceId).firstOrNull;
         if (place != null) {
-          screen = PrivateAccommodationDetailScreen(accommodation: place);
+          final places = <Accommodation>[];
+          if (entry.category == 'favourite') {
+            for (final saved in entries.where(
+              (e) => e.category == 'favourite',
+            )) {
+              final item = await widget.repository.accommodationById(
+                saved.kind,
+                saved.sourceId,
+              );
+              if (item != null) places.add(item);
+            }
+          } else {
+            places.add(place);
+          }
+          screen = AccommodationBrowser(places: places, initial: place);
         }
       }
       if (!mounted) return;

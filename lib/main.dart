@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'data/local_database.dart';
 import 'data/camino_repository.dart';
 import 'services/settings_service.dart';
-import 'ui/screens.dart';
+import 'ui/app_shell.dart';
 import 'ui/app_title.dart';
 import 'ui/app_theme.dart';
 import 'ui/splash_screen.dart';
@@ -75,7 +75,7 @@ class _CaminoAppState extends State<CaminoApp> {
         if (snapshot.connectionState != ConnectionState.done) {
           return const SplashScreen();
         }
-        return HomeScreen(repository: repository, settings: settings);
+        return AppShell(repository: repository, settings: settings);
       },
     ),
   );
