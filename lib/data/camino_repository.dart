@@ -1,4 +1,5 @@
 import 'local_database.dart';
+import 'map_accommodation.dart';
 import 'models.dart';
 import 'schema.dart';
 import 'route_assembler.dart';
@@ -99,17 +100,19 @@ class CaminoRepository {
   Future<List<Accommodation>> mapAccommodation() async {
     final hostels = await _rows(CaminoSchema.albergues);
     final private = await _rows(CaminoSchema.privateAccommodation);
-    return [
-          ...hostels.map(Albergue.fromRow),
-          ...private.map(PrivateAccommodation.fromRow),
-        ]
-        .where(
-          (place) =>
-              place.position != null &&
-              !(place.position!.latitude == 0 &&
-                  place.position!.longitude == 0),
-        )
-        .toList();
+    return uniqueMapAccommodation(
+      [
+            ...hostels.map(Albergue.fromRow),
+            ...private.map(PrivateAccommodation.fromRow),
+          ]
+          .where(
+            (place) =>
+                place.position != null &&
+                !(place.position!.latitude == 0 &&
+                    place.position!.longitude == 0),
+          )
+          .toList(),
+    );
   }
 
   Future<List<Path>> paths(int stageId) async => (await _rows(
