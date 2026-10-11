@@ -1,3 +1,4 @@
+import 'walking_stop_picker.dart';
 import 'plan_pdf_screen.dart';
 import '../services/plan_pdf_data.dart';
 import '../services/walking_time.dart';
@@ -105,6 +106,28 @@ class _WalkingDayScreenState extends State<WalkingDayScreen> {
     } catch (e) {
       error = e.toString().replaceFirst('Bad state: ', '');
     }
+  }
+
+  Future<void> browseStops() async {
+    if (start == null || planner == null) return;
+    final paths = await Navigator.push<List<int>>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => WalkingStopPicker(
+          planner: planner!,
+          repository: widget.repository,
+          start: start!,
+          pace: pace,
+        ),
+      ),
+    );
+    if (!mounted || paths == null || paths.isEmpty) return;
+    setState(() {
+      finish = planner!.legs[paths.last]!.path.destinationLocationId;
+      options = [paths];
+      option = 0;
+      calculate();
+    });
   }
 
   Future<void> choose(bool isStart) async {
@@ -419,6 +442,34 @@ class _WalkingDayScreenState extends State<WalkingDayScreen> {
           ),
         ],
       ),
+      bottomNavigationBar: planner == null
+          ? null
+          : SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    OutlinedButton.icon(
+                      onPressed: busy || start == null ? null : browseStops,
+                      icon: const Icon(Icons.route),
+                      label: const Text('Browse stops'),
+                    ),
+                    FilledButton.icon(
+                      onPressed: busy || day == null ? null : save,
+                      icon: const Icon(Icons.save_outlined),
+                      label: Text(
+                        widget.itineraryEditor
+                            ? 'Save itinerary day'
+                            : 'Save walking day',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),

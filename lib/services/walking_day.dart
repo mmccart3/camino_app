@@ -125,6 +125,20 @@ class WalkingDayPlanner {
     for (final leg in legs.values) {
       outgoing.putIfAbsent(leg.path.originLocationId, () => []).add(leg);
     }
+    // Prune branches that cannot reach this destination before enumerating routes.
+    final incoming = <int, List<int>>{};
+    for (final leg in legs.values) {
+      incoming
+          .putIfAbsent(leg.path.destinationLocationId, () => [])
+          .add(leg.path.originLocationId);
+    }
+    final reachable = <int>{finish};
+    final pending = <int>[finish];
+    while (pending.isNotEmpty) {
+      for (final origin in incoming[pending.removeLast()] ?? <int>[]) {
+        if (reachable.add(origin)) pending.add(origin);
+      }
+    }
     var explored = 0;
     void visit(int current, List<int> chain, Set<int> visited) {
       if (++explored > 10000) {
@@ -143,7 +157,7 @@ class WalkingDayPlanner {
       }
       for (final leg in outgoing[current] ?? <DayLeg>[]) {
         final next = leg.path.destinationLocationId;
-        if (visited.contains(next)) continue;
+        if (visited.contains(next) || !reachable.contains(next)) continue;
         if (chain.isNotEmpty) {
           final previous = legs[chain.last]!;
           if (const Distance(roundResult: false)(

@@ -16,7 +16,7 @@ void main() {
     expect(matchesAccommodation(kitchen, kitchen: true), isTrue);
     expect(matchesAccommodation(kitchen, kitchen: true, meal: true), isFalse);
   });
-  test('dorm price alone is not evidence of private rooms', () {
+  test('private rooms require confirmation regardless of room prices', () {
     final dorm = Albergue.fromRow({
       'ID': 1,
       'locationID': 1,
@@ -28,7 +28,27 @@ void main() {
       'twoPersonRateMin': 45,
     });
     expect(matchesAccommodation(dorm, privateRoom: true), isFalse);
-    expect(matchesAccommodation(room, privateRoom: true), isTrue);
+    expect(matchesAccommodation(room, privateRoom: true), isFalse);
+    for (final flag in [null, 0, 1]) {
+      final hostel = Albergue.fromRow({
+        'ID': 4,
+        'locationID': 1,
+        'twoPersonRateMin': 45,
+        'privateRoomsAvailable': flag,
+      });
+      expect(matchesAccommodation(hostel, privateRoom: true), flag == 1);
+    }
+    expect(
+      matchesAccommodation(
+        Albergue.fromRow({
+          'ID': 5,
+          'locationID': 1,
+          'privateRoomsAvailable': 1,
+        }),
+        privateRoom: true,
+      ),
+      isTrue,
+    );
     expect(
       matchesAccommodation(
         PrivateAccommodation.fromRow({'ID': 3, 'locationID': 1}),

@@ -27,7 +27,7 @@ class LocationFacilities extends StatelessWidget {
           if (checked != null) 'Checked: ${checked.split('T').first}',
         ].join('\n'),
         child: SizedBox(
-          width: 96,
+          width: 112 * MediaQuery.textScalerOf(context).scale(1),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -42,7 +42,7 @@ class LocationFacilities extends StatelessWidget {
                   softWrap: false,
                   style: Theme.of(
                     context,
-                  ).textTheme.bodySmall?.copyWith(fontSize: 12),
+                  ).textTheme.bodySmall?.copyWith(fontSize: 14),
                 ),
               ),
             ],

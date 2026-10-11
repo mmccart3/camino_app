@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 const appTitle = 'Saint Jean to Santiago';
-const caminoYellow = Color(0xFFFFD740);
-const caminoBlue = Color(0xFF1456A0);
+const caminoYellow = Color(0xFFE5A93C);
+const caminoBlue = Color(0xFF0D1F33);
+
+const caminoNavigationYellow = Color(0xFFFFD740);
 
 /// Fiesta is bundled so branding is available without a network connection.
 class AppTitle extends StatelessWidget {

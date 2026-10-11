@@ -410,3 +410,19 @@ The active bundle is now `assets/offline_maps/stages1_20_complete.mbtiles` (997 
 Offline service markers and zoom levels: [offline map services](docs/offline_map_services.md).
 
 My Camino plan (0.2.82): [create a day-by-day itinerary and record accommodation](docs/camino_plan.md). User plans are kept in a separate SQLite database, never in the replaceable guide asset.
+
+### Private rooms in albergues
+
+`albergues.privateRoomsAvailable` is nullable: `1` confirms private rooms, `0` confirms none, and `NULL` means unknown. Existing entries start unknown; prices are not evidence of availability. The Private rooms filter includes confirmed albergues and entries from the private accommodation table. Set the flag only after verifying the property. Older databases without the column are treated as unknown.
+
+
+### Favourites and diary
+
+Use **Save favourite** on either accommodation detail page, or **Add diary entry** on a location or accommodation page. Diary dates default to today and can be changed. Entries can be edited and removed from **Favourites & diary** on the home screen. Favourites appear in walking order, separately from booked itinerary stays; diary entries appear chronologically.
+
+The library offers a diary date filter and checkboxes to export selected entries. With nothing selected, **Preview PDF — all shown** exports the displayed list. Notes are included. Review the PDF, then use **Share PDF / email** to choose a recipient in your email app, or print/save. Export and storage work offline; sending email requires connectivity and an installed mail/share app.
+
+Personal entries are stored in `camino_personal.sqlite` in application support storage, separate from the bundled guide and itinerary databases. Guide updates do not replace them. Uninstalling the app or clearing app data may remove them. PDF exports are readable copies, not re-importable backups. No diary content is automatically sent anywhere.
+
+
+Diary entries support up to 12 selected library photos, including photo-only entries. Use **Add photos** in the editor, tap thumbnails to enlarge, and remove unwanted selections before saving. The system picker does not automatically filter by the diary date; select the relevant day's images yourself. Originals remain untouched. Compressed JPEG copies (maximum 1600 pixels on the longest edge) are stored offline in the personal SQLite database and included in PDFs. Version 2 of that database adds a photo table without replacing existing entries. Removing a saved photo or deleting its entry removes its stored copy; cancelling an edit retains the previous version. Photos are loaded only for editing/export, rather than loading every image when browsing the library. Android interrupted picker results are offered when Add photos is next opened. iOS photo access purpose text is configured; no camera or broad Android storage permission is added.

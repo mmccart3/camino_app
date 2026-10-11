@@ -82,7 +82,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
       title: Text(
         widget.stage == null
             ? 'Trail elevation'
-            : 'Stage ${widget.stage!.id} elevation',
+            : 'Stage ${widget.stage!.displayNumber} elevation',
       ),
     ),
     body: DataView(
@@ -96,9 +96,6 @@ class _ElevationScreenState extends State<ElevationScreen> {
               Text(
                 '${available.length} of ${profiles.length} stage profiles have samples. Alternative stages are shown separately.',
               ),
-            const Text(
-              'Charts show sampled sections only. Missing joins and endpoints are excluded from the distance axis.',
-            ),
             const SizedBox(height: 12),
             if (available.isNotEmpty) ...[
               FilledButton.icon(
@@ -120,7 +117,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
             for (final profile in profiles) ...[
               const SizedBox(height: 20),
               Text(
-                '${profile.stage.id}. ${profile.stage.name}',
+                '${profile.stage.displayNumber}. ${profile.stage.name}',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               if (profile.sampleCount < 2)

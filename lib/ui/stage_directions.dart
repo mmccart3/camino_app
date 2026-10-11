@@ -78,22 +78,6 @@ class _StageDirectionsState extends State<StageDirections> {
           busy ? 'Finding your location…' : 'Join this stage with Google Maps',
         ),
       ),
-      const Text(
-        'Uses your location to choose the stage start or a closer recorded track point by straight-line distance. Google Maps plans the walking route.',
-      ),
-      if (start != null)
-        TextButton(
-          onPressed: busy
-              ? null
-              : () async {
-                  try {
-                    await open(start!);
-                  } catch (error) {
-                    if (context.mounted) showFailure(context, error);
-                  }
-                },
-          child: const Text('Navigate to stage start instead'),
-        ),
     ],
   );
 }

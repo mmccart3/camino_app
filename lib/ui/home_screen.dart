@@ -1,3 +1,4 @@
+import 'personal_library.dart';
 import 'package:flutter/material.dart';
 import '../data/camino_repository.dart';
 import '../data/models.dart' hide Row;
@@ -135,6 +136,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const AppLogo(size: 112),
+                  OutlinedButton.icon(
+                    onPressed: () => open(
+                      PersonalLibraryScreen(repository: widget.repository),
+                    ),
+                    icon: const Icon(Icons.book_outlined),
+                    label: const Text('Favourites & diary'),
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     'One step at a time.',

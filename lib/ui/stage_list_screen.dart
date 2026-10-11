@@ -4,7 +4,6 @@ import '../data/models.dart' hide Row;
 import '../data/route_assembler.dart';
 import '../services/settings_service.dart';
 import '../services/recent_walk.dart';
-import '../services/offline_coverage.dart';
 import '../services/walking_time.dart';
 import 'screens.dart' show StageDetailScreen;
 import 'widgets.dart';
@@ -24,7 +23,6 @@ class StageListScreen extends StatefulWidget {
 class _StageListScreenState extends State<StageListScreen> {
   late final future = widget.repository.stages();
   final routes = <int, Future<StageRoute>>{};
-  final coverage = <int, Future<bool>>{};
   int? recent;
   @override
   void initState() {
@@ -52,24 +50,6 @@ class _StageListScreenState extends State<StageListScreen> {
       ),
     );
     await restore();
-  }
-
-  Future<bool> covered(StageRoute route) async {
-    if (route.segments.isEmpty) return false;
-    for (final segment in route.segments) {
-      if (!await OfflineCoverage.covers(
-        segment.map((p) => p.position).toList(),
-      )) {
-        return false;
-      }
-    }
-    for (final location in route.locations) {
-      if (location.position != null &&
-          !await OfflineCoverage.covers([location.position!])) {
-        return false;
-      }
-    }
-    return true;
   }
 
   @override
@@ -143,7 +123,7 @@ class _StageListScreenState extends State<StageListScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Stage ${stage.id}${stage.id == recent ? ' / Last opened' : ''}',
+                          'Stage ${stage.displayNumber}${stage.id == recent ? ' / Last opened' : ''}',
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                         const SizedBox(height: 6),
@@ -213,43 +193,6 @@ class _StageListScreenState extends State<StageListScreen> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 8),
-                                Wrap(
-                                  spacing: 12,
-                                  runSpacing: 8,
-                                  children: [
-                                    status(
-                                      route?.canGuide == true
-                                          ? Icons.navigation_outlined
-                                          : Icons.info_outline,
-                                      route == null
-                                          ? (snapshot.hasError
-                                                ? 'Guidance could not be checked'
-                                                : 'Checking guidance…')
-                                          : route.canGuide
-                                          ? 'Guidance ready'
-                                          : 'Guidance unavailable',
-                                    ),
-                                    if (route != null)
-                                      FutureBuilder<bool>(
-                                        future: coverage.putIfAbsent(
-                                          stage.id,
-                                          () => covered(route),
-                                        ),
-                                        builder: (context, map) => status(
-                                          Icons.map_outlined,
-                                          map.connectionState !=
-                                                  ConnectionState.done
-                                              ? 'Checking offline map…'
-                                              : map.hasError
-                                              ? 'Map could not be checked'
-                                              : map.data == true
-                                              ? 'Offline map available'
-                                              : 'Offline map incomplete',
-                                        ),
-                                      ),
-                                  ],
-                                ),
                               ],
                             );
                           },
@@ -266,13 +209,5 @@ class _StageListScreenState extends State<StageListScreen> {
         },
       ),
     ),
-  );
-  Widget status(IconData icon, String label) => Wrap(
-    spacing: 5,
-    crossAxisAlignment: WrapCrossAlignment.center,
-    children: [
-      Icon(icon, size: 18),
-      Text(label, style: Theme.of(context).textTheme.bodySmall),
-    ],
   );
 }

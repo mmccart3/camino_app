@@ -241,7 +241,7 @@ class ElevationPainter extends CustomPainter {
           annotation.rect.inflate(2),
           const Radius.circular(3),
         ),
-        Paint()..color = const Color(0xFF102F50),
+        Paint()..color = caminoBlue,
       );
       annotation.text.paint(canvas, annotation.rect.topLeft);
     }
@@ -272,7 +272,7 @@ class ElevationPainter extends CustomPainter {
       canvas.drawPath(
         line,
         Paint()
-          ..color = caminoYellow
+          ..color = caminoNavigationYellow
           ..strokeWidth = 2
           ..style = PaintingStyle.stroke,
       );

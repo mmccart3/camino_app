@@ -83,6 +83,24 @@ class CaminoRepository {
     where: 'locationID = ?',
     args: [locationId],
   )).map(PrivateAccommodation.fromRow).toList();
+
+  /// Coordinates come from each property, never from its village centre.
+  Future<List<Accommodation>> mapAccommodation() async {
+    final hostels = await _rows(CaminoSchema.albergues);
+    final private = await _rows(CaminoSchema.privateAccommodation);
+    return [
+          ...hostels.map(Albergue.fromRow),
+          ...private.map(PrivateAccommodation.fromRow),
+        ]
+        .where(
+          (place) =>
+              place.position != null &&
+              !(place.position!.latitude == 0 &&
+                  place.position!.longitude == 0),
+        )
+        .toList();
+  }
+
   Future<List<Path>> paths(int stageId) async => (await _rows(
     CaminoSchema.paths,
     where: 'stageID = ?',

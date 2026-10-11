@@ -232,7 +232,7 @@ void main() {
       );
       expect(planned, isNotNull);
       final map = File(
-        'assets/offline_maps/stages1_22_complete.mbtiles',
+        'assets/offline_maps/stages1_34_valcarlos_complete.mbtiles',
       ).absolute.path;
       expect(
         await OfflineCoverage.covers(

@@ -1,3 +1,4 @@
+import 'personal_library.dart';
 import '../services/ahead_of_me.dart';
 import '../services/walking_time.dart';
 export 'stage_list_screen.dart' show StageListScreen;
@@ -102,6 +103,24 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
               ? AheadOfMeService().calculate(route, 0, widget.settings.paceKmh)
               : <AheadPlace>[];
           final distances = {for (final p in places) p.location.id: p.metres};
+          // Known path distances remain useful even when GPS guidance is blocked.
+          if (!route.canGuide && route.locationsOrdered) {
+            var metres = 0.0;
+            var origin = widget.stage.startLocationId;
+            distances[origin] = 0;
+            for (final path in route.paths) {
+              final length = path.distanceMeters;
+              if (path.originLocationId != origin ||
+                  length == null ||
+                  !length.isFinite ||
+                  length < 0) {
+                break;
+              }
+              metres += length;
+              distances[path.destinationLocationId] = metres;
+              origin = path.destinationLocationId;
+            }
+          }
           final finish = route.locations
               .where((l) => l.id == widget.stage.finishLocationId)
               .firstOrNull;
@@ -204,7 +223,7 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (route.canGuide &&
+                        if (distances.containsKey(route.locations[i].id) &&
                             route.locations[i].id ==
                                 widget.stage.startLocationId)
                           const Text('Start / 0 km')
@@ -273,27 +292,17 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
                   ),
                 ],
               ),
-              ExpansionTile(
-                key: PageStorageKey('stage-elevation-${widget.stage.id}'),
+              ListTile(
                 title: const Text('Elevation'),
                 leading: const Icon(Icons.landscape_outlined),
-                children: [
-                  PublishedImage(
-                    assetPath: StageImageAssets.elevation(widget.stage.id),
-                    title: 'Published elevation chart',
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => navigate(
+                  context,
+                  ElevationScreen(
+                    repository: widget.repository,
+                    stage: widget.stage,
                   ),
-                  OutlinedButton.icon(
-                    onPressed: () => navigate(
-                      context,
-                      ElevationScreen(
-                        repository: widget.repository,
-                        stage: widget.stage,
-                      ),
-                    ),
-                    icon: const Icon(Icons.landscape_outlined),
-                    label: const Text('Explore elevation profile'),
-                  ),
-                ],
+                ),
               ),
               const SizedBox(height: 20),
               Text(
@@ -313,19 +322,6 @@ class _StageDetailScreenState extends State<StageDetailScreen> {
                 label: const Text('Ahead of me'),
               ),
               StageDirections(route: route),
-              if (route.canGuide)
-                const Text('Full-stage guidance available.')
-              else
-                ExpansionTile(
-                  title: const Text('Guidance unavailable / route details'),
-                  children: [
-                    for (final issue in route.issues)
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(issue),
-                      ),
-                  ],
-                ),
               const SizedBox(height: 20),
               FutureBuilder<List<Stage>>(
                 future: linkedStages,
@@ -404,6 +400,7 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
         builder: (data) => ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            PersonalActions(location: widget.location),
             LocationNavigationButton(
               repository: widget.repository,
               location: widget.location,
@@ -413,37 +410,12 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
               location: widget.location,
             ),
             const SizedBox(height: 20),
-            LocationFacilities(location: widget.location),
-            Text(
-              'Where to stay',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              'Choose a place for booking details or to record your stay.',
-            ),
-            const SizedBox(height: 12),
-            if (data.$2.isNotEmpty || data.$3.isNotEmpty)
-              AccommodationComparison(
-                places: [...data.$2, ...data.$3],
-                onDetails: (place) => navigate(
-                  context,
-                  place is Albergue
-                      ? AlbergueDetailScreen(albergue: place)
-                      : PrivateAccommodationDetailScreen(
-                          accommodation: place as PrivateAccommodation,
-                        ),
-                ),
-              ),
-            if (data.$2.isEmpty && data.$3.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: Text('No accommodation listed here.'),
-              ),
-            const SizedBox(height: 16),
             if (data.$1.isNotEmpty || widget.location.imageUrls.isNotEmpty)
               ExpansionTile(
-                title: const Text('About this place'),
+                title: Text(
+                  'About this place',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 leading: const Icon(Icons.info_outline),
                 childrenPadding: const EdgeInsets.symmetric(
                   horizontal: 12,
@@ -479,6 +451,36 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
                     ),
                 ],
               ),
+            const SizedBox(height: 12),
+            LocationFacilities(location: widget.location),
+            if (data.$2.isNotEmpty || data.$3.isNotEmpty) ...[
+              Text(
+                'Where to stay',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                'Choose a place for booking details or to record your stay.',
+              ),
+              const SizedBox(height: 12),
+              AccommodationComparison(
+                places: [...data.$2, ...data.$3],
+                onDetails: (place) => navigate(
+                  context,
+                  place is Albergue
+                      ? AlbergueDetailScreen(albergue: place)
+                      : PrivateAccommodationDetailScreen(
+                          accommodation: place as PrivateAccommodation,
+                        ),
+                ),
+              ),
+            ],
+            if (data.$2.isEmpty && data.$3.isEmpty)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: Text('No accommodation listed here.'),
+              ),
+            const SizedBox(height: 16),
             const SizedBox(height: 16),
             LocationLinks(
               repository: widget.repository,
@@ -525,6 +527,7 @@ class AccommodationDetail extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          PersonalActions(accommodation: place),
           Text(kind, style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 8),
           Text(place.name, style: Theme.of(context).textTheme.headlineSmall),

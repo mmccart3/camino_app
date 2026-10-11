@@ -10,38 +10,37 @@ import 'package:camino_app/ui/published_image.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  test(
-    'every bundled map and chart matches manifest and decodes offline',
-    () async {
-      final manifest =
-          jsonDecode(await rootBundle.loadString('assets/stage_images.json'))
-              as Map<String, dynamic>;
-      final images = manifest['images'] as Map<String, dynamic>;
-      expect(images.length, 77);
-      expect(StageImageAssets.paths.length, images.length);
-      for (final entry in images.entries) {
-        final item = entry.value as Map<String, dynamic>;
-        expect(StageImageAssets.paths[entry.key], item['asset']);
-        final data = await rootBundle.load(item['asset'] as String);
-        final bytes = data.buffer.asUint8List(
-          data.offsetInBytes,
-          data.lengthInBytes,
-        );
-        expect(sha256.convert(bytes).toString(), item['sha256']);
-        final codec = await ui.instantiateImageCodec(bytes);
-        final frame = await codec.getNextFrame();
-        expect(frame.image.width, item['width']);
-        expect(frame.image.height, item['height']);
-        frame.image.dispose();
-        codec.dispose();
-      }
-      expect(StageImageAssets.map(43), StageImageAssets.map(1));
-      expect(
-        StageImageAssets.elevation(1),
-        'assets/elevation_charts/stage_1.png',
+  test('every bundled map matches manifest and decodes offline', () async {
+    final manifest =
+        jsonDecode(await rootBundle.loadString('assets/stage_images.json'))
+            as Map<String, dynamic>;
+    final images = manifest['images'] as Map<String, dynamic>;
+    expect(images.length, 41);
+    expect(StageImageAssets.paths.length, images.length);
+    for (final entry in images.entries) {
+      final item = entry.value as Map<String, dynamic>;
+      expect(StageImageAssets.paths[entry.key], item['asset']);
+      final data = await rootBundle.load(item['asset'] as String);
+      final bytes = data.buffer.asUint8List(
+        data.offsetInBytes,
+        data.lengthInBytes,
       );
-    },
-  );
+      expect(sha256.convert(bytes).toString(), item['sha256']);
+      final codec = await ui.instantiateImageCodec(bytes);
+      final frame = await codec.getNextFrame();
+      expect(frame.image.width, item['width']);
+      expect(frame.image.height, item['height']);
+      frame.image.dispose();
+      codec.dispose();
+    }
+    expect(StageImageAssets.map(43), StageImageAssets.map(1));
+    expect(
+      StageImageAssets.paths.keys.any(
+        (key) => key.startsWith('elevation_charts/'),
+      ),
+      isFalse,
+    );
+  });
   testWidgets('bundled image stays local in full-screen viewer', (
     tester,
   ) async {

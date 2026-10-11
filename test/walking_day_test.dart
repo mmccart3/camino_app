@@ -140,8 +140,9 @@ void main() {
     'missing tracks and stale saved paths do not produce estimates',
     () async {
       final stage = (await repository.stage(27))!;
+      final missingTracks = WalkingDayPlanner(planner.locations, {});
       expect(
-        planner.routes(stage.startLocationId, stage.finishLocationId),
+        missingTracks.routes(stage.startLocationId, stage.finishLocationId),
         isEmpty,
       );
       expect(() => planner.calculate([999999], 4.2), throwsStateError);

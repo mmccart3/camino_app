@@ -1,3 +1,4 @@
+import 'accommodation_map_layer.dart';
 import 'navigation_summary.dart';
 import 'position_controls.dart';
 import 'compass_layer.dart';
@@ -96,6 +97,7 @@ class _LocationNavigationButtonState extends State<LocationNavigationButton> {
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => LocationNavigationScreen(
+              repository: widget.repository,
               location: widget.location,
               route: route,
               initialPosition: fix,
@@ -146,11 +148,13 @@ class _LocationNavigationButtonState extends State<LocationNavigationButton> {
 /// Foreground destination guidance. Pauses refreshes on leaving or locking the screen;
 /// existing opt-in screen-locked stage alerts remain a separate session.
 class LocationNavigationScreen extends StatefulWidget {
+  final CaminoRepository repository;
   final Location location;
   final LocationRoute route;
   final Position initialPosition;
   final SettingsService settings;
   const LocationNavigationScreen({
+    required this.repository,
     super.key,
     required this.location,
     required this.route,
@@ -250,6 +254,7 @@ class _LocationNavigationScreenState extends State<LocationNavigationScreen> {
                         ),
                       ],
                     ),
+                    AccommodationMapLayer(repository: widget.repository),
                     MarkerLayer(
                       markers: [
                         Marker(

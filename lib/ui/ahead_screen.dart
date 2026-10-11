@@ -30,7 +30,7 @@ class AheadStagePicker extends StatelessWidget {
           for (final stage in items)
             ListTile(
               title: Text(stage.name),
-              leading: CircleAvatar(child: Text('${stage.id}')),
+              leading: CircleAvatar(child: Text(stage.displayNumber)),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => navigate(
                 context,

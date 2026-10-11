@@ -1,3 +1,4 @@
+import 'accommodation_map_layer.dart';
 import 'elevation_screen.dart';
 import '../services/recent_walk.dart';
 import 'navigation_summary.dart';
@@ -225,6 +226,9 @@ class _MapScreenState extends State<MapScreen> {
                                   ),
                                 ),
                               ),
+                            AccommodationMapLayer(
+                              repository: widget.repository,
+                            ),
                             MarkerLayer(
                               markers: [
                                 for (final location in route.locations)

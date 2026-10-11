@@ -156,7 +156,7 @@ void main() {
     await tester.runAsync(() async {
       style = await OfflineMap.load(
         path: File(
-          'assets/offline_maps/stages1_22_complete.mbtiles',
+          'assets/offline_maps/stages1_34_valcarlos_complete.mbtiles',
         ).absolute.path,
       );
     });

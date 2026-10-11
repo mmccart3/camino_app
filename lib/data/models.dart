@@ -27,7 +27,21 @@ abstract class SourceRecord {
   SourceRecord(Row row) : source = Map.unmodifiable(row);
 }
 
+// The source database uses zero to indicate an absent stage link.
+int? _stageLink(Row row, String key) {
+  final id = optionalInt(row, key);
+  return id != null && id > 0 ? id : null;
+}
+
 class Stage extends SourceRecord {
+  /// Public route label; database IDs remain stable for linked records.
+  String get displayNumber {
+    final reference = text(source, 'stageDisplayReference')?.trim();
+    return reference != null && reference.isNotEmpty
+        ? reference
+        : id.toString();
+  }
+
   final int id, startLocationId, finishLocationId;
   final int? priorStageId,
       nextStageId,
@@ -41,10 +55,10 @@ class Stage extends SourceRecord {
       name = title(r, 'stageName'),
       startLocationId = integer(r, 'stageStartLocationID'),
       finishLocationId = integer(r, 'stageFinishLocationID'),
-      priorStageId = optionalInt(r, 'priorStage'),
-      nextStageId = optionalInt(r, 'nextStage'),
-      alternativePriorStageId = optionalInt(r, 'altPriorStage'),
-      alternativeNextStageId = optionalInt(r, 'altNextStage'),
+      priorStageId = _stageLink(r, 'priorStage'),
+      nextStageId = _stageLink(r, 'nextStage'),
+      alternativePriorStageId = _stageLink(r, 'altPriorStage'),
+      alternativeNextStageId = _stageLink(r, 'altNextStage'),
       distanceMeters = optionalDouble(r, 'stageDistanceInMetres'),
       timeMinutes = optionalDouble(r, 'stageTimeInMinutes'),
       mapUrl = text(r, 'stageMap1920URL'),
@@ -151,6 +165,7 @@ class Albergue extends Accommodation {
     0 => false,
     _ => null,
   };
+  bool? get privateRoomsAvailable => _facility('privateRoomsAvailable');
   bool? get washingMachine => _facility('washingMachineAvailable');
   bool? get dryer => _facility('dryingMachineAvailable');
   bool? get communalMeal => _facility('communalMealAvailable');

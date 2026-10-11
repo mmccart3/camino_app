@@ -10,9 +10,7 @@ bool matchesAccommodation(
 }) {
   final hostel = place is Albergue ? place : null;
   final hasRoom =
-      place is PrivateAccommodation ||
-      (place.doubleRateMin ?? 0) > 0 ||
-      (place.doubleRateMax ?? 0) > 0;
+      place is PrivateAccommodation || hostel?.privateRoomsAvailable == true;
   return (!privateRoom || hasRoom) &&
       (!meal || hostel?.communalMeal == true) &&
       (!kitchen || hostel?.kitchen == true);
