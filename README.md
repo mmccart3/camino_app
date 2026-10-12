@@ -437,3 +437,17 @@ Swipe left/right through stage details in database walking/display order, with a
 ### Place map previews
 
 Location and accommodation pages include a 220-pixel offline map preview using the bundled MBTiles. Tap the preview or Explore offline map to pan and zoom. A red pin identifies the selected place; nearby accommodation and recorded stage route segments are also shown. Preview gestures do not interfere with page scrolling or swiping. Coverage is checked against actual tiles at the destination; unavailable coverage offers Google Maps, without online OSM tiles. Missing coordinates display a short explanation. Expanded location maps retain the existing offline navigation action; accommodation maps offer Google walking directions.
+
+### Diary timeline, quick entry and backup (0.3.7)
+
+The Diary tab groups entries by calendar day, with place names, a short preview and the first photograph as a thumbnail. Tap an entry to read/edit its full text and photographs. Existing date filters and PDF selection remain available.
+
+Today’s entry is available on Home and in the Diary tab. It uses today’s dated itinerary day, snapshots the start/end names and plan/day label, and links to the destination location. Multiple matching days prompt a choice; without a dated plan it creates a general journal entry. Reopening the button resumes a matching entry for today. The plan reference is a snapshot, not a live dependency; editing or deleting a plan does not delete the diary. Optional highlight/reminder chips insert editable prompts.
+
+Back up diary saves a versioned JSON file containing all diary text, dates, place references and embedded JPEG photographs. It excludes favourites, itinerary plans, settings and the guide database. Save it using the native file dialog and retain a copy somewhere you can access after replacing your phone. Files are not encrypted and contain the diary’s personal content. No server or automatic upload is used (a cloud folder is used only if chosen in the system file dialog).
+
+Restore diary validates the selected file and shows the entry count for confirmation. A single database transaction adds entries; it never overwrites existing ones. Identical content including photo order is skipped, even on repeated restores. Changed versions are retained as separate entries to avoid losing edits. Current backup/restore limits: 128 MB per file, 10,000 entries and 12 JPEG photos per entry. A backup above the limit reports an error rather than silently omitting data. A PDF is for sharing and cannot be restored as editable diary entries.
+
+The file picker requires iOS 14+. macOS save access is limited to user-selected files. Rebuild the app after adding the file-picker dependency; hot reload cannot install native plugins.
+
+Validation: formatted and analysed source; isolated executable tests use the actual backup/store code with SQLite FFI 2.3.7+1 and explicitly supplied temporary paths (a path-provider stub is never called). They check real SQLite export/restore, JPEG bytes, Unicode notes, favourite exclusion, duplicate restores and preservation of local edits. Full Flutter tests remain blocked on this Windows environment by the objective_c native-assets hook; native file dialogs and the UI still need device testing.

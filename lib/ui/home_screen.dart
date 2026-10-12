@@ -1,3 +1,4 @@
+import 'diary_tools.dart';
 import 'feature_navigation.dart';
 import 'personal_library.dart';
 import 'package:flutter/material.dart';
@@ -320,6 +321,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
+                  const TodayDiaryButton(),
                   TextButton.icon(
                     icon: const Icon(Icons.directions_walk),
                     label: const Text('Ahead of me'),

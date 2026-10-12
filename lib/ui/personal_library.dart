@@ -1,3 +1,4 @@
+import 'diary_tools.dart';
 import 'dart:typed_data';
 import 'diary_photo_editor.dart';
 import 'screens.dart' show LocationDetailScreen, AccommodationBrowser;
@@ -65,6 +66,34 @@ Future<void> editPersonalEntry(
                               setState(() => date = picked);
                             }
                           },
+                  ),
+                if (entry.category == 'diary' &&
+                    entry.contact.startsWith('Walking plan:'))
+                  Text(entry.contact),
+                if (entry.category == 'diary')
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Wrap(
+                      spacing: 6,
+                      children: [
+                        for (final prompt in [
+                          'Today’s highlight',
+                          'Something to remember',
+                        ])
+                          ActionChip(
+                            label: Text(prompt),
+                            onPressed: saving || picking
+                                ? null
+                                : () {
+                                    notes.text =
+                                        '${notes.text}${notes.text.isEmpty ? '' : '\n\n'}$prompt: ';
+                                    notes.selection = TextSelection.collapsed(
+                                      offset: notes.text.length,
+                                    );
+                                  },
+                          ),
+                      ],
+                    ),
                   ),
                 TextField(
                   controller: notes,
@@ -261,6 +290,7 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
   bool loading = true;
   String? error;
   DateTimeRange? range;
+  int revision = 0;
   @override
   void initState() {
     super.initState();
@@ -310,6 +340,7 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
       if (mounted) {
         setState(() {
           entries = enriched;
+          revision++;
           loading = false;
           error = null;
           selected.retainAll(enriched.map((e) => e.id!));
@@ -472,6 +503,10 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
                 }),
               ),
             ),
+            if (category == 'diary') ...[
+              TodayDiaryButton(onSaved: load),
+              DiaryBackupActions(onRestored: load),
+            ],
             if (category == 'diary')
               Wrap(
                 children: [
@@ -512,7 +547,7 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
                         padding: const EdgeInsets.all(24),
                         child: Text(
                           category == 'diary'
-                              ? 'Add diary entries from a location or accommodation page.'
+                              ? 'Your journey starts here. Tap Today’s entry, or add a note from a place page.'
                               : 'Save favourites from accommodation pages.',
                         ),
                       ),
@@ -524,6 +559,43 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
                         return Card(
                           child: Column(
                             children: [
+                              if (category == 'diary' &&
+                                  (i == 0 || visible[i - 1].date != e.date))
+                                Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      e.date,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.titleLarge,
+                                    ),
+                                  ),
+                                ),
+                              if (category == 'diary')
+                                ListTile(
+                                  leading: e.photoCount > 0
+                                      ? DiaryThumbnail(
+                                          key: ValueKey('${e.id}:$revision'),
+                                          entryId: e.id!,
+                                        )
+                                      : const Icon(Icons.edit_note),
+                                  title: Text(e.name),
+                                  subtitle: Text(
+                                    [
+                                      e.locationName,
+                                      e.notes,
+                                    ].where((s) => s.isNotEmpty).join('\n'),
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  trailing: const Icon(Icons.chevron_right),
+                                  onTap: () async {
+                                    await editPersonalEntry(context, e);
+                                    await load();
+                                  },
+                                ),
                               CheckboxListTile(
                                 value: selected.contains(e.id),
                                 onChanged: (v) => setState(() {
@@ -533,24 +605,31 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
                                     selected.remove(e.id);
                                   }
                                 }),
-                                title: Text(e.name),
-                                subtitle: Text(
-                                  [
-                                    if (e.date.isNotEmpty) e.date,
-                                    e.locationName,
-                                    if (e.notes.isNotEmpty) e.notes,
-                                    if (e.photoCount > 0)
-                                      '${e.photoCount} photo(s) — tap Edit to view',
-                                  ].join('\n'),
+                                title: Text(
+                                  category == 'diary'
+                                      ? 'Include in PDF'
+                                      : e.name,
                                 ),
+                                subtitle: category == 'diary'
+                                    ? null
+                                    : Text(
+                                        [
+                                          if (e.date.isNotEmpty) e.date,
+                                          e.locationName,
+                                          if (e.notes.isNotEmpty) e.notes,
+                                          if (e.photoCount > 0)
+                                            '${e.photoCount} photo(s) — tap Edit to view',
+                                        ].join('\n'),
+                                      ),
                               ),
                               Wrap(
                                 children: [
-                                  TextButton.icon(
-                                    onPressed: () => openPlace(e),
-                                    icon: const Icon(Icons.open_in_new),
-                                    label: const Text('Open place'),
-                                  ),
+                                  if (e.kind != 'journal')
+                                    TextButton.icon(
+                                      onPressed: () => openPlace(e),
+                                      icon: const Icon(Icons.open_in_new),
+                                      label: const Text('Open place'),
+                                    ),
                                   TextButton.icon(
                                     icon: const Icon(Icons.edit),
                                     label: const Text('Edit'),
