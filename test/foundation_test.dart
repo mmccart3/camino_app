@@ -39,6 +39,35 @@ void main() {
     await temporary.delete(recursive: true);
   });
 
+  test('closing repeated map previews leaves the main database open', () async {
+    final mainDb = await local.database;
+    final expected = await mainDb.rawQuery(
+      'SELECT COUNT(*) AS total FROM locations',
+    );
+    for (var i = 0; i < 3; i++) {
+      final preview = LocalDatabase(
+        factory: databaseFactoryFfi,
+        directory: temporary.path,
+        loadAsset: () => File('assets/database/camino.sqlite').readAsBytes(),
+      );
+      try {
+        final previewDb = await preview.database;
+        expect(identical(mainDb, previewDb), isFalse);
+        expect(
+          await previewDb.rawQuery('SELECT COUNT(*) AS total FROM locations'),
+          expected,
+        );
+      } finally {
+        await preview.close();
+      }
+      expect(mainDb.isOpen, isTrue);
+      expect(
+        await mainDb.rawQuery('SELECT COUNT(*) AS total FROM locations'),
+        expected,
+      );
+    }
+  });
+
   test(
     'map hotspots use stage links, 1920 coordinates and location rows',
     () async {

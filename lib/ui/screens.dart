@@ -1,3 +1,4 @@
+import 'place_map.dart';
 import 'detail_pager.dart';
 import 'personal_library.dart';
 import '../services/ahead_of_me.dart';
@@ -634,6 +635,13 @@ class _LocationDetailScreenState extends State<_LocationDetailPage> {
               ),
             const SizedBox(height: 12),
             LocationFacilities(location: widget.location),
+            PlaceMap(
+              position: widget.location.position,
+              name: widget.location.name,
+              locationId: widget.location.id,
+              repository: widget.repository,
+              location: widget.location,
+            ),
             if (data.$2.isNotEmpty || data.$3.isNotEmpty) ...[
               Text(
                 'Where to stay',
@@ -783,6 +791,11 @@ class AccommodationDetail extends StatelessWidget {
             showHeading: false,
           ),
           AddStayToPlanButton(place: place),
+          PlaceMap(
+            position: place.position,
+            name: place.name,
+            locationId: place.locationId,
+          ),
           const SizedBox(height: 16),
           if (place.address != null) ...[
             Text('Address', style: Theme.of(context).textTheme.titleMedium),

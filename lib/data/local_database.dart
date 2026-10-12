@@ -61,7 +61,7 @@ class LocalDatabase {
         await temporary.writeAsBytes(asset, flush: true);
         final candidate = await factory.openDatabase(
           temporary.path,
-          options: OpenDatabaseOptions(readOnly: true),
+          options: OpenDatabaseOptions(readOnly: true, singleInstance: false),
         );
         try {
           await validate(candidate);
@@ -75,9 +75,11 @@ class LocalDatabase {
         }
       }
     }
+    // Each LocalDatabase owns its connection. Preview disposal must not close
+    // a singleton handle still used by the main repository or another preview.
     final db = await factory.openDatabase(
       destination.path,
-      options: OpenDatabaseOptions(readOnly: true),
+      options: OpenDatabaseOptions(readOnly: true, singleInstance: false),
     );
     try {
       await validate(db);
