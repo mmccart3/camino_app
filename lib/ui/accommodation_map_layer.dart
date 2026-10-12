@@ -1,3 +1,4 @@
+import 'accommodation_card.dart' show accommodationPrice;
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -32,40 +33,48 @@ class _AccommodationMapLayerState extends State<AccommodationMapLayer> {
     showModalBottomSheet<void>(
       context: context,
       useSafeArea: true,
-      builder: (sheetContext) => SizedBox(
-        height: 420,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                '${group.length} places to stay',
-                style: Theme.of(context).textTheme.titleLarge,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (sheetContext) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.5,
+        minChildSize: 0.3,
+        maxChildSize: 0.9,
+        builder: (_, controller) => SizedBox(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  '${group.length} places to stay',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView(
-                children: [
-                  for (final place in group)
-                    ListTile(
-                      leading: Icon(
-                        place is Albergue ? Icons.bed : Icons.hotel,
+              Expanded(
+                child: ListView(
+                  controller: controller,
+                  children: [
+                    for (final place in group)
+                      ListTile(
+                        leading: Icon(
+                          place is Albergue ? Icons.bed : Icons.hotel,
+                        ),
+                        title: Text(place.name),
+                        subtitle: Text(
+                          place is Albergue
+                              ? '${accommodationPrice(place)}${place.numberOfBeds == null ? "" : " / ${place.numberOfBeds} beds"}'
+                              : accommodationPrice(place),
+                        ),
+                        onTap: () {
+                          Navigator.pop(sheetContext);
+                          open(place, group);
+                        },
                       ),
-                      title: Text(place.name),
-                      subtitle: Text(
-                        place is Albergue
-                            ? 'Albergue'
-                            : 'Private accommodation',
-                      ),
-                      onTap: () {
-                        Navigator.pop(sheetContext);
-                        open(place, group);
-                      },
-                    ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -115,6 +124,8 @@ class _AccommodationMapLayerState extends State<AccommodationMapLayer> {
                       ? group.first.name
                       : '${group.length} places to stay',
                   child: Material(
+                    elevation: 5,
+                    shadowColor: Colors.black54,
                     color: const Color(0xFF0D1F33),
                     shape: const CircleBorder(
                       side: BorderSide(color: Color(0xFFFFD740), width: 2),

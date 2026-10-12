@@ -1,3 +1,4 @@
+import 'today_progress.dart';
 import 'diary_tools.dart';
 import 'feature_navigation.dart';
 import 'personal_library.dart';
@@ -10,7 +11,8 @@ import '../services/recent_walk.dart';
 import '../services/navigation_session.dart';
 import 'app_title.dart';
 import 'app_logo.dart';
-import 'screens.dart' show StageListScreen, StageDetailScreen;
+import 'screens.dart'
+    show StageListScreen, AccommodationBrowser, LocationDetailScreen;
 import 'map_screen.dart';
 import 'settings_screen.dart';
 import 'camino_plan_screen.dart';
@@ -48,7 +50,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Stage? recent;
-  bool recentMap = false, loading = true;
+  bool loading = true;
   String? planError;
   List<CaminoPlan> plans = [];
   ItineraryDay? next;
@@ -74,13 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> load() async {
     final token = ++revision;
     Stage? stage;
-    var map = false;
     try {
       final saved = await RecentWalk.load();
       final session = NavigationSession.instance;
       final id = session.active ? session.stageId : saved?.$1;
       if (id != null) stage = await widget.repository.stage(id);
-      map = session.active || (saved?.$2 ?? false);
     } catch (_) {
       /* Browsing remains available if the remembered stage is missing. */
     }
@@ -100,7 +100,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (!mounted || token != revision) return;
     setState(() {
       recent = stage;
-      recentMap = map;
       plans = loaded;
       next = upcoming;
       planError = error;
@@ -116,12 +115,51 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mounted) await load();
   }
 
+  Future<void> openStay(ItineraryDay day) async {
+    try {
+      final stay = day.stay;
+      final place = stay == null
+          ? null
+          : await widget.repository.accommodationById(stay.kind, stay.id);
+      if (!mounted) return;
+      if (place != null) {
+        await open(AccommodationBrowser(places: [place], initial: place));
+      } else {
+        final locations = await widget.repository.locationsByIds({day.endId});
+        if (!mounted) return;
+        final location = locations[day.endId];
+        if (location == null) throw StateError('Location unavailable');
+        await open(
+          LocationDetailScreen(
+            repository: widget.repository,
+            location: location,
+          ),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Unable to open this stay. Please try again.'),
+          ),
+        );
+      }
+    }
+  }
+
   void openPlans() => open(
     CaminoPlansScreen(repository: widget.repository, settings: widget.settings),
   );
   @override
   Widget build(BuildContext context) {
     final day = next;
+    final now = DateTime.now();
+    final date = DateTime.tryParse(day?.route.date ?? '');
+    final isToday =
+        date != null &&
+        date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day;
     final plan = day == null
         ? null
         : plans.where((p) => p.id == day.planId).firstOrNull;
@@ -149,68 +187,23 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const AppLogo(size: 112),
-                  OutlinedButton.icon(
-                    onPressed: () => open(
-                      PersonalLibraryScreen(repository: widget.repository),
-                    ),
-                    icon: const Icon(Icons.book_outlined),
-                    label: const Text('Favourites & diary'),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'One step at a time.',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  const SizedBox(height: 24),
-                  if (recent != null) ...[
-                    FilledButton.icon(
-                      style: FilledButton.styleFrom(
-                        padding: const EdgeInsets.all(18),
+                  Row(
+                    children: [
+                      const AppLogo(size: 56),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Today',
+                              style: Theme.of(context).textTheme.headlineMedium,
+                            ),
+                            const Text('One step at a time.'),
+                          ],
+                        ),
                       ),
-                      icon: const Icon(Icons.directions_walk),
-                      label: const Text('Continue my walk'),
-                      onPressed: () => open(
-                        recentMap
-                            ? MapScreen(
-                                repository: widget.repository,
-                                settings: widget.settings,
-                                stage: recent!,
-                              )
-                            : StageDetailScreen(
-                                repository: widget.repository,
-                                settings: widget.settings,
-                                stage: recent!,
-                              ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 6, bottom: 16),
-                      child: Text(recent!.name, textAlign: TextAlign.center),
-                    ),
-                  ],
-                  FilledButton.icon(
-                    style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.all(18),
-                    ),
-                    icon: const Icon(Icons.calendar_month),
-                    label: const Text('My Camino plan'),
-                    onPressed: openPlans,
-                  ),
-                  const SizedBox(height: 12),
-                  OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.all(18),
-                    ),
-                    icon: const Icon(Icons.route),
-                    label: const Text('Browse stages'),
-                    onPressed: () => open(
-                      StageListScreen(
-                        repository: widget.repository,
-                        settings: widget.settings,
-                      ),
-                    ),
+                    ],
                   ),
                   const SizedBox(height: 16),
                   if (loading)
@@ -238,7 +231,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              day.route.date == null
+                              isToday
+                                  ? 'Today’s plan'
+                                  : day.route.date == null
                                   ? 'Next undated day'
                                   : 'Next planned day',
                               style: Theme.of(context).textTheme.titleLarge,
@@ -254,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(height: 8),
                             Text(
                               day.hasEstimate
-                                  ? '${(day.metres! / 1000).toStringAsFixed(1)} km / ${navigationTime(Duration(seconds: day.seconds!))}'
+                                  ? 'Planned: ${(day.metres! / 1000).toStringAsFixed(1)} km / ${navigationTime(Duration(seconds: day.seconds!))}'
                                   : 'Distance and walking time not yet estimated',
                             ),
                             const SizedBox(height: 8),
@@ -262,6 +257,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               day.stay == null
                                   ? 'Accommodation not chosen'
                                   : '${day.stay!.name} (${day.stay!.status})',
+                            ),
+                            TextButton.icon(
+                              icon: const Icon(Icons.bed_outlined),
+                              label: Text(
+                                day.stay == null
+                                    ? 'Choose accommodation'
+                                    : isToday
+                                    ? 'Tonight’s accommodation'
+                                    : 'View chosen stay',
+                              ),
+                              onPressed: () => openStay(day),
                             ),
                             TextButton.icon(
                               icon: const Icon(Icons.open_in_new),
@@ -311,6 +317,75 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   const SizedBox(height: 16),
+                  if (recent != null) ...[
+                    Text(
+                      'Your current stage',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Text(recent!.name),
+                    TodayProgress(
+                      key: ValueKey(recent!.id),
+                      stage: recent!,
+                      repository: widget.repository,
+                      settings: widget.settings,
+                    ),
+                    const SizedBox(height: 8),
+                    FilledButton.icon(
+                      icon: const Icon(Icons.map_outlined),
+                      label: const Text('Continue on the map'),
+                      onPressed: () => open(
+                        MapScreen(
+                          repository: widget.repository,
+                          settings: widget.settings,
+                          stage: recent!,
+                        ),
+                      ),
+                    ),
+                    Wrap(
+                      spacing: 8,
+                      children: [
+                        OutlinedButton.icon(
+                          icon: const Icon(Icons.directions_walk),
+                          label: const Text('Ahead of me'),
+                          onPressed: () => open(
+                            AheadScreen(
+                              repository: widget.repository,
+                              settings: widget.settings,
+                              stage: recent!,
+                            ),
+                          ),
+                        ),
+                        OutlinedButton.icon(
+                          icon: const Icon(Icons.landscape_outlined),
+                          label: const Text('Elevation'),
+                          onPressed: () => open(
+                            ElevationScreen(
+                              repository: widget.repository,
+                              stage: recent!,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ] else
+                    FilledButton.icon(
+                      icon: const Icon(Icons.route),
+                      label: const Text('Choose a stage to walk'),
+                      onPressed: () => open(
+                        StageListScreen(
+                          repository: widget.repository,
+                          settings: widget.settings,
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 12),
+                  const TodayDiaryButton(),
+                  const Divider(height: 32),
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.calendar_month),
+                    label: const Text('My Camino plan'),
+                    onPressed: openPlans,
+                  ),
                   OutlinedButton.icon(
                     icon: const Icon(Icons.event_note),
                     label: const Text('My walking day'),
@@ -321,22 +396,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  const TodayDiaryButton(),
                   TextButton.icon(
-                    icon: const Icon(Icons.directions_walk),
-                    label: const Text('Ahead of me'),
+                    icon: const Icon(Icons.book_outlined),
+                    label: const Text('Favourites & diary'),
                     onPressed: () => open(
-                      AheadStagePicker(
-                        repository: widget.repository,
-                        settings: widget.settings,
-                      ),
+                      PersonalLibraryScreen(repository: widget.repository),
                     ),
-                  ),
-                  TextButton.icon(
-                    icon: const Icon(Icons.landscape_outlined),
-                    label: const Text('Trail elevation'),
-                    onPressed: () =>
-                        open(ElevationScreen(repository: widget.repository)),
                   ),
                 ],
               ),

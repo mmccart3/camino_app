@@ -3,7 +3,7 @@ import '../services/walking_time.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart' show LatLng;
 import '../data/camino_repository.dart';
-import '../data/models.dart';
+import '../data/models.dart' hide Row;
 import '../services/ahead_of_me.dart';
 import '../services/location_service.dart';
 import '../services/route_guidance.dart';
@@ -188,224 +188,266 @@ class _AheadScreenState extends State<AheadScreen> {
                   },
                 )
                 .toList();
-            return ListView(
-              padding: const EdgeInsets.all(20),
+            return Column(
               children: [
-                Text(
-                  widget.stage.name,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Text('Upcoming places on this stage, in walking order.'),
-                if (!route.canGuide) ...[
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Ahead-of-me estimates are unavailable until this stage’s navigation tracks are complete and validated.',
-                  ),
-                  for (final issue in route.issues) Text(issue),
-                ] else ...[
-                  const SizedBox(height: 16),
-                  FilledButton.icon(
-                    style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.all(18),
-                    ),
-                    onPressed: busy ? null : locate,
-                    icon: const Icon(Icons.my_location),
-                    label: Text(busy ? 'Finding position…' : 'Update position'),
-                  ),
-                  TextButton(
-                    onPressed: busy
-                        ? null
-                        : () => setState(() {
-                            preview = true;
-                            position = null;
-                            error = null;
-                          }),
-                    child: const Text('Preview from stage start'),
-                  ),
-                  if (error != null) Text(error!),
-                  if (tooFar)
-                    const Text(
-                      'You are more than 150 m from this stage’s recorded track. Choose the correct stage or move closer before requesting estimates.',
-                    ),
-                  if (index == null && error == null && !tooFar)
-                    const Text(
-                      'Update your position, or preview the places ahead from the stage start.',
-                    ),
-                  if (index != null) ...[
-                    Text(
-                      preview
-                          ? 'Preview from the first recorded track point.'
-                          : '$positionAge. Tap Update position as you walk.',
-                    ),
-                    Text(
-                      'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h. Times exclude stops.',
-                    ),
-                    const SizedBox(height: 16),
-                    if (all.isNotEmpty)
-                      Card(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        child: InkWell(
-                          onTap: () => navigate(
-                            context,
-                            LocationDetailScreen(
-                              repository: widget.repository,
-                              location: all.first.location,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  preview
-                                      ? 'First stop ahead / Preview'
-                                      : 'Next stop',
-                                  style: Theme.of(context).textTheme.labelLarge,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  all.first.location.name,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.headlineMedium,
-                                ),
-                                const SizedBox(height: 12),
-                                Wrap(
-                                  spacing: 20,
-                                  runSpacing: 8,
-                                  children: [
-                                    Text(
-                                      all.first.metres == null
-                                          ? 'Distance unavailable'
-                                          : '${(all.first.metres! / 1000).toStringAsFixed(1)} km',
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.headlineSmall,
-                                    ),
-                                    Text(
-                                      all.first.walkingTime == null
-                                          ? 'Time unavailable'
-                                          : WalkingTime.format(
-                                              all.first.walkingTime!,
-                                            ),
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.headlineSmall,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                const Text('View location →'),
-                              ],
-                            ),
-                          ),
+                if (route.canGuide)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        onPressed: busy ? null : locate,
+                        icon: const Icon(Icons.my_location),
+                        label: Text(
+                          busy ? 'Finding position…' : 'Update position',
                         ),
                       ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Places ahead',
-                      style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        for (final value in [
-                          'All',
-                          'Café',
-                          'Pharmacy',
-                          'Groceries',
-                          if (staysLoaded) 'Accommodation',
-                        ])
-                          ChoiceChip(
-                            label: Text(value),
-                            selected: filter == value,
-                            onSelected: (_) => setState(() => filter = value),
-                          ),
-                      ],
-                    ),
-                    if (all.isEmpty)
-                      const Text('No further places remain on this stage.')
-                    else if (visible.isEmpty)
-                      const Text(
-                        'No matching services are recorded ahead on this stage.',
+                  ),
+                Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.all(20),
+                    children: [
+                      Text(
+                        widget.stage.name,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
-                    for (final place in visible)
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                title: Text(
-                                  place.location.name,
-                                  style: Theme.of(context).textTheme.titleLarge,
+                      const Text(
+                        'Upcoming places on this stage, in walking order.',
+                      ),
+                      if (!route.canGuide) ...[
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Ahead-of-me estimates are unavailable until this stage’s navigation tracks are complete and validated.',
+                        ),
+                        for (final issue in route.issues) Text(issue),
+                      ] else ...[
+                        const SizedBox(height: 16),
+                        TextButton(
+                          onPressed: busy
+                              ? null
+                              : () => setState(() {
+                                  preview = true;
+                                  position = null;
+                                  error = null;
+                                }),
+                          child: const Text('Preview from stage start'),
+                        ),
+                        if (error != null) _AheadWarning(error!),
+                        if (tooFar)
+                          const _AheadWarning(
+                            'You are more than 150 m from this stage’s recorded track. Choose the correct stage or move closer before requesting estimates.',
+                          ),
+                        if (index == null && error == null && !tooFar)
+                          const Text(
+                            'Update your position, or preview the places ahead from the stage start.',
+                          ),
+                        if (index != null) ...[
+                          Text(
+                            preview
+                                ? 'Preview from the first recorded track point.'
+                                : '$positionAge. Tap Update position as you walk.',
+                          ),
+                          Text(
+                            'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h. Times exclude stops.',
+                          ),
+                          const SizedBox(height: 16),
+                          if (all.isNotEmpty)
+                            Card(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.surfaceContainerHigh,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                side: BorderSide(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  width: 2,
                                 ),
-                                subtitle: Text(
-                                  '${place.metres == null ? 'Distance unavailable' : '${(place.metres! / 1000).toStringAsFixed(2)} km'} · ${place.walkingTime == null ? 'Time unavailable' : WalkingTime.format(place.walkingTime!)}',
-                                ),
-                                trailing: const Icon(Icons.chevron_right),
+                              ),
+                              child: InkWell(
                                 onTap: () => navigate(
                                   context,
                                   LocationDetailScreen(
                                     repository: widget.repository,
-                                    location: place.location,
+                                    location: all.first.location,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        preview
+                                            ? 'First stop ahead / Preview'
+                                            : 'Next stop',
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.labelLarge,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        all.first.location.name,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.headlineMedium,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Wrap(
+                                        spacing: 20,
+                                        runSpacing: 8,
+                                        children: [
+                                          Text(
+                                            all.first.metres == null
+                                                ? 'Distance unavailable'
+                                                : '${(all.first.metres! / 1000).toStringAsFixed(1)} km',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headlineSmall
+                                                ?.copyWith(
+                                                  fontFeatures: const [
+                                                    FontFeature.tabularFigures(),
+                                                  ],
+                                                ),
+                                          ),
+                                          Text(
+                                            all.first.walkingTime == null
+                                                ? 'Time unavailable'
+                                                : WalkingTime.format(
+                                                    all.first.walkingTime!,
+                                                  ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headlineSmall
+                                                ?.copyWith(
+                                                  fontFeatures: const [
+                                                    FontFeature.tabularFigures(),
+                                                  ],
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 12),
+                                      const Text('View location →'),
+                                    ],
                                   ),
                                 ),
                               ),
-                              Wrap(
-                                spacing: 16,
-                                runSpacing: 8,
-                                children: [
-                                  if (stays.contains(place.location.id))
-                                    const _ServiceIcon(
-                                      Icons.bed_outlined,
-                                      'Accommodation',
-                                    ),
-                                  if (place.location.hasBarCafe == true)
-                                    const _ServiceIcon(
-                                      Icons.local_cafe_outlined,
-                                      'Bar / café',
-                                    ),
-                                  if (place.location.hasPharmacy == true)
-                                    const _ServiceIcon(
-                                      Icons.local_pharmacy_outlined,
-                                      'Pharmacy',
-                                    ),
-                                  if (place.location.hasGroceryStore == true)
-                                    const _ServiceIcon(
-                                      Icons.shopping_basket_outlined,
-                                      'Groceries',
-                                    ),
-                                ],
-                              ),
+                            ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Places ahead',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              for (final value in [
+                                'All',
+                                'Café',
+                                'Pharmacy',
+                                'Groceries',
+                                if (staysLoaded) 'Accommodation',
+                              ])
+                                ChoiceChip(
+                                  label: Text(value),
+                                  selected: filter == value,
+                                  onSelected: (_) =>
+                                      setState(() => filter = value),
+                                ),
                             ],
                           ),
-                        ),
-                      ),
-                    if (visible.any(
-                      (p) =>
-                          [
-                            'hasBarCafeSource',
-                            'hasPharmacySource',
-                            'hasGroceryStoreSource',
-                          ].any(
-                            (key) => (text(p.location.source, key) ?? '')
-                                .startsWith('OSM reviewed:'),
+                          if (all.isEmpty)
+                            const Text(
+                              'No further places remain on this stage.',
+                            )
+                          else if (visible.isEmpty)
+                            const Text(
+                              'No matching services are recorded ahead on this stage.',
+                            ),
+                          for (final place in visible)
+                            Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ListTile(
+                                      contentPadding: EdgeInsets.zero,
+                                      title: Text(
+                                        place.location.name,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.titleLarge,
+                                      ),
+                                      subtitle: Text(
+                                        '${place.metres == null ? 'Distance unavailable' : '${(place.metres! / 1000).toStringAsFixed(2)} km'} · ${place.walkingTime == null ? 'Time unavailable' : WalkingTime.format(place.walkingTime!)}',
+                                      ),
+                                      trailing: const Icon(Icons.chevron_right),
+                                      onTap: () => navigate(
+                                        context,
+                                        LocationDetailScreen(
+                                          repository: widget.repository,
+                                          location: place.location,
+                                        ),
+                                      ),
+                                    ),
+                                    Wrap(
+                                      spacing: 16,
+                                      runSpacing: 8,
+                                      children: [
+                                        if (stays.contains(place.location.id))
+                                          const _ServiceIcon(
+                                            Icons.bed_outlined,
+                                            'Accommodation',
+                                          ),
+                                        if (place.location.hasBarCafe == true)
+                                          const _ServiceIcon(
+                                            Icons.local_cafe_outlined,
+                                            'Bar / café',
+                                          ),
+                                        if (place.location.hasPharmacy == true)
+                                          const _ServiceIcon(
+                                            Icons.local_pharmacy_outlined,
+                                            'Pharmacy',
+                                          ),
+                                        if (place.location.hasGroceryStore ==
+                                            true)
+                                          const _ServiceIcon(
+                                            Icons.shopping_basket_outlined,
+                                            'Groceries',
+                                          ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          if (visible.any(
+                            (p) =>
+                                [
+                                  'hasBarCafeSource',
+                                  'hasPharmacySource',
+                                  'hasGroceryStoreSource',
+                                ].any(
+                                  (key) => (text(p.location.source, key) ?? '')
+                                      .startsWith('OSM reviewed:'),
+                                ),
+                          ))
+                            const ExternalLinkButton(
+                              url: 'https://www.openstreetmap.org/copyright',
+                              label: '© OpenStreetMap contributors',
+                            ),
+                          const Text(
+                            'Distances and times end at the recorded location waypoint, not the door of a business. This view stops at the stage end.',
                           ),
-                    ))
-                      const ExternalLinkButton(
-                        url: 'https://www.openstreetmap.org/copyright',
-                        label: '© OpenStreetMap contributors',
-                      ),
-                    const Text(
-                      'Distances and times end at the recorded location waypoint, not the door of a business. This view stops at the stage end.',
-                    ),
-                  ],
-                ],
+                        ],
+                      ],
+                    ],
+                  ),
+                ),
               ],
             );
           },
@@ -426,5 +468,25 @@ class _ServiceIcon extends StatelessWidget {
       Icon(icon, size: 32),
       Text(label, style: const TextStyle(fontSize: 12)),
     ],
+  );
+}
+
+class _AheadWarning extends StatelessWidget {
+  final String message;
+  const _AheadWarning(this.message);
+  @override
+  Widget build(BuildContext context) => Card(
+    color: Theme.of(context).colorScheme.surfaceContainerHigh,
+    child: Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.warning_amber_rounded),
+          const SizedBox(width: 12),
+          Expanded(child: Text(message)),
+        ],
+      ),
+    ),
   );
 }

@@ -451,3 +451,19 @@ Restore diary validates the selected file and shows the entry count for confirma
 The file picker requires iOS 14+. macOS save access is limited to user-selected files. Rebuild the app after adding the file-picker dependency; hot reload cannot install native plugins.
 
 Validation: formatted and analysed source; isolated executable tests use the actual backup/store code with SQLite FFI 2.3.7+1 and explicitly supplied temporary paths (a path-provider stub is never called). They check real SQLite export/restore, JPEG bytes, Unicode notes, favourite exclusion, duplicate restores and preservation of local edits. Full Flutter tests remain blocked on this Windows environment by the objective_c native-assets hook; native file dialogs and the UI still need device testing.
+
+### Journal photographs and PDF (0.3.8)
+
+Edit a diary entry to caption each photo (up to 500 characters), move photos earlier/later with the arrow buttons, and select an entry cover with the star button. Captions and cover choice follow reordered photos. Changes are committed only when the entry is saved. Removing the cover selects the first remaining photo. The timeline uses the chosen cover.
+
+Diary PDF export is now My Camino journal: a navy/gold cover with date range and the first illustrated entry’s selected cover, followed by chronological daily sections starting on new pages. Photos follow the saved order with captions. Use the existing date filter for selected days, check entries for a subset, or clear the filter and selection for the whole journal. The PDF preview retains its save/share/email actions. Favourites exports keep their existing layout.
+
+Personal database schema 3 adds captions and cover metadata without changing existing text or JPEGs. Existing entries default to blank captions and the first photograph. Backup version 2 preserves metadata and reads version 1 backups with those same defaults. It continues to merge without overwriting local entries.
+
+### Today and navigation (0.3.10)
+Today puts the next planned day and chosen stay first. Dated days are labelled Today only on their date. Planned totals are separate from the current stage’s position-based estimates. Check next stop explicitly requests a foreground location fix; it does not start background tracking. Estimates are timestamped and require route guidance readiness, accuracy within 50 metres and a route offset within 150 metres.
+
+Tab switches retain their navigation stacks. Shortcuts reuse an open named map, plan or library screen. Tap the selected tab again to return to its root. Today provides direct current-stage map, Ahead of me and elevation shortcuts, plus a diary entry.
+
+### Trail UI refinements (0.3.11)
+Startup no longer imposes a minimum splash duration. Setup errors have retry, copyable diagnostics and expandable details. Accommodation cards use responsive price badges and separate plan actions; filter counts respect other selected filters. Map accommodation clusters use a draggable sheet with prices and recorded capacity. Ahead of me keeps its position action above the scrolling content and highlights warnings and the next stop in navy/yellow. Facility details treat unrecorded values as No for display only, grouped under Not available; stored data remains unchanged. Beds and dormitories are icon statistics.

@@ -20,6 +20,13 @@ class DiaryBackup {
         'notes': e.notes,
         'contact': e.contact,
         'photos': photos.map(base64Encode).toList(),
+        'captions': List.generate(
+          photos.length,
+          (i) => i < (e.photoCaptions?.length ?? 0) ? e.photoCaptions![i] : '',
+        ),
+        'cover': photos.isEmpty
+            ? 0
+            : (e.coverPhoto ?? 0).clamp(0, photos.length - 1),
       };
 
   static Future<Uint8List> export(PersonalStore store) async {
@@ -58,7 +65,7 @@ class DiaryBackup {
       utf8.encode(
         jsonEncode({
           'format': 'saint-jean-to-santiago-diary',
-          'version': 1,
+          'version': 2,
           'entries': records,
         }),
       ),
@@ -76,7 +83,7 @@ class DiaryBackup {
     final root = jsonDecode(utf8.decode(bytes));
     if (root is! Map ||
         root['format'] != 'saint-jean-to-santiago-diary' ||
-        root['version'] != 1 ||
+        ![1, 2].contains(root['version']) ||
         root['entries'] is! List) {
       throw const FormatException('Not a supported Camino diary backup.');
     }
@@ -123,6 +130,18 @@ class DiaryBackup {
         }
         return b;
       }).toList();
+      final captions = root['version'] == 1
+          ? List.filled(photos.length, '')
+          : r['captions'];
+      final cover = root['version'] == 1 ? 0 : r['cover'];
+      if (captions is! List ||
+          captions.length != photos.length ||
+          captions.any((c) => c is! String || c.length > 500) ||
+          cover is! int ||
+          cover < 0 ||
+          cover >= (photos.isEmpty ? 1 : photos.length)) {
+        throw const FormatException('Invalid photo captions or cover.');
+      }
       return PersonalEntry(
         category: 'diary',
         kind: r['kind'] as String,
@@ -134,6 +153,8 @@ class DiaryBackup {
         notes: r['notes'] as String,
         contact: r['contact'] as String,
         photos: photos,
+        photoCaptions: List<String>.from(captions),
+        coverPhoto: cover,
       );
     }).toList();
   }

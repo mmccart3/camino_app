@@ -15,6 +15,32 @@ class PersistentTabsState extends State<PersistentTabs> {
   final visited = <int>{0};
   final keys = List.generate(4, (_) => GlobalKey<NavigatorState>());
   bool canGoBack = false;
+  final stacks = List.generate(4, (_) => <Route<dynamic>>[]);
+  late final observers = List.generate(
+    4,
+    (i) => _StackObserver(refreshBack, stacks[i]),
+  );
+  void show(int index, String name, Widget screen) {
+    select(index);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final navigator = keys[index].currentState!;
+      final existing = stacks[index]
+          .where((r) => r.settings.name == name)
+          .firstOrNull;
+      if (existing != null) {
+        navigator.popUntil((r) => identical(r, existing));
+      } else {
+        navigator.push(
+          MaterialPageRoute<void>(
+            settings: RouteSettings(name: name),
+            builder: (_) => screen,
+          ),
+        );
+      }
+    });
+  }
+
   void refreshBack() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
@@ -61,7 +87,7 @@ class PersistentTabsState extends State<PersistentTabs> {
                   enabled: i == selected,
                   child: Navigator(
                     key: keys[i],
-                    observers: [_StackObserver(refreshBack)],
+                    observers: [observers[i]],
                     onGenerateRoute: (_) => MaterialPageRoute<void>(
                       builder: (context) => widget.root(context, i),
                     ),
@@ -71,7 +97,13 @@ class PersistentTabsState extends State<PersistentTabs> {
         ),
         bottomNavigationBar: NavigationBar(
           selectedIndex: selected,
-          onDestinationSelected: select,
+          onDestinationSelected: (index) {
+            if (index == selected) {
+              keys[index].currentState?.popUntil((r) => r.isFirst);
+            } else {
+              select(index);
+            }
+          },
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.today_outlined),
@@ -102,13 +134,36 @@ class PersistentTabsState extends State<PersistentTabs> {
 
 class _StackObserver extends NavigatorObserver {
   final VoidCallback changed;
-  _StackObserver(this.changed);
+  final List<Route<dynamic>> routes;
+  _StackObserver(this.changed, this.routes);
   @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) =>
-      changed();
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    routes.add(route);
+    changed();
+  }
+
   @override
-  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) => changed();
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    routes.remove(route);
+    changed();
+  }
+
   @override
-  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) =>
-      changed();
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    routes.remove(route);
+    changed();
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    final index = oldRoute == null ? -1 : routes.indexOf(oldRoute);
+    if (index >= 0) {
+      if (newRoute == null) {
+        routes.removeAt(index);
+      } else {
+        routes[index] = newRoute;
+      }
+    }
+    changed();
+  }
 }

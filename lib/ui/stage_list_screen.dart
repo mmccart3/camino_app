@@ -45,6 +45,9 @@ class _StageListScreenState extends State<StageListScreen> {
   Future<void> open(Stage stage) async {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
+        settings: RouteSettings(
+          name: widget.mapMode ? 'map/${stage.id}' : 'stage/${stage.id}',
+        ),
         builder: (_) => widget.mapMode
             ? MapScreen(
                 repository: widget.repository,

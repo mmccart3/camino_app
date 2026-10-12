@@ -29,6 +29,15 @@ Future<void> editPersonalEntry(
     return;
   }
   if (!context.mounted) return;
+  final captions = List<String>.generate(
+    photos.length,
+    (i) =>
+        i < (entry.photoCaptions?.length ?? 0) ? entry.photoCaptions![i] : '',
+  );
+  var cover = (entry.coverPhoto ?? 0).clamp(
+    0,
+    photos.isEmpty ? 0 : photos.length - 1,
+  );
   var picking = false;
   final notes = TextEditingController(text: entry.notes);
   var date = DateTime.tryParse(entry.date) ?? DateTime.now();
@@ -110,6 +119,9 @@ Future<void> editPersonalEntry(
                 if (entry.category == 'diary')
                   DiaryPhotoEditor(
                     photos: photos,
+                    captions: captions,
+                    cover: cover,
+                    onCoverChanged: (value) => setState(() => cover = value),
                     date: date,
                     enabled: !saving,
                     onChanged: () => setState(() {}),
@@ -157,6 +169,10 @@ Future<void> editPersonalEntry(
                           notes: notes.text.trim(),
                           contact: entry.contact,
                           photos: entry.category == 'diary' ? photos : null,
+                          photoCaptions: entry.category == 'diary'
+                              ? captions
+                              : null,
+                          coverPhoto: entry.category == 'diary' ? cover : null,
                         ),
                       );
                       if (context.mounted) Navigator.pop(context);
@@ -325,6 +341,8 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
               notes: e.notes,
               contact: e.contact,
               photoCount: e.photoCount,
+              photoCaptions: e.photoCaptions,
+              coverPhoto: e.coverPhoto,
             ),
           )
           .toList();
@@ -579,6 +597,7 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
                                       ? DiaryThumbnail(
                                           key: ValueKey('${e.id}:$revision'),
                                           entryId: e.id!,
+                                          cover: e.coverPhoto ?? 0,
                                         )
                                       : const Icon(Icons.edit_note),
                                   title: Text(e.name),
@@ -671,7 +690,7 @@ class _PersonalLibraryScreenState extends State<PersonalLibraryScreen> {
                     MaterialPageRoute<void>(
                       builder: (_) => PersonalPdfScreen(
                         title: category == 'diary'
-                            ? 'My Camino diary'
+                            ? 'My Camino journal'
                             : 'My accommodation favourites',
                         entries: chosen.isEmpty ? visible : chosen,
                       ),

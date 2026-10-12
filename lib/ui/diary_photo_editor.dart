@@ -6,6 +6,9 @@ import '../services/diary_photos.dart';
 
 class DiaryPhotoEditor extends StatefulWidget {
   final List<Uint8List> photos;
+  final List<String> captions;
+  final int cover;
+  final ValueChanged<int> onCoverChanged;
   final bool enabled;
   final DateTime date;
   final VoidCallback onChanged;
@@ -13,6 +16,9 @@ class DiaryPhotoEditor extends StatefulWidget {
   const DiaryPhotoEditor({
     super.key,
     required this.photos,
+    required this.captions,
+    required this.cover,
+    required this.onCoverChanged,
     required this.enabled,
     required this.date,
     required this.onChanged,
@@ -63,6 +69,7 @@ class _DiaryPhotoEditorState extends State<DiaryPhotoEditor> {
           final photo = await prepareDiaryPhoto(await file.readAsBytes());
           if (!mounted) return;
           widget.photos.add(photo);
+          widget.captions.add('');
         } catch (_) {
           failed++;
         }
@@ -84,6 +91,22 @@ class _DiaryPhotoEditorState extends State<DiaryPhotoEditor> {
     }
   }
 
+  void move(int from, int to) {
+    final photo = widget.photos.removeAt(from);
+    final caption = widget.captions.removeAt(from);
+    widget.photos.insert(to, photo);
+    widget.captions.insert(to, caption);
+    widget.onCoverChanged(
+      widget.cover == from
+          ? to
+          : widget.cover == to
+          ? from
+          : widget.cover,
+    );
+    widget.onChanged();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,63 +116,113 @@ class _DiaryPhotoEditorState extends State<DiaryPhotoEditor> {
         'Choose that day’s photos from your library. Up to 12 per entry.',
       ),
       if (message != null) Text(message!),
-      Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: [
-          for (var i = 0; i < widget.photos.length; i++)
-            SizedBox(
-              width: 100,
-              height: 110,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: InkWell(
-                      onTap: () => showDialog<void>(
-                        context: context,
-                        builder: (c) => Dialog(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Flexible(
-                                child: InteractiveViewer(
-                                  child: Image.memory(
-                                    widget.photos[i],
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
+      for (var i = 0; i < widget.photos.length; i++)
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () => showDialog<void>(
+                    context: context,
+                    builder: (c) => Dialog(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: InteractiveViewer(
+                              child: Image.memory(
+                                widget.photos[i],
+                                fit: BoxFit.contain,
                               ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(c),
-                                child: const Text('Close'),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(c),
+                            child: const Text('Close'),
+                          ),
+                        ],
                       ),
-                      child: Image.memory(widget.photos[i], fit: BoxFit.cover),
                     ),
                   ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: IconButton.filled(
-                      tooltip: 'Remove photo ${i + 1}',
+                  child: Image.memory(
+                    widget.photos[i],
+                    height: 140,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                TextFormField(
+                  key: ObjectKey(widget.photos[i]),
+                  initialValue: widget.captions[i],
+                  enabled: !busy && widget.enabled,
+                  maxLength: 500,
+                  maxLines: 3,
+                  minLines: 1,
+                  decoration: const InputDecoration(
+                    labelText: 'Photo caption (optional)',
+                  ),
+                  onChanged: (value) {
+                    widget.captions[i] = value;
+                  },
+                ),
+                Wrap(
+                  children: [
+                    TextButton.icon(
+                      onPressed: busy || !widget.enabled
+                          ? null
+                          : () {
+                              widget.onCoverChanged(i);
+                              widget.onChanged();
+                            },
+                      icon: Icon(
+                        widget.cover == i ? Icons.star : Icons.star_border,
+                      ),
+                      label: Text(
+                        widget.cover == i ? 'Entry cover' : 'Use as cover',
+                      ),
+                    ),
+                    IconButton(
+                      tooltip: 'Move earlier',
+                      onPressed: busy || !widget.enabled || i == 0
+                          ? null
+                          : () => move(i, i - 1),
+                      icon: const Icon(Icons.arrow_upward),
+                    ),
+                    IconButton(
+                      tooltip: 'Move later',
+                      onPressed:
+                          busy ||
+                              !widget.enabled ||
+                              i == widget.photos.length - 1
+                          ? null
+                          : () => move(i, i + 1),
+                      icon: const Icon(Icons.arrow_downward),
+                    ),
+                    IconButton(
+                      tooltip: 'Remove photo',
                       onPressed: busy || !widget.enabled
                           ? null
                           : () {
                               widget.photos.removeAt(i);
+                              widget.captions.removeAt(i);
+                              widget.onCoverChanged(
+                                widget.cover == i
+                                    ? 0
+                                    : widget.cover > i
+                                    ? widget.cover - 1
+                                    : widget.cover,
+                              );
                               widget.onChanged();
                               setState(() {});
                             },
-                      icon: const Icon(Icons.close),
+                      icon: const Icon(Icons.delete_outline),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
-        ],
-      ),
+          ),
+        ),
       OutlinedButton.icon(
         onPressed: busy || !widget.enabled || widget.photos.length >= 12
             ? null

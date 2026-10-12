@@ -23,17 +23,20 @@ class _AppShellState extends State<AppShell> {
     if (screen is StageListScreen) tab = 1;
     if (screen is MapScreen) tab = 2;
     if (screen is CaminoPlansScreen || screen is PersonalLibraryScreen) tab = 3;
+    if (screen is CaminoPlanScreen) tab = 3;
     if (tab == null) return false;
-    tabs.currentState!.select(tab);
-    if (screen is StageListScreen) return true;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      final nav = tabs.currentState!.keys[tab!].currentState!;
-      if (screen is MapScreen) {
-        nav.popUntil((route) => route.isFirst);
-      }
-      nav.push(MaterialPageRoute<void>(builder: (_) => screen));
-    });
+    if (screen is StageListScreen) {
+      tabs.currentState!.select(tab);
+      return true;
+    }
+    final name = screen is MapScreen
+        ? 'map/${screen.stage.id}'
+        : screen is CaminoPlanScreen
+        ? 'plan/${screen.plan.id}'
+        : screen is PersonalLibraryScreen
+        ? 'library'
+        : 'plans';
+    tabs.currentState!.show(tab, name, screen);
     return true;
   }
 
@@ -63,6 +66,7 @@ class _AppShellState extends State<AppShell> {
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute<void>(
+                      settings: const RouteSettings(name: 'plans'),
                       builder: (_) => CaminoPlansScreen(
                         repository: widget.repository,
                         settings: widget.settings,
@@ -79,6 +83,7 @@ class _AppShellState extends State<AppShell> {
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute<void>(
+                      settings: const RouteSettings(name: 'library'),
                       builder: (_) =>
                           PersonalLibraryScreen(repository: widget.repository),
                     ),

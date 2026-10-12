@@ -45,6 +45,16 @@ class _AccommodationComparisonState extends State<AccommodationComparison> {
           ),
         )
         .toList();
+    int count({bool? room, bool? meals, bool? kitchens}) => widget.places
+        .where(
+          (p) => matchesAccommodation(
+            p,
+            privateRoom: room ?? privateRoom,
+            meal: meals ?? meal,
+            kitchen: kitchens ?? kitchen,
+          ),
+        )
+        .length;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -53,29 +63,29 @@ class _AccommodationComparisonState extends State<AccommodationComparison> {
           runSpacing: 4,
           children: [
             FilterChip(
-              label: const Text('Private rooms'),
+              label: Text('All (${widget.places.length})'),
+              selected: !privateRoom && !meal && !kitchen,
+              onSelected: (_) => setState(() {
+                privateRoom = meal = kitchen = false;
+              }),
+            ),
+            FilterChip(
+              label: Text('Private rooms (${count(room: true)})'),
               selected: privateRoom,
               onSelected: (v) => setState(() => privateRoom = v),
             ),
             FilterChip(
-              label: const Text('Communal meal'),
+              label: Text('Communal meal (${count(meals: true)})'),
               selected: meal,
               onSelected: (v) => setState(() => meal = v),
             ),
             FilterChip(
-              label: const Text('Kitchen'),
+              label: Text('Kitchen (${count(kitchens: true)})'),
               selected: kitchen,
               onSelected: (v) => setState(() => kitchen = v),
             ),
           ],
         ),
-        if (privateRoom || meal || kitchen)
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
-            child: Text(
-              'Showing listed facilities only. Unlisted facilities may still be available.',
-            ),
-          ),
         Text('${shown.length} of ${widget.places.length} places'),
         if (shown.isEmpty) ...[
           const Padding(
@@ -103,9 +113,7 @@ class _AccommodationComparisonState extends State<AccommodationComparison> {
           ),
         const Padding(
           padding: EdgeInsets.only(top: 8),
-          child: Text(
-            'Listed prices and opening periods; live bed availability is not shown.',
-          ),
+          child: Text('Listed prices. Live availability not shown.'),
         ),
       ],
     );

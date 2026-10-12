@@ -226,7 +226,8 @@ class _DiaryBackupActionsState extends State<DiaryBackupActions> {
 
 class DiaryThumbnail extends StatefulWidget {
   final int entryId;
-  const DiaryThumbnail({super.key, required this.entryId});
+  final int cover;
+  const DiaryThumbnail({super.key, required this.entryId, this.cover = 0});
   @override
   State<DiaryThumbnail> createState() => _DiaryThumbnailState();
 }
@@ -241,6 +242,7 @@ class _DiaryThumbnailState extends State<DiaryThumbnail> {
       whereArgs: [widget.entryId],
       orderBy: 'ordinal',
       limit: 1,
+      offset: widget.cover,
     );
     return rows.isEmpty ? null : rows.first['jpeg'] as Uint8List;
   }

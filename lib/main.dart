@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'data/local_database.dart';
 import 'data/camino_repository.dart';
@@ -26,13 +27,8 @@ class _CaminoAppState extends State<CaminoApp> {
   late final repository = CaminoRepository(local);
   late Future<void> initialization = initialize();
   Future<void> initialize() async {
-    await Future.wait<void>([
-      () async {
-        await local.database;
-        await settings.load();
-      }(),
-      Future<void>.delayed(const Duration(seconds: 2)),
-    ]);
+    await local.database;
+    await settings.load();
   }
 
   @override
@@ -54,20 +50,57 @@ class _CaminoAppState extends State<CaminoApp> {
         if (snapshot.hasError) {
           return Scaffold(
             appBar: AppBar(title: const Text('Camino setup')),
-            body: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                children: [
-                  SelectableText(
-                    'Could not prepare the local database.\n${snapshot.error}',
-                  ),
-                  FilledButton(
-                    onPressed: () => setState(() {
-                      initialization = initialize();
-                    }),
-                    child: const Text('Retry'),
-                  ),
-                ],
+            body: SafeArea(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Icon(Icons.storage_rounded, size: 64),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Your guide could not be opened',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const Text(
+                      'Please try again. Your saved plans and diary have not been reset.',
+                    ),
+                    const SizedBox(height: 16),
+                    FilledButton(
+                      onPressed: () => setState(() {
+                        initialization = initialize();
+                      }),
+                      child: const Text('Retry'),
+                    ),
+                    OutlinedButton.icon(
+                      icon: const Icon(Icons.copy),
+                      label: const Text('Copy diagnostic details'),
+                      onPressed: () async {
+                        await Clipboard.setData(
+                          ClipboardData(
+                            text: 'Camino database setup: ${snapshot.error}',
+                          ),
+                        );
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Diagnostic details copied'),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                    ExpansionTile(
+                      title: const Text('Technical details'),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: SelectableText('${snapshot.error}'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:io';
 import 'package:path/path.dart' as p;
@@ -8,6 +9,8 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 class PersonalEntry {
   final int? id;
   final int photoCount;
+  final List<String>? photoCaptions;
+  final int? coverPhoto;
 
   /// Null preserves existing photos; an empty list removes them on save.
   final List<Uint8List>? photos;
@@ -17,6 +20,8 @@ class PersonalEntry {
     this.id,
     this.photoCount = 0,
     this.photos,
+    this.photoCaptions,
+    this.coverPhoto,
     required this.category,
     required this.kind,
     required this.sourceId,
@@ -38,10 +43,16 @@ class PersonalEntry {
     'date': date,
     'notes': notes,
     'contact': contact,
+    if (photoCaptions != null) 'photo_captions': jsonEncode(photoCaptions),
+    if (coverPhoto != null) 'cover_photo': coverPhoto,
   };
   factory PersonalEntry.fromMap(Map<String, Object?> r) => PersonalEntry(
     id: r['id'] as int,
     photoCount: (r['photo_count'] as int?) ?? 0,
+    photoCaptions: List<String>.from(
+      jsonDecode(r['photo_captions'] as String? ?? '[]') as List,
+    ),
+    coverPhoto: r['cover_photo'] as int? ?? 0,
     category: r['category'] as String,
     kind: r['kind'] as String,
     sourceId: r['source_id'] as int,
@@ -77,18 +88,28 @@ class PersonalStore {
         .openDatabase(
           file,
           options: OpenDatabaseOptions(
-            version: 2,
+            version: 3,
             onConfigure: (db) => db.execute('PRAGMA foreign_keys = ON'),
             onUpgrade: (db, oldVersion, newVersion) async {
               if (oldVersion < 2) await _createPhotos(db);
+              if (oldVersion < 3) {
+                await db.execute(
+                  "ALTER TABLE entries ADD COLUMN photo_captions TEXT NOT NULL DEFAULT '[]'",
+                );
+                await db.execute(
+                  'ALTER TABLE entries ADD COLUMN cover_photo INTEGER NOT NULL DEFAULT 0',
+                );
+              }
             },
             onCreate: (db, _) async {
-              await db.execute("""CREATE TABLE entries (
+              await db.execute(
+                """CREATE TABLE entries (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           category TEXT NOT NULL CHECK(category IN ('favourite', 'diary')),
           kind TEXT NOT NULL, source_id INTEGER NOT NULL, location_id INTEGER NOT NULL,
           name TEXT NOT NULL, location_name TEXT NOT NULL, date TEXT NOT NULL,
-          notes TEXT NOT NULL, contact TEXT NOT NULL)""");
+          notes TEXT NOT NULL, contact TEXT NOT NULL, photo_captions TEXT NOT NULL DEFAULT '[]', cover_photo INTEGER NOT NULL DEFAULT 0)""",
+              );
               await _createPhotos(db);
               await db.execute(
                 "CREATE UNIQUE INDEX unique_favourite ON entries(kind, source_id) WHERE category = 'favourite'",

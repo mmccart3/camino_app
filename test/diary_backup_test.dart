@@ -36,6 +36,8 @@ void main() {
             date: '2026-10-12',
             notes: 'A lovely day — café and sunshine.',
             photos: [photo],
+            photoCaptions: ['Coffee in León'],
+            coverPhoto: 0,
           ),
         );
         await source.save(
@@ -50,6 +52,8 @@ void main() {
         );
         final entries = DiaryBackup.decode(await DiaryBackup.export(source));
         expect(entries.length, 1);
+        expect(entries.single.photoCaptions, ['Coffee in León']);
+        expect(entries.single.coverPhoto, 0);
         expect(await DiaryBackup.restore(target, entries), 1);
         expect(await DiaryBackup.restore(target, entries), 0);
         final restored = (await target.entries()).single;
@@ -92,7 +96,7 @@ void main() {
           utf8.encode(
             jsonEncode({
               'format': 'saint-jean-to-santiago-diary',
-              'version': 2,
+              'version': 99,
               'entries': [],
             }),
           ),
