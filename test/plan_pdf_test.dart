@@ -53,10 +53,34 @@ void main() {
     ),
     stops: estimated
         ? [
-            const PlanPdfStop('Saint Jean Pied de Port', '08:00', '08:00', 0),
-            const PlanPdfStop('Huntto', '09:25', '09:25', 0),
-            const PlanPdfStop('Orisson', '10:15', '10:45', 30),
-            const PlanPdfStop('Roncesvalles', '15:45', '15:45', 0),
+            const PlanPdfStop(
+              'Saint Jean Pied de Port',
+              '08:00',
+              '08:00',
+              0,
+              metresFromStart: 0,
+            ),
+            const PlanPdfStop(
+              'Huntto',
+              '09:25',
+              '09:25',
+              0,
+              metresFromStart: 5300,
+            ),
+            const PlanPdfStop(
+              'Orisson',
+              '10:15',
+              '10:45',
+              30,
+              metresFromStart: 7700,
+            ),
+            const PlanPdfStop(
+              'Roncesvalles',
+              '15:45',
+              '15:45',
+              0,
+              metresFromStart: 24900,
+            ),
           ]
         : [],
     contacts: [

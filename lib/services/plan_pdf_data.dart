@@ -13,18 +13,27 @@ class PlanPdfContact {
 class PlanPdfStop {
   final String name, arrival, departure;
   final int breakMinutes;
-  const PlanPdfStop(this.name, this.arrival, this.departure, this.breakMinutes);
+  final double? metresFromStart;
+  const PlanPdfStop(
+    this.name,
+    this.arrival,
+    this.departure,
+    this.breakMinutes, {
+    this.metresFromStart,
+  });
 }
 
 class PlanPdfDay {
   final ItineraryDay day;
   final List<PlanPdfStop> stops;
+  final List<String> routeLabels;
   final List<String> breaks;
   final List<PlanPdfContact> contacts;
   final String? address, notice;
   const PlanPdfDay(
     this.day, {
     this.stops = const [],
+    this.routeLabels = const [],
     this.breaks = const [],
     this.contacts = const [],
     this.address,
@@ -45,6 +54,10 @@ class PlanPdfData {
           walkingDayClock(route.departureMinutes, times.arrivals[i]),
           walkingDayClock(route.departureMinutes, times.departures[i]),
           (times.departures[i] - times.arrivals[i]).inMinutes,
+          metresFromStart: i == 0
+              ? 0
+              : day.profile.sections[i - 1].offsetMetres +
+                    day.profile.sections[i - 1].length,
         ),
     ];
   }
@@ -54,6 +67,7 @@ class PlanPdfData {
         PlanPdfDay(
           ItineraryDay.fromWalkingDay(0, route, day),
           stops: _stops(day, route),
+          routeLabels: day.routeLabels,
         ),
       ]);
 
@@ -74,6 +88,7 @@ class PlanPdfData {
     final result = <PlanPdfDay>[];
     for (final day in days) {
       List<PlanPdfStop> stops = [];
+      List<String> routeLabels = [];
       final notices = <String>[];
       if (day.hasEstimate) {
         try {
@@ -83,9 +98,10 @@ class PlanPdfData {
             throw StateError('Saved estimates differ from the current guide');
           }
           stops = _stops(current, day.route);
+          routeLabels = current.routeLabels;
         } catch (_) {
           notices.add(
-            'Saved distance and walking time retained. Intermediate arrival times are unavailable; edit and save this day to recalculate with current tracks.',
+            'Saved distance and walking time retained. Intermediate distances and arrival times are unavailable; edit and save this day to recalculate with current tracks.',
           );
         }
       }
@@ -149,6 +165,7 @@ class PlanPdfData {
         PlanPdfDay(
           day,
           stops: stops,
+          routeLabels: routeLabels,
           breaks: breaks,
           contacts: contacts,
           address: accommodation?.address,

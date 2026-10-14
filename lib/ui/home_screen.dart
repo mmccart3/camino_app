@@ -1,3 +1,4 @@
+import '../services/walking_day_store.dart';
 import 'today_progress.dart';
 import 'diary_tools.dart';
 import 'feature_navigation.dart';
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String? planError;
   List<CaminoPlan> plans = [];
   ItineraryDay? next;
+  SavedWalkingDay? todayRoute;
   int revision = 0;
   final store = CaminoPlanStore.instance;
   @override
@@ -87,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
     List<CaminoPlan> loaded = [];
     ItineraryDay? upcoming;
     String? error;
+    SavedWalkingDay? selectedRoute;
     try {
       loaded = await store.plans();
       final days = <ItineraryDay>[];
@@ -94,6 +97,19 @@ class _HomeScreenState extends State<HomeScreen> {
         days.addAll(await store.days(plan.id));
       }
       upcoming = nextPlannedDay(days, DateTime.now());
+      final now = DateTime.now();
+      bool today(SavedWalkingDay d) {
+        final date = DateTime.tryParse(d.date ?? '');
+        return date != null &&
+            date.year == now.year &&
+            date.month == now.month &&
+            date.day == now.day;
+      }
+
+      selectedRoute = days.map((d) => d.route).where(today).firstOrNull;
+      selectedRoute ??= (await WalkingDayStore().load())
+          .where(today)
+          .firstOrNull;
     } catch (_) {
       error = 'Your saved plans could not be loaded.';
     }
@@ -102,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
       recent = stage;
       plans = loaded;
       next = upcoming;
+      todayRoute = selectedRoute;
       planError = error;
       loading = false;
     });
@@ -317,18 +334,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   const SizedBox(height: 16),
+                  if (todayRoute != null || recent != null)
+                    TodayProgress(
+                      key: ValueKey('${recent?.id}/${todayRoute?.toJson()}'),
+                      stage: recent,
+                      plannedDay: todayRoute,
+                      repository: widget.repository,
+                      settings: widget.settings,
+                    ),
                   if (recent != null) ...[
                     Text(
                       'Your current stage',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(recent!.name),
-                    TodayProgress(
-                      key: ValueKey(recent!.id),
-                      stage: recent!,
-                      repository: widget.repository,
-                      settings: widget.settings,
-                    ),
                     const SizedBox(height: 8),
                     FilledButton.icon(
                       icon: const Icon(Icons.map_outlined),

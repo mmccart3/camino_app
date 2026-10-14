@@ -1,3 +1,5 @@
+import 'package:camino_app/services/plan_pdf_data.dart';
+import 'package:camino_app/services/route_guidance.dart';
 import 'test_support.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -88,7 +90,48 @@ void main() {
     final points = [...first.points.skip(1), ...second.points.skip(1)];
     final distance = points.fold<double>(0, (s, p) => s + p.distance3dMeters!);
     final weight = points.fold<double>(0, (s, p) => s + p.weightedDistance!);
+    final guidancePoints = day.guidancePoints;
+    final guidance = RouteGuidanceService().calculate(
+      guidancePoints,
+      guidancePoints.first.position,
+      4.2,
+    )!;
+    expect(guidance.remainingMeters, closeTo(day.metres, .001));
+    expect(guidance.timeRemaining, day.walkingTime);
+    final end = RouteGuidanceService().calculate(
+      guidancePoints,
+      guidancePoints.last.position,
+      4.2,
+    )!;
+    expect(end.remainingMeters, closeTo(0, .001));
+    expect(guidancePoints.last.waypointName, day.places.last.name);
     expect(day.metres, closeTo(distance, .001));
+    expect(day.routeLabels, [
+      'Stage ${first.stage.displayNumber}: ${first.stage.name}',
+      'Stage ${second.stage.displayNumber}: ${second.stage.name}',
+    ]);
+
+    final pdfStops = PlanPdfData.walkingDay(
+      day,
+      SavedWalkingDay('pdf', ids, 4.2, null),
+    ).days.single.stops;
+    expect(pdfStops.first.metresFromStart, 0);
+    expect(pdfStops.last.metresFromStart, closeTo(distance, .001));
+    expect(
+      pdfStops[first.paths.length].metresFromStart,
+      closeTo(
+        first.points
+            .skip(1)
+            .fold<double>(0, (sum, point) => sum + point.distance3dMeters!),
+        .001,
+      ),
+    );
+    for (var i = 1; i < pdfStops.length; i++) {
+      expect(
+        pdfStops[i].metresFromStart! >= pdfStops[i - 1].metresFromStart!,
+        isTrue,
+      );
+    }
     expect(day.walkingTime, WalkingTime.estimate(weight, 4.2));
     expect(day.profile.length, closeTo(day.metres, .001));
     expect(day.arrivalOffsets.length, day.places.length);

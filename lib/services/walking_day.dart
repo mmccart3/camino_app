@@ -8,7 +8,8 @@ import 'walking_time.dart';
 class DayLeg {
   final Path path;
   final List<TrackPoint> points;
-  const DayLeg(this.path, this.points);
+  final Stage? stage;
+  const DayLeg(this.path, this.points, {this.stage});
 }
 
 class WalkingDay {
@@ -30,6 +31,45 @@ class WalkingDay {
     this.arrivalOffsets,
   );
   String get name => '${places.first.name} to ${places.last.name}';
+
+  /// Selected stages, in walking order, including public alternate references.
+  List<String> get routeLabels {
+    final seen = <int>{};
+    return [
+      for (final leg in legs)
+        if (leg.stage != null && seen.add(leg.stage!.id))
+          'Stage ${leg.stage!.displayNumber}: ${leg.stage!.name}',
+    ];
+  }
+
+  // Follow the planner's segment accounting, including unweighted stage joins.
+  List<TrackPoint> get guidancePoints {
+    final result = <TrackPoint>[];
+    for (var n = 0; n < legs.length; n++) {
+      final leg = legs[n];
+      for (var i = 0; i < leg.points.length; i++) {
+        final point = leg.points[i];
+        final join =
+            i == 0 &&
+            (n == 0 ||
+                leg.path.stageId != legs[n - 1].path.stageId ||
+                point.previousTrackPointId != result.last.id);
+        result.add(
+          TrackPoint.fromRow(
+            {
+              ...point.source,
+              if (join) 'distance_3d_meters': 0.0,
+              if (join) 'weighted_distance': 0.0,
+            },
+            waypointName: i == leg.points.length - 1
+                ? places[n + 1].name
+                : point.waypointName,
+          ),
+        );
+      }
+    }
+    return result;
+  }
 
   DayTimetable timetable(Map<int, int> breakMinutes) {
     final arrivals = <Duration>[], departures = <Duration>[];
@@ -108,7 +148,7 @@ class WalkingDayPlanner {
             )) {
           continue;
         }
-        legs[path.id] = DayLeg(path, points);
+        legs[path.id] = DayLeg(path, points, stage: stage);
       }
     }
     return WalkingDayPlanner(

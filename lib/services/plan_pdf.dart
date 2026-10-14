@@ -206,6 +206,7 @@ class PlanPdf {
           ),
         ),
         pw.SizedBox(height: 12),
+        for (final label in detail.routeLabels) line(label),
         line(
           day.hasEstimate
               ? '${(day.metres! / 1000).toStringAsFixed(2)} km | ${WalkingTime.format(Duration(seconds: day.seconds!))} walking'
@@ -226,11 +227,14 @@ class PlanPdf {
         if (detail.stops.isNotEmpty) ...[
           heading('Places and planned breaks'),
           table(
-            ['Location', 'Arrival', 'Break', 'Departure'],
+            ['Location', 'From start', 'Arrival', 'Break', 'Departure'],
             [
               for (final stop in detail.stops)
                 [
                   stop.name,
+                  stop.metresFromStart == null
+                      ? '-'
+                      : '${(stop.metresFromStart! / 1000).toStringAsFixed(2)} km',
                   stop.arrival,
                   stop.breakMinutes == 0 ? '-' : '${stop.breakMinutes} min',
                   stop.departure,

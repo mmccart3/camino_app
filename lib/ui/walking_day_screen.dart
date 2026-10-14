@@ -1,3 +1,4 @@
+import '../services/place_search.dart';
 import 'walking_stop_picker.dart';
 import 'plan_pdf_screen.dart';
 import '../services/plan_pdf_data.dart';
@@ -364,7 +365,12 @@ class _WalkingDayScreenState extends State<WalkingDayScreen> {
           .locations[planner!.legs[ids.last]!.path.destinationLocationId]!
           .name,
     ];
-    return places.join(' > ');
+    final labels = <String>{
+      for (final id in ids)
+        if (planner!.legs[id]?.stage != null)
+          'Stage ${planner!.legs[id]!.stage!.displayNumber}: ${planner!.legs[id]!.stage!.name}',
+    };
+    return [...labels, places.join(' > ')].join('\n');
   }
 
   String savedName(SavedWalkingDay plan) {
@@ -609,6 +615,7 @@ class _WalkingDayScreenState extends State<WalkingDayScreen> {
             if (day != null) ...[
               const Divider(),
               Text(day!.name, style: Theme.of(context).textTheme.titleLarge),
+              for (final label in day!.routeLabels) Text(label),
               Text(
                 '${(day!.metres / 1000).toStringAsFixed(2)} km | ${formatWalkingDayTime(day!.walkingTime)} walking',
               ),
@@ -746,7 +753,7 @@ class _PlacePickerState extends State<_PlacePicker> {
   @override
   Widget build(BuildContext context) {
     final filtered = widget.places
-        .where((p) => p.name.toLowerCase().contains(query.toLowerCase()))
+        .where((p) => matchesPlaceName(p.name, query))
         .toList();
     return AlertDialog(
       title: Text(widget.title),

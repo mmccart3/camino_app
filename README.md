@@ -467,3 +467,12 @@ Tab switches retain their navigation stacks. Shortcuts reuse an open named map, 
 
 ### Trail UI refinements (0.3.11)
 Startup no longer imposes a minimum splash duration. Setup errors have retry, copyable diagnostics and expandable details. Accommodation cards use responsive price badges and separate plan actions; filter counts respect other selected filters. Map accommodation clusters use a draggable sheet with prices and recorded capacity. Ahead of me keeps its position action above the scrolling content and highlights warnings and the next stop in navy/yellow. Facility details treat unrecorded values as No for display only, grouped under Not available; stored data remains unchanged. Beds and dormitories are icon statistics.
+
+### Today destination (0.3.12)
+Today uses the first itinerary day dated today, otherwise a standalone walking day dated today. If neither exists it uses the remembered stage. Future and undated plans do not override stage progress. Saved path choices can span stages; estimates end at the planned location waypoint, not the accommodation door, use the current walking pace and exclude breaks. Unmeasured stage joins are flagged and excluded consistently with the planner. An invalid saved route shows an error rather than silently estimating to another destination.
+
+### Stage 1c: Napoleon via NA-2023
+Stage 45 (display 1c) uses paths 507–515, track IDs 51000–51792 and 2,559 elevation samples. Source path IDs 1–8 and 289 were remapped to avoid modifying stages 1a/1b. The first predecessor is reset to 0. Route length is 25.729 km; the estimate at 4.2 km/h true flat pace is 6 hr 58 min. Existing offline tiles cover the full track at zoom 14. Stage 1c now shares stage 43’s published map URLs and bundled map image, as requested. Its track route and generated elevation profile remain specific to 1c.
+
+### Guidebook notes (0.3.15)
+Imported 268 PLAIN paragraphs from the owner-supplied Camino100ch, Camino300v and Camino800g Notes on sections into 121 locations with fewer than 100 existing descriptive/history words. Existing rows were preserved; source overlap uses regional-book preference with duplicate filtering. The import audit and backup are in the Codex workspace outputs/guide_notes. Seven unmatched section headings were retained for review rather than assigned speculatively. Source business details and route prose are not independently verified as current.
