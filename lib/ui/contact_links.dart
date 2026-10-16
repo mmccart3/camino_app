@@ -28,7 +28,7 @@ class ContactLinks extends StatelessWidget {
     try {
       await action();
     } catch (error) {
-      if (context.mounted) showFailure(context, error);
+      if (context.mounted) showFailure(context, error, onRetry: action);
     }
   }
 

@@ -1,3 +1,4 @@
+import 'camino_colors.dart';
 import 'accommodation_card.dart' show accommodationPrice;
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
@@ -126,12 +127,15 @@ class _AccommodationMapLayerState extends State<AccommodationMapLayer> {
                   child: Material(
                     elevation: 5,
                     shadowColor: Colors.black54,
-                    color: const Color(0xFF0D1F33),
-                    shape: const CircleBorder(
-                      side: BorderSide(color: Color(0xFFFFD740), width: 2),
+                    color: Theme.of(context).colorScheme.surface,
+                    shape: CircleBorder(
+                      side: BorderSide(
+                        color: CaminoColors.of(context).nextWaypoint,
+                        width: 2,
+                      ),
                     ),
                     child: InkWell(
-                      customBorder: const CircleBorder(),
+                      customBorder: CircleBorder(),
                       onTap: () => choose(group),
                       child: Semantics(
                         button: true,
@@ -143,7 +147,7 @@ class _AccommodationMapLayerState extends State<AccommodationMapLayer> {
                           children: [
                             Icon(
                               group.first is Albergue ? Icons.bed : Icons.hotel,
-                              color: const Color(0xFFFFD740),
+                              color: CaminoColors.of(context).nextWaypoint,
                               size: 24,
                             ),
                             if (group.length > 1)

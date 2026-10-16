@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import '../data/models.dart';
 import 'screens.dart' show ExternalLinkButton;
 
+const locationFacilityIcons = [
+  ('hasBarCafe', 'Bar / café', Icons.local_cafe_outlined),
+  ('hasPharmacy', 'Pharmacy', Icons.local_pharmacy_outlined),
+  ('hasGroceryStore', 'Groceries', Icons.shopping_basket_outlined),
+];
+
 class LocationFacilities extends StatelessWidget {
   final Location location;
   const LocationFacilities({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {
-    final services = [
-      ('hasBarCafe', 'Bar / café', Icons.local_cafe_outlined),
-      ('hasPharmacy', 'Pharmacy', Icons.local_pharmacy_outlined),
-      ('hasGroceryStore', 'Groceries', Icons.shopping_basket_outlined),
-    ].where((service) => location.facility(service.$1) == true).toList();
+    final services = locationFacilityIcons
+        .where((service) => location.facility(service.$1) == true)
+        .toList();
     if (services.isEmpty) return const SizedBox.shrink();
     final mapped = services.any(
       (service) => (text(location.source, '${service.$1}Source') ?? '')

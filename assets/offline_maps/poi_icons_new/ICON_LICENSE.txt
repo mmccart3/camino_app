@@ -1,0 +1,9 @@
+Map POI icons for the Camino app
+================================
+These sixteen icons are original artwork drawn for this app as SVG shapes
+(fork and knife, cup, glass, mug, burger, trolley, shop front, apple, loaf,
+cross, stethoscope, ring and cross, H, drop, two figures, euro coin).
+No third-party icon set, font or image was used or traced.
+
+Map data: (c) OpenStreetMap contributors (ODbL). Vector tiles: OpenMapTiles.
+Those credits cover the map data, not these icons.

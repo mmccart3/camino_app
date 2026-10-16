@@ -1,3 +1,4 @@
+import 'camino_colors.dart';
 import 'accommodation_map_layer.dart';
 import 'navigation_summary.dart';
 import 'position_controls.dart';
@@ -200,7 +201,7 @@ class _LocationNavigationScreenState extends State<LocationNavigationScreen> {
 
   String metres(double? value) => value == null
       ? 'Distance unavailable'
-      : '${(value / 1000).toStringAsFixed(2)} km';
+      : '${(value / 1000).toStringAsFixed(1)} km';
   String minutes(Duration? value) => navigationTime(value);
   @override
   Widget build(BuildContext context) {
@@ -250,7 +251,7 @@ class _LocationNavigationScreenState extends State<LocationNavigationScreen> {
                         Polyline(
                           points: coordinates,
                           strokeWidth: 5,
-                          color: Colors.blue,
+                          color: CaminoColors.of(context).routeLine,
                         ),
                       ],
                     ),
@@ -259,7 +260,10 @@ class _LocationNavigationScreenState extends State<LocationNavigationScreen> {
                       markers: [
                         Marker(
                           point: widget.location.position!,
-                          child: const Icon(Icons.flag, color: Colors.red),
+                          child: Icon(
+                            Icons.flag,
+                            color: CaminoColors.of(context).nextWaypoint,
+                          ),
                         ),
                       ],
                     ),

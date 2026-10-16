@@ -1,7 +1,7 @@
 name: camino_app
 description: Offline-first Camino MVP with a replaceable bundled SQLite dataset.
 publish_to: none
-version: 0.3.18+124
+version: 0.3.39+145
 environment:
   sdk: '>=3.10.0 <4.0.0'
 dependencies:
@@ -33,6 +33,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/fonts/LICENSE_FIGTREE.txt
     - assets/branding/app_icon.png
     - assets/fonts/LiberationSans-Regular.ttf
     - assets/fonts/LiberationSans-Bold.ttf
@@ -52,3 +53,41 @@ flutter:
     - family: Fiesta
       fonts:
         - asset: assets/fonts/Fiesta.ttf
+
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/Figtree-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Figtree-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Figtree-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Figtree-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Figtree-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Figtree-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Figtree-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Figtree-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Figtree-RegularItalic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Figtree-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Figtree-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Figtree-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Figtree-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Figtree-BlackItalic.ttf
+          weight: 900
+          style: italic

@@ -1,3 +1,9 @@
+import 'app_title.dart';
+import 'settings_screen.dart';
+import '../services/place_search.dart';
+import '../services/camino_plan_store.dart';
+import '../services/walking_day_store.dart';
+import 'feature_navigation.dart';
 import 'map_screen.dart';
 import 'package:flutter/material.dart';
 import '../data/camino_repository.dart';
@@ -6,6 +12,7 @@ import '../data/route_assembler.dart';
 import '../services/settings_service.dart';
 import '../services/recent_walk.dart';
 import '../services/walking_time.dart';
+import '../services/stage_walking_time.dart';
 import 'screens.dart' show StageDetailScreen;
 import 'widgets.dart';
 
@@ -24,16 +31,96 @@ class StageListScreen extends StatefulWidget {
 }
 
 class _StageListScreenState extends State<StageListScreen> {
-  late final future = widget.repository.stages();
+  late var future = widget.repository.stages();
   final routes = <int, Future<StageRoute>>{};
   int? recent;
+  final search = TextEditingController();
+  String query = '', filter = 'All';
+  Set<int> planned = {};
+  final searchNames = <int, String>{};
+  String? planError;
+  int? lastTab;
+  @override
+  void dispose() {
+    search.dispose();
+    widget.settings.removeListener(refreshPace);
+    super.dispose();
+  }
+
+  void refreshPace() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final tab = context
+        .dependOnInheritedWidgetOfExactType<FeatureNavigation>()
+        ?.selected;
+    if (lastTab != null && tab != lastTab && tab == (widget.mapMode ? 2 : 1)) {
+      restore();
+    }
+    lastTab = tab;
+  }
+
+  Future<void> loadSearchNames() async {
+    final stages = await future;
+    final names = <int, String>{};
+    for (final stage in stages) {
+      final locations = await widget.repository.locations(stage.id);
+      names[stage.id] = locations.map((l) => l.name).join(' ');
+    }
+    if (mounted) setState(() => searchNames.addAll(names));
+  }
+
+  bool routeChoice(Stage stage, List<Stage> stages) =>
+      RegExp(r'[a-z]$', caseSensitive: false).hasMatch(stage.displayNumber) ||
+      stages.any(
+        (p) =>
+            p.alternativeNextStageId != null &&
+            (p.nextStageId == stage.id || p.alternativeNextStageId == stage.id),
+      );
+
   @override
   void initState() {
     super.initState();
+    widget.settings.addListener(refreshPace);
     restore();
+    loadSearchNames().catchError((Object _) {});
   }
 
   Future<void> restore() async {
+    try {
+      final pathIds = <int>{};
+      final store = CaminoPlanStore.instance;
+      for (final plan in await store.plans()) {
+        for (final day in await store.days(plan.id)) {
+          pathIds.addAll(day.route.pathIds);
+        }
+      }
+      for (final day in await WalkingDayStore().load()) {
+        pathIds.addAll(day.pathIds);
+      }
+      final ids = <int>{};
+      for (final stage in await future) {
+        if ((await widget.repository.paths(
+          stage.id,
+        )).any((p) => pathIds.contains(p.id))) {
+          ids.add(stage.id);
+        }
+      }
+      if (mounted) {
+        setState(() {
+          planned = ids;
+          planError = null;
+        });
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() => planError = 'Saved plans could not be loaded.');
+      }
+    }
+
     try {
       final saved = await RecentWalk.load();
       if (mounted) setState(() => recent = saved?.$1);
@@ -67,159 +154,238 @@ class _StageListScreenState extends State<StageListScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: Text(widget.mapMode ? 'Choose a stage map' : 'Stages'),
+      title: Text(widget.mapMode ? 'Choose a stage map' : 'Explore'),
       centerTitle: true,
     ),
     body: SafeArea(
       child: DataView(
         future: future,
+        retry: () => future = widget.repository.stages(),
         builder: (stages) {
           if (stages.isEmpty) {
             return const Center(child: Text('No stages in this database.'));
           }
-          final last = stages.where((s) => s.id == recent).firstOrNull;
-          return ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: stages.length + 1,
-            itemBuilder: (context, index) {
-              if (index == 0) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (last != null) ...[
-                      FilledButton.icon(
-                        onPressed: () => open(last),
-                        icon: const Icon(Icons.directions_walk),
-                        label: Text('Continue here: ${last.name}'),
-                      ),
-                      const SizedBox(height: 12),
-                    ],
-                    Text(
-                      'Walking estimates use your saved flat-ground pace.',
-                      style: Theme.of(context).textTheme.bodySmall,
+          final visible = stages
+              .where(
+                (stage) =>
+                    (filter != 'Planned' || planned.contains(stage.id)) &&
+                    (filter != 'Route choices' || routeChoice(stage, stages)) &&
+                    matchesPlaceName(
+                      'Stage ${stage.displayNumber} ${stage.name} ${searchNames[stage.id] ?? ""}',
+                      query,
                     ),
-                    const SizedBox(height: 12),
-                  ],
-                );
-              }
-              final stage = stages[index - 1];
-              final alternatives = <int>{};
-              for (final parent in stages) {
-                if (parent.alternativeNextStageId != null &&
-                    (parent.nextStageId == stage.id ||
-                        parent.alternativeNextStageId == stage.id)) {
-                  alternatives.addAll([
-                    if (parent.nextStageId != null) parent.nextStageId!,
-                    parent.alternativeNextStageId!,
-                  ]);
-                }
-              }
-              alternatives.remove(stage.id);
-              final peers = stages
-                  .where((s) => alternatives.contains(s.id))
-                  .toList();
-              return Card(
-                margin: const EdgeInsets.only(bottom: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(
-                    color: stage.id == recent
-                        ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).dividerColor,
-                    width: stage.id == recent ? 2 : 1,
+              )
+              .toList();
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                child: TextField(
+                  controller: search,
+                  decoration: InputDecoration(
+                    labelText: 'Search a town or stage',
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: query.isEmpty
+                        ? null
+                        : IconButton(
+                            tooltip: 'Clear search',
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              search.clear();
+                              setState(() => query = '');
+                            },
+                          ),
                   ),
+                  onChanged: (value) => setState(() => query = value),
                 ),
-                clipBehavior: Clip.antiAlias,
-                child: InkWell(
-                  onTap: () => open(stage),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Wrap(
+                  spacing: 8,
+                  children: [
+                    for (final name in ['All', 'Planned', 'Route choices'])
+                      ChoiceChip(
+                        label: Text(name),
+                        selected: filter == name,
+                        selectedColor: Theme.of(
+                          context,
+                        ).colorScheme.primaryContainer,
+                        checkmarkColor: caminoYellow,
+                        labelStyle: TextStyle(
+                          color: filter == name
+                              ? caminoYellow
+                              : Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                        onSelected: (_) => setState(() => filter = name),
+                      ),
+                  ],
+                ),
+              ),
+              if (filter == 'Planned' && planError != null)
+                TextButton(onPressed: restore, child: Text('$planError Retry')),
+              if (visible.isEmpty)
+                Expanded(
+                  child: Center(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          'Stage ${stage.displayNumber}${stage.id == recent ? ' / Last opened' : ''}',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          stage.name,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        if (peers.isNotEmpty)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Text(
-                              'Route choice / Alternative: ${peers.map((s) => s.name).join(' / ')}',
-                            ),
-                          ),
-                        const SizedBox(height: 12),
-                        FutureBuilder<StageRoute>(
-                          future: routes.putIfAbsent(
-                            stage.id,
-                            () => widget.repository.route(stage),
-                          ),
-                          builder: (context, snapshot) {
-                            final route = snapshot.data;
-                            Duration? time;
-                            if (route != null && route.canGuide) {
-                              final weights = route.points
-                                  .skip(1)
-                                  .map((p) => p.weightedDistance)
-                                  .toList();
-                              if (weights.isNotEmpty &&
-                                  weights.every(
-                                    (w) => w != null && w.isFinite && w >= 0,
-                                  )) {
-                                time = WalkingTime.estimate(
-                                  weights.fold<double>(0, (sum, w) => sum + w!),
-                                  widget.settings.paceKmh,
-                                );
-                              }
-                            }
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                if (route != null &&
-                                    route.locations.any(
-                                      (l) => l.id == stage.startLocationId,
-                                    )) ...[
-                                  Text(
-                                    'From ${route.locations.firstWhere((l) => l.id == stage.startLocationId).name}',
-                                  ),
-                                  const SizedBox(height: 8),
-                                ],
-                                Wrap(
-                                  spacing: 16,
-                                  runSpacing: 8,
-                                  children: [
-                                    Text(
-                                      stage.distanceMeters == null
-                                          ? 'Distance unavailable'
-                                          : '${(stage.distanceMeters! / 1000).toStringAsFixed(1)} km',
-                                    ),
-                                    Text(
-                                      time == null
-                                          ? (snapshot.connectionState !=
-                                                    ConnectionState.done
-                                                ? 'Loading walking time…'
-                                                : 'Walking time unavailable')
-                                          : '${WalkingTime.format(time)} walking',
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
+                        const Icon(Icons.search_off, size: 40),
+                        const Text('No matching stages'),
+                        TextButton(
+                          onPressed: () {
+                            search.clear();
+                            setState(() {
+                              query = '';
+                              filter = 'All';
+                            });
                           },
+                          child: const Text('Show all stages'),
                         ),
-                        const SizedBox(height: 12),
-                        const Text('View stage →'),
                       ],
                     ),
                   ),
+                )
+              else
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: visible.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == 0) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Estimates use your walking speed.',
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodySmall,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).push(
+                                    MaterialPageRoute<void>(
+                                      builder: (_) => SettingsScreen(
+                                        settings: widget.settings,
+                                      ),
+                                    ),
+                                  ),
+                                  child: const Text('Change'),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                          ],
+                        );
+                      }
+                      final stage = visible[index - 1];
+                      return Card(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(
+                            color: stage.id == recent
+                                ? Theme.of(context).colorScheme.primary
+                                : Theme.of(context).dividerColor,
+                            width: stage.id == recent ? 2 : 1,
+                          ),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: InkWell(
+                          onTap: () => open(stage),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Wrap(
+                                  spacing: 8,
+                                  runSpacing: 6,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Stage ${stage.displayNumber}',
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.labelLarge,
+                                    ),
+                                    if (routeChoice(stage, stages))
+                                      const Chip(
+                                        avatar: Icon(Icons.alt_route, size: 18),
+                                        label: Text('Route choice'),
+                                      ),
+                                    if (stage.id == recent)
+                                      const Chip(label: Text('Selected stage')),
+                                    if (planned.contains(stage.id))
+                                      const Chip(label: Text('Planned')),
+                                  ],
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  stage.name,
+                                  style: Theme.of(context).textTheme.titleLarge
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: 12),
+                                FutureBuilder<StageRoute>(
+                                  future: routes.putIfAbsent(
+                                    stage.id,
+                                    () => widget.repository.route(stage),
+                                  ),
+                                  builder: (context, snapshot) {
+                                    final route = snapshot.data;
+                                    final time = route == null
+                                        ? null
+                                        : routeWalkingTime(
+                                            route,
+                                            widget.settings.paceKmh,
+                                          );
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Wrap(
+                                          spacing: 16,
+                                          runSpacing: 8,
+                                          children: [
+                                            Text(
+                                              stage.distanceMeters == null
+                                                  ? 'Distance unavailable'
+                                                  : '${(stage.distanceMeters! / 1000).toStringAsFixed(1)} km',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium
+                                                  ?.copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                            Text(
+                                              time == null
+                                                  ? (snapshot.connectionState !=
+                                                            ConnectionState.done
+                                                        ? 'Loading walking time…'
+                                                        : 'Walking time unavailable')
+                                                  : '${WalkingTime.format(time)} walking',
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              );
-            },
+            ],
           );
         },
       ),

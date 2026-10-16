@@ -1,3 +1,4 @@
+import '../services/walking_time.dart';
 import 'package:flutter/material.dart';
 
 /// A compact, wrapping summary that also works with large accessibility text.
@@ -111,13 +112,8 @@ class NavigationSummary extends StatelessWidget {
   );
 }
 
-String navigationTime(Duration? duration) {
-  if (duration == null) return 'Unavailable';
-  final minutes = (duration.inSeconds / 60).ceil();
-  return minutes < 60
-      ? '$minutes min'
-      : '${minutes ~/ 60} hr ${minutes % 60} min';
-}
+String navigationTime(Duration? duration) =>
+    duration == null ? 'Unavailable' : WalkingTime.format(duration);
 
 double navigationMapHeight(BuildContext context) =>
     (MediaQuery.sizeOf(context).height * 0.60).clamp(280.0, 620.0);

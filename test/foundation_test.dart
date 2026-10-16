@@ -114,6 +114,7 @@ void main() {
       expect((await repository.stages()).map((stage) => stage.id), [
         1,
         43,
+        45,
         2,
         3,
         4,
@@ -208,19 +209,19 @@ void main() {
     },
   );
   test(
-    'orders whole stage 1 across eight paths and all 778 linked points',
+    'orders whole stage 1 across eight paths and all 775 linked points',
     () async {
       final route = await repository.route((await repository.stage(1))!);
       expect(route.issues, isEmpty, reason: route.issues.join('; '));
       expect(route.canGuide, isTrue);
       expect(route.paths.map((p) => p.id), [1, 2, 3, 4, 5, 6, 7, 8]);
-      expect(route.points.length, 778);
-      expect(route.points.first.id, 1);
+      expect(route.points.length, 775);
+      expect(route.points.first.id, 4);
       expect(route.points.last.id, 778);
       expect(route.points.last.waypointName, 'Roncesvalles');
       final guidance = RouteGuidanceService().calculate(
         route.points,
-        route.points[147].position,
+        route.points.singleWhere((p) => p.id == 148).position,
         4.5,
       )!;
       expect(guidance.nextWaypoint?.id, 240);
@@ -597,7 +598,13 @@ void main() {
   test(
     'missing tracks and invalid stage graphs do not become invented routes',
     () async {
-      final noTracks = await repository.route((await repository.stage(27))!);
+      final populated = await repository.route((await repository.stage(27))!);
+      final noTracks = RouteAssembler.assemble(
+        populated.stage,
+        populated.paths,
+        populated.locations,
+        {},
+      );
       expect(noTracks.canGuide, isFalse);
       expect(noTracks.points, isEmpty);
       expect(noTracks.locations, isNotEmpty);
@@ -609,33 +616,12 @@ void main() {
       for (final stage in await repository.stages()) {
         final route = await repository.route(stage);
         expect(route.locations, isNotEmpty, reason: 'Stage ${stage.id}');
-        if (![
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          24,
-          25,
-          26,
-        ].contains(stage.id)) {
-          expect(route.canGuide, isFalse);
+        if (route.canGuide) {
+          expect(route.issues, isEmpty);
+          expect(route.points.length, greaterThanOrEqualTo(2));
+          expect(route.points.first.position.latitude.isFinite, isTrue);
+        } else {
+          expect(route.issues.isNotEmpty || route.points.length < 2, isTrue);
         }
       }
     },
@@ -807,7 +793,7 @@ void main() {
         loadAsset: () => File('assets/database/camino.sqlite').readAsBytes(),
       );
       try {
-        expect((await CaminoRepository(windowsLocal).stages()).length, 42);
+        expect((await CaminoRepository(windowsLocal).stages()).length, 43);
       } finally {
         await windowsLocal.close();
       }

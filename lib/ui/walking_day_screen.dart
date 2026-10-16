@@ -412,7 +412,7 @@ class _WalkingDayScreenState extends State<WalkingDayScreen> {
       title: const Text('Your walking-day privacy'),
       content: const SingleChildScrollView(
         child: Text(
-          'Plans contain your chosen route, optional date, starting time, planned breaks and walking pace. They are stored in this app on your device, separately from the guide database. This planner sends no plans or location history to us and uses no analytics.\n\n'
+          'Plans contain your chosen route, optional date, starting time, planned breaks and walking speed. They are stored in this app on your device, separately from the guide database. This planner sends no plans or location history to us and uses no analytics.\n\n'
           'Nearby start is optional. It requests one location fix to suggest a place; the coordinates are not saved. No background tracking is started.\n\n'
           'You can delete individual plans or all saved plans here. Your phone\'s operating-system backup or device-transfer settings may include app data; the app does not provide cloud synchronisation.',
         ),
@@ -507,7 +507,7 @@ class _WalkingDayScreenState extends State<WalkingDayScreen> {
                 icon: const Icon(Icons.my_location),
                 label: const Text('Find a nearby starting place'),
               ),
-              Text('Flat-ground pace: ${pace.toStringAsFixed(1)} km/h'),
+              Text('Walking speed: ${pace.toStringAsFixed(1)} km/h'),
               Slider(
                 value: pace,
                 min: 1,
@@ -617,7 +617,7 @@ class _WalkingDayScreenState extends State<WalkingDayScreen> {
               Text(day!.name, style: Theme.of(context).textTheme.titleLarge),
               for (final label in day!.routeLabels) Text(label),
               Text(
-                '${(day!.metres / 1000).toStringAsFixed(2)} km | ${formatWalkingDayTime(day!.walkingTime)} walking',
+                '${(day!.metres / 1000).toStringAsFixed(1)} km | ${formatWalkingDayTime(day!.walkingTime)} walking',
               ),
               Text(
                 'Ascent ${day!.ascent.round()} m | Descent ${day!.descent.round()} m',

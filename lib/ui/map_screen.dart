@@ -1,3 +1,7 @@
+import 'location_facility_map_layer.dart';
+import 'screens.dart' show LocationDetailScreen;
+import 'stage_list_screen.dart';
+import 'camino_colors.dart';
 import 'accommodation_map_layer.dart';
 import 'elevation_screen.dart';
 import '../services/recent_walk.dart';
@@ -11,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' show LatLng;
 import '../data/camino_repository.dart';
-import '../data/models.dart';
+import '../data/models.dart' hide Row;
 import 'position_controls.dart';
 import 'package:geolocator/geolocator.dart';
 import '../services/route_guidance.dart';
@@ -46,6 +50,8 @@ class _MapScreenState extends State<MapScreen> {
   final guidance = RouteGuidanceService();
   final mapController = MapController();
   bool mapReady = false;
+  final panelController = DraggableScrollableController();
+  double panelExtent = .26;
   LatLng? position;
   double? accuracy;
   DateTime? fixedAt;
@@ -63,11 +69,12 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void dispose() {
+    panelController.dispose();
     mapController.dispose();
     super.dispose();
   }
 
-  String distance(double meters) => '${(meters / 1000).toStringAsFixed(2)} km';
+  String distance(double meters) => '${(meters / 1000).toStringAsFixed(1)} km';
   String guidanceDistance(double? metres) =>
       metres == null ? 'Distance unavailable' : distance(metres);
   String time(Duration? duration) => navigationTime(duration);
@@ -77,6 +84,20 @@ class _MapScreenState extends State<MapScreen> {
       title: Text(widget.stage.name),
       centerTitle: true,
       actions: [
+        MapFacilityFilter(settings: widget.settings),
+        IconButton(
+          tooltip: 'Change stage',
+          icon: const Icon(Icons.swap_horiz),
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => StageListScreen(
+                repository: widget.repository,
+                settings: widget.settings,
+                mapMode: true,
+              ),
+            ),
+          ),
+        ),
         IconButton(
           tooltip: 'Ahead of me',
           icon: const Icon(Icons.directions_walk),
@@ -93,6 +114,7 @@ class _MapScreenState extends State<MapScreen> {
     ),
     body: DataView(
       future: future,
+      retry: () => widget.repository.route(widget.stage),
       builder: (route) {
         final coordinates = route.segments
             .expand((s) => s.map((p) => p.position))
@@ -114,236 +136,405 @@ class _MapScreenState extends State<MapScreen> {
                     widget.settings.paceKmh,
                   );
             return SafeArea(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (result != null)
-                      NavigationSummary(
-                        title:
-                            'Next: ${result.nextWaypoint?.waypointName ?? (result.nextWaypoint == null ? "End of route" : "Next waypoint")}',
-                        distance: guidanceDistance(result.distanceToNextMeters),
-                        time: time(result.timeToNext),
-                        remaining:
-                            '${guidanceDistance(result.remainingMeters)} / ${time(result.timeRemaining)} to stage end',
-                        status: 'On route at last update',
-                        warning:
-                            result.offRouteMeters >
-                                widget.settings.offRouteMetres
-                            ? 'Off route: ${result.offRouteMeters.round()} m from the trail'
-                            : null,
-                      ),
-                    if (fixedAt != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          'Last position: ${TimeOfDay.fromDateTime(fixedAt!.toLocal()).format(context)} · Accuracy ±${accuracy?.round()} m',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                      ),
-                    if (result == null && route.canGuide)
-                      const Text(
-                        'Update your position or enable automatic updates for stage guidance.',
-                      ),
-                    if (!route.canGuide) ...[
-                      Text(
-                        'Full-stage guidance unavailable',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      for (final issue in route.issues) Text('• $issue'),
-                      const SizedBox(height: 12),
-                    ],
-                    if (viewCoordinates.isEmpty)
-                      const SizedBox(
-                        height: 180,
-                        child: Center(child: Text('No coordinates available.')),
-                      )
-                    else
-                      SizedBox(
-                        height: navigationMapHeight(context),
-                        child: FlutterMap(
-                          mapController: mapController,
-                          options: MapOptions(
-                            onMapReady: () => setState(() => mapReady = true),
-                            initialCenter: viewCoordinates.first,
-                            initialZoom: 13,
-                            initialCameraFit: viewCoordinates.length > 1
-                                ? CameraFit.bounds(
-                                    bounds: LatLngBounds.fromPoints(
-                                      viewCoordinates,
-                                    ),
-                                    padding: const EdgeInsets.all(30),
-                                    maxZoom: 16,
-                                  )
-                                : null,
-                            backgroundColor: const Color(0xFFE6EBDF),
-                          ),
-                          children: [
-                            if (widget.showOfflineMap) const OfflineBasemap(),
-                            PolylineLayer(
-                              polylines: [
-                                if (route.canGuide)
-                                  Polyline(
-                                    points: route.points
-                                        .map((p) => p.position)
-                                        .toList(),
-                                    strokeWidth: 5,
-                                    color: const Color(0xFF1456A0),
-                                  )
-                                else
-                                  for (final segment in route.segments)
-                                    Polyline(
-                                      points: segment
-                                          .map((p) => p.position)
-                                          .toList(),
-                                      strokeWidth: 4,
-                                      color: Colors.orange,
-                                    ),
-                              ],
-                            ),
-                            if (widget.showOfflineMap)
-                              Align(
-                                alignment: Alignment.bottomRight,
-                                child: ColoredBox(
-                                  color: Colors.white,
-                                  child: TextButton(
-                                    onPressed: () async {
-                                      try {
-                                        await SafeLinks.open(
-                                          'https://www.openstreetmap.org/copyright',
-                                        );
-                                      } catch (error) {
-                                        if (context.mounted) {
-                                          showFailure(context, error);
-                                        }
-                                      }
-                                    },
-                                    child: const Text(
-                                      '\u00a9 OpenStreetMap contributors',
-                                      style: TextStyle(fontSize: 11),
-                                    ),
-                                  ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Stack(
+                    children: [
+                      Positioned.fill(
+                        child: viewCoordinates.isEmpty
+                            ? const Center(
+                                child: Text('No coordinates available.'),
+                              )
+                            : FlutterMap(
+                                mapController: mapController,
+                                options: MapOptions(
+                                  onMapReady: () =>
+                                      setState(() => mapReady = true),
+                                  initialCenter: viewCoordinates.first,
+                                  initialZoom: 13,
+                                  initialCameraFit: viewCoordinates.length > 1
+                                      ? CameraFit.bounds(
+                                          bounds: LatLngBounds.fromPoints(
+                                            viewCoordinates,
+                                          ),
+                                          padding: EdgeInsets.fromLTRB(
+                                            32,
+                                            32,
+                                            32,
+                                            constraints.maxHeight * .26 + 32,
+                                          ),
+                                          maxZoom: 16,
+                                        )
+                                      : null,
+                                  backgroundColor: const Color(0xFFE6EBDF),
                                 ),
-                              ),
-                            AccommodationMapLayer(
-                              repository: widget.repository,
-                            ),
-                            MarkerLayer(
-                              markers: [
-                                for (final location in route.locations)
-                                  if (location.position != null)
-                                    Marker(
-                                      point: location.position!,
-                                      width: 36,
-                                      height: 36,
-                                      child: Tooltip(
-                                        message: location.name,
-                                        child: const Icon(
-                                          Icons.place,
-                                          color: Colors.deepOrange,
+                                children: [
+                                  if (widget.showOfflineMap)
+                                    const OfflineBasemap(),
+                                  PolylineLayer(
+                                    polylines: [
+                                      if (route.canGuide)
+                                        Polyline(
+                                          points: route.points
+                                              .map((p) => p.position)
+                                              .toList(),
+                                          strokeWidth: 5,
+                                          borderStrokeWidth: 2,
+                                          borderColor: CaminoColors.of(
+                                            context,
+                                          ).routeCasing,
+                                          color: CaminoColors.of(
+                                            context,
+                                          ).routeLine,
+                                        )
+                                      else
+                                        for (final segment in route.segments)
+                                          Polyline(
+                                            points: segment
+                                                .map((p) => p.position)
+                                                .toList(),
+                                            strokeWidth: 4,
+                                            color: CaminoColors.of(
+                                              context,
+                                            ).gpsStale,
+                                          ),
+                                    ],
+                                  ),
+                                  if (widget.showOfflineMap)
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                          bottom:
+                                              constraints.maxHeight *
+                                              panelExtent,
+                                        ),
+                                        child: ColoredBox(
+                                          color: Colors.white,
+                                          child: TextButton(
+                                            style: TextButton.styleFrom(
+                                              foregroundColor: Colors.black87,
+                                              minimumSize: const Size(48, 32),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    horizontal: 6,
+                                                    vertical: 2,
+                                                  ),
+                                              tapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                            ),
+                                            onPressed: () async {
+                                              try {
+                                                await SafeLinks.open(
+                                                  'https://www.openstreetmap.org/copyright',
+                                                );
+                                              } catch (error) {
+                                                if (context.mounted) {
+                                                  showFailure(context, error);
+                                                }
+                                              }
+                                            },
+                                            child: const Text(
+                                              '\u00a9 OpenStreetMap contributors · OpenMapTiles',
+                                              style: TextStyle(fontSize: 9),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                if (result != null)
-                                  Marker(
-                                    point: result.nearestPosition,
-                                    width: 20,
-                                    height: 20,
-                                    child: const Icon(
-                                      Icons.circle_outlined,
-                                      color: Colors.blue,
-                                      size: 18,
+                                  AccommodationMapLayer(
+                                    repository: widget.repository,
+                                  ),
+                                  LocationFacilityMapLayer(
+                                    locations: route.locations,
+                                    settings: widget.settings,
+                                    onTap: (location) => navigate(
+                                      context,
+                                      LocationDetailScreen(
+                                        repository: widget.repository,
+                                        location: location,
+                                      ),
                                     ),
                                   ),
-                              ],
-                            ),
-                            CompassLayer(
-                              position: position,
-                              walkingControls: true,
-                              onCentre: position == null || !mapReady
-                                  ? null
-                                  : () => mapController.move(
-                                      position!,
-                                      mapController.camera.zoom,
+                                  MarkerLayer(
+                                    markers: [
+                                      if (result != null)
+                                        Marker(
+                                          point: result.nearestPosition,
+                                          width: 20,
+                                          height: 20,
+                                          child: Icon(
+                                            Icons.circle_outlined,
+                                            color: CaminoColors.of(
+                                              context,
+                                            ).routeLine,
+                                            size: 18,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                  CompassLayer(
+                                    position: position,
+                                    walkingControls: true,
+                                    verticalControls: true,
+                                    controlsBottomInset:
+                                        constraints.maxHeight * panelExtent,
+                                    controlsVisible: panelExtent < .6,
+                                    onCentre: position == null || !mapReady
+                                        ? null
+                                        : () => mapController.move(
+                                            position!,
+                                            mapController.camera.zoom,
+                                          ),
+                                    onElevation: () => navigate(
+                                      context,
+                                      ElevationScreen(
+                                        repository: widget.repository,
+                                        stage: widget.stage,
+                                      ),
                                     ),
-                              onElevation: () => navigate(
-                                context,
-                                ElevationScreen(
-                                  repository: widget.repository,
-                                  stage: widget.stage,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (coordinates.isEmpty)
-                      const Text(
-                        'Location markers only: no track geometry has been imported for this stage.',
-                      ),
-                    PositionControls(
-                      settings: widget.settings,
-                      onPosition: updatePosition,
-                      additionalOptions: [
-                        WalkingAlertControls(
-                          route: route,
-                          settings: widget.settings,
-                        ),
-                        StageMapCoverage(route: route),
-                      ],
-                    ),
-                    if (result != null)
-                      ExpansionTile(
-                        title: const Text('Route details'),
-                        children: [
-                          Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
-                                  ),
-                                  const Divider(),
-                                  Text(
-                                    '${result.offRouteMeters.round()} m from nearest track point · GPS accuracy ±${accuracy?.round()} m',
-                                  ),
-                                  if (result.offRouteMeters > 50)
-                                    const Text(
-                                      'You are more than 50 m from the nearest stored track point. Estimates exclude the walk to it.',
-                                    ),
-                                  Text(
-                                    'Track point ${result.nearestTrackPoint.id}: ${result.nearestPosition.latitude.toStringAsFixed(5)}, ${result.nearestPosition.longitude.toStringAsFixed(5)}',
-                                  ),
-                                  Text(
-                                    'Position recorded: ${fixedAt?.toLocal().toString().split('.').first}. Tap Update to refresh.',
-                                  ),
-                                  const Text(
-                                    'Times use weighted route distances and your saved flat-ground speed; they exclude breaks and the walk back to the track point.',
                                   ),
                                 ],
                               ),
+                      ),
+                      NotificationListener<DraggableScrollableNotification>(
+                        onNotification: (notification) {
+                          setState(() => panelExtent = notification.extent);
+                          return false;
+                        },
+                        child: DraggableScrollableSheet(
+                          controller: panelController,
+                          initialChildSize: .26,
+                          minChildSize: .26,
+                          maxChildSize: .92,
+                          snap: true,
+                          snapSizes: const [.26, .62, .92],
+                          builder: (context, scrollController) => Material(
+                            elevation: 12,
+                            color: Theme.of(context).colorScheme.surface,
+                            borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(24),
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            child: ListView(
+                              controller: scrollController,
+                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+                              children: [
+                                Center(
+                                  child: IconButton(
+                                    tooltip: panelExtent < .6
+                                        ? 'Expand guidance'
+                                        : 'Collapse guidance',
+                                    icon: Icon(
+                                      panelExtent < .6
+                                          ? Icons.keyboard_arrow_up
+                                          : Icons.keyboard_arrow_down,
+                                    ),
+                                    onPressed: () => panelController.animateTo(
+                                      panelExtent < .6 ? .92 : .26,
+                                      duration: const Duration(
+                                        milliseconds: 250,
+                                      ),
+                                      curve: Curves.easeOut,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'NEXT',
+                                  style: Theme.of(context).textTheme.labelLarge
+                                      ?.copyWith(
+                                        color: CaminoColors.of(
+                                          context,
+                                        ).nextWaypoint,
+                                        letterSpacing: 1.5,
+                                      ),
+                                ),
+                                const SizedBox(height: 4),
+                                LayoutBuilder(
+                                  builder: (context, bounds) {
+                                    final name = Text(
+                                      result == null
+                                          ? 'Stage ${widget.stage.displayNumber}'
+                                          : result.nextWaypoint?.waypointName ??
+                                                'End of route',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    );
+                                    final metrics = result == null
+                                        ? const Text('Update your position')
+                                        : Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                guidanceDistance(
+                                                  result.distanceToNextMeters,
+                                                ),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleLarge
+                                                    ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                              ),
+                                              Text(time(result.timeToNext)),
+                                            ],
+                                          );
+                                    return MediaQuery.textScalerOf(
+                                                  context,
+                                                ).scale(16) >
+                                                24 ||
+                                            bounds.maxWidth < 300
+                                        ? Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [name, metrics],
+                                          )
+                                        : Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(child: name),
+                                              const SizedBox(width: 16),
+                                              metrics,
+                                            ],
+                                          );
+                                  },
+                                ),
+                                if (result != null) ...[
+                                  const SizedBox(height: 12),
+                                  Builder(
+                                    builder: (context) {
+                                      final total = guidance
+                                          .calculate(
+                                            route.points,
+                                            route.points.first.position,
+                                            widget.settings.paceKmh,
+                                          )
+                                          ?.remainingMeters;
+                                      return total == null ||
+                                              total <= 0 ||
+                                              result.remainingMeters == null
+                                          ? const SizedBox.shrink()
+                                          : LinearProgressIndicator(
+                                              value:
+                                                  ((total - result.remainingMeters!) /
+                                                          total)
+                                                      .clamp(0, 1),
+                                              semanticsLabel:
+                                                  'Position along stage',
+                                            );
+                                    },
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    '${guidanceDistance(result.remainingMeters)} · ${time(result.timeRemaining)} to stage end',
+                                  ),
+                                ],
+                                if (result != null &&
+                                    result.offRouteMeters >
+                                        widget.settings.offRouteMetres)
+                                  Text(
+                                    'Off route: ${result.offRouteMeters.round()} m from the trail',
+                                    style: TextStyle(
+                                      color: CaminoColors.of(context).offRoute,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                const SizedBox(height: 8),
+                                if (coordinates.isEmpty)
+                                  const Text(
+                                    'Location markers only: no track geometry has been imported for this stage.',
+                                  ),
+                                PositionControls(
+                                  compact: true,
+                                  settings: widget.settings,
+                                  onPosition: updatePosition,
+                                  additionalOptions: [
+                                    WalkingAlertControls(
+                                      route: route,
+                                      settings: widget.settings,
+                                    ),
+                                    StageMapCoverage(route: route),
+                                  ],
+                                ),
+
+                                if (result == null && route.canGuide)
+                                  const Text(
+                                    'Update your position for stage guidance.',
+                                  ),
+                                if (!route.canGuide) ...[
+                                  const Text('Full-stage guidance unavailable'),
+                                  for (final issue in route.issues) Text(issue),
+                                ],
+                                if (result != null)
+                                  ExpansionTile(
+                                    title: const Text('Route details'),
+                                    children: [
+                                      Card(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Flat-ground walking speed: ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
+                                              ),
+                                              const Divider(),
+                                              Text(
+                                                '${result.offRouteMeters.round()} m from nearest track point · GPS accuracy ±${accuracy?.round()} m',
+                                              ),
+                                              if (result.offRouteMeters > 50)
+                                                const Text(
+                                                  'You are more than 50 m from the nearest stored track point. Estimates exclude the walk to it.',
+                                                ),
+                                              Text(
+                                                'Track point ${result.nearestTrackPoint.id}: ${result.nearestPosition.latitude.toStringAsFixed(5)}, ${result.nearestPosition.longitude.toStringAsFixed(5)}',
+                                              ),
+                                              Text(
+                                                'Position recorded: ${fixedAt?.toLocal().toString().split('.').first}. Tap Update to refresh.',
+                                              ),
+                                              const Text(
+                                                'Times use weighted route distances and your saved flat-ground speed; they exclude breaks and the walk back to the track point.',
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                TextButton(
+                                  onPressed: () async {
+                                    try {
+                                      await SafeLinks.open(
+                                        'https://www.openmaptiles.org/',
+                                      );
+                                    } catch (error) {
+                                      if (context.mounted) {
+                                        showFailure(context, error);
+                                      }
+                                    }
+                                  },
+                                  child: const Text(
+                                    '\u00a9 OpenMapTiles',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    TextButton(
-                      onPressed: () async {
-                        try {
-                          await SafeLinks.open('https://www.openmaptiles.org/');
-                        } catch (error) {
-                          if (context.mounted) showFailure(context, error);
-                        }
-                      },
-                      child: const Text(
-                        '\u00a9 OpenMapTiles',
-                        style: TextStyle(fontSize: 11),
-                      ),
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                },
               ),
             );
           },

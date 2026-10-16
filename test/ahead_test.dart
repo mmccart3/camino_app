@@ -127,10 +127,16 @@ void main() {
         }
         await tester.tap(find.text('Preview from stage start'));
         await tester.pumpAndSettle();
-        expect(find.text('Huntto'), findsOneWidget);
+        final hunttoRow = find.widgetWithText(ListTile, 'Huntto');
+        await tester.scrollUntilVisible(hunttoRow, 200, maxScrolls: 30);
+        expect(hunttoRow, findsOneWidget);
+        await tester.ensureVisible(find.widgetWithText(ChoiceChip, 'Pharmacy'));
+        await tester.pumpAndSettle();
         await tester.tap(find.widgetWithText(ChoiceChip, 'Pharmacy'));
         await tester.pumpAndSettle();
-        expect(find.text('Huntto'), findsNothing);
+        expect(hunttoRow, findsNothing);
+        // Filtering the list must not remove the separate next-stop summary.
+        expect(find.text('First stop ahead / Preview'), findsOneWidget);
         expect(tester.takeException(), isNull);
       } finally {
         await tester.runAsync(() async {

@@ -333,6 +333,16 @@ void main() {
     );
     await tester.tap(find.text('Call +34948760000'));
     await tester.pump();
+    expect(
+      find.text(
+        'A phone app could not be opened. You can dial the displayed number manually.',
+      ),
+      findsOneWidget,
+    );
+    expect(find.textContaining('No calling app'), findsNothing);
+    expect(find.text('Retry'), findsOneWidget);
+    await tester.tap(find.text('Details'));
+    await tester.pumpAndSettle();
     expect(find.textContaining('No calling app'), findsOneWidget);
   });
 }

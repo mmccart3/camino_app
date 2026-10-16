@@ -1,3 +1,7 @@
+import 'package:flutter/services.dart';
+import 'package:camino_app/data/route_assembler.dart';
+import 'package:camino_app/ui/elevation_chart.dart';
+import 'package:camino_app/ui/elevation_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -20,7 +24,13 @@ void main() {
   late LocalDatabase local;
   late CaminoRepository repository;
   late SettingsService settings;
+  late MemoryPreferences preferences;
   setUp(() async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          const MethodChannel('camino/compass'),
+          (_) async => null,
+        );
     temporary = await Directory.systemTemp.createTemp('camino_ui_');
     local = LocalDatabase(
       factory: databaseFactoryFfi,
@@ -28,7 +38,8 @@ void main() {
       loadAsset: () => File('assets/database/camino.sqlite').readAsBytes(),
     );
     repository = CaminoRepository(local);
-    settings = SettingsService(preferences: MemoryPreferences());
+    preferences = MemoryPreferences();
+    settings = SettingsService(preferences: preferences);
   });
   tearDown(() async {
     await local.close();
@@ -49,7 +60,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('stage 1 map draws all 778 points with tiles off', (
+  testWidgets('stage 1 map draws all 775 points with tiles off', (
     tester,
   ) async {
     late Stage stage;
@@ -79,8 +90,8 @@ void main() {
         .widget<PolylineLayer>(find.byType(PolylineLayer))
         .polylines
         .single;
-    expect(line.points.length, 778);
-    expect(line.points.first.latitude, 43.163667);
+    expect(line.points.length, 775);
+    expect(line.points.first.latitude, 43.1634);
     expect(line.points.last.latitude, 43.010444);
     expect(
       tester.widget<FilledButton>(find.byType(FilledButton)).onPressed,
@@ -88,45 +99,53 @@ void main() {
     );
     await tester.pumpWidget(const SizedBox.shrink());
   });
-  testWidgets('stage without tracks shows markers and disables full guidance', (
-    tester,
-  ) async {
-    late Stage stage;
-    await tester.runAsync(() async {
-      stage = (await repository.stage(7))!;
-    });
-    await tester.pumpWidget(
-      MaterialApp(
-        home: MapScreen(
-          showOfflineMap: false,
-          repository: repository,
-          settings: settings,
-          stage: stage,
+  testWidgets(
+    'stage without tracks shows markers and marks full guidance unavailable',
+    (tester) async {
+      late Stage stage;
+      await tester.runAsync(() async {
+        stage = (await repository.stage(7))!;
+      });
+      await tester.pumpWidget(
+        MaterialApp(
+          home: MapScreen(
+            showOfflineMap: false,
+            repository: _NoTracksRepository(local),
+            settings: settings,
+            stage: stage,
+          ),
         ),
-      ),
-    );
-    await finishDatabaseWork(tester);
-    expect(find.text('Full-stage guidance unavailable'), findsOneWidget);
-    expect(
-      tester.widget<PolylineLayer>(find.byType(PolylineLayer)).polylines,
-      isEmpty,
-    );
-    expect(
-      tester.widget<MarkerLayer>(find.byType(MarkerLayer)).markers,
-      isNotEmpty,
-    );
-    final scroll = tester
-        .state<ScrollableState>(find.byType(Scrollable).first)
-        .position;
-    scroll.jumpTo(scroll.maxScrollExtent);
-    await tester.pumpAndSettle();
-    expect(
-      tester.widget<FilledButton>(find.byType(FilledButton)).onPressed,
-      isNull,
-    );
-    await tester.pumpWidget(const SizedBox.shrink());
-  });
-  testWidgets('stage 1 displays the updated offline elevation chart', (
+      );
+      await finishDatabaseWork(tester);
+      await tester.scrollUntilVisible(
+        find.text('Full-stage guidance unavailable'),
+        150,
+        scrollable: find.byType(Scrollable).first,
+      );
+      expect(find.text('Full-stage guidance unavailable'), findsOneWidget);
+      expect(
+        tester.widget<PolylineLayer>(find.byType(PolylineLayer)).polylines,
+        isEmpty,
+      );
+      expect(
+        tester
+            .widgetList<MarkerLayer>(find.byType(MarkerLayer))
+            .expand((layer) => layer.markers),
+        isNotEmpty,
+      );
+      final scroll = tester
+          .state<ScrollableState>(find.byType(Scrollable).first)
+          .position;
+      scroll.jumpTo(scroll.maxScrollExtent);
+      await tester.pumpAndSettle();
+      expect(
+        tester.widget<FilledButton>(find.byType(FilledButton)).onPressed,
+        isNotNull,
+      );
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+  testWidgets('stage 1 opens the generated elevation chart directly', (
     tester,
   ) async {
     late Stage stage;
@@ -142,41 +161,15 @@ void main() {
         ),
       ),
     );
-    await tester.runAsync(() async {
-      await precacheImage(
-        const AssetImage('assets/stage_maps/stage_1.jpg'),
-        tester.element(find.byType(StageDetailScreen)),
-      );
-      await precacheImage(
-        const AssetImage('assets/elevation_charts/stage_1.png'),
-        tester.element(find.byType(StageDetailScreen)),
-      );
-    });
     await finishDatabaseWork(tester);
-    await tester.scrollUntilVisible(
-      find.text('Published elevation chart'),
-      700,
-      scrollable: find.byType(Scrollable).first,
-      maxScrolls: 50,
-    );
-    await tester.runAsync(() async {
-      await precacheImage(
-        const AssetImage('assets/elevation_charts/stage_1.png'),
-        tester.element(find.text('Published elevation chart')),
-      );
-    });
-    await tester.pump(const Duration(milliseconds: 100));
-    expect(
-      find.byWidgetPredicate(
-        (widget) =>
-            widget is Image &&
-            widget.image is AssetImage &&
-            (widget.image as AssetImage).assetName ==
-                'assets/elevation_charts/stage_1.png',
-      ),
-      findsOneWidget,
-    );
-    expect(find.text('Image unavailable in this app version.'), findsNothing);
+    final elevation = find.widgetWithText(OutlinedButton, 'Elevation');
+    await tester.ensureVisible(elevation);
+    await tester.tap(elevation);
+    await finishDatabaseWork(tester);
+    expect(find.byType(ElevationScreen), findsOneWidget);
+    expect(find.byType(ElevationChart), findsWidgets);
+    expect(find.byKey(const ValueKey('elevation-canvas')), findsWidgets);
+    expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
   testWidgets('home opens real stage and location details', (tester) async {
@@ -196,8 +189,15 @@ void main() {
       );
     });
     expect(find.textContaining('fictional'), findsNothing);
-    await tester.tap(find.text('Explore stages'));
     await finishDatabaseWork(tester);
+    await tester.tap(find.text('Choose a stage'));
+    await finishDatabaseWork(tester);
+    expect(find.text('Search a town or stage'), findsOneWidget);
+    await tester.enterText(find.byType(TextField).first, 'zz-no-such-stage');
+    await tester.pump();
+    expect(find.text('No matching stages'), findsOneWidget);
+    await tester.tap(find.text('Show all stages'));
+    await tester.pump();
     await tester.tap(find.text('Saint-Jean-Pied-de-Port to Roncesvalles'));
     await finishDatabaseWork(tester);
     expect(find.text('Places along the way'), findsOneWidget);
@@ -220,18 +220,18 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(home: AlbergueDetailScreen(albergue: hostel)),
       );
-      await tester.pumpAndSettle();
+      await finishDatabaseWork(tester);
       final bedSummary = find.textContaining('32 beds');
       await tester.scrollUntilVisible(bedSummary, 250);
       expect(bedSummary, findsOneWidget);
-      expect(find.text('Open booking website'), findsNothing);
+      expect(find.text('Open Booking.com webpage'), findsNothing);
       await tester.pumpWidget(
         MaterialApp(
           home: PrivateAccommodationDetailScreen(accommodation: private),
         ),
       );
-      await tester.pumpAndSettle();
-      expect(find.text('Open booking website'), findsOneWidget);
+      await finishDatabaseWork(tester);
+      expect(find.text('Open Booking.com webpage'), findsOneWidget);
       expect(find.byType(Image), findsNothing);
       await tester.pumpWidget(const SizedBox.shrink());
     },
@@ -248,15 +248,35 @@ void main() {
       MaterialApp(home: SettingsScreen(settings: settings)),
     );
     final slider = tester.widget<Slider>(find.byType(Slider).first);
-    expect(slider.min, 1.0);
-    expect(slider.max, 8.5);
-    expect(slider.divisions, 75);
-    slider.onChanged!(8.5);
+    expect(slider.min, 2.0);
+    expect(slider.max, 7.0);
+    expect(slider.divisions, isNull);
+    slider.onChanged!(7.0);
     await tester.pump();
-    await tester.tap(find.text('Save pace'));
+    slider.onChangeEnd!(7.0);
     await tester.pumpAndSettle();
-    expect(settings.paceKmh, 8.5);
-    expect(find.text('Walking pace saved on this device.'), findsOneWidget);
+    expect(settings.paceKmh, 7.0);
+    final reloaded = SettingsService(preferences: preferences);
+    await reloaded.load();
+    expect(reloaded.paceKmh, 7.0);
+    final alertSlider = tester.widget<Slider>(find.byType(Slider).last);
+    alertSlider.onChanged!(120);
+    alertSlider.onChangeEnd!(120);
+    await tester.pumpAndSettle();
+    await reloaded.load();
+    expect(reloaded.offRouteMetres, 120);
+
+    expect(find.text('Saved'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
   });
+}
+
+/// Missing-track behaviour is independent of the ever-growing bundled guide.
+class _NoTracksRepository extends CaminoRepository {
+  _NoTracksRepository(super.local);
+  @override
+  Future<StageRoute> route(Stage stage) async {
+    final real = await super.route(stage);
+    return RouteAssembler.assemble(stage, real.paths, real.locations, {});
+  }
 }

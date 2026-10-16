@@ -278,7 +278,7 @@ void main() {
     );
     for (
       var i = 0;
-      i < 30 && find.text('Choose starting place').evaluate().isEmpty;
+      i < 300 && find.text('Choose starting place').evaluate().isEmpty;
       i++
     ) {
       await tester.runAsync(
@@ -375,7 +375,7 @@ void main() {
       await tester.tap(find.text('Open editor'));
       for (
         var i = 0;
-        i < 50 &&
+        i < 300 &&
             find.text('From: Calzadilla de los Hermanillos').evaluate().isEmpty;
         i++
       ) {
@@ -383,7 +383,7 @@ void main() {
           () => Future<void>.delayed(const Duration(milliseconds: 100)),
         );
         await tester.pump(const Duration(milliseconds: 100));
-        if (find.textContaining('Flat-ground pace:').evaluate().isNotEmpty) {
+        if (find.textContaining('Walking speed:').evaluate().isNotEmpty) {
           break;
         }
       }

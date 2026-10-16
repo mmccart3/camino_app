@@ -9,7 +9,14 @@ import 'personal_library.dart' show editPersonalEntry;
 
 class TodayDiaryButton extends StatefulWidget {
   final VoidCallback? onSaved;
-  const TodayDiaryButton({super.key, this.onSaved});
+  final String label;
+  final bool compact;
+  const TodayDiaryButton({
+    super.key,
+    this.onSaved,
+    this.label = 'Today’s entry',
+    this.compact = false,
+  });
   @override
   State<TodayDiaryButton> createState() => _TodayDiaryButtonState();
 }
@@ -96,11 +103,29 @@ class _TodayDiaryButtonState extends State<TodayDiaryButton> {
   }
 
   @override
-  Widget build(BuildContext context) => FilledButton.icon(
-    onPressed: busy ? null : open,
-    icon: const Icon(Icons.edit_note),
-    label: Text(busy ? 'Opening…' : 'Today’s entry'),
-  );
+  Widget build(BuildContext context) => widget.compact
+      ? OutlinedButton(
+          onPressed: busy ? null : open,
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(48, 48),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.edit_note, size: 22),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(busy ? 'Opening…' : widget.label),
+              ),
+            ],
+          ),
+        )
+      : FilledButton.icon(
+          onPressed: busy ? null : open,
+          icon: const Icon(Icons.edit_note),
+          label: Text(busy ? 'Opening…' : widget.label),
+        );
 }
 
 class DiaryBackupActions extends StatefulWidget {

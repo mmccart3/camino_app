@@ -1,3 +1,4 @@
+import 'camino_colors.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart' show Distance, LengthUnit;
@@ -105,7 +106,12 @@ class _ElevationChartState extends State<ElevationChart> {
             child: CustomPaint(
               key: const ValueKey('elevation-canvas'),
               size: Size(width, height),
-              painter: ElevationPainter(profile, current, selected),
+              painter: ElevationPainter(
+                profile,
+                current,
+                selected,
+                CaminoColors.of(context).nextWaypoint,
+              ),
             ),
           );
           return Column(
@@ -157,7 +163,13 @@ class ElevationPainter extends CustomPainter {
   final ElevationProfile profile;
   final ElevationMatch? current;
   final ElevationPoint? selected;
-  ElevationPainter(this.profile, this.current, this.selected);
+  final Color positionColor;
+  ElevationPainter(
+    this.profile,
+    this.current,
+    this.selected,
+    this.positionColor,
+  );
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -188,7 +200,7 @@ class ElevationPainter extends CustomPainter {
           style: const TextStyle(
             color: Colors.white,
             fontSize: 11,
-            fontFamily: 'Roboto',
+            fontFamily: 'Figtree',
           ),
         ),
         textDirection: TextDirection.ltr,
@@ -303,12 +315,12 @@ class ElevationPainter extends CustomPainter {
         point,
         Offset(point.dx, area.bottom),
         Paint()
-          ..color = Colors.orangeAccent
+          ..color = positionColor
           ..strokeWidth = 2,
       );
       canvas.drawCircle(point, 13, Paint()..color = Colors.black87);
       canvas.drawCircle(point, 11, Paint()..color = Colors.white);
-      canvas.drawCircle(point, 8, Paint()..color = Colors.orangeAccent);
+      canvas.drawCircle(point, 8, Paint()..color = positionColor);
     }
     canvas.restore();
   }
@@ -317,7 +329,8 @@ class ElevationPainter extends CustomPainter {
   bool shouldRepaint(covariant ElevationPainter oldDelegate) =>
       oldDelegate.profile != profile ||
       oldDelegate.current != current ||
-      oldDelegate.selected != selected;
+      oldDelegate.selected != selected ||
+      oldDelegate.positionColor != positionColor;
 }
 
 class _LocationLabel {
@@ -339,7 +352,7 @@ List<_LocationLabel> _locationLabels(ElevationProfile profile, double width) {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 11,
-              fontFamily: 'Roboto',
+              fontFamily: 'Figtree',
             ),
           ),
           textDirection: TextDirection.ltr,

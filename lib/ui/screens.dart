@@ -3,6 +3,7 @@ import 'detail_pager.dart';
 import 'personal_library.dart';
 import '../services/ahead_of_me.dart';
 import '../services/walking_time.dart';
+import '../services/stage_walking_time.dart';
 export 'stage_list_screen.dart' show StageListScreen;
 import 'ahead_screen.dart';
 export 'home_screen.dart' show HomeScreen;
@@ -200,6 +201,17 @@ class _StageDetailScreenState extends State<_StageDetailPage> {
   @override
   void initState() {
     super.initState();
+    widget.settings.addListener(refreshTime);
+  }
+
+  void refreshTime() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void dispose() {
+    widget.settings.removeListener(refreshTime);
+    super.dispose();
   }
 
   late final Future<StageRoute> future = load();
@@ -242,6 +254,7 @@ class _StageDetailScreenState extends State<_StageDetailPage> {
     body: SafeArea(
       child: DataView(
         future: future,
+        retry: load,
         builder: (route) {
           final places = route.canGuide
               ? AheadOfMeService().calculate(route, 0, widget.settings.paceKmh)
@@ -271,10 +284,7 @@ class _StageDetailScreenState extends State<_StageDetailPage> {
           final start = route.locations
               .where((l) => l.id == widget.stage.startLocationId)
               .firstOrNull;
-          final time = places
-              .where((p) => p.location.id == widget.stage.finishLocationId)
-              .firstOrNull
-              ?.walkingTime;
+          final time = routeWalkingTime(route, widget.settings.paceKmh);
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
@@ -338,7 +348,7 @@ class _StageDetailScreenState extends State<_StageDetailPage> {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        'At your saved pace of ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
+                        'At your saved walking speed of ${widget.settings.paceKmh.toStringAsFixed(1)} km/h',
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
@@ -579,6 +589,7 @@ class _LocationDetailScreenState extends State<_LocationDetailPage> {
     body: SafeArea(
       child: DataView(
         future: future,
+        retry: load,
         builder: (data) => ListView(
           padding: const EdgeInsets.all(16),
           children: [

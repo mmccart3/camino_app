@@ -62,33 +62,37 @@ void main() {
       }
     });
   }
-  testWidgets('dorm count and all facility states remain distinct', (
-    tester,
-  ) async {
-    final place = Albergue.fromRow({
-      'ID': 1,
-      'locationID': 1,
-      'albergueName': 'Test',
-      'numberOfDorms': 4,
-      'washingMachineAvailable': 1,
-      'dryingMachineAvailable': 0,
-      'communalMealAvailable': null,
-      'kitchenFacilitiesAvailable': 1,
-    });
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: AlbergueFacilities(albergue: place)),
-      ),
-    );
-    for (final label in [
-      'Dormitories: 4',
-      'Washing machine: Yes',
-      'Dryer: No',
-      'Communal meal: Not recorded',
-      'Kitchen facilities: Yes',
-    ]) {
-      expect(find.text(label), findsOneWidget);
-    }
-    expect(find.byType(Chip), findsNWidgets(4));
-  });
+  testWidgets(
+    'dorm count and available versus unavailable facilities are shown',
+    (tester) async {
+      final place = Albergue.fromRow({
+        'ID': 1,
+        'locationID': 1,
+        'albergueName': 'Test',
+        'numberOfDorms': 4,
+        'washingMachineAvailable': 1,
+        'dryingMachineAvailable': 0,
+        'communalMealAvailable': null,
+        'kitchenFacilitiesAvailable': 1,
+      });
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: AlbergueFacilities(albergue: place)),
+        ),
+      );
+      expect(find.text('Dryer: No'), findsNothing);
+      await tester.tap(find.text('Not available'));
+      await tester.pumpAndSettle();
+      for (final label in [
+        '4 dormitories',
+        'Washing machine: Yes',
+        'Dryer: No',
+        'Communal meal: No',
+        'Kitchen: Yes',
+      ]) {
+        expect(find.text(label), findsOneWidget);
+      }
+      expect(find.byType(Chip), findsNWidgets(4));
+    },
+  );
 }

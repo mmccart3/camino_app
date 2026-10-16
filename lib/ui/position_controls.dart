@@ -8,6 +8,7 @@ import '../services/settings_service.dart';
 /// Foreground refreshes only. Active walking alerts own their GPS schedule.
 class PositionControls extends StatefulWidget {
   final List<Widget> additionalOptions;
+  final bool compact;
   final SettingsService settings;
   final ValueChanged<Position> onPosition;
   final DateTime? initialTimestamp;
@@ -19,6 +20,7 @@ class PositionControls extends StatefulWidget {
     this.initialTimestamp,
     this.locate,
     this.additionalOptions = const [],
+    this.compact = false,
   });
   @override
   State<PositionControls> createState() => _PositionControlsState();
@@ -147,35 +149,60 @@ class _PositionControlsState extends State<PositionControls>
   @override
   Widget build(BuildContext context) {
     final settings = widget.settings;
+    final updateButton = FilledButton.icon(
+      style: FilledButton.styleFrom(
+        minimumSize: const Size(double.infinity, 54),
+      ),
+      onPressed: busy ? null : refresh,
+      icon: const Icon(Icons.my_location),
+      label: Text(busy ? 'Finding position…' : 'Update my position'),
+    );
+    final status = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Text(
+        busy
+            ? 'GPS: finding position…'
+            : updated == null
+            ? 'GPS: position not updated yet'
+            : DateTime.now().difference(updated!).inSeconds > 120
+            ? 'GPS: position is old (${DateTime.now().difference(updated!).inMinutes} min ago). Refresh before relying on guidance.'
+            : 'GPS: updated recently',
+        style: Theme.of(context).textTheme.titleSmall,
+      ),
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FilledButton.icon(
-          style: FilledButton.styleFrom(
-            minimumSize: const Size(double.infinity, 54),
-          ),
-          onPressed: busy ? null : refresh,
-          icon: const Icon(Icons.my_location),
-          label: Text(busy ? 'Finding position…' : 'Update my position'),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Text(
-            busy
-                ? 'GPS: finding position…'
-                : updated == null
-                ? 'GPS: position not updated yet'
-                : DateTime.now().difference(updated!).inSeconds > 120
-                ? 'GPS: position is old (${DateTime.now().difference(updated!).inMinutes} min ago). Refresh before relying on guidance.'
-                : 'GPS: updated recently',
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-        ),
+        if (widget.compact)
+          LayoutBuilder(
+            builder: (context, bounds) {
+              if (bounds.maxWidth < 340 ||
+                  MediaQuery.textScalerOf(context).scale(16) > 24) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [updateButton, status],
+                );
+              }
+              return Row(
+                children: [
+                  Expanded(flex: 3, child: updateButton),
+                  const SizedBox(width: 12),
+                  Expanded(flex: 2, child: status),
+                ],
+              );
+            },
+          )
+        else ...[
+          updateButton,
+          status,
+        ],
         if (error != null) Text(error!),
         const SizedBox(height: 8),
         ExpansionTile(
           tilePadding: EdgeInsets.zero,
-          title: const Text('Navigation options'),
+          title: Text(
+            widget.compact ? 'Options & walking alerts' : 'Navigation options',
+          ),
           leading: const Icon(Icons.tune),
           subtitle: Text(
             settings.autoPosition

@@ -44,6 +44,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
           DateTime.now().difference(fix.timestamp).inSeconds.abs() <= 120;
       ElevationMatch? nearest;
       int? stage;
+      String? stageReference;
       if (fresh) {
         for (final profile in profiles) {
           final match = profile.nearest(
@@ -55,6 +56,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
                   match.distanceFromRoute < nearest.distanceFromRoute)) {
             nearest = match;
             stage = profile.stage.id;
+            stageReference = profile.stage.displayNumber;
           }
         }
       }
@@ -67,7 +69,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
                   : fix.accuracy > 50
                   ? 'GPS accuracy is too low to identify a nearby elevation sample. Please try again.'
                   : 'No elevation sample within 200 m of your position in this view.')
-            : 'Route elevation near you: ${nearest.point.elevationMetres.round()} m · stage $stage, path ${nearest.point.pathId}. ${nearest.distanceFromRoute.round()} m from the matched route sample.\nUpdated ${TimeOfDay.fromDateTime(fix.timestamp.toLocal()).format(context)}. Tap the location button again to refresh.';
+            : 'Stage $stageReference · ${(nearest.chartDistance / 1000).toStringAsFixed(1)} km from stage start · ${nearest.point.elevationMetres.round()} m elevation.\n${nearest.distanceFromRoute.round()} m from route · Updated ${TimeOfDay.fromDateTime(fix.timestamp.toLocal()).format(context)}.';
       });
     } catch (error) {
       if (mounted) setState(() => locationStatus = error.toString());
@@ -87,6 +89,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
     ),
     body: DataView(
       future: future,
+      retry: load,
       builder: (profiles) {
         final available = profiles.where((p) => p.sampleCount > 1).toList();
         return ListView(
@@ -128,7 +131,7 @@ class _ElevationScreenState extends State<ElevationScreen> {
                 Text(
                   profile.stage.distanceMeters == null
                       ? 'Stage distance = Not recorded'
-                      : 'Stage distance = ${(profile.stage.distanceMeters! / 1000).toStringAsFixed(2)} km',
+                      : 'Stage distance = ${(profile.stage.distanceMeters! / 1000).toStringAsFixed(1)} km',
                 ),
                 const SizedBox(height: 8),
                 ElevationChart(
@@ -157,11 +160,11 @@ class _ElevationScreenState extends State<ElevationScreen> {
                   ),
                   if (selected != null)
                     Text(
-                      'Path ${selected!.pathId} · ${(selected!.distanceMetres / 1000).toStringAsFixed(2)} km from first sample · ${selected!.elevationMetres.round()} m elevation',
+                      '${((profile.sections.firstWhere((section) => section.path.id == selected!.pathId).offsetMetres + selected!.distanceMetres) / 1000).toStringAsFixed(1)} km from stage start · ${selected!.elevationMetres.round()} m elevation',
                     ),
                   Slider(
                     label: selected == null
-                        ? 'First sample'
+                        ? 'Stage start'
                         : '${selected!.elevationMetres.round()} m',
                     value: selected == null
                         ? 0

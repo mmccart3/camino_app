@@ -111,7 +111,7 @@ class _AddStayToPlanButtonState extends State<AddStayToPlanButton> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-              'First add a day ending here in My Camino plan on the home page.',
+              'Use Tonight on Today to add this walk to a plan, or add a day ending here under My Camino → My itinerary.',
             ),
           ),
         );

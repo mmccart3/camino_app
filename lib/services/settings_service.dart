@@ -8,6 +8,24 @@ class SettingsService extends ChangeNotifier {
   static const defaultPaceKmh = 4.2;
   static const minimumPaceKmh = 1.0;
   static const maximumPaceKmh = 8.5;
+  static const mapFacilityKeys = [
+    'hasBarCafe',
+    'hasPharmacy',
+    'hasGroceryStore',
+  ];
+  final Set<String> _mapFacilities = {};
+  Set<String> get mapFacilities => Set.unmodifiable(_mapFacilities);
+  Future<void> setMapFacility(String key, bool selected) async {
+    if (!mapFacilityKeys.contains(key)) throw ArgumentError.value(key);
+    await _preferences.setBool('map_facility_$key', selected);
+    if (selected) {
+      _mapFacilities.add(key);
+    } else {
+      _mapFacilities.remove(key);
+    }
+    notifyListeners();
+  }
+
   bool autoPosition = false;
   bool followPosition = false;
   int positionIntervalSeconds = 120;
@@ -46,6 +64,12 @@ class SettingsService extends ChangeNotifier {
   double _pace = defaultPaceKmh;
   double get paceKmh => _pace;
   Future<void> load() async {
+    _mapFacilities.clear();
+    for (final key in mapFacilityKeys) {
+      if (await _preferences.getBool('map_facility_$key') == true) {
+        _mapFacilities.add(key);
+      }
+    }
     autoPosition = await _preferences.getBool('auto_position') ?? false;
     followPosition = await _preferences.getBool('follow_position') ?? false;
     final interval = await _preferences.getInt('position_interval_seconds');

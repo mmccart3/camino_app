@@ -1,3 +1,5 @@
+import 'camino_colors.dart';
+import 'dart:async';
 import '../services/walking_day.dart';
 import '../services/walking_day_store.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +14,14 @@ import 'navigation_summary.dart';
 /// An explicit foreground position check; this never starts tracking.
 class TodayProgress extends StatefulWidget {
   final Stage? stage;
+  final ValueChanged<LatLng>? onPosition;
   final SavedWalkingDay? plannedDay;
   final CaminoRepository repository;
   final SettingsService settings;
   const TodayProgress({
     super.key,
     this.stage,
+    this.onPosition,
     this.plannedDay,
     required this.repository,
     required this.settings,
@@ -27,12 +31,29 @@ class TodayProgress extends StatefulWidget {
 }
 
 class _TodayProgressState extends State<TodayProgress> {
+  Timer? ageTimer;
+  @override
+  void initState() {
+    super.initState();
+    ageTimer = Timer.periodic(const Duration(seconds: 30), (_) {
+      if (mounted && checked != null) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    ageTimer?.cancel();
+    super.dispose();
+  }
+
+  String compactTime(Duration? value) => navigationTime(value);
   bool busy = false;
   String? message;
   RouteGuidance? guidance;
   DateTime? checked;
   String destination = '';
   double joins = 0;
+  double? totalMetres;
   Future<void> update() async {
     setState(() {
       busy = true;
@@ -71,6 +92,9 @@ class _TodayProgressState extends State<TodayProgress> {
           'Position is not accurate enough yet. Try again outdoors.',
         );
       }
+      totalMetres = RouteGuidanceService()
+          .calculate(points, points.first.position, widget.settings.paceKmh)
+          ?.remainingMeters;
       final result = RouteGuidanceService().calculate(
         points,
         LatLng(fix.latitude, fix.longitude),
@@ -84,8 +108,9 @@ class _TodayProgressState extends State<TodayProgress> {
       if (mounted) {
         setState(() {
           guidance = result;
-          checked = DateTime.now();
+          checked = fix.timestamp;
         });
+        widget.onPosition?.call(LatLng(fix.latitude, fix.longitude));
       }
     } catch (e) {
       if (mounted) {
@@ -113,28 +138,80 @@ class _TodayProgressState extends State<TodayProgress> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (g != null)
-          NavigationSummary(
-            title: g.nextWaypoint?.waypointName ?? destination,
-            distance: distance(g.distanceToNextMeters),
-            time: navigationTime(g.timeToNext),
-            remaining:
-                '${widget.plannedDay == null ? "Stage remaining" : "To $destination"}: ${distance(g.remainingMeters)} / ${navigationTime(g.timeRemaining)}',
-            warning: joins > 0
-                ? 'Recorded walking segments only; ${joins.round()} m of joins have no walking-time estimate.'
-                : null,
-            status:
-                'Position checked at ${TimeOfDay.fromDateTime(checked!).format(context)}. Tap below to refresh.',
+        if (g != null) ...[
+          const Divider(height: 24),
+          if (totalMetres != null &&
+              totalMetres! > 0 &&
+              g.remainingMeters != null) ...[
+            LinearProgressIndicator(
+              value: ((totalMetres! - g.remainingMeters!) / totalMetres!).clamp(
+                0,
+                1,
+              ),
+              semanticsLabel: 'Position along route',
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '${distance((totalMetres! - g.remainingMeters!).clamp(0, totalMetres!))} from start',
+            ),
+          ],
+          Text(
+            'Next: ${g.nextWaypoint?.waypointName ?? destination}',
+            style: Theme.of(context).textTheme.titleMedium,
           ),
+          Text(
+            '${distance(g.distanceToNextMeters)} · ${compactTime(g.timeToNext)}',
+          ),
+          Text(
+            'Remaining: ${distance(g.remainingMeters)} · ${compactTime(g.timeRemaining)}',
+          ),
+          if (joins > 0)
+            Text('${joins.round()} m of joins have no walking-time estimate.'),
+        ],
         if (widget.plannedDay != null)
           const Text('Today’s planned route: walking time excludes breaks'),
         if (message != null)
           Padding(padding: const EdgeInsets.all(8), child: Text(message!)),
-        TextButton.icon(
-          onPressed: busy ? null : update,
-          icon: const Icon(Icons.my_location),
-          label: Text(
-            busy ? 'Checking position…' : 'Check next stop & remaining walk',
+        Container(
+          margin: const EdgeInsets.only(top: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.gps_fixed,
+                size: 18,
+                color:
+                    checked != null &&
+                        DateTime.now().difference(checked!).inSeconds <= 120
+                    ? CaminoColors.of(context).gpsGood
+                    : CaminoColors.of(context).gpsStale,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  busy
+                      ? 'Updating GPS…'
+                      : checked == null
+                      ? 'GPS not updated'
+                      : 'GPS updated ${DateTime.now().difference(checked!).inMinutes.clamp(0, 99999)} min ago',
+                  style: TextStyle(
+                    color:
+                        checked != null &&
+                            DateTime.now().difference(checked!).inSeconds <= 120
+                        ? Theme.of(context).colorScheme.onSurface
+                        : CaminoColors.of(context).gpsStale,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: busy ? null : update,
+                child: const Text('Update'),
+              ),
+            ],
           ),
         ),
       ],

@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../data/route_assembler.dart';
 import '../services/walking_time.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart' show LatLng;
@@ -25,6 +26,7 @@ class AheadStagePicker extends StatelessWidget {
     appBar: AppBar(title: const Text('Ahead of me — choose a stage')),
     body: DataView(
       future: stages,
+      retry: repository.stages,
       builder: (items) => ListView(
         children: [
           for (final stage in items)
@@ -51,18 +53,28 @@ class AheadScreen extends StatefulWidget {
   final CaminoRepository repository;
   final SettingsService settings;
   final Stage stage;
+  final String initialFilter;
+  final StageRoute? initialRoute;
+  final LatLng? initialPosition;
+  final bool previewFromStart;
   const AheadScreen({
     super.key,
     required this.repository,
     required this.settings,
     required this.stage,
+    this.initialFilter = 'All',
+    this.initialRoute,
+    this.initialPosition,
+    this.previewFromStart = false,
   });
   @override
   State<AheadScreen> createState() => _AheadScreenState();
 }
 
 class _AheadScreenState extends State<AheadScreen> {
-  late final routeFuture = widget.repository.route(widget.stage);
+  late var routeFuture = widget.initialRoute == null
+      ? widget.repository.route(widget.stage)
+      : Future.value(widget.initialRoute!);
   LatLng? position;
   DateTime? fixedAt;
   bool busy = false, preview = false;
@@ -74,6 +86,9 @@ class _AheadScreenState extends State<AheadScreen> {
   @override
   void initState() {
     super.initState();
+    filter = widget.initialFilter;
+    position = widget.initialPosition;
+    preview = widget.previewFromStart && position == null;
     loadStays();
     clock = Timer.periodic(const Duration(seconds: 30), (_) {
       if (mounted && fixedAt != null && !preview) setState(() {});
@@ -152,6 +167,9 @@ class _AheadScreenState extends State<AheadScreen> {
     body: SafeArea(
       child: DataView(
         future: routeFuture,
+        retry: () => routeFuture = widget.initialRoute == null
+            ? widget.repository.route(widget.stage)
+            : Future.value(widget.initialRoute!),
         builder: (route) => ListenableBuilder(
           listenable: widget.settings,
           builder: (context, _) {
@@ -383,7 +401,7 @@ class _AheadScreenState extends State<AheadScreen> {
                                         ).textTheme.titleLarge,
                                       ),
                                       subtitle: Text(
-                                        '${place.metres == null ? 'Distance unavailable' : '${(place.metres! / 1000).toStringAsFixed(2)} km'} · ${place.walkingTime == null ? 'Time unavailable' : WalkingTime.format(place.walkingTime!)}',
+                                        '${place.metres == null ? 'Distance unavailable' : '${(place.metres! / 1000).toStringAsFixed(1)} km'} · ${place.walkingTime == null ? 'Time unavailable' : WalkingTime.format(place.walkingTime!)}',
                                       ),
                                       trailing: const Icon(Icons.chevron_right),
                                       onTap: () => navigate(

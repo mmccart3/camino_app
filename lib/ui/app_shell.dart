@@ -1,7 +1,9 @@
+import 'current_stage_map.dart';
 import 'package:flutter/material.dart';
 import '../data/camino_repository.dart';
 import '../services/settings_service.dart';
 import 'home_screen.dart';
+import 'walking_day_screen.dart';
 import 'stage_list_screen.dart';
 import 'map_screen.dart';
 import 'camino_plan_screen.dart';
@@ -46,10 +48,9 @@ class _AppShellState extends State<AppShell> {
       repository: widget.repository,
       settings: widget.settings,
     ),
-    2 => StageListScreen(
+    2 => CurrentStageMap(
       repository: widget.repository,
       settings: widget.settings,
-      mapMode: true,
     ),
     _ => Scaffold(
       appBar: AppBar(title: const Text('My Camino'), centerTitle: true),
@@ -58,6 +59,22 @@ class _AppShellState extends State<AppShell> {
           builder: (context) => ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.event_note),
+                  title: const Text('My walking day'),
+                  subtitle: const Text('Plan a day, stops and breaks'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => WalkingDayScreen(
+                        repository: widget.repository,
+                        settings: widget.settings,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.route),

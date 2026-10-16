@@ -335,6 +335,14 @@
       "bytes": 1376106,
       "width": 1920,
       "height": 3364
+    },
+    "stage_maps/19": {
+      "asset": "assets/stage_maps/stage_20.jpg",
+      "url": "https://res.cloudinary.com/dbylfmnac/image/upload/v1699810086/caminoAppImages/maps/1920maps/fromista2carrion_za4nlm.jpg",
+      "sha256": "95297c12ff7e97d45ca658b3c4b62b09498231231cf2280bc6f2f69446087712",
+      "bytes": 428778,
+      "width": 1920,
+      "height": 1004
     }
   },
   "missing_source_urls": [

@@ -1,9 +1,10 @@
+import 'summary_metric.dart';
 import 'plan_pdf_screen.dart';
 import '../services/plan_pdf_data.dart';
 import 'unestimated_day_screen.dart';
 import 'package:flutter/material.dart';
 import '../data/camino_repository.dart';
-import '../data/models.dart';
+import '../data/models.dart' hide Row;
 import '../services/camino_plan_store.dart';
 import '../services/settings_service.dart';
 import '../services/walking_day.dart';
@@ -411,42 +412,31 @@ class _CaminoPlanScreenState extends State<CaminoPlanScreen> {
       title: Text(name),
       centerTitle: true,
       actions: [
-        IconButton(
-          tooltip: 'Share plan',
-          icon: const Icon(Icons.share_outlined),
-          onPressed: busy || days.isEmpty ? null : () => sharePlan(),
-        ),
-        IconButton(
-          tooltip: 'Rename plan',
-          icon: const Icon(Icons.edit_outlined),
-          onPressed: busy
-              ? null
-              : () async {
-                  final value = await _planName(context, value: name);
-                  if (value != null && mounted) {
-                    await change(() async {
-                      await widget.store.rename(widget.plan.id, value);
-                      name = value;
-                    });
-                  }
-                },
-        ),
-        IconButton(
-          tooltip: 'Delete plan',
-          icon: const Icon(Icons.delete_outline),
-          onPressed: busy
-              ? null
-              : () async {
-                  if (!await _confirmDelete(context, 'this plan') || !mounted) {
-                    return;
-                  }
-                  try {
-                    await widget.store.deletePlan(widget.plan.id);
-                    if (context.mounted) Navigator.pop(context);
-                  } catch (_) {
-                    message('Could not delete the plan.');
-                  }
-                },
+        PopupMenuButton<String>(
+          tooltip: 'Plan options',
+          enabled: !busy,
+          itemBuilder: (_) => const [
+            PopupMenuItem(value: 'rename', child: Text('Rename plan')),
+            PopupMenuItem(value: 'delete', child: Text('Delete plan')),
+          ],
+          onSelected: (action) async {
+            if (action == 'rename') {
+              final value = await _planName(context, value: name);
+              if (value != null && mounted) {
+                await change(() async {
+                  await widget.store.rename(widget.plan.id, value);
+                  name = value;
+                });
+              }
+            } else if (await _confirmDelete(context, 'this plan') && mounted) {
+              try {
+                await widget.store.deletePlan(widget.plan.id);
+                if (context.mounted) Navigator.pop(context);
+              } catch (_) {
+                message('Could not delete the plan.');
+              }
+            }
+          },
         ),
       ],
     ),
@@ -471,25 +461,40 @@ class _CaminoPlanScreenState extends State<CaminoPlanScreen> {
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 20,
-                      runSpacing: 12,
+                    Row(
                       children: [
-                        Text('${days.length} planned days'),
-                        Text(
-                          '${(days.where((d) => d.hasEstimate).fold<double>(0, (a, d) => a + d.metres!) / 1000).toStringAsFixed(1)} km estimated',
+                        Expanded(
+                          child: SummaryMetric(
+                            label: 'Days',
+                            value: '${days.length}',
+                          ),
                         ),
-                        Text(
-                          '${WalkingTime.format(Duration(seconds: days.where((d) => d.hasEstimate).fold<int>(0, (a, d) => a + d.seconds!)))} walking',
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: SummaryMetric(
+                            label: 'Distance',
+                            value:
+                                '${(days.where((d) => d.hasEstimate).fold<double>(0, (a, d) => a + d.metres!) / 1000).toStringAsFixed(1)} km',
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: SummaryMetric(
+                            label: 'Walking time',
+                            value: WalkingTime.format(
+                              Duration(
+                                seconds: days
+                                    .where((d) => d.hasEstimate)
+                                    .fold<int>(0, (a, d) => a + d.seconds!),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      '${days.where((d) => d.stay == null).length} days without a chosen stay',
-                    ),
-                    Text(
-                      '${days.where((d) => d.stay?.status == "Considering").length} stays marked Considering',
+                      '${days.where((d) => d.stay != null).length} of ${days.length} nights have a stay. ${days.where((d) => d.stay?.status == "Booked" || d.stay?.status == "Confirmed").length} booked.',
                     ),
                     if (days.any((d) => !d.hasEstimate))
                       Padding(
@@ -513,6 +518,7 @@ class _CaminoPlanScreenState extends State<CaminoPlanScreen> {
             icon: const Icon(Icons.add),
             label: const Text('Add a day'),
           ),
+          const SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: busy || error != null || days.isEmpty
                 ? null
@@ -574,14 +580,32 @@ class _CaminoPlanScreenState extends State<CaminoPlanScreen> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 12),
+            if (day.hasEstimate)
+              Row(
+                children: [
+                  Expanded(
+                    child: SummaryMetric(
+                      label: 'Distance',
+                      value: '${(day.metres! / 1000).toStringAsFixed(1)} km',
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: SummaryMetric(
+                      label: 'Walking time',
+                      value: WalkingTime.format(
+                        Duration(seconds: day.seconds!),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            else
+              const Text('Distance and walking time: estimates unavailable'),
+            const SizedBox(height: 8),
             Text(
               day.hasEstimate
-                  ? '${(day.metres! / 1000).toStringAsFixed(2)} km | ${WalkingTime.format(Duration(seconds: day.seconds!))} walking'
-                  : 'Distance and walking time: estimates unavailable',
-            ),
-            Text(
-              day.hasEstimate
-                  ? 'Depart ${walkingDayClock(day.route.departureMinutes, Duration.zero)} | Arrive approximately ${walkingDayClock(day.route.departureMinutes, day.totalDuration)}'
+                  ? '${walkingDayClock(day.route.departureMinutes, Duration.zero)} to about ${walkingDayClock(day.route.departureMinutes, day.totalDuration)}'
                   : 'Depart ${walkingDayClock(day.route.departureMinutes, Duration.zero)} / Arrival estimate unavailable',
             ),
             if (warning != null)
@@ -607,11 +631,7 @@ class _CaminoPlanScreenState extends State<CaminoPlanScreen> {
                       : Icons.bed_outlined,
                   size: 20,
                 ),
-                label: Text(
-                  day.stay!.status == 'Considering'
-                      ? 'Planned'
-                      : day.stay!.status,
-                ),
+                label: Text(day.stay!.status),
               ),
             ],
             if (today && day.hasEstimate && day.route.pathIds.isNotEmpty)

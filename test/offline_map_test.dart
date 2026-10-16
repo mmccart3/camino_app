@@ -90,7 +90,7 @@ void main() {
           expect(provider.maximumZoom, 14);
           expect(
             provider.metadata.values['name'],
-            'Camino offline maps through stage 20',
+            'Camino offline maps through stage 34',
           );
           expect(provider.cacheBytesToDisk, isFalse);
           final tile = await provider.load(const vt.TileKey(14, 8117, 6031));
@@ -134,8 +134,17 @@ void main() {
                     ),
                   )
                   as Map;
-          expect(json.containsKey('sprite'), isFalse);
-          expect(json.containsKey('glyphs'), isFalse);
+          for (final key in ['sprite', 'glyphs']) {
+            final resource = json[key];
+            if (resource != null) {
+              expect(resource, isA<String>());
+              expect(
+                Uri.parse(resource as String).scheme,
+                'asset',
+                reason: '$key must stay offline',
+              );
+            }
+          }
           expect(jsonEncode(json['sources']), isNot(contains('https://')));
         } finally {
           provider.dispose();

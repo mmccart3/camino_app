@@ -6,7 +6,7 @@
       "type": "vector",
       "minzoom": 0,
       "maxzoom": 14,
-      "attribution": "\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors"
+      "attribution": "© OpenMapTiles © OpenStreetMap contributors"
     }
   },
   "layers": [
@@ -1333,14 +1333,15 @@
       "paint": {
         "text-color": "#363a32",
         "text-halo-color": "#ffffff",
-        "text-halo-width": 1.4
+        "text-halo-width": 2
       },
       "layout": {
         "text-field": "{name}",
-        "text-size": 13,
+        "text-size": 20,
         "text-font": [
           "CaminoMap"
-        ]
+        ],
+        "text-allow-overlap": false
       }
     },
     {
@@ -1351,16 +1352,17 @@
       "paint": {
         "text-color": "#675647",
         "text-halo-color": "#ffffff",
-        "text-halo-width": 1.2
+        "text-halo-width": 2
       },
       "minzoom": 14,
       "layout": {
         "symbol-placement": "line",
         "text-field": "{name}",
-        "text-size": 10,
+        "text-size": 15,
         "text-font": [
           "CaminoMap"
-        ]
+        ],
+        "text-allow-overlap": false
       }
     }
   ],

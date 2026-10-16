@@ -23,38 +23,34 @@ class _AlertDistanceSettingState extends State<AlertDistanceSetting> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text('Off-route alert distance: ${value.round()} metres'),
-      Slider(
-        value: value,
-        min: 20,
-        max: 500,
-        divisions: 48,
-        label: '${value.round()} m',
-        onChanged: saving ? null : (v) => setState(() => value = v),
-      ),
-      TextButton(
-        onPressed: saving
-            ? null
-            : () async {
-                setState(() => saving = true);
-                try {
-                  await widget.settings.setOffRouteMetres(value);
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Alert distance saved. Applies to the next walking session.',
-                        ),
-                      ),
-                    );
+      SliderTheme(
+        data: settingsSliderTheme(context),
+        child: Slider(
+          value: value,
+          min: 20,
+          max: 500,
+          label: '${value.round()} m',
+          onChanged: saving ? null : (v) => setState(() => value = v),
+          onChangeEnd: saving
+              ? null
+              : (v) async {
+                  setState(() => saving = true);
+                  try {
+                    await widget.settings.setOffRouteMetres(v.roundToDouble());
+                    if (context.mounted) showSettingsSaved(context);
+                  } catch (error) {
+                    if (context.mounted) showFailure(context, error);
+                  } finally {
+                    if (mounted) setState(() => saving = false);
                   }
-                } catch (error) {
-                  if (context.mounted) showFailure(context, error);
-                } finally {
-                  if (mounted) setState(() => saving = false);
-                }
-              },
-        child: Text(saving ? 'Saving…' : 'Save alert distance'),
+                },
+        ),
       ),
+      const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [Text('20 m'), Text('500 m')],
+      ),
+      const SizedBox(height: 8),
       const Text(
         'Alerts are off until you start a walking session from a stage map.',
       ),
@@ -188,4 +184,29 @@ class WalkingSessionBanner extends StatelessWidget {
       },
     );
   }
+}
+
+SliderThemeData settingsSliderTheme(BuildContext context) =>
+    SliderTheme.of(context).copyWith(
+      trackGap: 0,
+      trackHeight: 4,
+      tickMarkShape: SliderTickMarkShape.noTickMark,
+      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
+    );
+
+void showSettingsSaved(BuildContext context) {
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      const SnackBar(
+        duration: Duration(seconds: 2),
+        content: Row(
+          children: [
+            Icon(Icons.check, size: 18),
+            SizedBox(width: 8),
+            Text('Saved'),
+          ],
+        ),
+      ),
+    );
 }

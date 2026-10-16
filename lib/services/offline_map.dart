@@ -8,7 +8,8 @@ import 'package:path_provider/path_provider.dart';
 
 /// Versioned app asset; no HTTP requests or tile downloads are involved.
 class OfflineMap {
-  static const assetPath = 'assets/offline_maps/stages1_34_valcarlos_complete.mbtiles';
+  static const assetPath =
+      'assets/offline_maps/stages1_34_valcarlos_complete.mbtiles';
   static const fingerprint =
       '33d0e8c4498b24b9ef160ae0e35c14217f0efc7471ec8ef82dedac0c97ad3fb0';
   static Future<String>? _copy;

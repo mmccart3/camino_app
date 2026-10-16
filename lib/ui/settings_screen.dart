@@ -3,6 +3,7 @@ import '../services/settings_service.dart';
 import 'widgets.dart';
 import 'splash_screen.dart';
 import 'walking_alerts.dart';
+import 'app_title.dart';
 
 class SettingsScreen extends StatefulWidget {
   final SettingsService settings;
@@ -14,78 +15,103 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   late double pace = widget.settings.paceKmh;
   bool saving = false;
+  late final double minimum = pace < 2 ? pace : 2;
+  late final double maximum = pace > 7 ? pace : 7;
+  Future<void> save(double value) async {
+    setState(() => saving = true);
+    try {
+      await widget.settings.setPace(double.parse(value.toStringAsFixed(1)));
+      if (mounted) showSettingsSaved(context);
+    } catch (error) {
+      if (mounted) showFailure(context, error);
+    } finally {
+      if (mounted) setState(() => saving = false);
+    }
+  }
+
+  Widget section(String label, List<Widget> children) => Card(
+    child: Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            label,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(color: caminoYellow),
+          ),
+          const SizedBox(height: 12),
+          ...children,
+        ],
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: const Text('Settings')),
-    body: ListView(
-      padding: const EdgeInsets.all(24),
-      children: [
-        const AppVersionLabel(),
-        const SizedBox(height: 20),
-        Text(
-          'Flat-ground walking speed',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        Text(
-          '${pace.toStringAsFixed(1)} km/h',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        Slider(
-          value: pace,
-          min: SettingsService.minimumPaceKmh,
-          max: SettingsService.maximumPaceKmh,
-          divisions: 75,
-          label: '${pace.toStringAsFixed(1)} km/h',
-          onChanged: saving
-              ? null
-              : (value) => setState(() {
-                  pace = value;
-                }),
-        ),
-        FilledButton(
-          onPressed: saving
-              ? null
-              : () async {
-                  setState(() {
-                    saving = true;
-                  });
-                  try {
-                    await widget.settings.setPace(pace);
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Flat-ground walking speed saved on this device.',
-                          ),
-                        ),
-                      );
-                    }
-                  } catch (error) {
-                    if (context.mounted) {
-                      showFailure(context, error);
-                    }
-                  } finally {
-                    if (mounted) {
-                      setState(() {
-                        saving = false;
-                      });
-                    }
-                  }
-                },
-          child: Text(saving ? 'Saving…' : 'Save pace'),
-        ),
-        const SizedBox(height: 20),
-        const Text(
-          'Time estimates use weighted distances and your saved flat-ground walking speed. Distances use the stored 3D metres. Estimates start at the nearest track point and exclude breaks and the walk back to it.',
-        ),
-        const SizedBox(height: 20),
-        AlertDistanceSetting(settings: widget.settings),
-        const Text(batteryWarning),
-        const SizedBox(height: 20),
-        const Text(
-          'Location is requested when you update your position or explicitly start walking alerts. Stop walking alerts to end continuous GPS use.',
-        ),
-      ],
+    body: SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          section('Walking speed', [
+            Text(
+              '${pace.toStringAsFixed(1)} km/h',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            SliderTheme(
+              data: settingsSliderTheme(context),
+              child: Slider(
+                value: pace,
+                // Keep previously saved speeds outside the new suggested range editable.
+                min: minimum,
+                max: maximum,
+                label: '${pace.toStringAsFixed(1)} km/h',
+                onChanged: saving
+                    ? null
+                    : (value) => setState(() => pace = value),
+                onChangeEnd: saving ? null : save,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Relaxed ${minimum.toStringAsFixed(1)}'),
+                Text('Brisk ${maximum.toStringAsFixed(1)}'),
+              ],
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Times use your flat-ground speed and adjust for climbs and descents. Breaks are not included.',
+            ),
+          ]),
+          section('Off-route alerts', [
+            AlertDistanceSetting(settings: widget.settings),
+            const Text(
+              'Continuous GPS can drain the battery. Start with enough charge and stop the session when you finish.',
+            ),
+            const SizedBox(height: 8),
+            const Text('Force-closing the app stops tracking.'),
+            const ExpansionTile(
+              title: Text('Location and privacy'),
+              tilePadding: EdgeInsets.zero,
+              children: [
+                Text(batteryWarning),
+                Text(
+                  'Location is requested when you update your position or explicitly start walking alerts. Stop walking alerts to end continuous GPS use.',
+                ),
+              ],
+            ),
+          ]),
+          section('About', [
+            const AppVersionLabel(),
+            const SizedBox(height: 8),
+            const Text('Map data (c) OpenStreetMap contributors'),
+            const Text('OpenMapTiles'),
+          ]),
+        ],
+      ),
     ),
   );
 }

@@ -1,3 +1,4 @@
+import 'camino_colors.dart';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,18 @@ class CompassLayer extends StatefulWidget {
   final LatLng? position;
   final Stream<dynamic>? events;
   final bool walkingControls;
+  final double controlsBottomInset;
+  final bool controlsVisible;
+  final bool verticalControls;
   final VoidCallback? onCentre, onElevation;
   const CompassLayer({
     super.key,
     this.position,
     this.events,
     this.walkingControls = false,
+    this.controlsBottomInset = 0,
+    this.controlsVisible = true,
+    this.verticalControls = false,
     this.onCentre,
     this.onElevation,
   });
@@ -197,6 +204,33 @@ class _CompassLayerState extends State<CompassLayer>
     super.dispose();
   }
 
+  Widget _mapButton(
+    String label,
+    IconData icon,
+    VoidCallback? action, {
+    bool prominent = false,
+  }) => Padding(
+    padding: const EdgeInsets.only(bottom: 8),
+    child: Material(
+      elevation: 4,
+      shape: const CircleBorder(),
+      color: prominent
+          ? CaminoColors.of(context).nextWaypoint
+          : Theme.of(context).colorScheme.surface,
+      child: IconButton(
+        tooltip: label,
+        onPressed: action,
+        icon: Icon(icon),
+        style: IconButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          foregroundColor: prominent
+              ? Theme.of(context).colorScheme.surface
+              : CaminoColors.of(context).nextWaypoint,
+        ),
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     final degrees = heading.degrees;
@@ -217,7 +251,7 @@ class _CompassLayerState extends State<CompassLayer>
                   label: degrees == null ? 'Your position' : label,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFF083B72),
+                      color: Theme.of(context).colorScheme.surface,
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 2),
                     ),
@@ -229,9 +263,9 @@ class _CompassLayerState extends State<CompassLayer>
                           )
                         : Transform.rotate(
                             angle: CompassHeading.radians(degrees),
-                            child: const Icon(
+                            child: Icon(
                               Icons.navigation,
-                              color: Color(0xFFFFD54F),
+                              color: CaminoColors.of(context).nextWaypoint,
                               size: 38,
                             ),
                           ),
@@ -240,63 +274,95 @@ class _CompassLayerState extends State<CompassLayer>
               ),
             ],
           ),
-        Positioned(
-          bottom: 56,
-          right: 8,
-          left: widget.walkingControls ? 8 : null,
-          child: Material(
-            color: const Color(0xFF083B72),
-            borderRadius: BorderRadius.circular(8),
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 8,
+        if (widget.controlsVisible && widget.verticalControls)
+          Positioned(
+            top: 72,
+            right: 12,
+            child: Column(
               children: [
                 if (widget.walkingControls)
-                  TextButton.icon(
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(48, 56),
-                      foregroundColor: const Color(0xFFFFD54F),
-                      disabledForegroundColor: Colors.white54,
-                    ),
-                    onPressed: widget.onCentre,
-                    icon: const Icon(Icons.my_location, size: 28),
-                    label: const Text('Centre on me'),
+                  _mapButton(
+                    'Centre on me',
+                    Icons.my_location,
+                    widget.onCentre,
+                    prominent: true,
                   ),
-                TextButton.icon(
-                  onPressed: compassUp || degrees != null
-                      ? toggleRotation
-                      : null,
-                  style: TextButton.styleFrom(
-                    minimumSize: const Size(48, 56),
-                    foregroundColor: const Color(0xFFFFD54F),
-                    disabledForegroundColor: Colors.white54,
-                  ),
-                  icon: Icon(
-                    compassUp ? Icons.explore : Icons.explore_outlined,
-                    size: 28,
-                  ),
-                  label: Text(
-                    compassUp
-                        ? 'North up'
-                        : rotationPaused
-                        ? 'Resume compass'
-                        : 'Compass up',
-                  ),
-                ),
                 if (widget.walkingControls)
-                  TextButton.icon(
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(48, 56),
-                      foregroundColor: const Color(0xFFFFD54F),
-                    ),
-                    onPressed: widget.onElevation,
-                    icon: const Icon(Icons.terrain, size: 28),
-                    label: const Text('Elevation'),
+                  _mapButton(
+                    'Elevation',
+                    Icons.terrain_outlined,
+                    widget.onElevation,
                   ),
+                _mapButton(
+                  compassUp
+                      ? 'North up'
+                      : rotationPaused
+                      ? 'Resume compass'
+                      : 'Compass up',
+                  compassUp ? Icons.explore : Icons.explore_outlined,
+                  compassUp || degrees != null ? toggleRotation : null,
+                ),
               ],
             ),
           ),
-        ),
+        if (widget.controlsVisible && !widget.verticalControls)
+          Positioned(
+            bottom: 56 + widget.controlsBottomInset,
+            right: 8,
+            left: widget.walkingControls ? 8 : null,
+            child: Material(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(8),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 8,
+                children: [
+                  if (widget.walkingControls)
+                    TextButton.icon(
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(48, 56),
+                        foregroundColor: CaminoColors.of(context).nextWaypoint,
+                        disabledForegroundColor: Colors.white54,
+                      ),
+                      onPressed: widget.onCentre,
+                      icon: const Icon(Icons.my_location, size: 28),
+                      label: const Text('Centre on me'),
+                    ),
+                  TextButton.icon(
+                    onPressed: compassUp || degrees != null
+                        ? toggleRotation
+                        : null,
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(48, 56),
+                      foregroundColor: CaminoColors.of(context).nextWaypoint,
+                      disabledForegroundColor: Colors.white54,
+                    ),
+                    icon: Icon(
+                      compassUp ? Icons.explore : Icons.explore_outlined,
+                      size: 28,
+                    ),
+                    label: Text(
+                      compassUp
+                          ? 'North up'
+                          : rotationPaused
+                          ? 'Resume compass'
+                          : 'Compass up',
+                    ),
+                  ),
+                  if (widget.walkingControls)
+                    TextButton.icon(
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(48, 56),
+                        foregroundColor: CaminoColors.of(context).nextWaypoint,
+                      ),
+                      onPressed: widget.onElevation,
+                      icon: const Icon(Icons.terrain, size: 28),
+                      label: const Text('Elevation'),
+                    ),
+                ],
+              ),
+            ),
+          ),
         Positioned(
           top: 8,
           left: 8,
@@ -309,7 +375,7 @@ class _CompassLayerState extends State<CompassLayer>
                   'Hold the phone flat, away from magnets or metal. If needed, move it in a figure of eight. '
                   'This arrow is not a direction to the next waypoint.',
               child: Material(
-                color: const Color(0xFF083B72),
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(8),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'app_title.dart';
+import 'camino_colors.dart';
 
 // Brand colors
 const Color caminoNavyBase = caminoBlue; // Deep trail night background
-const Color caminoSurface = Color(0xFF132B45); // Level 1 card surface
-const Color caminoSurfaceHigh = Color(0xFF1B3857); // Level 2 elevated elements
-const Color caminoSurfaceBorder = Color(0xFF284D73); // Subtle card border
+const Color caminoSurface = Color(0xFF16304A); // Level 1 card surface
+const Color caminoSurfaceHigh = Color(0xFF1E3B58); // Level 2 elevated elements
+const Color caminoSurfaceBorder = Color(0xFF2E4F72); // Subtle card border
 const Color caminoAmber = caminoYellow; // Refined waypoint gold accent
 const Color caminoAmberSubtle = Color(
-  0xFFF9E8C7,
+  0xFFF6E3BC,
 ); // Highlight text on dark accents
 
 ThemeData buildCaminoTheme() {
@@ -16,20 +17,20 @@ ThemeData buildCaminoTheme() {
     brightness: Brightness.dark,
     // Primary interactive focal points (CTAs, key markers)
     primary: caminoAmber,
-    onPrimary: const Color(0xFF1B1800),
-    primaryContainer: const Color(0xFF4A3700),
+    onPrimary: const Color(0xFF231A00),
+    primaryContainer: const Color(0xFF4A3A12),
     onPrimaryContainer: caminoAmberSubtle,
 
     // Secondary navigation / subtle badges
-    secondary: const Color(0xFF64B5F6),
+    secondary: const Color(0xFF7DB8E8),
     onSecondary: const Color(0xFF003258),
     secondaryContainer: const Color(0xFF183D63),
     onSecondaryContainer: const Color(0xFFD1E4FF),
 
     // Surface & background tonal hierarchy
     surface: caminoNavyBase,
-    onSurface: const Color(0xFFF1F5F9), // High readability off-white
-    onSurfaceVariant: const Color(0xFFCBD5E1), // Muted slate for captions/dates
+    onSurface: const Color(0xFFF2F5F9), // High readability off-white
+    onSurfaceVariant: const Color(0xFFBFCCDB), // Muted slate for captions/dates
     surfaceContainerLowest: const Color(0xFF081421),
     surfaceContainerLow: const Color(0xFF0F243A),
     surfaceContainer: caminoSurface, // Default card body
@@ -37,11 +38,11 @@ ThemeData buildCaminoTheme() {
     surfaceContainerHighest: const Color(0xFF234467),
 
     // Outlines & borders
-    outline: const Color(0xFF8CA8C4),
+    outline: const Color(0xFF8FA9C4),
     outlineVariant: const Color(0xFF1E3A59),
 
     // Error states (warnings, off-route alerts)
-    error: const Color(0xFFFFB4AB),
+    error: const Color(0xFFF4A59A),
     onError: const Color(0xFF690005),
     errorContainer: const Color(0xFF93000A),
     onErrorContainer: const Color(0xFFFFDAD6),
@@ -49,6 +50,7 @@ ThemeData buildCaminoTheme() {
 
   final baseTheme = ThemeData(
     useMaterial3: true,
+    fontFamily: 'Figtree',
     colorScheme: colorScheme,
     scaffoldBackgroundColor: caminoNavyBase,
     canvasColor: caminoSurface,
@@ -59,44 +61,78 @@ ThemeData buildCaminoTheme() {
   );
 
   return baseTheme.copyWith(
+    extensions: const [CaminoColors.dark],
     // 1. Typography: Clean neutral text rather than forcing yellow everywhere
     textTheme: baseTheme.textTheme.copyWith(
+      displayLarge: baseTheme.textTheme.displayLarge?.copyWith(
+        fontWeight: FontWeight.w900,
+      ),
+      displayMedium: baseTheme.textTheme.displayMedium?.copyWith(
+        fontWeight: FontWeight.w300,
+      ),
       headlineLarge: baseTheme.textTheme.headlineLarge?.copyWith(
-        color: const Color(0xFFF8FAFC),
-        fontWeight: FontWeight.bold,
+        color: colorScheme.onSurface,
+        fontWeight: FontWeight.w800,
         letterSpacing: -0.5,
       ),
       headlineMedium: baseTheme.textTheme.headlineMedium?.copyWith(
-        color: const Color(0xFFF8FAFC),
+        color: colorScheme.onSurface,
         fontWeight: FontWeight.w700,
         letterSpacing: -0.3,
       ),
       headlineSmall: baseTheme.textTheme.headlineSmall?.copyWith(
-        color: const Color(0xFFF1F5F9),
+        color: colorScheme.onSurface,
         fontWeight: FontWeight.w600,
       ),
       titleLarge: baseTheme.textTheme.titleLarge?.copyWith(
-        color: const Color(0xFFF1F5F9),
+        color: colorScheme.onSurface,
         fontWeight: FontWeight.w600,
       ),
       titleMedium: baseTheme.textTheme.titleMedium?.copyWith(
-        color: const Color(0xFFE2E8F0),
+        color: colorScheme.onSurface,
         fontWeight: FontWeight.w500,
       ),
       bodyLarge: baseTheme.textTheme.bodyLarge?.copyWith(
-        color: const Color(0xFFE2E8F0),
+        color: colorScheme.onSurface,
         height: 1.5,
       ),
       bodyMedium: baseTheme.textTheme.bodyMedium?.copyWith(
-        color: const Color(0xFFCBD5E1),
+        color: colorScheme.onSurfaceVariant,
         height: 1.45,
       ),
       bodySmall: baseTheme.textTheme.bodySmall?.copyWith(
-        color: const Color(0xFFCBD5E1),
+        color: colorScheme.onSurfaceVariant,
       ),
       labelLarge: baseTheme.textTheme.labelLarge?.copyWith(
-        color: const Color(0xFFF1F5F9),
+        color: colorScheme.onSurface,
         fontWeight: FontWeight.w600,
+      ),
+    ),
+
+    navigationBarTheme: NavigationBarThemeData(
+      height: 76,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      surfaceTintColor: Colors.transparent,
+      indicatorColor: colorScheme.primaryContainer,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+      iconTheme: WidgetStateProperty.resolveWith(
+        (states) => IconThemeData(
+          color: states.contains(WidgetState.selected)
+              ? caminoYellow
+              : colorScheme.onSurfaceVariant,
+        ),
+      ),
+      labelTextStyle: WidgetStateProperty.resolveWith(
+        (states) => TextStyle(
+          fontFamily: 'Figtree',
+          fontSize: 12,
+          fontWeight: states.contains(WidgetState.selected)
+              ? FontWeight.w700
+              : FontWeight.w600,
+          color: states.contains(WidgetState.selected)
+              ? caminoYellow
+              : colorScheme.onSurfaceVariant,
+        ),
       ),
     ),
 
@@ -109,6 +145,7 @@ ThemeData buildCaminoTheme() {
       foregroundColor: caminoYellow,
       surfaceTintColor: Colors.transparent,
       titleTextStyle: TextStyle(
+        fontFamily: 'Figtree',
         fontSize: 18,
         fontWeight: FontWeight.w600,
         color: caminoYellow,
@@ -133,8 +170,12 @@ ThemeData buildCaminoTheme() {
         minimumSize: const Size(48, 48),
         elevation: 0,
         backgroundColor: caminoAmber,
-        foregroundColor: const Color(0xFF1B1800),
-        textStyle: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+        foregroundColor: colorScheme.onPrimary,
+        textStyle: const TextStyle(
+          fontFamily: 'Figtree',
+          fontWeight: FontWeight.w700,
+          fontSize: 15,
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
@@ -144,9 +185,13 @@ ThemeData buildCaminoTheme() {
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         minimumSize: const Size(48, 48),
-        foregroundColor: const Color(0xFFE2E8F0),
-        side: const BorderSide(color: Color(0xFF8CA8C4), width: 1.2),
-        textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+        foregroundColor: colorScheme.onSurface,
+        side: BorderSide(color: colorScheme.outline, width: 1.2),
+        textStyle: const TextStyle(
+          fontFamily: 'Figtree',
+          fontWeight: FontWeight.w600,
+          fontSize: 14,
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
@@ -157,7 +202,11 @@ ThemeData buildCaminoTheme() {
       style: TextButton.styleFrom(
         minimumSize: const Size(48, 48),
         foregroundColor: caminoAmber,
-        textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+        textStyle: const TextStyle(
+          fontFamily: 'Figtree',
+          fontWeight: FontWeight.w600,
+          fontSize: 14,
+        ),
       ),
     ),
 
@@ -166,8 +215,9 @@ ThemeData buildCaminoTheme() {
       backgroundColor: caminoSurfaceHigh,
       surfaceTintColor: Colors.transparent,
       side: const BorderSide(color: caminoSurfaceBorder, width: 0.8),
-      labelStyle: const TextStyle(
-        color: Color(0xFFE2E8F0),
+      labelStyle: TextStyle(
+        fontFamily: 'Figtree',
+        color: colorScheme.onSurface,
         fontSize: 14,
         fontWeight: FontWeight.w500,
       ),
@@ -188,17 +238,20 @@ ThemeData buildCaminoTheme() {
       fillColor: caminoSurfaceHigh,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Color(0xFF8CA8C4)),
+        borderSide: BorderSide(color: colorScheme.outline),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Color(0xFF8CA8C4)),
+        borderSide: BorderSide(color: colorScheme.outline),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(color: caminoAmber, width: 1.5),
       ),
-      labelStyle: const TextStyle(color: Color(0xFFCBD5E1)),
+      labelStyle: TextStyle(
+        fontFamily: 'Figtree',
+        color: colorScheme.onSurfaceVariant,
+      ),
     ),
   );
 }

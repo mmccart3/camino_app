@@ -38,7 +38,7 @@ void main() {
         ),
       );
       final call = find.textContaining('Call +34');
-      final booking = find.text('Open booking website');
+      final booking = find.text('Open Booking.com webpage');
       expect(call, findsOneWidget);
       expect(booking, findsOneWidget);
       expect(
@@ -46,17 +46,16 @@ void main() {
         greaterThan(tester.getTopLeft(call).dy),
       );
       if (!private) {
-        final beds = find.text('46 beds spread across 5 dormitories');
+        final beds = find.text('46 beds');
         expect(beds, findsOneWidget);
+        expect(find.text('5 dormitories'), findsOneWidget);
         expect(
           tester.getTopLeft(beds).dy,
           greaterThan(tester.getTopLeft(booking).dy),
         );
         expect(
           tester.getTopLeft(beds).dy,
-          lessThan(
-            tester.getTopLeft(find.text('Washing machine: Not recorded')).dy,
-          ),
+          lessThan(tester.getTopLeft(find.text('Not available')).dy),
         );
         expect(find.text('Check-in: 14:00 - 20:00 (assumed)'), findsOneWidget);
         expect(
@@ -65,6 +64,10 @@ void main() {
         );
         expect(find.textContaining('confirm with accommodation'), findsNothing);
         expect(find.textContaining('original time note'), findsNothing);
+        await tester.ensureVisible(find.text('Not available'));
+        await tester.tap(find.text('Not available'));
+        await tester.pumpAndSettle();
+        expect(find.text('Washing machine: No'), findsOneWidget);
       }
     });
   }

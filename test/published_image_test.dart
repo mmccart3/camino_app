@@ -15,7 +15,7 @@ void main() {
         jsonDecode(await rootBundle.loadString('assets/stage_images.json'))
             as Map<String, dynamic>;
     final images = manifest['images'] as Map<String, dynamic>;
-    expect(images.length, 41);
+    expect(images.length, 43);
     expect(StageImageAssets.paths.length, images.length);
     for (final entry in images.entries) {
       final item = entry.value as Map<String, dynamic>;

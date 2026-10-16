@@ -189,7 +189,7 @@ void main() {
       );
       for (
         var i = 0;
-        i < 30 && find.textContaining('Stay: Pilgrim house').evaluate().isEmpty;
+        i < 30 && find.text('Pilgrim house').evaluate().isEmpty;
         i++
       ) {
         await tester.runAsync(
@@ -198,14 +198,27 @@ void main() {
         await tester.pump();
       }
       await tester.pumpAndSettle();
-      expect(find.text('Day 1 | 2027-05-01'), findsOneWidget);
+      final dateLabel = MaterialLocalizations.of(
+        tester.element(find.byType(CaminoPlanScreen)),
+      ).formatMediumDate(DateTime(2027, 5, 1));
+      expect(find.text('Day 1 | $dateLabel'), findsOneWidget);
       expect(
         find.text('Distance and walking time: estimates unavailable'),
         findsOneWidget,
       );
-      expect(find.text('Stay: Pilgrim house | Confirmed'), findsOneWidget);
+      expect(find.text('Pilgrim house'), findsOneWidget);
+      expect(find.widgetWithText(Chip, 'Confirmed'), findsOneWidget);
+      expect(find.text('Reference: ABC'), findsNothing);
+      await tester.scrollUntilVisible(find.text('Day details'), 150);
+      await Scrollable.ensureVisible(
+        tester.element(find.text('Day details')),
+        alignment: 0.3,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Day details'));
+      await tester.pumpAndSettle();
       expect(find.text('Reference: ABC'), findsOneWidget);
-      expect(find.text('Location and accommodation'), findsOneWidget);
+      expect(find.text('View destination'), findsOneWidget);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
     },

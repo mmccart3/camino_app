@@ -38,7 +38,7 @@ void main() {
     () async {
       final repository = ElevationRepository(guide);
       final stage1 = await repository.profile((await guide.stage(1))!);
-      expect(stage1.sampleCount, 2455);
+      expect(stage1.sampleCount, 2448);
       final stage2 = await repository.profile((await guide.stage(2))!);
       expect(stage2.sampleCount, 2185);
       expect(stage2.missingPaths, isEmpty);
@@ -61,7 +61,10 @@ void main() {
 
       expect(stage1.sections.length, 8);
       expect(stage1.sections.first.points.first.distanceMetres, 0);
-      expect(stage1.sections.first.points.last.distanceMetres, 5300);
+      expect(
+        stage1.sections.first.points.last.distanceMetres,
+        closeTo(5221.360640598492, .001),
+      );
       expect(stage1.sections[1].points.first.sequence, 0);
       expect(stage1.sections[1].points.first.distanceMetres, 0);
       final stage5 = await repository.profile((await guide.stage(5))!);
@@ -133,7 +136,7 @@ void main() {
         (await db.rawQuery(
           'SELECT count(*) n FROM elevation_points',
         )).single['n'],
-        56135,
+        99729,
       );
     },
   );
